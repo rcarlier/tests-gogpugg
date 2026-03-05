@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - pixmap.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="active">pixmap.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-At">At</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Clear">Clear</a></li>
+                    
+                    <li><a href="#func-ColorModel">ColorModel</a></li>
+                    
+                    <li><a href="#func-Data">Data</a></li>
+                    
+                    <li><a href="#func-EncodeJPEG">EncodeJPEG</a></li>
+                    
+                    <li><a href="#func-EncodePNG">EncodePNG</a></li>
+                    
+                    <li><a href="#func-FillSpan">FillSpan</a></li>
+                    
+                    <li><a href="#func-FillSpanBlend">FillSpanBlend</a></li>
+                    
+                    <li><a href="#func-FromImage">FromImage</a></li>
+                    
+                    <li><a href="#func-GetPixel">GetPixel</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-NewPixmap">NewPixmap</a></li>
+                    
+                    <li><a href="#func-SavePNG">SavePNG</a></li>
+                    
+                    <li><a href="#func-Set">Set</a></li>
+                    
+                    <li><a href="#func-SetPixel">SetPixel</a></li>
+                    
+                    <li><a href="#func-SetPixelPremul">SetPixelPremul</a></li>
+                    
+                    <li><a href="#func-ToImage">ToImage</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>pixmap.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-At">
+    <div class="item-header">
+        <h4>func At</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>At implements the image.Image interface.</p>
+          
+        <p>Returns premultiplied color.RGBA directly from the internal buffer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) At(x, y int) color.Color {
+	if x < 0 || x >= p.width || y < 0 || y >= p.height {
+		return color.Transparent
+	}
+	i := (y*p.width + x) * 4
+	return color.RGBA{R: p.data[i+0], G: p.data[i+1], B: p.data[i+2], A: p.data[i+3]}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds implements the image.Image interface.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Bounds() image.Rectangle {
+	return image.Rect(0, 0, p.width, p.height)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clear">
+    <div class="item-header">
+        <h4>func Clear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clear fills the entire pixmap with a color.</p>
+          
+        <p>The color is stored in premultiplied alpha format.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Clear(c RGBA) {
+	r := uint8(clamp255(c.R * c.A * 255))
+	g := uint8(clamp255(c.G * c.A * 255))
+	b := uint8(clamp255(c.B * c.A * 255))
+	a := uint8(clamp255(c.A * 255))
+
+	for i := 0; i < len(p.data); i += 4 {
+		p.data[i+0] = r
+		p.data[i+1] = g
+		p.data[i+2] = b
+		p.data[i+3] = a
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ColorModel">
+    <div class="item-header">
+        <h4>func ColorModel</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ColorModel implements the image.Image interface.</p>
+          
+        <p>Returns RGBAModel because the pixmap stores premultiplied alpha data.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) ColorModel() color.Model {
+	return color.RGBAModel
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Data">
+    <div class="item-header">
+        <h4>func Data</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Data returns the raw pixel data (RGBA format).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Data() []uint8 {
+	return p.data
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EncodeJPEG">
+    <div class="item-header">
+        <h4>func EncodeJPEG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EncodeJPEG writes the pixmap as JPEG with the given quality (1-100).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) EncodeJPEG(w io.Writer, quality int) error {
+	return jpeg.Encode(w, p.ToImage(), &jpeg.Options{Quality: quality})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EncodePNG">
+    <div class="item-header">
+        <h4>func EncodePNG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EncodePNG writes the pixmap as PNG to the given writer.</p>
+          
+        <p>This is useful for streaming, network output, or custom storage.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) EncodePNG(w io.Writer) error {
+	return png.Encode(w, p.ToImage())
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillSpan">
+    <div class="item-header">
+        <h4>func FillSpan</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillSpan fills a horizontal span of pixels with a solid color (no blending).</p>
+          
+        <p>This is optimized for batch operations when the span is >= 16 pixels.</p>
+          
+        <p>The span is from x1 (inclusive) to x2 (exclusive) on row y.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) FillSpan(x1, x2, y int, c RGBA) {
+	// Bounds checking
+	if y < 0 || y >= p.height {
+		return
+	}
+	if x1 >= x2 {
+		return
+	}
+	if x1 < 0 {
+		x1 = 0
+	}
+	if x2 > p.width {
+		x2 = p.width
+	}
+	if x1 >= x2 {
+		return
+	}
+
+	// Convert color to premultiplied bytes once
+	r := uint8(clamp255(c.R * c.A * 255))
+	g := uint8(clamp255(c.G * c.A * 255))
+	b := uint8(clamp255(c.B * c.A * 255))
+	a := uint8(clamp255(c.A * 255))
+
+	// Calculate start position in data buffer
+	startIdx := (y*p.width + x1) * 4
+	length := x2 - x1
+
+	// For short spans (< 16 pixels), use simple loop
+	if length < 16 {
+		for i := 0; i < length; i++ {
+			idx := startIdx + i*4
+			p.data[idx+0] = r
+			p.data[idx+1] = g
+			p.data[idx+2] = b
+			p.data[idx+3] = a
+		}
+		return
+	}
+
+	// For longer spans, fill first pixel then copy in batches
+	// First pixel
+	p.data[startIdx+0] = r
+	p.data[startIdx+1] = g
+	p.data[startIdx+2] = b
+	p.data[startIdx+3] = a
+
+	// Double the pattern until we have at least 16 pixels
+	filled := 1
+	for filled < 16 && filled < length {
+		copyLen := filled
+		if filled+copyLen > length {
+			copyLen = length - filled
+		}
+		copy(p.data[startIdx+filled*4:], p.data[startIdx:startIdx+copyLen*4])
+		filled += copyLen
+	}
+
+	// Copy the 16-pixel pattern to fill the rest
+	if filled < length {
+		patternSize := filled * 4
+		for offset := filled * 4; offset < length*4; {
+			copyLen := patternSize
+			if offset+copyLen > length*4 {
+				copyLen = length*4 - offset
+			}
+			copy(p.data[startIdx+offset:], p.data[startIdx:startIdx+copyLen])
+			offset += copyLen
+		}
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillSpanBlend">
+    <div class="item-header">
+        <h4>func FillSpanBlend</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillSpanBlend fills a horizontal span with blending.</p>
+          
+        <p>This uses batch blending operations for spans >= 16 pixels.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) FillSpanBlend(x1, x2, y int, c RGBA) {
+	// Bounds checking
+	if y < 0 || y >= p.height {
+		return
+	}
+	if x1 >= x2 {
+		return
+	}
+	if x1 < 0 {
+		x1 = 0
+	}
+	if x2 > p.width {
+		x2 = p.width
+	}
+	if x1 >= x2 {
+		return
+	}
+
+	// If alpha is 1.0 (fully opaque), use direct fill (no blending needed)
+	if c.A >= 0.9999 {
+		p.FillSpan(x1, x2, y, c)
+		return
+	}
+
+	// Convert color to premultiplied RGBA bytes
+	r := uint8(clamp255(c.R * c.A * 255))
+	g := uint8(clamp255(c.G * c.A * 255))
+	b := uint8(clamp255(c.B * c.A * 255))
+	a := uint8(clamp255(c.A * 255))
+
+	length := x2 - x1
+	startIdx := (y*p.width + x1) * 4
+
+	// For short spans, use scalar blending
+	if length < 16 {
+		for i := 0; i < length; i++ {
+			idx := startIdx + i*4
+			dr := p.data[idx+0]
+			dg := p.data[idx+1]
+			db := p.data[idx+2]
+			da := p.data[idx+3]
+
+			// Source-over blending: Result = S + D * (1 - Sa)
+			invSa := 255 - a
+			p.data[idx+0] = r + uint8((uint32(dr)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+			p.data[idx+1] = g + uint8((uint32(dg)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+			p.data[idx+2] = b + uint8((uint32(db)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+			p.data[idx+3] = a + uint8((uint32(da)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+		}
+		return
+	}
+
+	// For longer spans, use the same scalar blending
+	// TODO: Integrate batch blending without import cycle
+	invSa := 255 - a
+	for i := 0; i < length; i++ {
+		idx := startIdx + i*4
+		dr := p.data[idx+0]
+		dg := p.data[idx+1]
+		db := p.data[idx+2]
+		da := p.data[idx+3]
+
+		p.data[idx+0] = r + uint8((uint32(dr)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+		p.data[idx+1] = g + uint8((uint32(dg)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+		p.data[idx+2] = b + uint8((uint32(db)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+		p.data[idx+3] = a + uint8((uint32(da)*uint32(invSa)+127)/255)	//nolint:gosec // bounded by 255
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FromImage">
+    <div class="item-header">
+        <h4>func FromImage</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FromImage creates a pixmap from an image.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func FromImage(img image.Image) *Pixmap {
+	bounds := img.Bounds()
+	width := bounds.Dx()
+	height := bounds.Dy()
+	pm := NewPixmap(width, height)
+
+	for y := 0; y < height; y++ {
+		for x := 0; x < width; x++ {
+			c := img.At(bounds.Min.X+x, bounds.Min.Y+y)
+			pm.SetPixel(x, y, FromColor(c))
+		}
+	}
+
+	return pm
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetPixel">
+    <div class="item-header">
+        <h4>func GetPixel</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetPixel returns the color of a single pixel as straight (non-premultiplied) RGBA.</p>
+          
+        <p>Internally the pixel is stored as premultiplied alpha; this method un-premultiplies.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) GetPixel(x, y int) RGBA {
+	if x < 0 || x >= p.width || y < 0 || y >= p.height {
+		return Transparent
+	}
+	i := (y*p.width + x) * 4
+	a := float64(p.data[i+3]) / 255
+	if a <= 0 {
+		return RGBA{0, 0, 0, 0}
+	}
+	return RGBA{
+		R:	float64(p.data[i+0]) / 255 / a,
+		G:	float64(p.data[i+1]) / 255 / a,
+		B:	float64(p.data[i+2]) / 255 / a,
+		A:	a,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the height of the pixmap.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Height() int {
+	return p.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewPixmap">
+    <div class="item-header">
+        <h4>func NewPixmap</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewPixmap creates a new pixmap with the given dimensions.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewPixmap(width, height int) *Pixmap {
+	return &Pixmap{
+		width:	width,
+		height:	height,
+		data:	make([]uint8, width*height*4),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SavePNG">
+    <div class="item-header">
+        <h4>func SavePNG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SavePNG saves the pixmap to a PNG file.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) SavePNG(path string) error {
+	f, err := os.Create(path)	//nolint:gosec // path is user-provided intentionally
+	if err != nil {
+		return err
+	}
+	defer func() {
+		_ = f.Close()
+	}()
+
+	img := p.ToImage()
+	return png.Encode(f, img)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Set">
+    <div class="item-header">
+        <h4>func Set</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Set implements the draw.Image interface.</p>
+          
+        <p>This allows Pixmap to be used as a destination for image drawing operations,</p>
+          
+        <p>including text rendering via golang.org/x/image/font.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Set(x, y int, c color.Color) {
+	p.SetPixel(x, y, FromColor(c))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetPixel">
+    <div class="item-header">
+        <h4>func SetPixel</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetPixel sets the color of a single pixel.</p>
+          
+        <p>The color is stored in premultiplied alpha format internally.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) SetPixel(x, y int, c RGBA) {
+	if x < 0 || x >= p.width || y < 0 || y >= p.height {
+		return
+	}
+	i := (y*p.width + x) * 4
+	p.data[i+0] = uint8(clamp255(c.R * c.A * 255))
+	p.data[i+1] = uint8(clamp255(c.G * c.A * 255))
+	p.data[i+2] = uint8(clamp255(c.B * c.A * 255))
+	p.data[i+3] = uint8(clamp255(c.A * 255))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetPixelPremul">
+    <div class="item-header">
+        <h4>func SetPixelPremul</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetPixelPremul sets a pixel using premultiplied RGBA uint8 values directly.</p>
+          
+        <p>This skips the float-to-uint8 conversion, clamping, and premultiplication</p>
+          
+        <p>overhead of SetPixel. Use this when colors are precomputed for batch operations.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Values must already be in premultiplied alpha form and clamped to [0, 255].</p>
+          
+        <p>Out-of-bounds coordinates are silently ignored.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) SetPixelPremul(x, y int, r, g, b, a uint8) {
+	if x < 0 || x >= p.width || y < 0 || y >= p.height {
+		return
+	}
+	i := (y*p.width + x) * 4
+	p.data[i+0] = r
+	p.data[i+1] = g
+	p.data[i+2] = b
+	p.data[i+3] = a
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToImage">
+    <div class="item-header">
+        <h4>func ToImage</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToImage converts the pixmap to an image.RGBA.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) ToImage() *image.RGBA {
+	img := image.NewRGBA(image.Rect(0, 0, p.width, p.height))
+	copy(img.Pix, p.data)
+	return img
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the width of the pixmap.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) Width() int {
+	return p.width
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Pixmap">
+    <div class="item-header">
+        <h4>type Pixmap struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Pixmap represents a rectangular pixel buffer.</p>
+        
+        <p>It implements both image.Image (read-only) and draw.Image (read-write)</p>
+        
+        <p>interfaces, making it compatible with Go's standard image ecosystem</p>
+        
+        <p>including text rendering via golang.org/x/image/font.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Pixmap struct {
+	width	int
+	height	int
+	data	[]uint8	// Premultiplied RGBA format, 4 bytes per pixel
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

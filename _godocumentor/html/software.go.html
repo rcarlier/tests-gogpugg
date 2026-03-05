@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - software.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="active">software.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-NewSoftwareRenderer">NewSoftwareRenderer</a></li>
+                    
+                    <li><a href="#func-Resize">Resize</a></li>
+                    
+                    <li><a href="#func-Stroke">Stroke</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>software.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Fill">
+    <div class="item-header">
+        <h4>func Fill</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Fill implements Renderer.Fill using analytic anti-aliasing.</p>
+          
+        <p>For complex paths, it auto-selects the registered CoverageFiller (tile-based</p>
+          
+        <p>rasterizer) when available, using an adaptive threshold based on both path</p>
+          
+        <p>element count and bounding box area.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>When rasterizerMode is set (via Context.SetRasterizerMode), the forced</p>
+          
+        <p>algorithm is used instead of auto-selection.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *SoftwareRenderer) Fill(pixmap *Pixmap, p *Path, paint *Paint) error {
+	// Force mode: specific algorithm without auto-selection.
+	switch r.rasterizerMode {
+	case RasterizerAnalytic:
+		// Skip CoverageFiller entirely → always use AnalyticFiller below.
+
+	case RasterizerSparseStrips:
+		if filler := r.forcedFiller(RasterizerSparseStrips); filler != nil {
+			r.fillWithCoverageFiller(pixmap, p, paint, filler)
+			return nil
+		}
+
+	case RasterizerTileCompute:
+		if filler := r.forcedFiller(RasterizerTileCompute); filler != nil {
+			r.fillWithCoverageFiller(pixmap, p, paint, filler)
+			return nil
+		}
+
+	default:	// RasterizerAuto
+		// Auto-selection: use CoverageFiller for complex paths.
+		if filler := GetCoverageFiller(); filler != nil && shouldUseTileRasterizer(p) {
+			r.fillWithCoverageFiller(pixmap, p, paint, filler)
+			return nil
+		}
+	}
+
+	// AnalyticFiller path (scanline) — simple paths, forced analytic, or no filler
+	r.edgeBuilder.Reset()
+	r.analyticFiller.Reset()
+
+	// Clip paths to canvas bounds to prevent FDot6→FDot16 integer overflow.
+	// At aaShift=4, coordinates > 2048px overflow int32 in FDot16, causing
+	// silent wrap-around that places edges at wrong positions (RAST-010).
+	// Small margin for AA bleed — coordinates at canvas+2px are still well
+	// within safe range.
+	clipMargin := float32(2)
+	clipRect := raster.Rect{
+		MinX:	-clipMargin,
+		MinY:	-clipMargin,
+		MaxX:	float32(pixmap.Width()) + clipMargin,
+		MaxY:	float32(pixmap.Height()) + clipMargin,
+	}
+	r.edgeBuilder.SetClipRect(&clipRect)
+
+	// Flatten curves to line segments for the AnalyticFiller.
+	// Forward differencing (QuadraticEdge/CubicEdge) can produce zero-height
+	// segments after FDot6 rounding, silently losing winding contribution.
+	// Pre-flattening with adaptive subdivision (0.1px tolerance) eliminates
+	// this class of errors. This is the standard approach in tiny-skia and
+	// Skia's analytic AA scanline rasterizer.
+	r.edgeBuilder.SetFlattenCurves(true)
+	defer r.edgeBuilder.SetFlattenCurves(false)
+
+	// Build edges from the path
+	pathAdapter := convertGGPathToCorePath(p)
+	r.edgeBuilder.BuildFromPath(pathAdapter, raster.IdentityTransform{})
+
+	// If no edges, nothing to fill
+	if r.edgeBuilder.IsEmpty() {
+		return nil
+	}
+
+	// Convert fill rule
+	coreFillRule := raster.FillRuleNonZero
+	if paint.FillRule == FillRuleEvenOdd {
+		coreFillRule = raster.FillRuleEvenOdd
+	}
+
+	if color, ok := solidColorFromPaint(paint); ok {
+		// Fast path: solid color
+		clipFn := paint.ClipCoverage
+		r.analyticFiller.Fill(r.edgeBuilder, coreFillRule, func(y int, runs *raster.AlphaRuns) {
+			r.blendAlphaRunsFromCoreRuns(pixmap, y, runs, color, clipFn)
+		})
+	} else {
+		// Pattern/gradient path: per-pixel color sampling
+		clipFn := paint.ClipCoverage
+		r.analyticFiller.Fill(r.edgeBuilder, coreFillRule, func(y int, runs *raster.AlphaRuns) {
+			r.blendAlphaRunsFromCoreRunsPaint(pixmap, y, runs, paint, clipFn)
+		})
+	}
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewSoftwareRenderer">
+    <div class="item-header">
+        <h4>func NewSoftwareRenderer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewSoftwareRenderer creates a new software renderer with analytic anti-aliasing.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewSoftwareRenderer(width, height int) *SoftwareRenderer {
+	eb := raster.NewEdgeBuilder(2)	// 4x AA (Skia default), max coord 8191px
+	return &SoftwareRenderer{
+		edgeBuilder:	eb,
+		analyticFiller:	raster.NewAnalyticFiller(width, height),
+		width:		width,
+		height:		height,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Resize">
+    <div class="item-header">
+        <h4>func Resize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Resize updates the renderer dimensions.</p>
+          
+        <p>This should be called when the context is resized.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *SoftwareRenderer) Resize(width, height int) {
+	r.width = width
+	r.height = height
+	eb := raster.NewEdgeBuilder(2)	// 4x AA (Skia default), max coord 8191px
+	r.edgeBuilder = eb
+	r.analyticFiller = raster.NewAnalyticFiller(width, height)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stroke">
+    <div class="item-header">
+        <h4>func Stroke</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stroke implements Renderer.Stroke with anti-aliasing support.</p>
+          
+        <p>Strokes are expanded to fill paths and rendered with the Fill method,</p>
+          
+        <p>which provides analytic anti-aliased results.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *SoftwareRenderer) Stroke(pixmap *Pixmap, p *Path, paint *Paint) error {
+	// Get effective line width
+	width := paint.EffectiveLineWidth()
+
+	// Get transform scale for dash pattern scaling
+	transformScale := paint.TransformScale
+	if transformScale <= 0 {
+		transformScale = 1.0
+	}
+
+	// Apply dash pattern if set
+	// Scale dash pattern by transform scale (Cairo/Skia convention)
+	pathToDraw := p
+	if paint.IsDashed() {
+		dash := paint.EffectiveDash()
+		if transformScale > 1.0 {
+			dash = dash.Scale(transformScale)
+		}
+		pathToDraw = dashPath(p, dash)
+	}
+
+	// Convert gg.Path to stroke.PathElement
+	strokeElements := convertPathToStrokeElements(pathToDraw)
+
+	// Create stroke style from paint
+	// Scale line width by transform scale (path coordinates are already transformed)
+	effectiveWidth := width * transformScale
+	if effectiveWidth < 1.0 {
+		effectiveWidth = 1.0	// Minimum 1px stroke for visibility
+	}
+	strokeStyle := stroke.Stroke{
+		Width:		effectiveWidth,
+		Cap:		convertLineCap(paint.EffectiveLineCap()),
+		Join:		convertLineJoin(paint.EffectiveLineJoin()),
+		MiterLimit:	paint.EffectiveMiterLimit(),
+	}
+	if strokeStyle.MiterLimit <= 0 {
+		strokeStyle.MiterLimit = 4.0	// Default
+	}
+
+	// Create stroke expander with tight tolerance for smooth curves.
+	// 0.025 px produces ~128 segments per circle — eliminates visible
+	// polygon faceting on small UI circles (radio buttons, checkboxes).
+	expander := stroke.NewStrokeExpander(strokeStyle)
+	expander.SetTolerance(0.1)
+
+	// Expand stroke to fill path
+	expandedElements := expander.Expand(strokeElements)
+
+	// Convert back to gg.Path
+	strokePath := convertStrokeElementsToPath(expandedElements)
+
+	// Fill the stroke path - this gives us anti-aliased strokes
+	return r.Fill(pixmap, strokePath, paint)
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-SoftwareRenderer">
+    <div class="item-header">
+        <h4>type SoftwareRenderer struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SoftwareRenderer is a CPU-based scanline rasterizer using analytic anti-aliasing.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Analytic AA computes the exact area of the shape within each pixel using</p>
+        
+        <p>trapezoidal integration. This provides higher quality anti-aliasing than</p>
+        
+        <p>supersampling approaches, with no extra memory overhead.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SoftwareRenderer struct {
+	// Analytic AA components
+	edgeBuilder	*raster.EdgeBuilder
+	analyticFiller	*raster.AnalyticFiller
+
+	// Dimensions
+	width, height	int
+
+	// rasterizerMode is set by Context before calling Fill/Stroke
+	// to support forced algorithm selection (RasterizerSparseStrips, etc.).
+	// Reset to RasterizerAuto after each call.
+	rasterizerMode	RasterizerMode
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

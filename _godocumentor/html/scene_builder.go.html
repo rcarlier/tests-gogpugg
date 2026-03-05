@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/builder.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="active">scene/builder.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Build">Build</a></li>
+                    
+                    <li><a href="#func-Clip">Clip</a></li>
+                    
+                    <li><a href="#func-CurrentTransform">CurrentTransform</a></li>
+                    
+                    <li><a href="#func-DrawLine">DrawLine</a></li>
+                    
+                    <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-FillCircle">FillCircle</a></li>
+                    
+                    <li><a href="#func-FillPath">FillPath</a></li>
+                    
+                    <li><a href="#func-FillRect">FillRect</a></li>
+                    
+                    <li><a href="#func-FillWith">FillWith</a></li>
+                    
+                    <li><a href="#func-Group">Group</a></li>
+                    
+                    <li><a href="#func-Image">Image</a></li>
+                    
+                    <li><a href="#func-Layer">Layer</a></li>
+                    
+                    <li><a href="#func-NewSceneBuilder">NewSceneBuilder</a></li>
+                    
+                    <li><a href="#func-NewSceneBuilderFrom">NewSceneBuilderFrom</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-ResetTransform">ResetTransform</a></li>
+                    
+                    <li><a href="#func-Rotate">Rotate</a></li>
+                    
+                    <li><a href="#func-Scale">Scale</a></li>
+                    
+                    <li><a href="#func-Scene">Scene</a></li>
+                    
+                    <li><a href="#func-Stroke">Stroke</a></li>
+                    
+                    <li><a href="#func-StrokeCircle">StrokeCircle</a></li>
+                    
+                    <li><a href="#func-StrokePath">StrokePath</a></li>
+                    
+                    <li><a href="#func-StrokeRect">StrokeRect</a></li>
+                    
+                    <li><a href="#func-StrokeWith">StrokeWith</a></li>
+                    
+                    <li><a href="#func-Transform">Transform</a></li>
+                    
+                    <li><a href="#func-Translate">Translate</a></li>
+                    
+                    <li><a href="#func-WithTransform">WithTransform</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/builder.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Build">
+    <div class="item-header">
+        <h4>func Build</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Build returns the constructed scene and resets the builder for reuse.</p>
+          
+        <p>The builder is left in a clean state with a new empty scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Build() *Scene {
+	result := b.scene
+	b.scene = NewScene()
+	b.transform = IdentityAffine()
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clip">
+    <div class="item-header">
+        <h4>func Clip</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clip creates a clipping region from the given shape.</p>
+          
+        <p>The callback receives the same builder to add clipped content.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>builder.Clip(circle, func(b *SceneBuilder) {</p>
+          
+        <p>b.Fill(largeRect, SolidBrush(Blue)) // clipped to circle</p>
+          
+        <p>})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Clip(shape Shape, fn func(*SceneBuilder)) *SceneBuilder {
+	if fn == nil || shape == nil {
+		return b
+	}
+
+	// Save current transform
+	savedTransform := b.transform
+
+	// Push clip on scene
+	b.scene.PushClip(shape)
+
+	// Call the callback with this builder
+	fn(b)
+
+	// Pop the clip
+	b.scene.PopClip()
+
+	// Restore transform
+	b.transform = savedTransform
+
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CurrentTransform">
+    <div class="item-header">
+        <h4>func CurrentTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CurrentTransform returns the builder's current transform.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) CurrentTransform() Affine {
+	return b.transform
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawLine">
+    <div class="item-header">
+        <h4>func DrawLine</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawLine is a convenience method to draw a line.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) DrawLine(x1, y1, x2, y2 float32, brush Brush, lineWidth float32) *SceneBuilder {
+	return b.Stroke(NewLineShape(x1, y1, x2, y2), brush, lineWidth)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Fill">
+    <div class="item-header">
+        <h4>func Fill</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Fill fills a shape with the given brush using the non-zero winding rule.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Fill(shape Shape, brush Brush) *SceneBuilder {
+	b.scene.Fill(FillNonZero, b.transform, brush, shape)
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillCircle">
+    <div class="item-header">
+        <h4>func FillCircle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillCircle is a convenience method to fill a circle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) FillCircle(cx, cy, r float32, brush Brush) *SceneBuilder {
+	return b.Fill(NewCircleShape(cx, cy, r), brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillPath">
+    <div class="item-header">
+        <h4>func FillPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillPath is a convenience method to fill a path wrapped as a shape.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) FillPath(path *Path, brush Brush) *SceneBuilder {
+	return b.Fill(NewPathShape(path), brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillRect">
+    <div class="item-header">
+        <h4>func FillRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillRect is a convenience method to fill a rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) FillRect(x, y, width, height float32, brush Brush) *SceneBuilder {
+	return b.Fill(NewRectShape(x, y, width, height), brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillWith">
+    <div class="item-header">
+        <h4>func FillWith</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillWith fills a shape with the given brush and fill style.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) FillWith(shape Shape, brush Brush, style FillStyle) *SceneBuilder {
+	b.scene.Fill(style, b.transform, brush, shape)
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Group">
+    <div class="item-header">
+        <h4>func Group</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Group creates a logical grouping of drawing operations.</p>
+          
+        <p>This is primarily for organizational purposes; no blending or clipping is applied.</p>
+          
+        <p>The callback receives the same builder.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>builder.Group(func(b *SceneBuilder) {</p>
+          
+        <p>b.Fill(rect1, SolidBrush(Red))</p>
+          
+        <p>b.Fill(rect2, SolidBrush(Blue))</p>
+          
+        <p>})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Group(fn func(*SceneBuilder)) *SceneBuilder {
+	if fn == nil {
+		return b
+	}
+
+	// Save current transform
+	savedTransform := b.transform
+
+	// Call the callback directly (no layer push, just grouping)
+	fn(b)
+
+	// Restore transform
+	b.transform = savedTransform
+
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Image">
+    <div class="item-header">
+        <h4>func Image</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Image draws an image at the given rectangle.</p>
+          
+        <p>The image is scaled to fit the rectangle bounds.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Image(img *Image, rect Rect) *SceneBuilder {
+	if img == nil || img.IsEmpty() || rect.IsEmpty() {
+		return b
+	}
+
+	// Calculate scale to fit image in rect
+	scaleX := rect.Width() / float32(img.Width)
+	scaleY := rect.Height() / float32(img.Height)
+
+	// Create transform: translate to rect position, then scale
+	imgTransform := b.transform.
+		Multiply(TranslateAffine(rect.MinX, rect.MinY)).
+		Multiply(ScaleAffine(scaleX, scaleY))
+
+	b.scene.DrawImage(img, imgTransform)
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Layer">
+    <div class="item-header">
+        <h4>func Layer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Layer creates a compositing layer with the given blend mode and alpha.</p>
+          
+        <p>The callback receives the same builder to add content to the layer.</p>
+          
+        <p>If clip is not nil, the layer content is clipped to that shape.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>builder.Layer(BlendMultiply, 0.8, nil, func(b *SceneBuilder) {</p>
+          
+        <p>b.Fill(circle, SolidBrush(Red))</p>
+          
+        <p>})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Layer(blend BlendMode, alpha float32, clip Shape, fn func(*SceneBuilder)) *SceneBuilder {
+	if fn == nil {
+		return b
+	}
+
+	// Save current transform
+	savedTransform := b.transform
+
+	// Push layer on scene
+	b.scene.PushLayer(blend, alpha, clip)
+
+	// Call the callback with this builder
+	fn(b)
+
+	// Pop the layer
+	b.scene.PopLayer()
+
+	// Restore transform
+	b.transform = savedTransform
+
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewSceneBuilder">
+    <div class="item-header">
+        <h4>func NewSceneBuilder</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewSceneBuilder creates a new scene builder with an empty scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewSceneBuilder() *SceneBuilder {
+	return &SceneBuilder{
+		scene:		NewScene(),
+		transform:	IdentityAffine(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewSceneBuilderFrom">
+    <div class="item-header">
+        <h4>func NewSceneBuilderFrom</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewSceneBuilderFrom creates a scene builder wrapping an existing scene.</p>
+          
+        <p>This is useful for adding to a scene that already has content.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewSceneBuilderFrom(scene *Scene) *SceneBuilder {
+	if scene == nil {
+		scene = NewScene()
+	}
+	return &SceneBuilder{
+		scene:		scene,
+		transform:	scene.Transform(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the builder's scene and transform for reuse.</p>
+          
+        <p>Unlike Build(), this does not return the scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Reset() *SceneBuilder {
+	b.scene.Reset()
+	b.transform = IdentityAffine()
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ResetTransform">
+    <div class="item-header">
+        <h4>func ResetTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ResetTransform resets the current transform to identity.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) ResetTransform() *SceneBuilder {
+	b.transform = IdentityAffine()
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Rotate">
+    <div class="item-header">
+        <h4>func Rotate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Rotate applies a rotation to the current transform (angle in radians).</p>
+          
+        <p>Rotations accumulate - use ResetTransform to clear.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Rotate(angle float32) *SceneBuilder {
+	b.transform = b.transform.Multiply(RotateAffine(angle))
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Scale">
+    <div class="item-header">
+        <h4>func Scale</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Scale applies a scale to the current transform.</p>
+          
+        <p>Scales accumulate - use ResetTransform to clear.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Scale(x, y float32) *SceneBuilder {
+	b.transform = b.transform.Multiply(ScaleAffine(x, y))
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Scene">
+    <div class="item-header">
+        <h4>func Scene</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Scene returns the current scene without resetting the builder.</p>
+          
+        <p>Use this to inspect the scene during construction.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Scene() *Scene {
+	return b.scene
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stroke">
+    <div class="item-header">
+        <h4>func Stroke</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stroke strokes a shape with the given brush and line width.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Stroke(shape Shape, brush Brush, width float32) *SceneBuilder {
+	style := &StrokeStyle{
+		Width:		width,
+		MiterLimit:	10.0,
+		Cap:		LineCapButt,
+		Join:		LineJoinMiter,
+	}
+	b.scene.Stroke(style, b.transform, brush, shape)
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeCircle">
+    <div class="item-header">
+        <h4>func StrokeCircle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeCircle is a convenience method to stroke a circle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) StrokeCircle(cx, cy, r float32, brush Brush, lineWidth float32) *SceneBuilder {
+	return b.Stroke(NewCircleShape(cx, cy, r), brush, lineWidth)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokePath">
+    <div class="item-header">
+        <h4>func StrokePath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokePath is a convenience method to stroke a path wrapped as a shape.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) StrokePath(path *Path, brush Brush, lineWidth float32) *SceneBuilder {
+	return b.Stroke(NewPathShape(path), brush, lineWidth)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeRect">
+    <div class="item-header">
+        <h4>func StrokeRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeRect is a convenience method to stroke a rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) StrokeRect(x, y, width, height float32, brush Brush, lineWidth float32) *SceneBuilder {
+	return b.Stroke(NewRectShape(x, y, width, height), brush, lineWidth)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeWith">
+    <div class="item-header">
+        <h4>func StrokeWith</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeWith strokes a shape with the given brush and stroke style.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) StrokeWith(shape Shape, brush Brush, style *StrokeStyle) *SceneBuilder {
+	b.scene.Stroke(style, b.transform, brush, shape)
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Transform">
+    <div class="item-header">
+        <h4>func Transform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Transform sets the current transform, replacing any existing transform.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Transform(t Affine) *SceneBuilder {
+	b.transform = t
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Translate">
+    <div class="item-header">
+        <h4>func Translate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Translate applies a translation to the current transform.</p>
+          
+        <p>Translations accumulate - use ResetTransform to clear.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) Translate(x, y float32) *SceneBuilder {
+	b.transform = b.transform.Multiply(TranslateAffine(x, y))
+	return b
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithTransform">
+    <div class="item-header">
+        <h4>func WithTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithTransform executes the callback with a temporary transform applied.</p>
+          
+        <p>The transform is reset after the callback completes.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>builder.WithTransform(TranslateAffine(100, 100), func(b *SceneBuilder) {</p>
+          
+        <p>b.Fill(shape, brush) // drawn at (100, 100)</p>
+          
+        <p>})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) WithTransform(t Affine, fn func(*SceneBuilder)) *SceneBuilder {
+	if fn == nil {
+		return b
+	}
+
+	// Save current transform
+	savedTransform := b.transform
+
+	// Apply temporary transform
+	b.transform = b.transform.Multiply(t)
+
+	// Call the callback
+	fn(b)
+
+	// Restore transform
+	b.transform = savedTransform
+
+	return b
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-SceneBuilder">
+    <div class="item-header">
+        <h4>type SceneBuilder struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SceneBuilder provides a fluent API for constructing scenes ergonomically.</p>
+        
+        <p>It wraps a Scene and provides chainable methods for drawing operations,</p>
+        
+        <p>transform management, and layer composition.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The builder maintains its own transform state that accumulates with each</p>
+        
+        <p>transform operation. Use ResetTransform to clear the accumulated transform.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Example:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>scene := NewSceneBuilder().</p>
+        
+        <p>Fill(NewRectShape(0, 0, 800, 600), SolidBrush(White)).</p>
+        
+        <p>Translate(100, 100).</p>
+        
+        <p>Layer(BlendMultiply, 0.8, nil, func(b *SceneBuilder) {</p>
+        
+        <p>b.Fill(NewCircleShape(0, 0, 50), SolidBrush(Red)).</p>
+        
+        <p>Stroke(NewCircleShape(0, 0, 50), SolidBrush(Black), 2)</p>
+        
+        <p>}).</p>
+        
+        <p>Build()</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SceneBuilder struct {
+	scene		*Scene
+	transform	Affine
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/layout.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="active">text/layout.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-DefaultLayoutOptions">DefaultLayoutOptions</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-LayoutText">LayoutText</a></li>
+                    
+                    <li><a href="#func-LayoutTextSimple">LayoutTextSimple</a></li>
+                    
+                    <li><a href="#func-LayoutTextWithContext">LayoutTextWithContext</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>text/layout.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-DefaultLayoutOptions">
+    <div class="item-header">
+        <h4>func DefaultLayoutOptions</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DefaultLayoutOptions returns sensible default layout options.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func DefaultLayoutOptions() LayoutOptions {
+	return LayoutOptions{
+		MaxWidth:	0,	// No wrapping (no MaxWidth constraint)
+		LineSpacing:	1.0,
+		Alignment:	AlignLeft,
+		Direction:	DirectionLTR,
+		// WrapMode defaults to WrapWordChar (zero value)
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the total height of the line (ascent + descent).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (l *Line) Height() float64 {
+	return l.Ascent + l.Descent
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LayoutText">
+    <div class="item-header">
+        <h4>func LayoutText</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LayoutText performs text layout with the given options.</p>
+          
+        <p>It segments text by direction/script, shapes each segment,</p>
+          
+        <p>wraps lines if MaxWidth > 0, and positions lines with alignment.</p>
+          
+        <p>The font size is obtained from face.Size().</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>For cancellable layout, use LayoutTextWithContext.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func LayoutText(text string, face Face, opts LayoutOptions) *Layout {
+	layout, _ := LayoutTextWithContext(context.Background(), text, face, opts)
+	return layout
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LayoutTextSimple">
+    <div class="item-header">
+        <h4>func LayoutTextSimple</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LayoutTextSimple is a convenience wrapper with default options.</p>
+          
+        <p>The font size is obtained from face.Size().</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func LayoutTextSimple(text string, face Face) *Layout {
+	return LayoutText(text, face, DefaultLayoutOptions())
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LayoutTextWithContext">
+    <div class="item-header">
+        <h4>func LayoutTextWithContext</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LayoutTextWithContext performs text layout with the given options and cancellation support.</p>
+          
+        <p>It segments text by direction/script, shapes each segment,</p>
+          
+        <p>wraps lines if MaxWidth > 0, and positions lines with alignment.</p>
+          
+        <p>The font size is obtained from face.Size().</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The context can be used to cancel long-running layout operations.</p>
+          
+        <p>When canceled, returns nil and ctx.Err().</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func LayoutTextWithContext(ctx context.Context, text string, face Face, opts LayoutOptions) (*Layout, error) {
+	if text == "" {
+		return &Layout{}, nil
+	}
+	if face == nil {
+		return &Layout{}, nil
+	}
+
+	// Check for cancellation at start
+	select {
+	case <-ctx.Done():
+		return nil, ctx.Err()
+	default:
+	}
+
+	// Apply defaults for zero values
+	if opts.LineSpacing <= 0 {
+		opts.LineSpacing = 1.0
+	}
+
+	// Get font metrics for line height calculation
+	metrics := face.Metrics()
+
+	// Split by hard line breaks
+	paragraphs := splitParagraphs(text)
+
+	layout := &Layout{
+		Lines: make([]Line, 0, len(paragraphs)),
+	}
+
+	var y float64
+
+	for i, para := range paragraphs {
+		// Check for cancellation periodically (every 8 paragraphs)
+		if i%8 == 0 && i > 0 {
+			select {
+			case <-ctx.Done():
+				return nil, ctx.Err()
+			default:
+			}
+		}
+
+		paraLines := layoutParagraph(para, face, opts, metrics)
+
+		for j := range paraLines {
+			line := &paraLines[j]
+
+			// Calculate baseline position: previous Y + line ascent
+			if len(layout.Lines) == 0 && j == 0 {
+				// Very first line of entire layout
+				y = line.Ascent
+			} else {
+				// Get previous line: from current paragraph or from layout.Lines
+				var prevLine *Line
+				if j > 0 {
+					prevLine = &paraLines[j-1]
+				} else {
+					prevLine = &layout.Lines[len(layout.Lines)-1]
+				}
+				lineGap := metrics.LineGap * opts.LineSpacing
+				y = prevLine.Y + prevLine.Descent + lineGap + line.Ascent
+			}
+
+			line.Y = y
+
+			// Apply horizontal alignment
+			applyAlignment(line, opts.Alignment, opts.MaxWidth)
+
+			// Track layout bounds
+			if line.Width > layout.Width {
+				layout.Width = line.Width
+			}
+		}
+
+		layout.Lines = append(layout.Lines, paraLines...)
+	}
+
+	// Calculate total height
+	if len(layout.Lines) > 0 {
+		lastLine := &layout.Lines[len(layout.Lines)-1]
+		layout.Height = lastLine.Y + lastLine.Descent
+	}
+
+	return layout, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns the string representation of the alignment.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a Alignment) String() string {
+	switch a {
+	case AlignLeft:
+		return "Left"
+	case AlignCenter:
+		return "Center"
+	case AlignRight:
+		return "Right"
+	case AlignJustify:
+		return "Justify"
+	default:
+		return unknownStr
+	}
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-LayoutOptions">
+    <div class="item-header">
+        <h4>type LayoutOptions struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>LayoutOptions configures text layout behavior.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type LayoutOptions struct {
+	// MaxWidth is the maximum line width in pixels.
+	// If 0, no line wrapping is performed (single-line paragraphs).
+	MaxWidth	float64
+
+	// LineSpacing is a multiplier for line height.
+	// 1.0 uses the font's natural line height; 1.5 adds 50% extra space.
+	LineSpacing	float64
+
+	// Alignment specifies horizontal text alignment.
+	Alignment	Alignment
+
+	// Direction is the base text direction (LTR or RTL).
+	// Used for paragraph-level direction when no strong directional text is present.
+	Direction	Direction
+
+	// WrapMode specifies how text is wrapped when it exceeds MaxWidth.
+	// Default is WrapWordChar which breaks at word boundaries first,
+	// then falls back to character boundaries for long words.
+	WrapMode	WrapMode
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Line">
+    <div class="item-header">
+        <h4>type Line struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Line represents a positioned line of text ready for rendering.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Line struct {
+	// Runs contains the shaped runs that make up this line.
+	// Multiple runs occur with mixed scripts or directions.
+	Runs	[]ShapedRun
+
+	// Glyphs contains all glyphs from Runs, positioned for rendering.
+	// Glyph X positions are absolute within the layout.
+	Glyphs	[]ShapedGlyph
+
+	// Width is the total advance width of all glyphs in this line.
+	Width	float64
+
+	// Ascent is the maximum ascent of all runs (distance above baseline).
+	Ascent	float64
+
+	// Descent is the maximum descent of all runs (distance below baseline).
+	Descent	float64
+
+	// Y is the baseline Y position of this line within the layout.
+	Y	float64
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Layout">
+    <div class="item-header">
+        <h4>type Layout struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Layout represents the result of text layout.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Layout struct {
+	// Lines contains all lines of laid out text.
+	Lines	[]Line
+
+	// Width is the maximum width among all lines.
+	Width	float64
+
+	// Height is the total height of all lines.
+	Height	float64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

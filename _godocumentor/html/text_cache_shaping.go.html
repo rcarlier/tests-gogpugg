@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/cache/shaping.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="active">text/cache/shaping.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Capacity">Capacity</a></li>
+                    
+                    <li><a href="#func-Clear">Clear</a></li>
+                    
+                    <li><a href="#func-DefaultShapingCache">DefaultShapingCache</a></li>
+                    
+                    <li><a href="#func-Delete">Delete</a></li>
+                    
+                    <li><a href="#func-Get">Get</a></li>
+                    
+                    <li><a href="#func-GetOrCreate">GetOrCreate</a></li>
+                    
+                    <li><a href="#func-HashFeatures">HashFeatures</a></li>
+                    
+                    <li><a href="#func-Len">Len</a></li>
+                    
+                    <li><a href="#func-NewShapingCache">NewShapingCache</a></li>
+                    
+                    <li><a href="#func-NewShapingKey">NewShapingKey</a></li>
+                    
+                    <li><a href="#func-ResetStats">ResetStats</a></li>
+                    
+                    <li><a href="#func-Set">Set</a></li>
+                    
+                    <li><a href="#func-ShardLen">ShardLen</a></li>
+                    
+                    <li><a href="#func-Stats">Stats</a></li>
+                    
+                    <li><a href="#func-TotalCapacity">TotalCapacity</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>text/cache/shaping.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Capacity">
+    <div class="item-header">
+        <h4>func Capacity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Capacity returns the per-shard capacity.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Capacity() int {
+	return c.capacity
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clear">
+    <div class="item-header">
+        <h4>func Clear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clear removes all entries from the cache.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Clear() {
+	for _, shard := range c.shards {
+		shard.mu.Lock()
+		shard.entries = make(map[ShapingKey]*cacheEntry)
+		shard.lru.Clear()
+		shard.mu.Unlock()
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DefaultShapingCache">
+    <div class="item-header">
+        <h4>func DefaultShapingCache</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DefaultShapingCache creates a shaping cache with default configuration.</p>
+          
+        <p>Total capacity: 16 shards * 256 entries = 4096 entries.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func DefaultShapingCache() *ShapingCache {
+	return NewShapingCache(DefaultCapacity)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Delete">
+    <div class="item-header">
+        <h4>func Delete</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Delete removes an entry from the cache.</p>
+          
+        <p>Returns true if the entry was found and removed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Delete(key ShapingKey) bool {
+	shard := c.getShard(&key)
+
+	shard.mu.Lock()
+	defer shard.mu.Unlock()
+
+	entry, ok := shard.entries[key]
+	if !ok {
+		return false
+	}
+
+	shard.lru.Remove(entry.node)
+	delete(shard.entries, key)
+	return true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Get">
+    <div class="item-header">
+        <h4>func Get</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Get retrieves a cached ShapedRun by key.</p>
+          
+        <p>Returns (value, true) if found, (nil, false) otherwise.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>On cache hit, the entry is moved to the front of the LRU list.</p>
+          
+        <p>This operation is thread-safe and optimized for minimal lock contention.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Get(key ShapingKey) (*text.ShapedRun, bool) {
+	shard := c.getShard(&key)
+
+	// Fast path: read lock to check existence
+	shard.mu.RLock()
+	_, exists := shard.entries[key]
+	shard.mu.RUnlock()
+
+	if !exists {
+		c.misses.Add(1)
+		return nil, false
+	}
+
+	// Slow path: write lock for LRU update
+	shard.mu.Lock()
+	// Re-check after acquiring write lock (entry may have been evicted)
+	entry, ok := shard.entries[key]
+	if !ok {
+		shard.mu.Unlock()
+		c.misses.Add(1)
+		return nil, false
+	}
+	shard.lru.MoveToFront(entry.node)
+	value := entry.value
+	shard.mu.Unlock()
+
+	c.hits.Add(1)
+	return value, true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetOrCreate">
+    <div class="item-header">
+        <h4>func GetOrCreate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetOrCreate returns a cached ShapedRun or creates it using the provided function.</p>
+          
+        <p>This is the preferred method for cache access as it prevents duplicate computation.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The create function is called with the shard lock held to prevent thundering herd.</p>
+          
+        <p>Keep the create function fast to minimize lock contention.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) GetOrCreate(key ShapingKey, create func() *text.ShapedRun) *text.ShapedRun {
+	shard := c.getShard(&key)
+
+	// Fast path: read lock to check existence
+	shard.mu.RLock()
+	_, exists := shard.entries[key]
+	shard.mu.RUnlock()
+
+	if exists {
+		// Update LRU (requires write lock)
+		shard.mu.Lock()
+		if entry, ok := shard.entries[key]; ok {
+			shard.lru.MoveToFront(entry.node)
+			value := entry.value
+			shard.mu.Unlock()
+			c.hits.Add(1)
+			return value
+		}
+		shard.mu.Unlock()
+	}
+
+	// Slow path: create new entry
+	shard.mu.Lock()
+	defer shard.mu.Unlock()
+
+	// Re-check after acquiring write lock
+	if entry, ok := shard.entries[key]; ok {
+		shard.lru.MoveToFront(entry.node)
+		c.hits.Add(1)
+		return entry.value
+	}
+
+	c.misses.Add(1)
+
+	// Create new value (under lock)
+	value := create()
+	if value == nil {
+		return nil
+	}
+
+	// Evict if at capacity
+	for shard.lru.Len() >= c.capacity {
+		if oldest, ok := shard.lru.RemoveOldest(); ok {
+			delete(shard.entries, oldest)
+			c.evictions.Add(1)
+		} else {
+			break
+		}
+	}
+
+	// Add new entry
+	node := shard.lru.PushFront(key)
+	shard.entries[key] = &cacheEntry{
+		value:	value,
+		node:	node,
+	}
+
+	return value
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-HashFeatures">
+    <div class="item-header">
+        <h4>func HashFeatures</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>HashFeatures computes a hash of OpenType feature settings.</p>
+          
+        <p>This is a helper function for creating ShapingKey.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Features should be passed as tag/value pairs, e.g.:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>HashFeatures(map[string]int{"liga": 1, "kern": 1})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func HashFeatures(features map[string]int) uint64 {
+	if len(features) == 0 {
+		return 0
+	}
+
+	h := fnv.New64a()
+	// Sort-independent hashing: XOR individual feature hashes
+	var result uint64
+	for tag, val := range features {
+		h.Reset()
+		_, _ = h.Write([]byte(tag))
+		tagHash := h.Sum64()
+		// Combine tag hash with value (val is always small for feature values)
+		result ^= tagHash ^ uint64(val)	//nolint:gosec // feature values are small integers
+	}
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Len">
+    <div class="item-header">
+        <h4>func Len</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Len returns the total number of entries across all shards.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Len() int {
+	total := 0
+	for _, shard := range c.shards {
+		shard.mu.RLock()
+		total += len(shard.entries)
+		shard.mu.RUnlock()
+	}
+	return total
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewShapingCache">
+    <div class="item-header">
+        <h4>func NewShapingCache</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewShapingCache creates a new shaping cache with the specified capacity per shard.</p>
+          
+        <p>Total capacity is approximately capacity * DefaultShardCount (16).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>If capacity <= 0, DefaultCapacity (256) is used.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewShapingCache(capacity int) *ShapingCache {
+	if capacity <= 0 {
+		capacity = DefaultCapacity
+	}
+
+	c := &ShapingCache{
+		capacity: capacity,
+	}
+
+	for i := range c.shards {
+		c.shards[i] = &cacheShard{
+			entries:	make(map[ShapingKey]*cacheEntry),
+			lru:		newLRUList[ShapingKey](),
+		}
+	}
+
+	return c
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewShapingKey">
+    <div class="item-header">
+        <h4>func NewShapingKey</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewShapingKey creates a ShapingKey from shaping parameters.</p>
+          
+        <p>This is the canonical way to create cache keys.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewShapingKey(textStr string, fontID uint64, size float32, direction text.Direction, features uint64) ShapingKey {
+	return ShapingKey{
+		TextHash:	hashString(textStr),
+		FontID:		fontID,
+		SizeBits:	math.Float32bits(size),
+		Direction:	uint8(direction & 0xFF),	//nolint:gosec // Direction enum is < 4
+		Features:	features,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ResetStats">
+    <div class="item-header">
+        <h4>func ResetStats</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ResetStats resets all statistics counters to zero.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) ResetStats() {
+	c.hits.Store(0)
+	c.misses.Store(0)
+	c.evictions.Store(0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Set">
+    <div class="item-header">
+        <h4>func Set</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Set stores a ShapedRun in the cache.</p>
+          
+        <p>If the shard exceeds capacity after insertion, oldest entries are evicted.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The value is stored as-is (not copied). Callers should not modify it</p>
+          
+        <p>after caching.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Set(key ShapingKey, value *text.ShapedRun) {
+	if value == nil {
+		return
+	}
+
+	shard := c.getShard(&key)
+
+	shard.mu.Lock()
+	defer shard.mu.Unlock()
+
+	// Check if entry already exists
+	if existing, ok := shard.entries[key]; ok {
+		// Update existing entry
+		existing.value = value
+		shard.lru.MoveToFront(existing.node)
+		return
+	}
+
+	// Evict if at capacity
+	for shard.lru.Len() >= c.capacity {
+		if oldest, ok := shard.lru.RemoveOldest(); ok {
+			delete(shard.entries, oldest)
+			c.evictions.Add(1)
+		} else {
+			break
+		}
+	}
+
+	// Add new entry
+	node := shard.lru.PushFront(key)
+	shard.entries[key] = &cacheEntry{
+		value:	value,
+		node:	node,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ShardLen">
+    <div class="item-header">
+        <h4>func ShardLen</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ShardLen returns the number of entries in each shard.</p>
+          
+        <p>Useful for debugging load distribution.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) ShardLen() [DefaultShardCount]int {
+	var lens [DefaultShardCount]int
+	for i, shard := range c.shards {
+		shard.mu.RLock()
+		lens[i] = len(shard.entries)
+		shard.mu.RUnlock()
+	}
+	return lens
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stats">
+    <div class="item-header">
+        <h4>func Stats</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stats returns current cache statistics.</p>
+          
+        <p>This operation is mostly lock-free (atomic counters).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) Stats() CacheStats {
+	hits := c.hits.Load()
+	misses := c.misses.Load()
+	evictions := c.evictions.Load()
+
+	var hitRate float64
+	total := hits + misses
+	if total > 0 {
+		hitRate = float64(hits) / float64(total)
+	}
+
+	return CacheStats{
+		Len:		c.Len(),
+		Capacity:	c.capacity,
+		TotalCapacity:	c.capacity * DefaultShardCount,
+		Hits:		hits,
+		Misses:		misses,
+		HitRate:	hitRate,
+		Evictions:	evictions,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TotalCapacity">
+    <div class="item-header">
+        <h4>func TotalCapacity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TotalCapacity returns the total capacity across all shards.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *ShapingCache) TotalCapacity() int {
+	return c.capacity * DefaultShardCount
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-ShapingKey">
+    <div class="item-header">
+        <h4>type ShapingKey struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ShapingKey identifies shaped text in the shaping cache.</p>
+        
+        <p>All shaping parameters that affect the result must be included.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ShapingKey struct {
+	// TextHash is FNV-1a hash of the text string.
+	TextHash	uint64
+
+	// FontID is the font source identifier.
+	FontID	uint64
+
+	// SizeBits is the IEEE 754 bit pattern of the font size (float32).
+	// Using bit pattern ensures exact matching without floating-point issues.
+	SizeBits	uint32
+
+	// Direction is the text direction (LTR, RTL, TTB, BTT).
+	Direction	uint8
+
+	// Features is a hash of OpenType feature settings.
+	Features	uint64
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-ShapingCache">
+    <div class="item-header">
+        <h4>type ShapingCache struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ShapingCache is a thread-safe, sharded LRU cache for shaped text runs.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Features:</p>
+        
+        <p>- 16 shards for reduced lock contention</p>
+        
+        <p>- LRU eviction with configurable capacity per shard</p>
+        
+        <p>- Thread-safe for concurrent access</p>
+        
+        <p>- Atomic statistics for monitoring</p>
+        
+        <p>- Zero allocations on cache hit</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Performance (Intel i7-1255U):</p>
+        
+        <p>- Cache hit: ~75ns</p>
+        
+        <p>- Cache miss: ~35ns</p>
+        
+        <p>- Parallel: ~170ns/op</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ShapingCache struct {
+	shards		[DefaultShardCount]*cacheShard
+	capacity	int	// Per-shard capacity
+
+	// Statistics (atomic for zero-allocation reads)
+	hits		atomic.Uint64
+	misses		atomic.Uint64
+	evictions	atomic.Uint64
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-CacheStats">
+    <div class="item-header">
+        <h4>type CacheStats struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>CacheStats contains cache statistics for monitoring.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type CacheStats struct {
+	// Len is the current number of entries.
+	Len	int
+	// Capacity is the per-shard capacity.
+	Capacity	int
+	// TotalCapacity is the total capacity across all shards.
+	TotalCapacity	int
+	// Hits is the number of cache hits.
+	Hits	uint64
+	// Misses is the number of cache misses.
+	Misses	uint64
+	// HitRate is the cache hit rate (0.0 to 1.0).
+	HitRate	float64
+	// Evictions is the number of entries evicted.
+	Evictions	uint64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

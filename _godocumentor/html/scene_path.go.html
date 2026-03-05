@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/path.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="active">scene/path.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Arc">Arc</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Circle">Circle</a></li>
+                    
+                    <li><a href="#func-Clone">Clone</a></li>
+                    
+                    <li><a href="#func-Close">Close</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-CubicTo">CubicTo</a></li>
+                    
+                    <li><a href="#func-Elements">Elements</a></li>
+                    
+                    <li><a href="#func-ElementsWithCursor">ElementsWithCursor</a></li>
+                    
+                    <li><a href="#func-Ellipse">Ellipse</a></li>
+                    
+                    <li><a href="#func-Get">Get</a></li>
+                    
+                    <li><a href="#func-IsEmpty">IsEmpty</a></li>
+                    
+                    <li><a href="#func-LineTo">LineTo</a></li>
+                    
+                    <li><a href="#func-MoveTo">MoveTo</a></li>
+                    
+                    <li><a href="#func-NewPath">NewPath</a></li>
+                    
+                    <li><a href="#func-NewPathPool">NewPathPool</a></li>
+                    
+                    <li><a href="#func-PointCount">PointCount</a></li>
+                    
+                    <li><a href="#func-PointCount">PointCount</a></li>
+                    
+                    <li><a href="#func-Points">Points</a></li>
+                    
+                    <li><a href="#func-Put">Put</a></li>
+                    
+                    <li><a href="#func-QuadTo">QuadTo</a></li>
+                    
+                    <li><a href="#func-Rectangle">Rectangle</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Reverse">Reverse</a></li>
+                    
+                    <li><a href="#func-RoundedRectangle">RoundedRectangle</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-Transform">Transform</a></li>
+                    
+                    <li><a href="#func-VerbCount">VerbCount</a></li>
+                    
+                    <li><a href="#func-Verbs">Verbs</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/path.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Arc">
+    <div class="item-header">
+        <h4>func Arc</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Arc adds an arc path (portion of an ellipse).</p>
+          
+        <p>The arc is drawn from startAngle to endAngle (in radians).</p>
+          
+        <p>If sweepClockwise is true, the arc is drawn clockwise.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Arc(cx, cy, rx, ry, startAngle, endAngle float32, sweepClockwise bool) *Path {
+	// Normalize angles
+	if sweepClockwise && endAngle < startAngle {
+		endAngle += 2 * math.Pi
+	} else if !sweepClockwise && startAngle < endAngle {
+		startAngle += 2 * math.Pi
+	}
+
+	// Calculate start point
+	startX := cx + rx*float32(math.Cos(float64(startAngle)))
+	startY := cy + ry*float32(math.Sin(float64(startAngle)))
+	p.MoveTo(startX, startY)
+
+	// Calculate sweep angle
+	sweep := endAngle - startAngle
+	if !sweepClockwise {
+		sweep = -sweep
+	}
+
+	// Split into quarter arcs (max 90 degrees each) for better approximation
+	numArcs := int(math.Ceil(math.Abs(float64(sweep)) / (math.Pi / 2)))
+	if numArcs < 1 {
+		numArcs = 1
+	}
+
+	arcAngle := sweep / float32(numArcs)
+	currentAngle := startAngle
+
+	for i := 0; i < numArcs; i++ {
+		nextAngle := currentAngle + arcAngle
+		p.arcSegment(cx, cy, rx, ry, currentAngle, nextAngle)
+		currentAngle = nextAngle
+	}
+
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle of the path.</p>
+          
+        <p>Note: This is a conservative approximation that includes control points.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Bounds() Rect {
+	return p.bounds
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Circle">
+    <div class="item-header">
+        <h4>func Circle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Circle adds a circle path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Circle(cx, cy, r float32) *Path {
+	return p.Ellipse(cx, cy, r, r)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clone">
+    <div class="item-header">
+        <h4>func Clone</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clone creates a deep copy of the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Clone() *Path {
+	result := NewPath()
+	result.verbs = make([]PathVerb, len(p.verbs))
+	copy(result.verbs, p.verbs)
+	result.points = make([]float32, len(p.points))
+	copy(result.points, p.points)
+	result.bounds = p.bounds
+	result.start = p.start
+	result.cursor = p.cursor
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Close">
+    <div class="item-header">
+        <h4>func Close</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Close closes the current subpath by drawing a line back to its start.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Close() *Path {
+	p.verbs = append(p.verbs, VerbClose)
+	p.cursor = p.start
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Contains">
+    <div class="item-header">
+        <h4>func Contains</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Contains returns true if the point (px, py) is inside the path.</p>
+          
+        <p>This uses the non-zero winding rule to determine containment.</p>
+          
+        <p>The test is performed by casting a ray from the point to infinity</p>
+          
+        <p>and counting the number of times the path crosses the ray.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Contains(px, py float32) bool {
+	// Quick bounds check
+	if !p.bounds.IsEmpty() {
+		if px < p.bounds.MinX || px > p.bounds.MaxX ||
+			py < p.bounds.MinY || py > p.bounds.MaxY {
+			return false
+		}
+	}
+
+	// Count winding number
+	winding := 0
+
+	// Track current position and subpath start
+	var curX, curY float32
+	var startX, startY float32
+
+	pointIdx := 0
+
+	for _, verb := range p.verbs {
+		switch verb {
+		case VerbMoveTo:
+			// Close previous subpath if any
+			if curX != startX || curY != startY {
+				winding += windingSegment(curX, curY, startX, startY, px, py)
+			}
+			startX = p.points[pointIdx]
+			startY = p.points[pointIdx+1]
+			curX, curY = startX, startY
+			pointIdx += 2
+
+		case VerbLineTo:
+			nextX := p.points[pointIdx]
+			nextY := p.points[pointIdx+1]
+			winding += windingSegment(curX, curY, nextX, nextY, px, py)
+			curX, curY = nextX, nextY
+			pointIdx += 2
+
+		case VerbQuadTo:
+			// Approximate quad with lines for containment test
+			cx := p.points[pointIdx]
+			cy := p.points[pointIdx+1]
+			x := p.points[pointIdx+2]
+			y := p.points[pointIdx+3]
+
+			// Subdivide quadratic into lines
+			winding += windingQuad(curX, curY, cx, cy, x, y, px, py)
+			curX, curY = x, y
+			pointIdx += 4
+
+		case VerbCubicTo:
+			// Approximate cubic with lines for containment test
+			c1x := p.points[pointIdx]
+			c1y := p.points[pointIdx+1]
+			c2x := p.points[pointIdx+2]
+			c2y := p.points[pointIdx+3]
+			x := p.points[pointIdx+4]
+			y := p.points[pointIdx+5]
+
+			winding += windingCubic(curX, curY, c1x, c1y, c2x, c2y, x, y, px, py)
+			curX, curY = x, y
+			pointIdx += 6
+
+		case VerbClose:
+			// Close the subpath
+			if curX != startX || curY != startY {
+				winding += windingSegment(curX, curY, startX, startY, px, py)
+			}
+			curX, curY = startX, startY
+		}
+	}
+
+	// Close final subpath if not explicitly closed
+	if curX != startX || curY != startY {
+		winding += windingSegment(curX, curY, startX, startY, px, py)
+	}
+
+	return winding != 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CubicTo">
+    <div class="item-header">
+        <h4>func CubicTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CubicTo draws a cubic Bezier curve.</p>
+          
+        <p>The curve goes from the current point to (x, y) using (c1x, c1y) and (c2x, c2y) as control points.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) CubicTo(c1x, c1y, c2x, c2y, x, y float32) *Path {
+	p.verbs = append(p.verbs, VerbCubicTo)
+	p.points = append(p.points, c1x, c1y, c2x, c2y, x, y)
+	p.bounds = p.bounds.UnionPoint(c1x, c1y)
+	p.bounds = p.bounds.UnionPoint(c2x, c2y)
+	p.bounds = p.bounds.UnionPoint(x, y)
+	// For accurate bounds, we should compute curve extrema,
+	// but union with control points is a conservative approximation
+	p.cursor = [2]float32{x, y}
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Elements">
+    <div class="item-header">
+        <h4>func Elements</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Elements returns an iterator over all path elements.</p>
+          
+        <p>This uses Go 1.25+ iter.Seq for efficient, zero-allocation iteration</p>
+          
+        <p>when used with a for-range loop.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>for elem := range path.Elements() {</p>
+          
+        <p>switch elem.Verb {</p>
+          
+        <p>case VerbMoveTo:</p>
+          
+        <p>fmt.Printf("Move to %v\n", elem.Points[0])</p>
+          
+        <p>case VerbLineTo:</p>
+          
+        <p>fmt.Printf("Line to %v\n", elem.Points[0])</p>
+          
+        <p>case VerbQuadTo:</p>
+          
+        <p>fmt.Printf("Quad to %v via %v\n", elem.Points[1], elem.Points[0])</p>
+          
+        <p>case VerbCubicTo:</p>
+          
+        <p>fmt.Printf("Cubic to %v\n", elem.Points[2])</p>
+          
+        <p>case VerbClose:</p>
+          
+        <p>fmt.Println("Close")</p>
+          
+        <p>}</p>
+          
+        <p>}</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Elements() iter.Seq[PathElement] {
+	return func(yield func(PathElement) bool) {
+		pointIdx := 0
+
+		for _, verb := range p.verbs {
+			var elem PathElement
+			elem.Verb = verb
+
+			switch verb {
+			case VerbMoveTo, VerbLineTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+				}
+				pointIdx += 2
+
+			case VerbQuadTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+					{p.points[pointIdx+2], p.points[pointIdx+3]},
+				}
+				pointIdx += 4
+
+			case VerbCubicTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+					{p.points[pointIdx+2], p.points[pointIdx+3]},
+					{p.points[pointIdx+4], p.points[pointIdx+5]},
+				}
+				pointIdx += 6
+
+			case VerbClose:
+				elem.Points = nil
+			}
+
+			if !yield(elem) {
+				return
+			}
+		}
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ElementsWithCursor">
+    <div class="item-header">
+        <h4>func ElementsWithCursor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ElementsWithCursor returns an iterator that includes the current cursor position.</p>
+          
+        <p>This is useful when you need to know the starting point of each segment.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) ElementsWithCursor() iter.Seq2[Point, PathElement] {
+	return func(yield func(Point, PathElement) bool) {
+		pointIdx := 0
+		cursor := Point{0, 0}
+
+		for _, verb := range p.verbs {
+			var elem PathElement
+			elem.Verb = verb
+			prevCursor := cursor
+
+			switch verb {
+			case VerbMoveTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+				}
+				cursor = elem.Points[0]
+				pointIdx += 2
+
+			case VerbLineTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+				}
+				cursor = elem.Points[0]
+				pointIdx += 2
+
+			case VerbQuadTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+					{p.points[pointIdx+2], p.points[pointIdx+3]},
+				}
+				cursor = elem.Points[1]
+				pointIdx += 4
+
+			case VerbCubicTo:
+				elem.Points = []Point{
+					{p.points[pointIdx], p.points[pointIdx+1]},
+					{p.points[pointIdx+2], p.points[pointIdx+3]},
+					{p.points[pointIdx+4], p.points[pointIdx+5]},
+				}
+				cursor = elem.Points[2]
+				pointIdx += 6
+
+			case VerbClose:
+				elem.Points = nil
+				// cursor returns to subpath start (handled by caller if needed)
+			}
+
+			if !yield(prevCursor, elem) {
+				return
+			}
+		}
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Ellipse">
+    <div class="item-header">
+        <h4>func Ellipse</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Ellipse adds an ellipse path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Ellipse(cx, cy, rx, ry float32) *Path {
+	// Magic number for approximating circular arcs with cubic beziers
+	k := float32(0.5522847498)
+	kx := k * rx
+	ky := k * ry
+
+	// Start at the right edge
+	p.MoveTo(cx+rx, cy)
+
+	// Four quarter-circle arcs
+	p.CubicTo(cx+rx, cy+ky, cx+kx, cy+ry, cx, cy+ry)	// to bottom
+	p.CubicTo(cx-kx, cy+ry, cx-rx, cy+ky, cx-rx, cy)	// to left
+	p.CubicTo(cx-rx, cy-ky, cx-kx, cy-ry, cx, cy-ry)	// to top
+	p.CubicTo(cx+kx, cy-ry, cx+rx, cy-ky, cx+rx, cy)	// to right (start)
+
+	return p.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Get">
+    <div class="item-header">
+        <h4>func Get</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Get retrieves a path from the pool or creates a new one.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (pp *PathPool) Get() *Path {
+	if len(pp.paths) > 0 {
+		p := pp.paths[len(pp.paths)-1]
+		pp.paths = pp.paths[:len(pp.paths)-1]
+		p.Reset()
+		return p
+	}
+	return NewPath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsEmpty">
+    <div class="item-header">
+        <h4>func IsEmpty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsEmpty returns true if the path has no commands.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) IsEmpty() bool {
+	return len(p.verbs) == 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LineTo">
+    <div class="item-header">
+        <h4>func LineTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LineTo draws a line from the current point to (x, y).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) LineTo(x, y float32) *Path {
+	p.verbs = append(p.verbs, VerbLineTo)
+	p.points = append(p.points, x, y)
+	p.bounds = p.bounds.UnionPoint(x, y)
+	p.cursor = [2]float32{x, y}
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MoveTo">
+    <div class="item-header">
+        <h4>func MoveTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MoveTo begins a new subpath at the specified point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) MoveTo(x, y float32) *Path {
+	p.verbs = append(p.verbs, VerbMoveTo)
+	p.points = append(p.points, x, y)
+	p.bounds = p.bounds.UnionPoint(x, y)
+	p.start = [2]float32{x, y}
+	p.cursor = [2]float32{x, y}
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewPath">
+    <div class="item-header">
+        <h4>func NewPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewPath creates a new empty path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewPath() *Path {
+	return &Path{
+		verbs:	make([]PathVerb, 0, 16),
+		points:	make([]float32, 0, 64),
+		bounds:	EmptyRect(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewPathPool">
+    <div class="item-header">
+        <h4>func NewPathPool</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewPathPool creates a new path pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewPathPool() *PathPool {
+	return &PathPool{
+		paths: make([]*Path, 0, 8),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PointCount">
+    <div class="item-header">
+        <h4>func PointCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PointCount returns the number of float32 values in the point stream.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) PointCount() int {
+	return len(p.points)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PointCount">
+    <div class="item-header">
+        <h4>func PointCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PointCount returns the number of points this verb consumes.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v PathVerb) PointCount() int {
+	switch v {
+	case VerbMoveTo, VerbLineTo:
+		return 2	// x, y
+	case VerbQuadTo:
+		return 4	// cx, cy, x, y
+	case VerbCubicTo:
+		return 6	// c1x, c1y, c2x, c2y, x, y
+	case VerbClose:
+		return 0
+	default:
+		return 0
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Points">
+    <div class="item-header">
+        <h4>func Points</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Points returns the point data stream.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Points() []float32 {
+	return p.points
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Put">
+    <div class="item-header">
+        <h4>func Put</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Put returns a path to the pool for reuse.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (pp *PathPool) Put(p *Path) {
+	if p == nil {
+		return
+	}
+	pp.paths = append(pp.paths, p)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-QuadTo">
+    <div class="item-header">
+        <h4>func QuadTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>QuadTo draws a quadratic Bezier curve.</p>
+          
+        <p>The curve goes from the current point to (x, y) using (cx, cy) as control point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) QuadTo(cx, cy, x, y float32) *Path {
+	p.verbs = append(p.verbs, VerbQuadTo)
+	p.points = append(p.points, cx, cy, x, y)
+	p.bounds = p.bounds.UnionPoint(cx, cy)
+	p.bounds = p.bounds.UnionPoint(x, y)
+	// For accurate bounds, we should compute curve extrema,
+	// but union with control points is a conservative approximation
+	p.cursor = [2]float32{x, y}
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Rectangle">
+    <div class="item-header">
+        <h4>func Rectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Rectangle adds a rectangle path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Rectangle(x, y, w, h float32) *Path {
+	return p.MoveTo(x, y).
+		LineTo(x+w, y).
+		LineTo(x+w, y+h).
+		LineTo(x, y+h).
+		Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the path for reuse without deallocating memory.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Reset() {
+	p.verbs = p.verbs[:0]
+	p.points = p.points[:0]
+	p.bounds = EmptyRect()
+	p.start = [2]float32{0, 0}
+	p.cursor = [2]float32{0, 0}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reverse">
+    <div class="item-header">
+        <h4>func Reverse</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reverse returns a new path with the direction reversed.</p>
+          
+        <p>This is useful for creating cut-out shapes.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Reverse() *Path {
+	if p.IsEmpty() {
+		return NewPath()
+	}
+
+	result := NewPath()
+
+	// Collect subpaths
+	var subpaths []subpathData
+	var current subpathData
+	pointIdx := 0
+
+	for _, verb := range p.verbs {
+		switch verb {
+		case VerbMoveTo:
+			if len(current.verbs) > 0 {
+				subpaths = append(subpaths, current)
+			}
+			current = subpathData{
+				verbs:	[]PathVerb{verb},
+				points:	[]float32{p.points[pointIdx], p.points[pointIdx+1]},
+				startX:	p.points[pointIdx],
+				startY:	p.points[pointIdx+1],
+			}
+			pointIdx += 2
+		case VerbLineTo:
+			current.verbs = append(current.verbs, verb)
+			current.points = append(current.points, p.points[pointIdx], p.points[pointIdx+1])
+			pointIdx += 2
+		case VerbQuadTo:
+			current.verbs = append(current.verbs, verb)
+			current.points = append(current.points, p.points[pointIdx:pointIdx+4]...)
+			pointIdx += 4
+		case VerbCubicTo:
+			current.verbs = append(current.verbs, verb)
+			current.points = append(current.points, p.points[pointIdx:pointIdx+6]...)
+			pointIdx += 6
+		case VerbClose:
+			current.verbs = append(current.verbs, verb)
+			current.closed = true
+		}
+	}
+	if len(current.verbs) > 0 {
+		subpaths = append(subpaths, current)
+	}
+
+	// Reverse each subpath
+	for _, sp := range subpaths {
+		reverseSubpath(result, sp)
+	}
+
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RoundedRectangle">
+    <div class="item-header">
+        <h4>func RoundedRectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RoundedRectangle adds a rounded rectangle path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) RoundedRectangle(x, y, w, h, r float32) *Path {
+	// Clamp radius to half the minimum dimension
+	maxR := min32(w, h) / 2
+	if r > maxR {
+		r = maxR
+	}
+	if r <= 0 {
+		return p.Rectangle(x, y, w, h)
+	}
+
+	// Magic number for approximating circular arcs with cubic beziers
+	// k = 4 * (sqrt(2) - 1) / 3 ≈ 0.5523
+	k := float32(0.5522847498)
+	kr := k * r
+
+	// Start from top-left corner (after the rounded corner)
+	p.MoveTo(x+r, y)
+
+	// Top edge and top-right corner
+	p.LineTo(x+w-r, y)
+	p.CubicTo(x+w-r+kr, y, x+w, y+r-kr, x+w, y+r)
+
+	// Right edge and bottom-right corner
+	p.LineTo(x+w, y+h-r)
+	p.CubicTo(x+w, y+h-r+kr, x+w-r+kr, y+h, x+w-r, y+h)
+
+	// Bottom edge and bottom-left corner
+	p.LineTo(x+r, y+h)
+	p.CubicTo(x+r-kr, y+h, x, y+h-r+kr, x, y+h-r)
+
+	// Left edge and top-left corner
+	p.LineTo(x, y+r)
+	p.CubicTo(x, y+r-kr, x+r-kr, y, x+r, y)
+
+	return p.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns a human-readable name for the verb.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v PathVerb) String() string {
+	switch v {
+	case VerbMoveTo:
+		return "MoveTo"
+	case VerbLineTo:
+		return "LineTo"
+	case VerbQuadTo:
+		return "QuadTo"
+	case VerbCubicTo:
+		return "CubicTo"
+	case VerbClose:
+		return "Close"
+	default:
+		return unknownStr
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Transform">
+    <div class="item-header">
+        <h4>func Transform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Transform returns a new path with all points transformed by the affine matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Transform(t Affine) *Path {
+	result := NewPath()
+	result.verbs = make([]PathVerb, len(p.verbs))
+	copy(result.verbs, p.verbs)
+	result.points = make([]float32, len(p.points))
+
+	// Transform all points
+	for i := 0; i < len(p.points); i += 2 {
+		x, y := t.TransformPoint(p.points[i], p.points[i+1])
+		result.points[i] = x
+		result.points[i+1] = y
+		result.bounds = result.bounds.UnionPoint(x, y)
+	}
+
+	// Transform start and cursor
+	result.start[0], result.start[1] = t.TransformPoint(p.start[0], p.start[1])
+	result.cursor[0], result.cursor[1] = t.TransformPoint(p.cursor[0], p.cursor[1])
+
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-VerbCount">
+    <div class="item-header">
+        <h4>func VerbCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>VerbCount returns the number of verbs in the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) VerbCount() int {
+	return len(p.verbs)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Verbs">
+    <div class="item-header">
+        <h4>func Verbs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Verbs returns the verb stream.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Verbs() []PathVerb {
+	return p.verbs
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Path">
+    <div class="item-header">
+        <h4>type Path struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Path represents a vector path for encoding.</p>
+        
+        <p>It stores path commands (verbs) and coordinate data separately</p>
+        
+        <p>for efficient processing and encoding.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Path struct {
+	verbs	[]PathVerb
+	points	[]float32
+	bounds	Rect
+	start	[2]float32	// Start of current subpath for Close
+	cursor	[2]float32	// Current position
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-PathElement">
+    <div class="item-header">
+        <h4>type PathElement struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>PathElement represents a single path command with its associated points.</p>
+        
+        <p>This type is used by the Elements() iterator for ergonomic path traversal.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type PathElement struct {
+	// Verb is the path command type.
+	Verb	PathVerb
+
+	// Points contains the coordinates for this element.
+	// The number of points depends on the verb:
+	//   - MoveTo: 1 point (destination)
+	//   - LineTo: 1 point (destination)
+	//   - QuadTo: 2 points (control, destination)
+	//   - CubicTo: 3 points (control1, control2, destination)
+	//   - Close: 0 points
+	Points	[]Point
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Point">
+    <div class="item-header">
+        <h4>type Point struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Point represents a 2D point with float32 coordinates.</p>
+        
+        <p>This is used by PathElement for iterator-based path traversal.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Point struct {
+	X, Y float32
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-PathPool">
+    <div class="item-header">
+        <h4>type PathPool struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>PathPool manages a pool of reusable Path objects.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type PathPool struct {
+	paths []*Path
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

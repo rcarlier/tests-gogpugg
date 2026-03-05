@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - integration/ggcanvas/canvas.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="active">integration/ggcanvas/canvas.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Close">Close</a></li>
+                    
+                    <li><a href="#func-Context">Context</a></li>
+                    
+                    <li><a href="#func-Draw">Draw</a></li>
+                    
+                    <li><a href="#func-Flush">Flush</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-IsDirty">IsDirty</a></li>
+                    
+                    <li><a href="#func-MarkDirty">MarkDirty</a></li>
+                    
+                    <li><a href="#func-MustNew">MustNew</a></li>
+                    
+                    <li><a href="#func-New">New</a></li>
+                    
+                    <li><a href="#func-Provider">Provider</a></li>
+                    
+                    <li><a href="#func-RenderDirect">RenderDirect</a></li>
+                    
+                    <li><a href="#func-Resize">Resize</a></li>
+                    
+                    <li><a href="#func-Size">Size</a></li>
+                    
+                    <li><a href="#func-Texture">Texture</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>integration/ggcanvas/canvas.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Close">
+    <div class="item-header">
+        <h4>func Close</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Close releases all resources associated with the Canvas.</p>
+          
+        <p>After Close, the Canvas should not be used.</p>
+          
+        <p>Close is idempotent - multiple calls are safe.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Close() error {
+	if c.closed {
+		return nil
+	}
+	c.closed = true
+
+	// Untrack from ResourceTracker if auto-registered, to prevent double-close.
+	if c.tracked {
+		if tracker, ok := c.provider.(resourceTracker); ok {
+			tracker.UntrackResource(c)
+		}
+		c.tracked = false
+	}
+
+	// Clear surface target so GPU accelerator releases MSAA/stencil textures.
+	gg.SetAcceleratorSurfaceTarget(nil, 0, 0)
+
+	// Destroy textures (current and any deferred old texture).
+	destroyTexture(c.oldTexture)
+	c.oldTexture = nil
+	destroyTexture(c.texture)
+	c.texture = nil
+
+	// Close gg context
+	if c.ctx != nil {
+		_ = c.ctx.Close()
+		c.ctx = nil
+	}
+
+	c.provider = nil
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Context">
+    <div class="item-header">
+        <h4>func Context</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Context returns the gg drawing context.</p>
+          
+        <p>All gg drawing methods are available through this context.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>After drawing, call MarkDirty() to flag the canvas for GPU upload,</p>
+          
+        <p>or call Flush() which handles this automatically.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns nil if the canvas is closed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Context() *gg.Context {
+	if c.closed {
+		return nil
+	}
+	return c.ctx
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Draw">
+    <div class="item-header">
+        <h4>func Draw</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Draw calls fn with the gg context and marks the canvas as dirty.</p>
+          
+        <p>This is the recommended way to update canvas content, as it ensures</p>
+          
+        <p>the dirty flag is set correctly for GPU upload on next Flush/RenderTo.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Draw(fn func(*gg.Context)) error {
+	if c.closed {
+		return ErrCanvasClosed
+	}
+	fn(c.ctx)
+	c.dirty = true
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Flush">
+    <div class="item-header">
+        <h4>func Flush</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Flush uploads the canvas content to GPU texture if dirty.</p>
+          
+        <p>Returns the texture for manual drawing if needed.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The texture is created lazily on first Flush().</p>
+          
+        <p>Subsequent calls only upload data if dirty flag is set.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns error if texture creation or update fails, or if canvas is closed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Flush() (any, error) {
+	if c.closed {
+		return nil, ErrCanvasClosed
+	}
+
+	// If size changed, defer old texture destruction until after GPU is idle.
+	// The old texture may still be referenced by in-flight GPU command buffers.
+	// Destroying it now would free descriptor heap entries that the GPU is reading,
+	// causing it to sample zeros (transparent). Instead, keep it alive and destroy
+	// it in RenderToEx after WriteTexture (which calls waitForGPU internally).
+	if c.sizeChanged {
+		c.deferTextureDestruction()
+		c.sizeChanged = false
+	}
+
+	// Skip if not dirty
+	if !c.dirty && c.texture != nil {
+		return c.texture, nil
+	}
+
+	// Flush pending GPU shapes to pixel buffer before reading pixel data.
+	// Errors are logged but not fatal — CPU fallback may have already rendered.
+	if err := c.ctx.FlushGPU(); err != nil {
+		// FlushGPU can fail if GPU accelerator has issues (e.g., compute dispatch failure).
+		// This is non-fatal: CPU-rendered content is still in the pixmap.
+		gg.Logger().Warn("FlushGPU error", "err", err)
+	}
+
+	// Get pixel data from gg context
+	pixmap := c.ctx.ResizeTarget()
+	data := pixmap.Data()
+
+	// Create texture if needed (lazy initialization)
+	if c.texture == nil {
+		c.texture = c.createTexture(data)
+		c.dirty = false
+		return c.texture, nil
+	}
+
+	// Update existing texture
+	if updater, ok := c.texture.(gpucontext.TextureUpdater); ok {
+		if err := updater.UpdateData(data); err != nil {
+			return nil, fmt.Errorf("ggcanvas: texture update failed: %w", err)
+		}
+	}
+
+	c.dirty = false
+	return c.texture, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the canvas height in pixels.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Height() int {
+	return c.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsDirty">
+    <div class="item-header">
+        <h4>func IsDirty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsDirty returns true if the canvas has pending changes</p>
+          
+        <p>that need to be uploaded to the GPU.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) IsDirty() bool {
+	return c.dirty
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MarkDirty">
+    <div class="item-header">
+        <h4>func MarkDirty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MarkDirty flags the canvas for GPU upload on next Flush().</p>
+          
+        <p>Call this after drawing operations if you want explicit control</p>
+          
+        <p>over when uploads happen.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) MarkDirty() {
+	c.dirty = true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MustNew">
+    <div class="item-header">
+        <h4>func MustNew</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MustNew is like New but panics on error.</p>
+          
+        <p>Use only when errors are programming mistakes (e.g., hardcoded dimensions).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func MustNew(provider gpucontext.DeviceProvider, width, height int) *Canvas {
+	c, err := New(provider, width, height)
+	if err != nil {
+		panic(err)
+	}
+	return c
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-New">
+    <div class="item-header">
+        <h4>func New</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>New creates a Canvas for integrated mode.</p>
+          
+        <p>The provider should come from gogpu.App.GPUContextProvider().</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The Canvas is created with default gg.Context settings.</p>
+          
+        <p>Use Context() to access and configure the drawing context.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns error if dimensions are invalid or provider is nil.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func New(provider gpucontext.DeviceProvider, width, height int) (*Canvas, error) {
+	if provider == nil {
+		return nil, ErrNilProvider
+	}
+	if width <= 0 || height <= 0 {
+		return nil, fmt.Errorf("%w: width=%d, height=%d", ErrInvalidDimensions, width, height)
+	}
+
+	// Share GPU device with accelerator if registered.
+	// Error is non-fatal: accelerator may not support device sharing or
+	// provider may not implement HalProvider. GPU will initialize its own device.
+	_ = gg.SetAcceleratorDeviceProvider(provider)
+
+	c := &Canvas{
+		ctx:		gg.NewContext(width, height),
+		provider:	provider,
+		width:		width,
+		height:		height,
+		dirty:		true,	// Mark dirty so first Flush creates texture
+	}
+
+	// Auto-register with ResourceTracker if the provider supports it.
+	// This enables automatic cleanup on application shutdown without
+	// requiring manual OnClose callbacks.
+	if tracker, ok := provider.(resourceTracker); ok {
+		tracker.TrackResource(c)
+		c.tracked = true
+	}
+
+	return c, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Provider">
+    <div class="item-header">
+        <h4>func Provider</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Provider returns the DeviceProvider associated with this canvas.</p>
+          
+        <p>Returns nil if the canvas is closed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Provider() gpucontext.DeviceProvider {
+	if c.closed {
+		return nil
+	}
+	return c.provider
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderDirect">
+    <div class="item-header">
+        <h4>func RenderDirect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderDirect renders canvas content directly to the given surface view,</p>
+          
+        <p>bypassing the GPU→CPU→GPU readback. This is the zero-copy rendering path</p>
+          
+        <p>for use with gogpu's surface texture view.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>When the GPU accelerator supports direct surface rendering, shapes are</p>
+          
+        <p>rendered directly to the provided surface view via MSAA resolve. No</p>
+          
+        <p>staging buffers, no ReadBuffer, no texture upload — pure GPU-to-GPU.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>If the accelerator doesn't support surface rendering, or if no GPU</p>
+          
+        <p>accelerator is registered, this method falls back to the readback path</p>
+          
+        <p>via Flush().</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The surfaceView parameter must be a hal.TextureView obtained from</p>
+          
+        <p>gogpu.Context.SurfaceView(). Pass nil to use the readback path.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>app.OnDraw(func(dc *gogpu.Context) {</p>
+          
+        <p>canvas.Draw(func(cc *gg.Context) { ... })</p>
+          
+        <p>w, h := dc.SurfaceSize()</p>
+          
+        <p>canvas.RenderDirect(dc.SurfaceView(), w, h)</p>
+          
+        <p>})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) RenderDirect(surfaceView any, width, height uint32) error {
+	if c.closed {
+		return ErrCanvasClosed
+	}
+	if surfaceView == nil {
+		return nil
+	}
+	if !c.dirty {
+		return nil
+	}
+
+	// Configure GPU accelerator for direct surface rendering.
+	// The surface target stays set between frames to avoid destroying
+	// and recreating MSAA/stencil textures on every frame. The target
+	// is only cleared on Close() or when switching to offscreen mode.
+	gg.SetAcceleratorSurfaceTarget(surfaceView, width, height)
+
+	// Flush GPU shapes directly to the surface view (no readback).
+	err := c.ctx.FlushGPU()
+
+	c.dirty = false
+	return err
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Resize">
+    <div class="item-header">
+        <h4>func Resize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Resize changes canvas dimensions.</p>
+          
+        <p>This recreates internal buffers and clears the canvas.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns error if dimensions are invalid or canvas is closed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Resize(width, height int) error {
+	if c.closed {
+		return ErrCanvasClosed
+	}
+	if width <= 0 || height <= 0 {
+		return fmt.Errorf("%w: width=%d, height=%d", ErrInvalidDimensions, width, height)
+	}
+
+	// No-op if dimensions haven't changed
+	if c.width == width && c.height == height {
+		return nil
+	}
+
+	// Resize gg context
+	if err := c.ctx.Resize(width, height); err != nil {
+		return fmt.Errorf("ggcanvas: context resize failed: %w", err)
+	}
+
+	c.width = width
+	c.height = height
+	c.sizeChanged = true
+	c.dirty = true
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Size">
+    <div class="item-header">
+        <h4>func Size</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Size returns width and height as a convenience.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Size() (width, height int) {
+	return c.width, c.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Texture">
+    <div class="item-header">
+        <h4>func Texture</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Texture returns the current GPU texture without flushing.</p>
+          
+        <p>Returns nil if texture hasn't been created yet.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Use Flush() to ensure the texture exists and is up-to-date.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Texture() any {
+	return c.texture
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the canvas width in pixels.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Canvas) Width() int {
+	return c.width
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Canvas">
+    <div class="item-header">
+        <h4>type Canvas struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Canvas wraps gg.Context with gogpu integration.</p>
+        
+        <p>It manages the CPU-to-GPU pipeline automatically.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Canvas is NOT safe for concurrent use. Create one Canvas per goroutine,</p>
+        
+        <p>or use external synchronization.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Canvas struct {
+	ctx		*gg.Context
+	provider	gpucontext.DeviceProvider
+	texture		any	// Lazy-created texture (*gogpu.Texture)
+	oldTexture	any	// Previous texture awaiting deferred destruction
+	dirty		bool	// Needs GPU upload
+	sizeChanged	bool	// Resize pending — texture must be recreated
+	width		int
+	height		int
+	closed		bool
+	tracked		bool	// true if auto-registered with a ResourceTracker
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

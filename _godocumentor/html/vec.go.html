@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - vec.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="active">vec.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Add">Add</a></li>
+                    
+                    <li><a href="#func-Angle">Angle</a></li>
+                    
+                    <li><a href="#func-Approx">Approx</a></li>
+                    
+                    <li><a href="#func-Atan2">Atan2</a></li>
+                    
+                    <li><a href="#func-Cross">Cross</a></li>
+                    
+                    <li><a href="#func-Div">Div</a></li>
+                    
+                    <li><a href="#func-Dot">Dot</a></li>
+                    
+                    <li><a href="#func-IsZero">IsZero</a></li>
+                    
+                    <li><a href="#func-Length">Length</a></li>
+                    
+                    <li><a href="#func-LengthSq">LengthSq</a></li>
+                    
+                    <li><a href="#func-Lerp">Lerp</a></li>
+                    
+                    <li><a href="#func-Mul">Mul</a></li>
+                    
+                    <li><a href="#func-Neg">Neg</a></li>
+                    
+                    <li><a href="#func-Normalize">Normalize</a></li>
+                    
+                    <li><a href="#func-Perp">Perp</a></li>
+                    
+                    <li><a href="#func-PointToVec2">PointToVec2</a></li>
+                    
+                    <li><a href="#func-Rotate">Rotate</a></li>
+                    
+                    <li><a href="#func-Sub">Sub</a></li>
+                    
+                    <li><a href="#func-ToPoint">ToPoint</a></li>
+                    
+                    <li><a href="#func-V2">V2</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>vec.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Add">
+    <div class="item-header">
+        <h4>func Add</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Add returns the sum of two vectors.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Add(w Vec2) Vec2 {
+	return Vec2{X: v.X + w.X, Y: v.Y + w.Y}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Angle">
+    <div class="item-header">
+        <h4>func Angle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Angle returns the angle between two vectors in radians.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Angle(w Vec2) float64 {
+	return math.Atan2(v.Cross(w), v.Dot(w))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Approx">
+    <div class="item-header">
+        <h4>func Approx</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Approx returns true if two vectors are approximately equal within epsilon.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Approx(w Vec2, epsilon float64) bool {
+	return math.Abs(v.X-w.X) < epsilon && math.Abs(v.Y-w.Y) < epsilon
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Atan2">
+    <div class="item-header">
+        <h4>func Atan2</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Atan2 returns the angle of the vector in radians.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Atan2() float64 {
+	return math.Atan2(v.Y, v.X)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Cross">
+    <div class="item-header">
+        <h4>func Cross</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Cross returns the 2D cross product (scalar).</p>
+          
+        <p>This is the z-component of the 3D cross product with z=0.</p>
+          
+        <p>Useful for determining the sign of the angle between vectors.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Cross(w Vec2) float64 {
+	return v.X*w.Y - v.Y*w.X
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Div">
+    <div class="item-header">
+        <h4>func Div</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Div returns the vector divided by a scalar.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Div(s float64) Vec2 {
+	return Vec2{X: v.X / s, Y: v.Y / s}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Dot">
+    <div class="item-header">
+        <h4>func Dot</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Dot returns the dot product of two vectors.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Dot(w Vec2) float64 {
+	return v.X*w.X + v.Y*w.Y
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsZero">
+    <div class="item-header">
+        <h4>func IsZero</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsZero returns true if the vector is the zero vector.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) IsZero() bool {
+	return v.X == 0 && v.Y == 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Length">
+    <div class="item-header">
+        <h4>func Length</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Length returns the length (magnitude) of the vector.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Length() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LengthSq">
+    <div class="item-header">
+        <h4>func LengthSq</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LengthSq returns the squared length of the vector.</p>
+          
+        <p>This is faster than Length() when you only need to compare magnitudes.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) LengthSq() float64 {
+	return v.X*v.X + v.Y*v.Y
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Lerp">
+    <div class="item-header">
+        <h4>func Lerp</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Lerp performs linear interpolation between two vectors.</p>
+          
+        <p>t=0 returns v, t=1 returns w, intermediate values interpolate.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Lerp(w Vec2, t float64) Vec2 {
+	return Vec2{
+		X:	v.X + (w.X-v.X)*t,
+		Y:	v.Y + (w.Y-v.Y)*t,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Mul">
+    <div class="item-header">
+        <h4>func Mul</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Mul returns the vector scaled by a scalar.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Mul(s float64) Vec2 {
+	return Vec2{X: v.X * s, Y: v.Y * s}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Neg">
+    <div class="item-header">
+        <h4>func Neg</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Neg returns the negation of the vector.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Neg() Vec2 {
+	return Vec2{X: -v.X, Y: -v.Y}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Normalize">
+    <div class="item-header">
+        <h4>func Normalize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Normalize returns a unit vector in the same direction.</p>
+          
+        <p>Returns zero vector if the original vector has zero length.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Normalize() Vec2 {
+	length := v.Length()
+	if length == 0 {
+		return Vec2{}
+	}
+	return Vec2{X: v.X / length, Y: v.Y / length}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Perp">
+    <div class="item-header">
+        <h4>func Perp</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Perp returns the perpendicular vector (rotated 90 degrees counter-clockwise).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Perp() Vec2 {
+	return Vec2{X: -v.Y, Y: v.X}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PointToVec2">
+    <div class="item-header">
+        <h4>func PointToVec2</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PointToVec2 converts Point to Vec2.</p>
+          
+        <p>Useful when you need to treat a position as a displacement.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func PointToVec2(p Point) Vec2 {
+	return Vec2(p)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Rotate">
+    <div class="item-header">
+        <h4>func Rotate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Rotate returns the vector rotated by angle radians.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Rotate(angle float64) Vec2 {
+	cos := math.Cos(angle)
+	sin := math.Sin(angle)
+	return Vec2{
+		X:	v.X*cos - v.Y*sin,
+		Y:	v.X*sin + v.Y*cos,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Sub">
+    <div class="item-header">
+        <h4>func Sub</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Sub returns the difference of two vectors.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) Sub(w Vec2) Vec2 {
+	return Vec2{X: v.X - w.X, Y: v.Y - w.Y}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToPoint">
+    <div class="item-header">
+        <h4>func ToPoint</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToPoint converts Vec2 to Point.</p>
+          
+        <p>Useful when you need to treat a displacement as a position.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v Vec2) ToPoint() Point {
+	return Point(v)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-V2">
+    <div class="item-header">
+        <h4>func V2</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>V2 is a convenience function to create a Vec2.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func V2(x, y float64) Vec2 {
+	return Vec2{X: x, Y: y}
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Vec2">
+    <div class="item-header">
+        <h4>type Vec2 struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Vec2 represents a 2D displacement vector.</p>
+        
+        <p>Unlike Point which represents a position, Vec2 represents a direction and magnitude.</p>
+        
+        <p>This semantic distinction helps make code clearer when working with curve geometry.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Vec2 struct {
+	X, Y float64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

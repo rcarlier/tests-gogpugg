@@ -1,0 +1,3123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - recording/recorder.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="active">recording/recorder.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Clear">Clear</a></li>
+                    
+                    <li><a href="#func-ClearDash">ClearDash</a></li>
+                    
+                    <li><a href="#func-ClearPath">ClearPath</a></li>
+                    
+                    <li><a href="#func-ClearWithColor">ClearWithColor</a></li>
+                    
+                    <li><a href="#func-Clip">Clip</a></li>
+                    
+                    <li><a href="#func-ClipPreserve">ClipPreserve</a></li>
+                    
+                    <li><a href="#func-ClosePath">ClosePath</a></li>
+                    
+                    <li><a href="#func-Commands">Commands</a></li>
+                    
+                    <li><a href="#func-CubicTo">CubicTo</a></li>
+                    
+                    <li><a href="#func-DrawArc">DrawArc</a></li>
+                    
+                    <li><a href="#func-DrawCircle">DrawCircle</a></li>
+                    
+                    <li><a href="#func-DrawEllipse">DrawEllipse</a></li>
+                    
+                    <li><a href="#func-DrawEllipticalArc">DrawEllipticalArc</a></li>
+                    
+                    <li><a href="#func-DrawImage">DrawImage</a></li>
+                    
+                    <li><a href="#func-DrawImageAnchored">DrawImageAnchored</a></li>
+                    
+                    <li><a href="#func-DrawImageScaled">DrawImageScaled</a></li>
+                    
+                    <li><a href="#func-DrawLine">DrawLine</a></li>
+                    
+                    <li><a href="#func-DrawPoint">DrawPoint</a></li>
+                    
+                    <li><a href="#func-DrawRectangle">DrawRectangle</a></li>
+                    
+                    <li><a href="#func-DrawRoundedRectangle">DrawRoundedRectangle</a></li>
+                    
+                    <li><a href="#func-DrawString">DrawString</a></li>
+                    
+                    <li><a href="#func-DrawStringAnchored">DrawStringAnchored</a></li>
+                    
+                    <li><a href="#func-DrawStringWrapped">DrawStringWrapped</a></li>
+                    
+                    <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-FillPreserve">FillPreserve</a></li>
+                    
+                    <li><a href="#func-FillRectangle">FillRectangle</a></li>
+                    
+                    <li><a href="#func-FillStroke">FillStroke</a></li>
+                    
+                    <li><a href="#func-FinishRecording">FinishRecording</a></li>
+                    
+                    <li><a href="#func-GetCurrentPoint">GetCurrentPoint</a></li>
+                    
+                    <li><a href="#func-GetTransform">GetTransform</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-Identity">Identity</a></li>
+                    
+                    <li><a href="#func-InvertY">InvertY</a></li>
+                    
+                    <li><a href="#func-LineTo">LineTo</a></li>
+                    
+                    <li><a href="#func-MeasureMultilineString">MeasureMultilineString</a></li>
+                    
+                    <li><a href="#func-MeasureString">MeasureString</a></li>
+                    
+                    <li><a href="#func-MoveTo">MoveTo</a></li>
+                    
+                    <li><a href="#func-NewRecorder">NewRecorder</a></li>
+                    
+                    <li><a href="#func-NewSubPath">NewSubPath</a></li>
+                    
+                    <li><a href="#func-Playback">Playback</a></li>
+                    
+                    <li><a href="#func-Pop">Pop</a></li>
+                    
+                    <li><a href="#func-Push">Push</a></li>
+                    
+                    <li><a href="#func-QuadraticTo">QuadraticTo</a></li>
+                    
+                    <li><a href="#func-ResetClip">ResetClip</a></li>
+                    
+                    <li><a href="#func-Resources">Resources</a></li>
+                    
+                    <li><a href="#func-Restore">Restore</a></li>
+                    
+                    <li><a href="#func-Rotate">Rotate</a></li>
+                    
+                    <li><a href="#func-RotateAbout">RotateAbout</a></li>
+                    
+                    <li><a href="#func-Save">Save</a></li>
+                    
+                    <li><a href="#func-Scale">Scale</a></li>
+                    
+                    <li><a href="#func-SetColor">SetColor</a></li>
+                    
+                    <li><a href="#func-SetDash">SetDash</a></li>
+                    
+                    <li><a href="#func-SetDashOffset">SetDashOffset</a></li>
+                    
+                    <li><a href="#func-SetFillBrush">SetFillBrush</a></li>
+                    
+                    <li><a href="#func-SetFillRGB">SetFillRGB</a></li>
+                    
+                    <li><a href="#func-SetFillRGBA">SetFillRGBA</a></li>
+                    
+                    <li><a href="#func-SetFillRule">SetFillRule</a></li>
+                    
+                    <li><a href="#func-SetFillRuleGG">SetFillRuleGG</a></li>
+                    
+                    <li><a href="#func-SetFillStyle">SetFillStyle</a></li>
+                    
+                    <li><a href="#func-SetFont">SetFont</a></li>
+                    
+                    <li><a href="#func-SetFontFamily">SetFontFamily</a></li>
+                    
+                    <li><a href="#func-SetFontSize">SetFontSize</a></li>
+                    
+                    <li><a href="#func-SetHexColor">SetHexColor</a></li>
+                    
+                    <li><a href="#func-SetLineCap">SetLineCap</a></li>
+                    
+                    <li><a href="#func-SetLineCapGG">SetLineCapGG</a></li>
+                    
+                    <li><a href="#func-SetLineJoin">SetLineJoin</a></li>
+                    
+                    <li><a href="#func-SetLineJoinGG">SetLineJoinGG</a></li>
+                    
+                    <li><a href="#func-SetLineWidth">SetLineWidth</a></li>
+                    
+                    <li><a href="#func-SetMiterLimit">SetMiterLimit</a></li>
+                    
+                    <li><a href="#func-SetRGB">SetRGB</a></li>
+                    
+                    <li><a href="#func-SetRGBA">SetRGBA</a></li>
+                    
+                    <li><a href="#func-SetStrokeBrush">SetStrokeBrush</a></li>
+                    
+                    <li><a href="#func-SetStrokeRGB">SetStrokeRGB</a></li>
+                    
+                    <li><a href="#func-SetStrokeRGBA">SetStrokeRGBA</a></li>
+                    
+                    <li><a href="#func-SetStrokeStyle">SetStrokeStyle</a></li>
+                    
+                    <li><a href="#func-SetTransform">SetTransform</a></li>
+                    
+                    <li><a href="#func-Shear">Shear</a></li>
+                    
+                    <li><a href="#func-Stroke">Stroke</a></li>
+                    
+                    <li><a href="#func-StrokePreserve">StrokePreserve</a></li>
+                    
+                    <li><a href="#func-StrokeRectangle">StrokeRectangle</a></li>
+                    
+                    <li><a href="#func-Transform">Transform</a></li>
+                    
+                    <li><a href="#func-TransformPoint">TransformPoint</a></li>
+                    
+                    <li><a href="#func-Translate">Translate</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                    <li><a href="#func-WordWrap">WordWrap</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>recording/recorder.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Clear">
+    <div class="item-header">
+        <h4>func Clear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clear fills the entire canvas with the current fill color.</p>
+          
+        <p>This is equivalent to drawing a rectangle covering the entire canvas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Clear() {
+	r.FillRectangle(0, 0, float64(r.width), float64(r.height))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClearDash">
+    <div class="item-header">
+        <h4>func ClearDash</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClearDash removes the dash pattern, returning to solid lines.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClearDash() {
+	r.dashPattern = nil
+	r.dashOffset = 0
+	r.commands = append(r.commands, SetDashCommand{Pattern: nil, Offset: 0})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClearPath">
+    <div class="item-header">
+        <h4>func ClearPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClearPath clears the current path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClearPath() {
+	r.currentPath.Clear()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClearWithColor">
+    <div class="item-header">
+        <h4>func ClearWithColor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClearWithColor fills the entire canvas with a specific color.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClearWithColor(c gg.RGBA) {
+	oldBrush := r.fillBrush
+	r.fillBrush = NewSolidBrush(c)
+	r.FillRectangle(0, 0, float64(r.width), float64(r.height))
+	r.fillBrush = oldBrush
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clip">
+    <div class="item-header">
+        <h4>func Clip</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clip sets the current path as the clipping region and clears the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Clip() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	r.commands = append(r.commands, SetClipCommand{
+		Path:	pathRef,
+		Rule:	r.fillRule,
+	})
+
+	r.currentPath = gg.NewPath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClipPreserve">
+    <div class="item-header">
+        <h4>func ClipPreserve</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClipPreserve sets the current path as the clipping region but keeps the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClipPreserve() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	r.commands = append(r.commands, SetClipCommand{
+		Path:	pathRef,
+		Rule:	r.fillRule,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClosePath">
+    <div class="item-header">
+        <h4>func ClosePath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClosePath closes the current subpath.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClosePath() {
+	r.currentPath.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Commands">
+    <div class="item-header">
+        <h4>func Commands</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Commands returns the recorded commands.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recording) Commands() []Command {
+	return r.commands
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CubicTo">
+    <div class="item-header">
+        <h4>func CubicTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CubicTo adds a cubic Bezier curve to the current path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) CubicTo(c1x, c1y, c2x, c2y, x, y float64) {
+	cp1x, cp1y := r.transform.TransformPoint(c1x, c1y)
+	cp2x, cp2y := r.transform.TransformPoint(c2x, c2y)
+	px, py := r.transform.TransformPoint(x, y)
+	r.currentPath.CubicTo(cp1x, cp1y, cp2x, cp2y, px, py)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawArc">
+    <div class="item-header">
+        <h4>func DrawArc</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawArc draws a circular arc.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawArc(x, y, radius, angle1, angle2 float64) {
+	r.drawArcPath(x, y, radius, angle1, angle2)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawCircle">
+    <div class="item-header">
+        <h4>func DrawCircle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawCircle draws a circle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawCircle(x, y, radius float64) {
+	const k = 0.5522847498307936	// 4/3 * (sqrt(2) - 1)
+	offset := radius * k
+
+	r.MoveTo(x+radius, y)
+	r.CubicTo(x+radius, y+offset, x+offset, y+radius, x, y+radius)
+	r.CubicTo(x-offset, y+radius, x-radius, y+offset, x-radius, y)
+	r.CubicTo(x-radius, y-offset, x-offset, y-radius, x, y-radius)
+	r.CubicTo(x+offset, y-radius, x+radius, y-offset, x+radius, y)
+	r.ClosePath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawEllipse">
+    <div class="item-header">
+        <h4>func DrawEllipse</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawEllipse draws an ellipse.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawEllipse(x, y, rx, ry float64) {
+	const k = 0.5522847498307936
+	ox := rx * k
+	oy := ry * k
+
+	r.MoveTo(x+rx, y)
+	r.CubicTo(x+rx, y+oy, x+ox, y+ry, x, y+ry)
+	r.CubicTo(x-ox, y+ry, x-rx, y+oy, x-rx, y)
+	r.CubicTo(x-rx, y-oy, x-ox, y-ry, x, y-ry)
+	r.CubicTo(x+ox, y-ry, x+rx, y-oy, x+rx, y)
+	r.ClosePath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawEllipticalArc">
+    <div class="item-header">
+        <h4>func DrawEllipticalArc</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawEllipticalArc draws an elliptical arc.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawEllipticalArc(x, y, rx, ry, angle1, angle2 float64) {
+	r.Save()
+	r.Translate(x, y)
+	r.Scale(rx, ry)
+	r.DrawArc(0, 0, 1, angle1, angle2)
+	// Restore state but keep path changes
+	if len(r.stateStack) > 0 {
+		state := r.stateStack[len(r.stateStack)-1]
+		r.stateStack = r.stateStack[:len(r.stateStack)-1]
+		r.fillBrush = state.fillBrush
+		r.strokeBrush = state.strokeBrush
+		r.lineWidth = state.lineWidth
+		r.lineCap = state.lineCap
+		r.lineJoin = state.lineJoin
+		r.miterLimit = state.miterLimit
+		r.dashPattern = state.dashPattern
+		r.dashOffset = state.dashOffset
+		r.fillRule = state.fillRule
+		r.transform = state.transform
+	}
+	r.commands = append(r.commands, RestoreCommand{})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawImage">
+    <div class="item-header">
+        <h4>func DrawImage</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawImage draws an image at the specified position.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawImage(img image.Image, x, y int) {
+	if img == nil {
+		return
+	}
+
+	bounds := img.Bounds()
+	w := bounds.Dx()
+	h := bounds.Dy()
+
+	imageRef := r.resources.AddImage(img)
+
+	// Transform destination rectangle
+	x1, y1 := r.transform.TransformPoint(float64(x), float64(y))
+	x2, y2 := r.transform.TransformPoint(float64(x+w), float64(y+h))
+
+	srcRect := NewRect(0, 0, float64(w), float64(h))
+	dstRect := NewRectFromPoints(x1, y1, x2, y2)
+
+	r.commands = append(r.commands, DrawImageCommand{
+		Image:		imageRef,
+		SrcRect:	srcRect,
+		DstRect:	dstRect,
+		Options:	DefaultImageOptions(),
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawImageAnchored">
+    <div class="item-header">
+        <h4>func DrawImageAnchored</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawImageAnchored draws an image with an anchor point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawImageAnchored(img image.Image, x, y int, ax, ay float64) {
+	if img == nil {
+		return
+	}
+
+	bounds := img.Bounds()
+	w := bounds.Dx()
+	h := bounds.Dy()
+
+	// Adjust position based on anchor
+	drawX := float64(x) - float64(w)*ax
+	drawY := float64(y) - float64(h)*ay
+
+	imageRef := r.resources.AddImage(img)
+
+	// Transform destination rectangle
+	x1, y1 := r.transform.TransformPoint(drawX, drawY)
+	x2, y2 := r.transform.TransformPoint(drawX+float64(w), drawY+float64(h))
+
+	srcRect := NewRect(0, 0, float64(w), float64(h))
+	dstRect := NewRectFromPoints(x1, y1, x2, y2)
+
+	r.commands = append(r.commands, DrawImageCommand{
+		Image:		imageRef,
+		SrcRect:	srcRect,
+		DstRect:	dstRect,
+		Options:	DefaultImageOptions(),
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawImageScaled">
+    <div class="item-header">
+        <h4>func DrawImageScaled</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawImageScaled draws an image scaled to fit the specified rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawImageScaled(img image.Image, x, y, w, h float64) {
+	if img == nil {
+		return
+	}
+
+	bounds := img.Bounds()
+	srcW := bounds.Dx()
+	srcH := bounds.Dy()
+
+	imageRef := r.resources.AddImage(img)
+
+	// Transform destination rectangle
+	x1, y1 := r.transform.TransformPoint(x, y)
+	x2, y2 := r.transform.TransformPoint(x+w, y+h)
+
+	srcRect := NewRect(0, 0, float64(srcW), float64(srcH))
+	dstRect := NewRectFromPoints(x1, y1, x2, y2)
+
+	r.commands = append(r.commands, DrawImageCommand{
+		Image:		imageRef,
+		SrcRect:	srcRect,
+		DstRect:	dstRect,
+		Options:	DefaultImageOptions(),
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawLine">
+    <div class="item-header">
+        <h4>func DrawLine</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawLine draws a line between two points.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawLine(x1, y1, x2, y2 float64) {
+	r.MoveTo(x1, y1)
+	r.LineTo(x2, y2)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawPoint">
+    <div class="item-header">
+        <h4>func DrawPoint</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawPoint draws a single point at the given coordinates.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawPoint(x, y, radius float64) {
+	r.DrawCircle(x, y, radius)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawRectangle">
+    <div class="item-header">
+        <h4>func DrawRectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawRectangle draws a rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawRectangle(x, y, w, h float64) {
+	r.MoveTo(x, y)
+	r.LineTo(x+w, y)
+	r.LineTo(x+w, y+h)
+	r.LineTo(x, y+h)
+	r.ClosePath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawRoundedRectangle">
+    <div class="item-header">
+        <h4>func DrawRoundedRectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawRoundedRectangle draws a rectangle with rounded corners.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawRoundedRectangle(x, y, w, h, radius float64) {
+	// Clamp radius to half of the smaller dimension
+	maxR := math.Min(w, h) / 2
+	if radius > maxR {
+		radius = maxR
+	}
+
+	r.MoveTo(x+radius, y)
+	r.LineTo(x+w-radius, y)
+	r.drawArcPath(x+w-radius, y+radius, radius, -math.Pi/2, 0)
+	r.LineTo(x+w, y+h-radius)
+	r.drawArcPath(x+w-radius, y+h-radius, radius, 0, math.Pi/2)
+	r.LineTo(x+radius, y+h)
+	r.drawArcPath(x+radius, y+h-radius, radius, math.Pi/2, math.Pi)
+	r.LineTo(x, y+radius)
+	r.drawArcPath(x+radius, y+radius, radius, math.Pi, 3*math.Pi/2)
+	r.ClosePath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawString">
+    <div class="item-header">
+        <h4>func DrawString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawString draws text at position (x, y) where y is the baseline.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawString(s string, x, y float64) {
+	// Transform position
+	px, py := r.transform.TransformPoint(x, y)
+
+	brushRef := r.resources.AddBrush(r.fillBrush)
+
+	r.commands = append(r.commands, DrawTextCommand{
+		Text:		s,
+		X:		px,
+		Y:		py,
+		FontSize:	r.fontSize,
+		FontFamily:	r.fontFamily,
+		Brush:		brushRef,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawStringAnchored">
+    <div class="item-header">
+        <h4>func DrawStringAnchored</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawStringAnchored draws text with an anchor point.</p>
+          
+        <p>The anchor point is specified by ax and ay, which are in the range [0, 1].</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawStringAnchored(s string, x, y, ax, ay float64) {
+	// For recording, we store the base position and let the backend handle anchoring
+	// This is a simplification; a full implementation would measure text
+	r.DrawString(s, x, y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawStringWrapped">
+    <div class="item-header">
+        <h4>func DrawStringWrapped</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawStringWrapped wraps text to the given width and draws it with alignment.</p>
+          
+        <p>Each wrapped line is recorded as a separate DrawText command.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) DrawStringWrapped(s string, x, y, ax, ay, width, lineSpacing float64, align text.Alignment) {
+	lines := r.WordWrap(s, width)
+	if len(lines) == 0 {
+		return
+	}
+
+	var fh float64
+	if r.fontFace != nil {
+		fh = r.fontFace.Metrics().LineHeight()
+	} else {
+		fh = r.fontSize * 1.2
+	}
+
+	// Total height (same formula as MeasureMultilineString)
+	n := float64(len(lines))
+	h := n*fh*lineSpacing - (lineSpacing-1)*fh
+
+	// Adjust starting position by anchor
+	x -= ax * width
+	y -= ay * h
+
+	// Adjust x base for alignment
+	switch align {
+	case text.AlignCenter:
+		x += width / 2
+	case text.AlignRight:
+		x += width
+	}
+
+	for _, line := range lines {
+		drawX := x
+		switch align {
+		case text.AlignCenter:
+			lw, _ := r.MeasureString(line)
+			drawX = x - lw/2
+		case text.AlignRight:
+			lw, _ := r.MeasureString(line)
+			drawX = x - lw
+		}
+		r.DrawString(line, drawX, y)
+		y += fh * lineSpacing
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Fill">
+    <div class="item-header">
+        <h4>func Fill</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Fill fills the current path and clears it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Fill() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	brushRef := r.resources.AddBrush(r.fillBrush)
+
+	r.commands = append(r.commands, FillPathCommand{
+		Path:	pathRef,
+		Brush:	brushRef,
+		Rule:	r.fillRule,
+	})
+
+	r.currentPath = gg.NewPath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillPreserve">
+    <div class="item-header">
+        <h4>func FillPreserve</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillPreserve fills the current path without clearing it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) FillPreserve() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	brushRef := r.resources.AddBrush(r.fillBrush)
+
+	r.commands = append(r.commands, FillPathCommand{
+		Path:	pathRef,
+		Brush:	brushRef,
+		Rule:	r.fillRule,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillRectangle">
+    <div class="item-header">
+        <h4>func FillRectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillRectangle fills a rectangle without adding it to the path.</p>
+          
+        <p>This is an optimized operation for the common case of axis-aligned rectangles.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) FillRectangle(x, y, w, h float64) {
+	// Transform corners
+	x1, y1 := r.transform.TransformPoint(x, y)
+	x2, y2 := r.transform.TransformPoint(x+w, y+h)
+
+	rect := NewRectFromPoints(x1, y1, x2, y2)
+	brushRef := r.resources.AddBrush(r.fillBrush)
+
+	r.commands = append(r.commands, FillRectCommand{
+		Rect:	rect,
+		Brush:	brushRef,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillStroke">
+    <div class="item-header">
+        <h4>func FillStroke</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillStroke fills and then strokes the current path, then clears it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) FillStroke() {
+	r.FillPreserve()
+	r.Stroke()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FinishRecording">
+    <div class="item-header">
+        <h4>func FinishRecording</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FinishRecording returns an immutable Recording containing all recorded commands.</p>
+          
+        <p>After calling FinishRecording, the Recorder should not be used again.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) FinishRecording() *Recording {
+	return &Recording{
+		width:		r.width,
+		height:		r.height,
+		commands:	r.commands,
+		resources:	r.resources,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetCurrentPoint">
+    <div class="item-header">
+        <h4>func GetCurrentPoint</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetCurrentPoint returns the current point of the path.</p>
+          
+        <p>Returns (0, 0, false) if there is no current point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) GetCurrentPoint() (x, y float64, ok bool) {
+	if r.currentPath == nil || !r.currentPath.HasCurrentPoint() {
+		return 0, 0, false
+	}
+	pt := r.currentPath.CurrentPoint()
+	return pt.X, pt.Y, true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetTransform">
+    <div class="item-header">
+        <h4>func GetTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetTransform returns a copy of the current transformation matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) GetTransform() Matrix {
+	return r.transform
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the height of the recording canvas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Height() int {
+	return r.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the height of the recording canvas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recording) Height() int {
+	return r.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Identity">
+    <div class="item-header">
+        <h4>func Identity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Identity resets the transformation matrix to identity.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Identity() {
+	r.transform = Identity()
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-InvertY">
+    <div class="item-header">
+        <h4>func InvertY</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>InvertY inverts the Y axis (useful for coordinate system changes).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) InvertY() {
+	r.Translate(0, float64(r.height))
+	r.Scale(1, -1)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-LineTo">
+    <div class="item-header">
+        <h4>func LineTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>LineTo adds a line to the current path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) LineTo(x, y float64) {
+	px, py := r.transform.TransformPoint(x, y)
+	r.currentPath.LineTo(px, py)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MeasureMultilineString">
+    <div class="item-header">
+        <h4>func MeasureMultilineString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MeasureMultilineString measures text that may contain newlines.</p>
+          
+        <p>Returns (width, height) where width is the maximum line width.</p>
+          
+        <p>If no font face is set, returns (0, 0).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) MeasureMultilineString(s string, lineSpacing float64) (width, height float64) {
+	if r.fontFace == nil {
+		return 0, 0
+	}
+	lines := recorderSplitLines(s)
+	fh := r.fontFace.Metrics().LineHeight()
+	for _, line := range lines {
+		lw, _ := text.Measure(line, r.fontFace)
+		if lw > width {
+			width = lw
+		}
+	}
+	n := float64(len(lines))
+	height = n*fh*lineSpacing - (lineSpacing-1)*fh
+	return
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MeasureString">
+    <div class="item-header">
+        <h4>func MeasureString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MeasureString returns approximate dimensions of text.</p>
+          
+        <p>Note: Actual measurement depends on the backend and font.</p>
+          
+        <p>Returns (0, 0) if no font is set.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) MeasureString(s string) (w, h float64) {
+	if r.fontFace == nil {
+		// Approximate measurement based on font size
+		// Average character width is roughly 0.6 * font size
+		w = float64(len(s)) * r.fontSize * 0.6
+		h = r.fontSize * 1.2
+		return
+	}
+	return text.Measure(s, r.fontFace)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MoveTo">
+    <div class="item-header">
+        <h4>func MoveTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MoveTo starts a new subpath at the given point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) MoveTo(x, y float64) {
+	px, py := r.transform.TransformPoint(x, y)
+	r.currentPath.MoveTo(px, py)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRecorder">
+    <div class="item-header">
+        <h4>func NewRecorder</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRecorder creates a new Recorder for the given dimensions.</p>
+          
+        <p>The Recorder starts with default state: black fill/stroke, 1px line width,</p>
+          
+        <p>butt caps, miter joins, non-zero fill rule, and identity transform.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRecorder(width, height int) *Recorder {
+	defaultBrush := NewSolidBrush(gg.Black)
+	return &Recorder{
+		width:		width,
+		height:		height,
+		commands:	make([]Command, 0, 256),
+		resources:	NewResourcePool(),
+		currentPath:	gg.NewPath(),
+		fillBrush:	defaultBrush,
+		strokeBrush:	defaultBrush,
+		lineWidth:	1.0,
+		lineCap:	LineCapButt,
+		lineJoin:	LineJoinMiter,
+		miterLimit:	4.0,
+		fillRule:	FillRuleNonZero,
+		transform:	Identity(),
+		stateStack:	make([]recorderState, 0, 8),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewSubPath">
+    <div class="item-header">
+        <h4>func NewSubPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewSubPath starts a new subpath without closing the previous one.</p>
+          
+        <p>This is a no-op as MoveTo already creates a new subpath.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) NewSubPath() {
+	// No-op, provided for API compatibility
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Playback">
+    <div class="item-header">
+        <h4>func Playback</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Playback replays the recording to the given backend.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recording) Playback(backend Backend) error {
+	// Initialize backend
+	if err := backend.Begin(r.width, r.height); err != nil {
+		return err
+	}
+
+	// Replay each command
+	for _, cmd := range r.commands {
+		switch c := cmd.(type) {
+		case SaveCommand:
+			backend.Save()
+		case RestoreCommand:
+			backend.Restore()
+		case SetTransformCommand:
+			backend.SetTransform(c.Matrix)
+		case SetClipCommand:
+			path := r.resources.GetPath(c.Path)
+			backend.SetClip(path, c.Rule)
+		case ClearClipCommand:
+			backend.ClearClip()
+		case FillPathCommand:
+			path := r.resources.GetPath(c.Path)
+			brush := r.resources.GetBrush(c.Brush)
+			backend.FillPath(path, brush, c.Rule)
+		case StrokePathCommand:
+			path := r.resources.GetPath(c.Path)
+			brush := r.resources.GetBrush(c.Brush)
+			backend.StrokePath(path, brush, c.Stroke)
+		case FillRectCommand:
+			brush := r.resources.GetBrush(c.Brush)
+			backend.FillRect(c.Rect, brush)
+		case DrawImageCommand:
+			img := r.resources.GetImage(c.Image)
+			backend.DrawImage(img, c.SrcRect, c.DstRect, c.Options)
+		case DrawTextCommand:
+			brush := r.resources.GetBrush(c.Brush)
+			// Font face lookup would need additional handling
+			backend.DrawText(c.Text, c.X, c.Y, nil, brush)
+		// Style commands are handled by the backend's internal state
+		// during the actual drawing operations
+		case SetFillStyleCommand, SetStrokeStyleCommand,
+			SetLineWidthCommand, SetLineCapCommand, SetLineJoinCommand,
+			SetMiterLimitCommand, SetDashCommand, SetFillRuleCommand:
+			// These are state commands that were recorded but the actual
+			// style is captured in the drawing commands themselves
+		}
+	}
+
+	return backend.End()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Pop">
+    <div class="item-header">
+        <h4>func Pop</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Pop is an alias for Restore, matching gg.Context API.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Pop() {
+	r.Restore()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Push">
+    <div class="item-header">
+        <h4>func Push</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Push is an alias for Save, matching gg.Context API.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Push() {
+	r.Save()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-QuadraticTo">
+    <div class="item-header">
+        <h4>func QuadraticTo</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>QuadraticTo adds a quadratic Bezier curve to the current path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) QuadraticTo(cx, cy, x, y float64) {
+	cpx, cpy := r.transform.TransformPoint(cx, cy)
+	px, py := r.transform.TransformPoint(x, y)
+	r.currentPath.QuadraticTo(cpx, cpy, px, py)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ResetClip">
+    <div class="item-header">
+        <h4>func ResetClip</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ResetClip removes all clipping regions.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ResetClip() {
+	r.commands = append(r.commands, ClearClipCommand{})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Resources">
+    <div class="item-header">
+        <h4>func Resources</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Resources returns the resource pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recording) Resources() *ResourcePool {
+	return r.resources
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Restore">
+    <div class="item-header">
+        <h4>func Restore</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Restore restores the previously saved graphics state.</p>
+          
+        <p>If the state stack is empty, this is a no-op.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Restore() {
+	if len(r.stateStack) == 0 {
+		return
+	}
+
+	state := r.stateStack[len(r.stateStack)-1]
+	r.stateStack = r.stateStack[:len(r.stateStack)-1]
+
+	r.fillBrush = state.fillBrush
+	r.strokeBrush = state.strokeBrush
+	r.lineWidth = state.lineWidth
+	r.lineCap = state.lineCap
+	r.lineJoin = state.lineJoin
+	r.miterLimit = state.miterLimit
+	r.dashPattern = state.dashPattern
+	r.dashOffset = state.dashOffset
+	r.fillRule = state.fillRule
+	r.transform = state.transform
+	r.fontFace = state.fontFace
+	r.fontFamily = state.fontFamily
+	r.fontSize = state.fontSize
+
+	r.commands = append(r.commands, RestoreCommand{})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Rotate">
+    <div class="item-header">
+        <h4>func Rotate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Rotate applies a rotation (angle in radians).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Rotate(angle float64) {
+	r.transform = r.transform.Multiply(Rotate(angle))
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RotateAbout">
+    <div class="item-header">
+        <h4>func RotateAbout</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RotateAbout rotates around a specific point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) RotateAbout(angle, x, y float64) {
+	r.Translate(x, y)
+	r.Rotate(angle)
+	r.Translate(-x, -y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Save">
+    <div class="item-header">
+        <h4>func Save</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Save saves the current graphics state to the stack.</p>
+          
+        <p>The state includes transform, fill style, stroke style, and line properties.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Save() {
+	// Clone dash pattern
+	var dashCopy []float64
+	if r.dashPattern != nil {
+		dashCopy = make([]float64, len(r.dashPattern))
+		copy(dashCopy, r.dashPattern)
+	}
+
+	r.stateStack = append(r.stateStack, recorderState{
+		fillBrush:	r.fillBrush,
+		strokeBrush:	r.strokeBrush,
+		lineWidth:	r.lineWidth,
+		lineCap:	r.lineCap,
+		lineJoin:	r.lineJoin,
+		miterLimit:	r.miterLimit,
+		dashPattern:	dashCopy,
+		dashOffset:	r.dashOffset,
+		fillRule:	r.fillRule,
+		transform:	r.transform,
+		fontFace:	r.fontFace,
+		fontFamily:	r.fontFamily,
+		fontSize:	r.fontSize,
+	})
+
+	r.commands = append(r.commands, SaveCommand{})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Scale">
+    <div class="item-header">
+        <h4>func Scale</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Scale applies a scaling transformation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Scale(sx, sy float64) {
+	r.transform = r.transform.Multiply(Scale(sx, sy))
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetColor">
+    <div class="item-header">
+        <h4>func SetColor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetColor sets both fill and stroke color from a color.Color.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetColor(c gg.RGBA) {
+	brush := NewSolidBrush(c)
+	r.fillBrush = brush
+	r.strokeBrush = brush
+	brushRef := r.resources.AddBrush(brush)
+	r.commands = append(r.commands,
+		SetFillStyleCommand{Brush: brushRef},
+		SetStrokeStyleCommand{Brush: brushRef})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetDash">
+    <div class="item-header">
+        <h4>func SetDash</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetDash sets the dash pattern for stroking.</p>
+          
+        <p>Pass alternating dash and gap lengths.</p>
+          
+        <p>Passing no arguments clears the dash pattern (returns to solid lines).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetDash(lengths ...float64) {
+	if len(lengths) == 0 {
+		r.ClearDash()
+		return
+	}
+
+	r.dashPattern = make([]float64, len(lengths))
+	copy(r.dashPattern, lengths)
+	r.commands = append(r.commands, SetDashCommand{Pattern: r.dashPattern, Offset: r.dashOffset})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetDashOffset">
+    <div class="item-header">
+        <h4>func SetDashOffset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetDashOffset sets the starting offset into the dash pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetDashOffset(offset float64) {
+	r.dashOffset = offset
+	if r.dashPattern != nil {
+		r.commands = append(r.commands, SetDashCommand{Pattern: r.dashPattern, Offset: r.dashOffset})
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillBrush">
+    <div class="item-header">
+        <h4>func SetFillBrush</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillBrush sets the fill brush from a gg.Brush.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillBrush(brush gg.Brush) {
+	r.SetFillStyle(BrushFromGG(brush))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillRGB">
+    <div class="item-header">
+        <h4>func SetFillRGB</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillRGB sets the fill color using RGB values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillRGB(red, green, blue float64) {
+	r.SetFillStyle(NewSolidBrush(gg.RGB(red, green, blue)))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillRGBA">
+    <div class="item-header">
+        <h4>func SetFillRGBA</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillRGBA sets the fill color using RGBA values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillRGBA(red, green, blue, alpha float64) {
+	r.SetFillStyle(NewSolidBrush(gg.RGBA2(red, green, blue, alpha)))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillRule">
+    <div class="item-header">
+        <h4>func SetFillRule</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillRule sets the fill rule.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillRule(rule FillRule) {
+	r.fillRule = rule
+	r.commands = append(r.commands, SetFillRuleCommand{Rule: rule})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillRuleGG">
+    <div class="item-header">
+        <h4>func SetFillRuleGG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillRuleGG sets the fill rule from gg.FillRule.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillRuleGG(rule gg.FillRule) {
+	// #nosec G115 -- FillRule enum values are within uint8 range
+	r.SetFillRule(FillRule(rule))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFillStyle">
+    <div class="item-header">
+        <h4>func SetFillStyle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFillStyle sets the fill brush.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFillStyle(brush Brush) {
+	r.fillBrush = brush
+	brushRef := r.resources.AddBrush(brush)
+	r.commands = append(r.commands, SetFillStyleCommand{Brush: brushRef})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFont">
+    <div class="item-header">
+        <h4>func SetFont</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFont sets the current font face for text drawing.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFont(face text.Face) {
+	r.fontFace = face
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFontFamily">
+    <div class="item-header">
+        <h4>func SetFontFamily</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFontFamily sets the current font family name.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFontFamily(family string) {
+	r.fontFamily = family
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetFontSize">
+    <div class="item-header">
+        <h4>func SetFontSize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetFontSize sets the current font size in points.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetFontSize(size float64) {
+	r.fontSize = size
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetHexColor">
+    <div class="item-header">
+        <h4>func SetHexColor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetHexColor sets both fill and stroke color using a hex string.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetHexColor(hex string) {
+	r.SetColor(gg.Hex(hex))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetLineCap">
+    <div class="item-header">
+        <h4>func SetLineCap</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetLineCap sets the line cap style.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetLineCap(lc LineCap) {
+	r.lineCap = lc
+	r.commands = append(r.commands, SetLineCapCommand{Cap: lc})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetLineCapGG">
+    <div class="item-header">
+        <h4>func SetLineCapGG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetLineCapGG sets the line cap style from gg.LineCap.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetLineCapGG(lc gg.LineCap) {
+	// #nosec G115 -- LineCap enum values are within uint8 range
+	r.SetLineCap(LineCap(lc))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetLineJoin">
+    <div class="item-header">
+        <h4>func SetLineJoin</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetLineJoin sets the line join style.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetLineJoin(join LineJoin) {
+	r.lineJoin = join
+	r.commands = append(r.commands, SetLineJoinCommand{Join: join})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetLineJoinGG">
+    <div class="item-header">
+        <h4>func SetLineJoinGG</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetLineJoinGG sets the line join style from gg.LineJoin.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetLineJoinGG(join gg.LineJoin) {
+	// #nosec G115 -- LineJoin enum values are within uint8 range
+	r.SetLineJoin(LineJoin(join))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetLineWidth">
+    <div class="item-header">
+        <h4>func SetLineWidth</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetLineWidth sets the line width for stroking.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetLineWidth(width float64) {
+	r.lineWidth = width
+	r.commands = append(r.commands, SetLineWidthCommand{Width: width})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetMiterLimit">
+    <div class="item-header">
+        <h4>func SetMiterLimit</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetMiterLimit sets the miter limit for line joins.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetMiterLimit(limit float64) {
+	r.miterLimit = limit
+	r.commands = append(r.commands, SetMiterLimitCommand{Limit: limit})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetRGB">
+    <div class="item-header">
+        <h4>func SetRGB</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetRGB sets both fill and stroke color using RGB values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetRGB(red, green, blue float64) {
+	r.SetColor(gg.RGB(red, green, blue))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetRGBA">
+    <div class="item-header">
+        <h4>func SetRGBA</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetRGBA sets both fill and stroke color using RGBA values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetRGBA(red, green, blue, alpha float64) {
+	r.SetColor(gg.RGBA2(red, green, blue, alpha))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetStrokeBrush">
+    <div class="item-header">
+        <h4>func SetStrokeBrush</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetStrokeBrush sets the stroke brush from a gg.Brush.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetStrokeBrush(brush gg.Brush) {
+	r.SetStrokeStyle(BrushFromGG(brush))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetStrokeRGB">
+    <div class="item-header">
+        <h4>func SetStrokeRGB</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetStrokeRGB sets the stroke color using RGB values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetStrokeRGB(red, green, blue float64) {
+	r.SetStrokeStyle(NewSolidBrush(gg.RGB(red, green, blue)))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetStrokeRGBA">
+    <div class="item-header">
+        <h4>func SetStrokeRGBA</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetStrokeRGBA sets the stroke color using RGBA values (0-1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetStrokeRGBA(red, green, blue, alpha float64) {
+	r.SetStrokeStyle(NewSolidBrush(gg.RGBA2(red, green, blue, alpha)))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetStrokeStyle">
+    <div class="item-header">
+        <h4>func SetStrokeStyle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetStrokeStyle sets the stroke brush.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetStrokeStyle(brush Brush) {
+	r.strokeBrush = brush
+	brushRef := r.resources.AddBrush(brush)
+	r.commands = append(r.commands, SetStrokeStyleCommand{Brush: brushRef})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetTransform">
+    <div class="item-header">
+        <h4>func SetTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetTransform replaces the current transformation matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetTransform(m Matrix) {
+	r.transform = m
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Shear">
+    <div class="item-header">
+        <h4>func Shear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Shear applies a shear transformation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Shear(x, y float64) {
+	r.transform = r.transform.Multiply(Shear(x, y))
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stroke">
+    <div class="item-header">
+        <h4>func Stroke</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stroke strokes the current path and clears it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Stroke() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	brushRef := r.resources.AddBrush(r.strokeBrush)
+
+	stroke := Stroke{
+		Width:		r.lineWidth,
+		Cap:		r.lineCap,
+		Join:		r.lineJoin,
+		MiterLimit:	r.miterLimit,
+		DashPattern:	r.dashPattern,
+		DashOffset:	r.dashOffset,
+	}
+
+	r.commands = append(r.commands, StrokePathCommand{
+		Path:	pathRef,
+		Brush:	brushRef,
+		Stroke:	stroke,
+	})
+
+	r.currentPath = gg.NewPath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokePreserve">
+    <div class="item-header">
+        <h4>func StrokePreserve</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokePreserve strokes the current path without clearing it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) StrokePreserve() {
+	if len(r.currentPath.Elements()) == 0 {
+		return
+	}
+
+	pathRef := r.resources.AddPath(r.currentPath)
+	brushRef := r.resources.AddBrush(r.strokeBrush)
+
+	stroke := Stroke{
+		Width:		r.lineWidth,
+		Cap:		r.lineCap,
+		Join:		r.lineJoin,
+		MiterLimit:	r.miterLimit,
+		DashPattern:	r.dashPattern,
+		DashOffset:	r.dashOffset,
+	}
+
+	r.commands = append(r.commands, StrokePathCommand{
+		Path:	pathRef,
+		Brush:	brushRef,
+		Stroke:	stroke,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeRectangle">
+    <div class="item-header">
+        <h4>func StrokeRectangle</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeRectangle strokes a rectangle without adding it to the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) StrokeRectangle(x, y, w, h float64) {
+	// Transform corners
+	x1, y1 := r.transform.TransformPoint(x, y)
+	x2, y2 := r.transform.TransformPoint(x+w, y+h)
+
+	rect := NewRectFromPoints(x1, y1, x2, y2)
+	brushRef := r.resources.AddBrush(r.strokeBrush)
+
+	stroke := Stroke{
+		Width:		r.lineWidth,
+		Cap:		r.lineCap,
+		Join:		r.lineJoin,
+		MiterLimit:	r.miterLimit,
+		DashPattern:	r.dashPattern,
+		DashOffset:	r.dashOffset,
+	}
+
+	r.commands = append(r.commands, StrokeRectCommand{
+		Rect:	rect,
+		Brush:	brushRef,
+		Stroke:	stroke,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Transform">
+    <div class="item-header">
+        <h4>func Transform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Transform multiplies the current transformation matrix by the given matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Transform(m Matrix) {
+	r.transform = r.transform.Multiply(m)
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TransformPoint">
+    <div class="item-header">
+        <h4>func TransformPoint</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TransformPoint transforms a point by the current matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) TransformPoint(x, y float64) (float64, float64) {
+	return r.transform.TransformPoint(x, y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Translate">
+    <div class="item-header">
+        <h4>func Translate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Translate applies a translation to the transformation matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Translate(x, y float64) {
+	r.transform = r.transform.Multiply(Translate(x, y))
+	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the width of the recording canvas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) Width() int {
+	return r.width
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the width of the recording canvas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recording) Width() int {
+	return r.width
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WordWrap">
+    <div class="item-header">
+        <h4>func WordWrap</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WordWrap wraps text to fit within the given width using word boundaries.</p>
+          
+        <p>Uses the current font face for text measurement.</p>
+          
+        <p>If no font face is set, returns the input string as a single-element slice.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) WordWrap(s string, w float64) []string {
+	if r.fontFace == nil {
+		return []string{s}
+	}
+	results := text.WrapText(s, r.fontFace, w, text.WrapWord)
+	lines := make([]string, len(results))
+	for i, res := range results {
+		lines[i] = res.Text
+	}
+	return lines
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Recorder">
+    <div class="item-header">
+        <h4>type Recorder struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Recorder captures drawing operations as commands.</p>
+        
+        <p>It mirrors the gg.Context drawing API but generates commands</p>
+        
+        <p>instead of rasterizing pixels. Use FinishRecording to obtain</p>
+        
+        <p>an immutable Recording that can be replayed to different backends.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Example:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>rec := recording.NewRecorder(800, 600)</p>
+        
+        <p>rec.SetRGB(1, 0, 0)</p>
+        
+        <p>rec.DrawCircle(100, 100, 50)</p>
+        
+        <p>rec.Fill()</p>
+        
+        <p>recording := rec.FinishRecording()</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The Recorder is not safe for concurrent use.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Recorder struct {
+	width, height	int
+	commands	[]Command
+	resources	*ResourcePool
+
+	// Current path being built
+	currentPath	*gg.Path
+
+	// Current state
+	fillBrush	Brush
+	strokeBrush	Brush
+	lineWidth	float64
+	lineCap		LineCap
+	lineJoin	LineJoin
+	miterLimit	float64
+	dashPattern	[]float64
+	dashOffset	float64
+	fillRule	FillRule
+	transform	Matrix
+
+	// Current font
+	fontFace	text.Face
+	fontFamily	string
+	fontSize	float64
+
+	// State stack
+	stateStack	[]recorderState
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Recording">
+    <div class="item-header">
+        <h4>type Recording struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Recording is an immutable container for recorded drawing commands.</p>
+        
+        <p>It can be replayed to any Backend implementation.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Recording struct {
+	width, height	int
+	commands	[]Command
+	resources	*ResourcePool
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

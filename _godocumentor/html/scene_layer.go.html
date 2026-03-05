@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/layer.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="active">scene/layer.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-AcquireLayer">AcquireLayer</a></li>
+                    
+                    <li><a href="#func-All">All</a></li>
+                    
+                    <li><a href="#func-CombinedBounds">CombinedBounds</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Depth">Depth</a></li>
+                    
+                    <li><a href="#func-Depth">Depth</a></li>
+                    
+                    <li><a href="#func-HasClip">HasClip</a></li>
+                    
+                    <li><a href="#func-Intersects">Intersects</a></li>
+                    
+                    <li><a href="#func-Intersects">Intersects</a></li>
+                    
+                    <li><a href="#func-IsClipOnly">IsClipOnly</a></li>
+                    
+                    <li><a href="#func-IsEmpty">IsEmpty</a></li>
+                    
+                    <li><a href="#func-IsEmpty">IsEmpty</a></li>
+                    
+                    <li><a href="#func-IsRoot">IsRoot</a></li>
+                    
+                    <li><a href="#func-NeedsOffscreen">NeedsOffscreen</a></li>
+                    
+                    <li><a href="#func-NewClipLayer">NewClipLayer</a></li>
+                    
+                    <li><a href="#func-NewClipStack">NewClipStack</a></li>
+                    
+                    <li><a href="#func-NewClipState">NewClipState</a></li>
+                    
+                    <li><a href="#func-NewFilteredLayer">NewFilteredLayer</a></li>
+                    
+                    <li><a href="#func-NewLayerStack">NewLayerStack</a></li>
+                    
+                    <li><a href="#func-NewLayerState">NewLayerState</a></li>
+                    
+                    <li><a href="#func-Pop">Pop</a></li>
+                    
+                    <li><a href="#func-Pop">Pop</a></li>
+                    
+                    <li><a href="#func-Push">Push</a></li>
+                    
+                    <li><a href="#func-Push">Push</a></li>
+                    
+                    <li><a href="#func-ReleaseLayer">ReleaseLayer</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Root">Root</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-Top">Top</a></li>
+                    
+                    <li><a href="#func-Top">Top</a></li>
+                    
+                    <li><a href="#func-UpdateBounds">UpdateBounds</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/layer.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-AcquireLayer">
+    <div class="item-header">
+        <h4>func AcquireLayer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AcquireLayer gets a layer from the pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) AcquireLayer() *LayerState {
+	return s.pool.get()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-All">
+    <div class="item-header">
+        <h4>func All</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>All returns all layers in the stack (bottom to top).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) All() []*LayerState {
+	return s.layers
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CombinedBounds">
+    <div class="item-header">
+        <h4>func CombinedBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CombinedBounds returns the intersection of all clip bounds.</p>
+          
+        <p>Returns an empty rect if any clip is empty.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) CombinedBounds() Rect {
+	if len(s.clips) == 0 {
+		return Rect{
+			MinX:	-1e30,
+			MinY:	-1e30,
+			MaxX:	1e30,
+			MaxY:	1e30,
+		}	// No clip = infinite bounds
+	}
+
+	result := s.clips[0].Bounds
+	for i := 1; i < len(s.clips); i++ {
+		// Intersect bounds
+		result = Rect{
+			MinX:	max32(result.MinX, s.clips[i].Bounds.MinX),
+			MinY:	max32(result.MinY, s.clips[i].Bounds.MinY),
+			MaxX:	min32(result.MaxX, s.clips[i].Bounds.MaxX),
+			MaxY:	min32(result.MaxY, s.clips[i].Bounds.MaxY),
+		}
+		if result.IsEmpty() {
+			return EmptyRect()
+		}
+	}
+
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Contains">
+    <div class="item-header">
+        <h4>func Contains</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Contains returns true if the point is inside the clip region.</p>
+          
+        <p>This is a conservative test using the bounding box.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (cs *ClipState) Contains(x, y float32) bool {
+	if cs.Bounds.IsEmpty() {
+		return false
+	}
+	return x >= cs.Bounds.MinX && x <= cs.Bounds.MaxX &&
+		y >= cs.Bounds.MinY && y <= cs.Bounds.MaxY
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Contains">
+    <div class="item-header">
+        <h4>func Contains</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Contains returns true if the point is inside all clip regions.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Contains(x, y float32) bool {
+	for _, clip := range s.clips {
+		if !clip.Contains(x, y) {
+			return false
+		}
+	}
+	return true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Depth">
+    <div class="item-header">
+        <h4>func Depth</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Depth returns the current stack depth.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Depth() int {
+	return len(s.clips)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Depth">
+    <div class="item-header">
+        <h4>func Depth</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Depth returns the current stack depth (1 = only root).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Depth() int {
+	return len(s.layers)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-HasClip">
+    <div class="item-header">
+        <h4>func HasClip</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>HasClip returns true if the layer has a clip shape.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ls *LayerState) HasClip() bool {
+	return ls.Clip != nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Intersects">
+    <div class="item-header">
+        <h4>func Intersects</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Intersects returns true if the rectangle intersects the clip region.</p>
+          
+        <p>This is a conservative test using bounding boxes.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (cs *ClipState) Intersects(r Rect) bool {
+	if cs.Bounds.IsEmpty() || r.IsEmpty() {
+		return false
+	}
+	return !(r.MaxX < cs.Bounds.MinX || r.MinX > cs.Bounds.MaxX ||
+		r.MaxY < cs.Bounds.MinY || r.MinY > cs.Bounds.MaxY)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Intersects">
+    <div class="item-header">
+        <h4>func Intersects</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Intersects returns true if the rectangle intersects all clip regions.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Intersects(r Rect) bool {
+	for _, clip := range s.clips {
+		if !clip.Intersects(r) {
+			return false
+		}
+	}
+	return true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsClipOnly">
+    <div class="item-header">
+        <h4>func IsClipOnly</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsClipOnly returns true if this layer is only for clipping (no rendering).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (k LayerKind) IsClipOnly() bool {
+	return k == LayerClip
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsEmpty">
+    <div class="item-header">
+        <h4>func IsEmpty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsEmpty returns true if the layer has no content.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ls *LayerState) IsEmpty() bool {
+	if ls.Kind == LayerClip {
+		return ls.Clip == nil
+	}
+	return ls.Encoding == nil || ls.Encoding.IsEmpty()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsEmpty">
+    <div class="item-header">
+        <h4>func IsEmpty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsEmpty returns true if there are no clips on the stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) IsEmpty() bool {
+	return len(s.clips) == 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsRoot">
+    <div class="item-header">
+        <h4>func IsRoot</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsRoot returns true if only the root layer is on the stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) IsRoot() bool {
+	return len(s.layers) == 1
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NeedsOffscreen">
+    <div class="item-header">
+        <h4>func NeedsOffscreen</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NeedsOffscreen returns true if this layer kind requires an offscreen buffer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (k LayerKind) NeedsOffscreen() bool {
+	return k == LayerFiltered
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewClipLayer">
+    <div class="item-header">
+        <h4>func NewClipLayer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewClipLayer creates a new clip-only layer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewClipLayer(clip Shape) *LayerState {
+	return &LayerState{
+		Kind:		LayerClip,
+		BlendMode:	BlendNormal,
+		Alpha:		1.0,
+		Clip:		clip,
+		Encoding:	nil,	// Clip layers don't need their own encoding
+		Bounds:		EmptyRect(),
+		Transform:	IdentityAffine(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewClipStack">
+    <div class="item-header">
+        <h4>func NewClipStack</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewClipStack creates a new empty clip stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewClipStack() *ClipStack {
+	return &ClipStack{
+		clips: make([]*ClipState, 0, 4),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewClipState">
+    <div class="item-header">
+        <h4>func NewClipState</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewClipState creates a new clip state.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewClipState(shape Shape, transform Affine) *ClipState {
+	var bounds Rect
+	if shape != nil {
+		bounds = shape.Bounds()
+		// Transform bounds if needed
+		if !transform.IsIdentity() {
+			// Transform all four corners and compute new bounds
+			corners := [][2]float32{
+				{bounds.MinX, bounds.MinY},
+				{bounds.MaxX, bounds.MinY},
+				{bounds.MaxX, bounds.MaxY},
+				{bounds.MinX, bounds.MaxY},
+			}
+			bounds = EmptyRect()
+			for _, c := range corners {
+				x, y := transform.TransformPoint(c[0], c[1])
+				bounds = bounds.UnionPoint(x, y)
+			}
+		}
+	} else {
+		bounds = EmptyRect()
+	}
+
+	return &ClipState{
+		Shape:		shape,
+		Bounds:		bounds,
+		Transform:	transform,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewFilteredLayer">
+    <div class="item-header">
+        <h4>func NewFilteredLayer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewFilteredLayer creates a new layer for filter effects.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewFilteredLayer(blend BlendMode, alpha float32) *LayerState {
+	return &LayerState{
+		Kind:		LayerFiltered,
+		BlendMode:	blend,
+		Alpha:		clampAlpha(alpha),
+		Encoding:	NewEncoding(),
+		Bounds:		EmptyRect(),
+		Transform:	IdentityAffine(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewLayerStack">
+    <div class="item-header">
+        <h4>func NewLayerStack</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewLayerStack creates a new layer stack with a root layer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewLayerStack() *LayerStack {
+	stack := &LayerStack{
+		layers:	make([]*LayerState, 0, 8),
+		pool:	newLayerPool(),
+	}
+	// Create root layer
+	root := stack.pool.get()
+	root.Kind = LayerRegular
+	root.BlendMode = BlendNormal
+	root.Alpha = 1.0
+	stack.layers = append(stack.layers, root)
+	return stack
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewLayerState">
+    <div class="item-header">
+        <h4>func NewLayerState</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewLayerState creates a new layer state with default values.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewLayerState(kind LayerKind, blend BlendMode, alpha float32) *LayerState {
+	return &LayerState{
+		Kind:		kind,
+		BlendMode:	blend,
+		Alpha:		clampAlpha(alpha),
+		Encoding:	NewEncoding(),
+		Bounds:		EmptyRect(),
+		Transform:	IdentityAffine(),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Pop">
+    <div class="item-header">
+        <h4>func Pop</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Pop removes and returns the top clip region.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Pop() *ClipState {
+	if len(s.clips) == 0 {
+		return nil
+	}
+	clip := s.clips[len(s.clips)-1]
+	s.clips = s.clips[:len(s.clips)-1]
+	return clip
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Pop">
+    <div class="item-header">
+        <h4>func Pop</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Pop removes and returns the top layer.</p>
+          
+        <p>Returns nil if only the root layer remains.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Pop() *LayerState {
+	if len(s.layers) <= 1 {
+		return nil	// Cannot pop root layer
+	}
+	layer := s.layers[len(s.layers)-1]
+	s.layers = s.layers[:len(s.layers)-1]
+	return layer
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Push">
+    <div class="item-header">
+        <h4>func Push</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Push adds a clip region to the stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Push(clip *ClipState) {
+	s.clips = append(s.clips, clip)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Push">
+    <div class="item-header">
+        <h4>func Push</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Push adds a new layer to the stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Push(layer *LayerState) {
+	s.layers = append(s.layers, layer)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ReleaseLayer">
+    <div class="item-header">
+        <h4>func ReleaseLayer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ReleaseLayer returns a layer to the pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) ReleaseLayer(layer *LayerState) {
+	s.pool.put(layer)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the stack, returning to just the root layer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Reset() {
+	// Return all non-root layers to pool
+	for i := len(s.layers) - 1; i > 0; i-- {
+		s.pool.put(s.layers[i])
+	}
+	s.layers = s.layers[:1]
+
+	// Reset root layer
+	if len(s.layers) > 0 {
+		s.layers[0].Reset()
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the layer state for reuse.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ls *LayerState) Reset() {
+	ls.Kind = LayerRegular
+	ls.BlendMode = BlendNormal
+	ls.Alpha = 1.0
+	ls.Clip = nil
+	if ls.Encoding != nil {
+		ls.Encoding.Reset()
+	}
+	ls.Bounds = EmptyRect()
+	ls.Transform = IdentityAffine()
+	ls.ClipStackDepth = 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the clip stack.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Reset() {
+	s.clips = s.clips[:0]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Root">
+    <div class="item-header">
+        <h4>func Root</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Root returns the root (bottom) layer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Root() *LayerState {
+	if len(s.layers) == 0 {
+		return nil
+	}
+	return s.layers[0]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns a human-readable name for the layer kind.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (k LayerKind) String() string {
+	switch k {
+	case LayerRegular:
+		return "Regular"
+	case LayerFiltered:
+		return "Filtered"
+	case LayerClip:
+		return "Clip"
+	default:
+		return unknownStr
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Top">
+    <div class="item-header">
+        <h4>func Top</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Top returns the current clip region without removing it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *ClipStack) Top() *ClipState {
+	if len(s.clips) == 0 {
+		return nil
+	}
+	return s.clips[len(s.clips)-1]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Top">
+    <div class="item-header">
+        <h4>func Top</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Top returns the current (topmost) layer without removing it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *LayerStack) Top() *LayerState {
+	if len(s.layers) == 0 {
+		return nil
+	}
+	return s.layers[len(s.layers)-1]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-UpdateBounds">
+    <div class="item-header">
+        <h4>func UpdateBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>UpdateBounds expands the layer bounds to include the given rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ls *LayerState) UpdateBounds(r Rect) {
+	ls.Bounds = ls.Bounds.Union(r)
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-LayerState">
+    <div class="item-header">
+        <h4>type LayerState struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>LayerState represents the state of an active compositing layer.</p>
+        
+        <p>Each layer has its own encoding for isolated rendering.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type LayerState struct {
+	// Kind identifies the type of layer
+	Kind	LayerKind
+
+	// BlendMode specifies how this layer composites with layers below
+	BlendMode	BlendMode
+
+	// Alpha is the layer opacity (0.0 to 1.0)
+	Alpha	float32
+
+	// Clip is the optional clip shape for this layer.
+	// If nil, the layer has no clip (infinite bounds).
+	Clip	Shape
+
+	// Encoding holds the layer's drawing commands.
+	// This is populated as drawing commands are added to the scene
+	// while this layer is active.
+	Encoding	*Encoding
+
+	// Bounds tracks the cumulative bounding box of layer content.
+	// This is updated as content is added.
+	Bounds	Rect
+
+	// Transform is the transform active when the layer was pushed.
+	// Used to restore transform state on pop.
+	Transform	Affine
+
+	// ClipStackDepth records the clip stack depth when layer was pushed.
+	// Used to restore clip state on pop.
+	ClipStackDepth	int
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-LayerStack">
+    <div class="item-header">
+        <h4>type LayerStack struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>LayerStack manages a stack of active layers.</p>
+        
+        <p>The stack always has at least one layer (the root layer).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type LayerStack struct {
+	layers	[]*LayerState
+	pool	*layerPool
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-ClipState">
+    <div class="item-header">
+        <h4>type ClipState struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ClipState represents a clip region on the clip stack.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ClipState struct {
+	// Shape is the clip shape
+	Shape	Shape
+
+	// Bounds is the clip bounds (for quick rejection)
+	Bounds	Rect
+
+	// Transform is the transform that was active when clip was pushed
+	Transform	Affine
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-ClipStack">
+    <div class="item-header">
+        <h4>type ClipStack struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ClipStack manages a stack of clip regions.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ClipStack struct {
+	clips []*ClipState
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

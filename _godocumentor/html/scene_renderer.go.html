@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/renderer.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="active">scene/renderer.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Cache">Cache</a></li>
+                    
+                    <li><a href="#func-CacheStats">CacheStats</a></li>
+                    
+                    <li><a href="#func-Close">Close</a></li>
+                    
+                    <li><a href="#func-DirtyTileCount">DirtyTileCount</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-MarkAllDirty">MarkAllDirty</a></li>
+                    
+                    <li><a href="#func-MarkDirty">MarkDirty</a></li>
+                    
+                    <li><a href="#func-NewRenderer">NewRenderer</a></li>
+                    
+                    <li><a href="#func-Render">Render</a></li>
+                    
+                    <li><a href="#func-RenderDirty">RenderDirty</a></li>
+                    
+                    <li><a href="#func-RenderDirtyWithContext">RenderDirtyWithContext</a></li>
+                    
+                    <li><a href="#func-RenderWithContext">RenderWithContext</a></li>
+                    
+                    <li><a href="#func-Resize">Resize</a></li>
+                    
+                    <li><a href="#func-Stats">Stats</a></li>
+                    
+                    <li><a href="#func-TileCount">TileCount</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                    <li><a href="#func-WithCache">WithCache</a></li>
+                    
+                    <li><a href="#func-WithCacheSize">WithCacheSize</a></li>
+                    
+                    <li><a href="#func-WithTileSize">WithTileSize</a></li>
+                    
+                    <li><a href="#func-WithWorkers">WithWorkers</a></li>
+                    
+                    <li><a href="#func-Workers">Workers</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/renderer.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Cache">
+    <div class="item-header">
+        <h4>func Cache</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Cache returns the layer cache.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Cache() *LayerCache {
+	return r.cache
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CacheStats">
+    <div class="item-header">
+        <h4>func CacheStats</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CacheStats returns the layer cache statistics.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) CacheStats() CacheStats {
+	if r.cache == nil {
+		return CacheStats{}
+	}
+	return r.cache.Stats()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Close">
+    <div class="item-header">
+        <h4>func Close</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Close releases all resources used by the renderer.</p>
+          
+        <p>The renderer should not be used after Close is called.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Close() {
+	if r.workerPool != nil {
+		r.workerPool.Close()
+	}
+	if r.tileGrid != nil {
+		r.tileGrid.Close()
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DirtyTileCount">
+    <div class="item-header">
+        <h4>func DirtyTileCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DirtyTileCount returns the number of dirty tiles.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) DirtyTileCount() int {
+	if r.dirty != nil {
+		return r.dirty.Count()
+	}
+	return len(r.tileGrid.DirtyTiles())
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the renderer height in pixels.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Height() int {
+	return r.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MarkAllDirty">
+    <div class="item-header">
+        <h4>func MarkAllDirty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MarkAllDirty marks all tiles as needing redraw.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) MarkAllDirty() {
+	if r.dirty != nil {
+		r.dirty.MarkAll()
+	}
+	r.tileGrid.MarkAllDirty()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MarkDirty">
+    <div class="item-header">
+        <h4>func MarkDirty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MarkDirty marks the specified rectangle as needing redraw.</p>
+          
+        <p>Coordinates are in pixel space.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) MarkDirty(x, y, w, h int) {
+	if r.dirty != nil {
+		r.dirty.MarkRect(x, y, w, h)
+	}
+	r.tileGrid.MarkRectDirty(x, y, w, h)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRenderer">
+    <div class="item-header">
+        <h4>func NewRenderer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRenderer creates a new scene renderer for the given dimensions.</p>
+          
+        <p>Options can be used to configure caching, parallelism, and other settings.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRenderer(width, height int, opts ...RendererOption) *Renderer {
+	if width <= 0 || height <= 0 {
+		return nil
+	}
+
+	workers := runtime.GOMAXPROCS(0)
+
+	r := &Renderer{
+		width:		width,
+		height:		height,
+		tileSize:	parallel.TileWidth,
+		workers:	workers,
+		cache:		DefaultLayerCache(),
+	}
+
+	// Apply options
+	for _, opt := range opts {
+		opt(r)
+	}
+
+	// Initialize parallel infrastructure
+	r.tileGrid = parallel.NewTileGrid(width, height)
+	r.workerPool = parallel.NewWorkerPool(r.workers)
+
+	// Initialize dirty region tracking
+	tilesX := (width + parallel.TileWidth - 1) / parallel.TileWidth
+	tilesY := (height + parallel.TileHeight - 1) / parallel.TileHeight
+	r.dirty = parallel.NewDirtyRegion(tilesX, tilesY)
+	r.dirty.MarkAll()	// Initially all tiles are dirty
+
+	return r
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Render">
+    <div class="item-header">
+        <h4>func Render</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Render renders the entire scene to the target pixmap.</p>
+          
+        <p>This processes all tiles regardless of dirty state.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>For cancellable rendering, use RenderWithContext.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Render(target *gg.Pixmap, scene *Scene) error {
+	return r.RenderWithContext(context.Background(), target, scene)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderDirty">
+    <div class="item-header">
+        <h4>func RenderDirty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderDirty renders only the dirty regions of the scene.</p>
+          
+        <p>This is more efficient when only parts of the scene have changed.</p>
+          
+        <p>The dirty parameter specifies which tiles need re-rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>For cancellable rendering, use RenderDirtyWithContext.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) RenderDirty(target *gg.Pixmap, scene *Scene, dirty *parallel.DirtyRegion) error {
+	return r.RenderDirtyWithContext(context.Background(), target, scene, dirty)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderDirtyWithContext">
+    <div class="item-header">
+        <h4>func RenderDirtyWithContext</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderDirtyWithContext renders only the dirty regions of the scene with cancellation support.</p>
+          
+        <p>This is more efficient when only parts of the scene have changed.</p>
+          
+        <p>The dirty parameter specifies which tiles need re-rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The context can be used to cancel long-running renders. When canceled,</p>
+          
+        <p>the function returns ctx.Err() and the target may contain partial results.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) RenderDirtyWithContext(ctx context.Context, target *gg.Pixmap, scene *Scene, dirty *parallel.DirtyRegion) error {
+	if target == nil || scene == nil {
+		return nil
+	}
+
+	// Check for cancellation at start
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	startTotal := time.Now()
+	r.statsMu.Lock()
+	r.stats = RenderStats{}
+	r.statsMu.Unlock()
+
+	// Use provided dirty region or fall back to internal tracking
+	dirtyRegion := dirty
+	if dirtyRegion == nil {
+		dirtyRegion = r.dirty
+	}
+
+	// Get the flattened encoding
+	startEncode := time.Now()
+	enc := scene.Encoding()
+	encodeTime := time.Since(startEncode)
+
+	// Check for cancellation after encoding
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	// Get dirty tile coordinates
+	dirtyCoords := dirtyRegion.GetAndClear()
+	tilesDirty := len(dirtyCoords)
+
+	if tilesDirty == 0 {
+		return nil	// Nothing to render
+	}
+
+	// Collect dirty tiles
+	tiles := make([]*parallel.Tile, 0, tilesDirty)
+	for _, coord := range dirtyCoords {
+		if tile := r.tileGrid.TileAt(coord[0], coord[1]); tile != nil {
+			tiles = append(tiles, tile)
+		}
+	}
+
+	// Render dirty tiles in parallel with context
+	startRaster := time.Now()
+	if err := r.renderTilesWithContext(ctx, tiles, enc, target); err != nil {
+		return err
+	}
+	rasterTime := time.Since(startRaster)
+
+	// Check for cancellation before compositing
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	// Composite dirty tiles to target
+	startComposite := time.Now()
+	r.compositeTiles(tiles, target)
+	compositeTime := time.Since(startComposite)
+
+	// Update statistics
+	totalTime := time.Since(startTotal)
+	tilesTotal := r.tileGrid.TileCount()
+	r.updateStats(tilesTotal, tilesDirty, len(tiles), encodeTime, rasterTime, compositeTime, totalTime)
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderWithContext">
+    <div class="item-header">
+        <h4>func RenderWithContext</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderWithContext renders the entire scene to the target pixmap with cancellation support.</p>
+          
+        <p>This processes all tiles regardless of dirty state.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The context can be used to cancel long-running renders. When canceled,</p>
+          
+        <p>the function returns ctx.Err() and the target may contain partial results.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) RenderWithContext(ctx context.Context, target *gg.Pixmap, scene *Scene) error {
+	if target == nil || scene == nil {
+		return nil
+	}
+
+	// Check for cancellation at start
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	startTotal := time.Now()
+	r.statsMu.Lock()
+	r.stats = RenderStats{}	// Reset stats
+	r.statsMu.Unlock()
+
+	// Mark all tiles dirty for full render
+	r.dirty.MarkAll()
+
+	// Get the flattened encoding
+	startEncode := time.Now()
+	enc := scene.Encoding()
+	encodeTime := time.Since(startEncode)
+
+	// Check for cancellation after encoding
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	// Get all tiles for rendering
+	tiles := r.tileGrid.AllTiles()
+	tilesTotal := len(tiles)
+
+	// Render tiles in parallel with context
+	startRaster := time.Now()
+	if err := r.renderTilesWithContext(ctx, tiles, enc, target); err != nil {
+		return err
+	}
+	rasterTime := time.Since(startRaster)
+
+	// Check for cancellation before compositing
+	select {
+	case <-ctx.Done():
+		return ctx.Err()
+	default:
+	}
+
+	// Composite tiles to target
+	startComposite := time.Now()
+	r.compositeTiles(tiles, target)
+	compositeTime := time.Since(startComposite)
+
+	// Clear dirty flags
+	r.dirty.Clear()
+	r.tileGrid.ClearDirty()
+
+	// Update statistics
+	totalTime := time.Since(startTotal)
+	r.updateStats(tilesTotal, tilesTotal, tilesTotal, encodeTime, rasterTime, compositeTime, totalTime)
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Resize">
+    <div class="item-header">
+        <h4>func Resize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Resize updates the renderer dimensions.</p>
+          
+        <p>All tiles will be marked dirty after resize.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Resize(width, height int) {
+	if width <= 0 || height <= 0 {
+		return
+	}
+
+	if r.width == width && r.height == height {
+		return
+	}
+
+	r.width = width
+	r.height = height
+
+	// Resize tile grid
+	r.tileGrid.Resize(width, height)
+
+	// Resize dirty region
+	tilesX := (width + parallel.TileWidth - 1) / parallel.TileWidth
+	tilesY := (height + parallel.TileHeight - 1) / parallel.TileHeight
+	r.dirty = parallel.NewDirtyRegion(tilesX, tilesY)
+	r.dirty.MarkAll()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stats">
+    <div class="item-header">
+        <h4>func Stats</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stats returns the current render statistics.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Stats() RenderStats {
+	r.statsMu.RLock()
+	defer r.statsMu.RUnlock()
+	return r.stats
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TileCount">
+    <div class="item-header">
+        <h4>func TileCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TileCount returns the total number of tiles.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) TileCount() int {
+	return r.tileGrid.TileCount()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the renderer width in pixels.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Width() int {
+	return r.width
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithCache">
+    <div class="item-header">
+        <h4>func WithCache</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithCache sets a custom layer cache.</p>
+          
+        <p>If nil, a default cache is created.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func WithCache(cache *LayerCache) RendererOption {
+	return func(r *Renderer) {
+		r.cache = cache
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithCacheSize">
+    <div class="item-header">
+        <h4>func WithCacheSize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithCacheSize sets the layer cache size in megabytes.</p>
+          
+        <p>Default is 64MB.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func WithCacheSize(mb int) RendererOption {
+	return func(r *Renderer) {
+		if r.cache != nil {
+			r.cache.SetMaxSize(mb)
+		}
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithTileSize">
+    <div class="item-header">
+        <h4>func WithTileSize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithTileSize sets the tile size for rendering.</p>
+          
+        <p>This is informational only; actual tile size is fixed at 64x64.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func WithTileSize(size int) RendererOption {
+	return func(r *Renderer) {
+		r.tileSize = size
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithWorkers">
+    <div class="item-header">
+        <h4>func WithWorkers</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithWorkers sets the number of worker goroutines for parallel rendering.</p>
+          
+        <p>If n <= 0, GOMAXPROCS is used.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func WithWorkers(n int) RendererOption {
+	return func(r *Renderer) {
+		r.workers = n
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Workers">
+    <div class="item-header">
+        <h4>func Workers</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Workers returns the number of worker goroutines used for parallel rendering.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) Workers() int {
+	return r.workers
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Renderer">
+    <div class="item-header">
+        <h4>type Renderer struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Renderer renders Scene content to a target Pixmap using parallel tile-based processing.</p>
+        
+        <p>It integrates with TileGrid for spatial subdivision and WorkerPool for concurrent execution.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The renderer supports:</p>
+        
+        <p>- Full scene rendering (all tiles)</p>
+        
+        <p>- Incremental rendering (dirty tiles only)</p>
+        
+        <p>- Layer caching for static content</p>
+        
+        <p>- Performance statistics collection</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Thread safety: Renderer methods are safe for concurrent use after initialization.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Renderer struct {
+	// Tile-based rendering infrastructure
+	tileGrid	*parallel.TileGrid
+	workerPool	*parallel.WorkerPool
+	dirty		*parallel.DirtyRegion
+
+	// Layer caching
+	cache	*LayerCache
+
+	// Per-tile resource pool (SoftwareRenderer + Pixmap reuse)
+	pool	tilePool
+
+	// Dimensions
+	width	int
+	height	int
+
+	// Configuration
+	tileSize	int
+	workers		int
+
+	// Statistics
+	stats		RenderStats
+	statsMu		sync.RWMutex
+	lastFrame	time.Time
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-RenderStats">
+    <div class="item-header">
+        <h4>type RenderStats struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>RenderStats contains performance statistics for a render operation.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type RenderStats struct {
+	// Tile statistics
+	TilesTotal	int
+	TilesDirty	int
+	TilesRendered	int
+
+	// Layer statistics
+	LayersCached	int
+	LayersRendered	int
+
+	// Timing (durations for the last render)
+	TimeEncode	time.Duration
+	TimeRaster	time.Duration
+	TimeComposite	time.Duration
+	TimeTotal	time.Duration
+
+	// Frame timing
+	FrameTime	time.Duration
+	FPS		float64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

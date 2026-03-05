@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - brush.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="active">brush.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-BrushFromPattern">BrushFromPattern</a></li>
+                    
+                    <li><a href="#func-ColorAt">ColorAt</a></li>
+                    
+                    <li><a href="#func-ColorAt">ColorAt</a></li>
+                    
+                    <li><a href="#func-Lerp">Lerp</a></li>
+                    
+                    <li><a href="#func-Opaque">Opaque</a></li>
+                    
+                    <li><a href="#func-PatternFromBrush">PatternFromBrush</a></li>
+                    
+                    <li><a href="#func-Solid">Solid</a></li>
+                    
+                    <li><a href="#func-SolidHex">SolidHex</a></li>
+                    
+                    <li><a href="#func-SolidRGB">SolidRGB</a></li>
+                    
+                    <li><a href="#func-SolidRGBA">SolidRGBA</a></li>
+                    
+                    <li><a href="#func-Transparent">Transparent</a></li>
+                    
+                    <li><a href="#func-WithAlpha">WithAlpha</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>brush.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > <a
+        href="#interfaces"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Interfaces</a
+    >
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-BrushFromPattern">
+    <div class="item-header">
+        <h4>func BrushFromPattern</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BrushFromPattern converts a legacy Pattern to a Brush.</p>
+          
+        <p>This is a compatibility helper for migrating from Pattern to Brush.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>If the pattern is a SolidPattern, it returns a SolidBrush.</p>
+          
+        <p>Otherwise, it wraps the pattern in a CustomBrush.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Deprecated: Use Brush types directly instead of Pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func BrushFromPattern(p Pattern) Brush {
+	if sp, ok := p.(*SolidPattern); ok {
+		return SolidBrush{Color: sp.Color}
+	}
+	// Wrap non-solid patterns in a CustomBrush
+	return CustomBrush{
+		Func:	p.ColorAt,
+		Name:	"pattern",
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ColorAt">
+    <div class="item-header">
+        <h4>func ColorAt</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ColorAt implements Brush. Returns the solid color regardless of position.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b SolidBrush) ColorAt(_, _ float64) RGBA {
+	return b.Color
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ColorAt">
+    <div class="item-header">
+        <h4>func ColorAt</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ColorAt implements Pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *brushPattern) ColorAt(x, y float64) RGBA {
+	return p.brush.ColorAt(x, y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Lerp">
+    <div class="item-header">
+        <h4>func Lerp</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Lerp performs linear interpolation between two solid brushes.</p>
+          
+        <p>Returns a new SolidBrush with the interpolated color.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>red := gg.Solid(gg.Red)</p>
+          
+        <p>blue := gg.Solid(gg.Blue)</p>
+          
+        <p>purple := red.Lerp(blue, 0.5)</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b SolidBrush) Lerp(other SolidBrush, t float64) SolidBrush {
+	return SolidBrush{Color: b.Color.Lerp(other.Color, t)}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Opaque">
+    <div class="item-header">
+        <h4>func Opaque</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Opaque returns a new SolidBrush with alpha set to 1.0.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b SolidBrush) Opaque() SolidBrush {
+	return b.WithAlpha(1.0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PatternFromBrush">
+    <div class="item-header">
+        <h4>func PatternFromBrush</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PatternFromBrush converts a Brush to a legacy Pattern.</p>
+          
+        <p>This is a compatibility helper for code that still uses Pattern.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Deprecated: Use Brush types directly instead of Pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func PatternFromBrush(b Brush) Pattern {
+	if sb, ok := b.(SolidBrush); ok {
+		return NewSolidPattern(sb.Color)
+	}
+	// For other brush types, create a wrapper pattern
+	return &brushPattern{brush: b}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Solid">
+    <div class="item-header">
+        <h4>func Solid</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Solid creates a SolidBrush from an RGBA color.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>brush := gg.Solid(gg.Red)</p>
+          
+        <p>brush := gg.Solid(gg.RGBA{R: 1, G: 0, B: 0, A: 1})</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Solid(c RGBA) SolidBrush {
+	return SolidBrush{Color: c}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SolidHex">
+    <div class="item-header">
+        <h4>func SolidHex</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SolidHex creates a SolidBrush from a hex color string.</p>
+          
+        <p>Supports formats: "RGB", "RGBA", "RRGGBB", "RRGGBBAA", with optional '#' prefix.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>brush := gg.SolidHex("#FF5733")</p>
+          
+        <p>brush := gg.SolidHex("FF5733")</p>
+          
+        <p>brush := gg.SolidHex("#F53")</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SolidHex(hex string) SolidBrush {
+	return SolidBrush{Color: Hex(hex)}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SolidRGB">
+    <div class="item-header">
+        <h4>func SolidRGB</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SolidRGB creates a SolidBrush from RGB components (0-1 range).</p>
+          
+        <p>Alpha is set to 1.0 (fully opaque).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>brush := gg.SolidRGB(1, 0, 0) // Red</p>
+          
+        <p>brush := gg.SolidRGB(0.5, 0.5, 0.5) // Gray</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SolidRGB(r, g, b float64) SolidBrush {
+	return SolidBrush{Color: RGB(r, g, b)}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SolidRGBA">
+    <div class="item-header">
+        <h4>func SolidRGBA</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SolidRGBA creates a SolidBrush from RGBA components (0-1 range).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>brush := gg.SolidRGBA(1, 0, 0, 0.5) // Semi-transparent red</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SolidRGBA(r, g, b, a float64) SolidBrush {
+	return SolidBrush{Color: RGBA2(r, g, b, a)}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Transparent">
+    <div class="item-header">
+        <h4>func Transparent</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Transparent returns a new SolidBrush with alpha set to 0.0.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b SolidBrush) Transparent() SolidBrush {
+	return b.WithAlpha(0.0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-WithAlpha">
+    <div class="item-header">
+        <h4>func WithAlpha</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>WithAlpha returns a new SolidBrush with the specified alpha value.</p>
+          
+        <p>The RGB components are preserved.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>opaqueBrush := gg.Solid(gg.Red)</p>
+          
+        <p>semiBrush := opaqueBrush.WithAlpha(0.5)</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b SolidBrush) WithAlpha(alpha float64) SolidBrush {
+	return SolidBrush{
+		Color: RGBA{
+			R:	b.Color.R,
+			G:	b.Color.G,
+			B:	b.Color.B,
+			A:	alpha,
+		},
+	}
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-SolidBrush">
+    <div class="item-header">
+        <h4>type SolidBrush struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SolidBrush is a single-color brush.</p>
+        
+        <p>It implements the Brush interface and always returns the same color.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SolidBrush struct {
+	// Color is the solid color of this brush.
+	Color RGBA
+}
+</code></pre>
+</div>
+  
+<h3 id="interfaces">Interfaces</h3>
+
+<div class="item" id="interface-Brush">
+    <div class="item-header">
+        <h4>type Brush interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Brush represents what to paint with.</p>
+        
+        <p>This is a sealed interface - only types in this package implement it.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The Brush pattern follows vello/peniko Rust conventions, providing a</p>
+        
+        <p>type-safe way to represent different brush types (solid colors, gradients,</p>
+        
+        <p>images) while maintaining extensibility through CustomBrush.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Supported brush types:</p>
+        
+        <p>- SolidBrush: A single solid color</p>
+        
+        <p>- CustomBrush: User-defined color function (see brush_custom.go)</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Example usage:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>// Using convenience constructors</p>
+        
+        <p>ctx.SetFillBrush(gg.Solid(gg.Red))</p>
+        
+        <p>ctx.SetStrokeBrush(gg.SolidRGB(0.5, 0.5, 0.5))</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>// Using hex colors</p>
+        
+        <p>brush := gg.SolidHex("#FF5733")</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Brush interface {
+	// brushMarker is an unexported method that seals this interface.
+	// Only types in this package can implement Brush.
+	brushMarker()
+
+	// ColorAt returns the color at the given coordinates.
+	// For solid brushes, this returns the same color regardless of position.
+	// For pattern-based brushes, this samples the pattern at (x, y).
+	ColorAt(x, y float64) RGBA
+}
+</code></pre>
+</div>
+  
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

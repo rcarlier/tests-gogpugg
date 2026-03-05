@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/msdf/contour.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="active">text/msdf/contour.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-AddContour">AddContour</a></li>
+                    
+                    <li><a href="#func-AddEdge">AddEdge</a></li>
+                    
+                    <li><a href="#func-AssignColors">AssignColors</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-CalculateBounds">CalculateBounds</a></li>
+                    
+                    <li><a href="#func-CalculateWinding">CalculateWinding</a></li>
+                    
+                    <li><a href="#func-Clone">Clone</a></li>
+                    
+                    <li><a href="#func-EdgeCount">EdgeCount</a></li>
+                    
+                    <li><a href="#func-FromOutline">FromOutline</a></li>
+                    
+                    <li><a href="#func-IsClockwise">IsClockwise</a></li>
+                    
+                    <li><a href="#func-NewContour">NewContour</a></li>
+                    
+                    <li><a href="#func-NewShape">NewShape</a></li>
+                    
+                    <li><a href="#func-SelectBlue">SelectBlue</a></li>
+                    
+                    <li><a href="#func-SelectGreen">SelectGreen</a></li>
+                    
+                    <li><a href="#func-SelectRed">SelectRed</a></li>
+                    
+                    <li><a href="#func-SwitchColor">SwitchColor</a></li>
+                    
+                    <li><a href="#func-Validate">Validate</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>text/msdf/contour.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-AddContour">
+    <div class="item-header">
+        <h4>func AddContour</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AddContour appends a contour to the shape.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Shape) AddContour(c *Contour) {
+	s.Contours = append(s.Contours, c)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AddEdge">
+    <div class="item-header">
+        <h4>func AddEdge</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AddEdge appends an edge to the contour.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Contour) AddEdge(e Edge) {
+	c.Edges = append(c.Edges, e)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AssignColors">
+    <div class="item-header">
+        <h4>func AssignColors</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AssignColors assigns edge colors to preserve corners.</p>
+          
+        <p>This is the key MSDF innovation - corners get different colors</p>
+          
+        <p>so that the median operation can preserve them.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func AssignColors(shape *Shape, angleThreshold float64) {
+	for _, contour := range shape.Contours {
+		if len(contour.Edges) == 0 {
+			continue
+		}
+
+		assignContourColors(contour, angleThreshold)
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding box of all edges in the contour.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Contour) Bounds() Rect {
+	if len(c.Edges) == 0 {
+		return Rect{}
+	}
+
+	bounds := c.Edges[0].Bounds()
+	for i := 1; i < len(c.Edges); i++ {
+		bounds = bounds.Union(c.Edges[i].Bounds())
+	}
+	return bounds
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CalculateBounds">
+    <div class="item-header">
+        <h4>func CalculateBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CalculateBounds computes and stores the overall bounding box.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Shape) CalculateBounds() {
+	if len(s.Contours) == 0 {
+		s.Bounds = Rect{}
+		return
+	}
+
+	s.Bounds = s.Contours[0].Bounds()
+	for i := 1; i < len(s.Contours); i++ {
+		s.Bounds = s.Bounds.Union(s.Contours[i].Bounds())
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CalculateWinding">
+    <div class="item-header">
+        <h4>func CalculateWinding</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CalculateWinding calculates and stores the winding direction.</p>
+          
+        <p>Positive = CCW (outer contour), Negative = CW (inner/hole).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Contour) CalculateWinding() {
+	// Calculate the signed area using the shoelace formula.
+	// Sum up the cross products of consecutive edge endpoints.
+	var area float64
+	for i := range c.Edges {
+		p0 := c.Edges[i].StartPoint()
+		p1 := c.Edges[i].EndPoint()
+		area += p0.Cross(p1)
+	}
+	c.Winding = area / 2
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clone">
+    <div class="item-header">
+        <h4>func Clone</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clone creates a deep copy of the contour.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Contour) Clone() *Contour {
+	clone := &Contour{
+		Edges:		make([]Edge, len(c.Edges)),
+		Winding:	c.Winding,
+	}
+	for i := range c.Edges {
+		clone.Edges[i] = c.Edges[i].Clone()
+	}
+	return clone
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EdgeCount">
+    <div class="item-header">
+        <h4>func EdgeCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EdgeCount returns the total number of edges across all contours.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Shape) EdgeCount() int {
+	count := 0
+	for _, c := range s.Contours {
+		count += len(c.Edges)
+	}
+	return count
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FromOutline">
+    <div class="item-header">
+        <h4>func FromOutline</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FromOutline converts a GlyphOutline to a Shape with colored edges.</p>
+          
+        <p>This is the main entry point for MSDF generation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func FromOutline(outline *text.GlyphOutline) *Shape {
+	if outline == nil || len(outline.Segments) == 0 {
+		return NewShape()
+	}
+
+	shape := NewShape()
+	var currentContour *Contour
+	var currentPos Point
+
+	for _, seg := range outline.Segments {
+		switch seg.Op {
+		case text.OutlineOpMoveTo:
+			// Start a new contour
+			if currentContour != nil && len(currentContour.Edges) > 0 {
+				currentContour.CalculateWinding()
+				shape.AddContour(currentContour)
+			}
+			currentContour = NewContour()
+			currentPos = Point{
+				X:	float64(seg.Points[0].X),
+				Y:	float64(seg.Points[0].Y),
+			}
+
+		case text.OutlineOpLineTo:
+			if currentContour == nil {
+				currentContour = NewContour()
+			}
+			endPoint := Point{
+				X:	float64(seg.Points[0].X),
+				Y:	float64(seg.Points[0].Y),
+			}
+			// Skip degenerate lines
+			if endPoint.Sub(currentPos).LengthSquared() > 1e-12 {
+				edge := NewLinearEdge(currentPos, endPoint)
+				currentContour.AddEdge(edge)
+			}
+			currentPos = endPoint
+
+		case text.OutlineOpQuadTo:
+			if currentContour == nil {
+				currentContour = NewContour()
+			}
+			controlPoint := Point{
+				X:	float64(seg.Points[0].X),
+				Y:	float64(seg.Points[0].Y),
+			}
+			endPoint := Point{
+				X:	float64(seg.Points[1].X),
+				Y:	float64(seg.Points[1].Y),
+			}
+			edge := NewQuadraticEdge(currentPos, controlPoint, endPoint)
+			currentContour.AddEdge(edge)
+			currentPos = endPoint
+
+		case text.OutlineOpCubicTo:
+			if currentContour == nil {
+				currentContour = NewContour()
+			}
+			control1 := Point{
+				X:	float64(seg.Points[0].X),
+				Y:	float64(seg.Points[0].Y),
+			}
+			control2 := Point{
+				X:	float64(seg.Points[1].X),
+				Y:	float64(seg.Points[1].Y),
+			}
+			endPoint := Point{
+				X:	float64(seg.Points[2].X),
+				Y:	float64(seg.Points[2].Y),
+			}
+			edge := NewCubicEdge(currentPos, control1, control2, endPoint)
+			currentContour.AddEdge(edge)
+			currentPos = endPoint
+		}
+	}
+
+	// Add the last contour
+	if currentContour != nil && len(currentContour.Edges) > 0 {
+		currentContour.CalculateWinding()
+		shape.AddContour(currentContour)
+	}
+
+	shape.CalculateBounds()
+	return shape
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsClockwise">
+    <div class="item-header">
+        <h4>func IsClockwise</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsClockwise returns true if the contour winds clockwise.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Contour) IsClockwise() bool {
+	return c.Winding < 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewContour">
+    <div class="item-header">
+        <h4>func NewContour</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewContour creates an empty contour.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewContour() *Contour {
+	return &Contour{
+		Edges: make([]Edge, 0),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewShape">
+    <div class="item-header">
+        <h4>func NewShape</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewShape creates an empty shape.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewShape() *Shape {
+	return &Shape{
+		Contours: make([]*Contour, 0),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SelectBlue">
+    <div class="item-header">
+        <h4>func SelectBlue</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SelectBlue returns true if the color includes blue.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SelectBlue(color EdgeColor) bool {
+	return color.HasBlue()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SelectGreen">
+    <div class="item-header">
+        <h4>func SelectGreen</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SelectGreen returns true if the color includes green.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SelectGreen(color EdgeColor) bool {
+	return color.HasGreen()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SelectRed">
+    <div class="item-header">
+        <h4>func SelectRed</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SelectRed returns true if the color includes red.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SelectRed(color EdgeColor) bool {
+	return color.HasRed()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SwitchColor">
+    <div class="item-header">
+        <h4>func SwitchColor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SwitchColor returns the next color in the cycle.</p>
+          
+        <p>Used for edge coloring algorithm.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SwitchColor(current EdgeColor, seed int) EdgeColor {
+	colors := []EdgeColor{ColorCyan, ColorMagenta, ColorYellow}
+	for i, c := range colors {
+		if c == current {
+			return colors[(i+1+seed)%len(colors)]
+		}
+	}
+	return colors[seed%len(colors)]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Validate">
+    <div class="item-header">
+        <h4>func Validate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Validate checks that the shape is properly closed.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Shape) Validate() bool {
+	for _, contour := range s.Contours {
+		if len(contour.Edges) == 0 {
+			continue
+		}
+
+		// Check that contour is closed (last endpoint == first startpoint)
+		first := contour.Edges[0].StartPoint()
+		last := contour.Edges[len(contour.Edges)-1].EndPoint()
+
+		dx := math.Abs(first.X - last.X)
+		dy := math.Abs(first.Y - last.Y)
+		if dx > 1e-6 || dy > 1e-6 {
+			return false
+		}
+	}
+	return true
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Contour">
+    <div class="item-header">
+        <h4>type Contour struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Contour represents a closed contour of edges.</p>
+        
+        <p>A glyph typically consists of one or more contours.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Contour struct {
+	// Edges is the list of edges that form this contour.
+	Edges	[]Edge
+
+	// Winding is the winding direction of the contour.
+	// Positive = counter-clockwise (filled), Negative = clockwise (hole).
+	Winding	float64
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Shape">
+    <div class="item-header">
+        <h4>type Shape struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Shape represents a complete glyph shape consisting of contours.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Shape struct {
+	// Contours are the closed paths that make up the shape.
+	Contours	[]*Contour
+
+	// Bounds is the overall bounding box.
+	Bounds	Rect
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

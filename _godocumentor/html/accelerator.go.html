@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - accelerator.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="active">accelerator.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Accelerator">Accelerator</a></li>
+                    
+                    <li><a href="#func-CloseAccelerator">CloseAccelerator</a></li>
+                    
+                    <li><a href="#func-RegisterAccelerator">RegisterAccelerator</a></li>
+                    
+                    <li><a href="#func-SetAcceleratorDeviceProvider">SetAcceleratorDeviceProvider</a></li>
+                    
+                    <li><a href="#func-SetAcceleratorSurfaceTarget">SetAcceleratorSurfaceTarget</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>accelerator.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > <a
+        href="#interfaces"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Interfaces</a
+    >
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Accelerator">
+    <div class="item-header">
+        <h4>func Accelerator</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Accelerator returns the currently registered GPU accelerator, or nil if none.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Accelerator() GPUAccelerator {
+	accelMu.RLock()
+	a := accel
+	accelMu.RUnlock()
+	return a
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CloseAccelerator">
+    <div class="item-header">
+        <h4>func CloseAccelerator</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CloseAccelerator shuts down the global GPU accelerator, releasing all GPU</p>
+          
+        <p>resources (textures, pipelines, device, instance). After this call,</p>
+          
+        <p>[Accelerator] returns nil and rendering falls back to CPU.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Call this at application shutdown to prevent VkImage and other GPU memory</p>
+          
+        <p>leaks. It is safe to call when no accelerator is registered (no-op).</p>
+          
+        <p>CloseAccelerator is idempotent.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>defer gg.CloseAccelerator()</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func CloseAccelerator() {
+	accelMu.Lock()
+	a := accel
+	accel = nil
+	accelMu.Unlock()
+	if a != nil {
+		a.Close()
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RegisterAccelerator">
+    <div class="item-header">
+        <h4>func RegisterAccelerator</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RegisterAccelerator registers a GPU accelerator for optional GPU rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Only one accelerator can be registered. Subsequent calls replace the previous one.</p>
+          
+        <p>The accelerator's Init() method is called during registration.</p>
+          
+        <p>If Init() fails, the accelerator is not registered and the error is returned.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Typical usage via blank import in GPU backend packages:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>func init() {</p>
+          
+        <p>gg.RegisterAccelerator(NewWGPUAccelerator())</p>
+          
+        <p>}</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func RegisterAccelerator(a GPUAccelerator) error {
+	if a == nil {
+		return errors.New("gg: accelerator must not be nil")
+	}
+	if err := a.Init(); err != nil {
+		return err
+	}
+	accelMu.Lock()
+	old := accel
+	accel = a
+	accelMu.Unlock()
+
+	// Propagate current logger to the new accelerator so it inherits
+	// any SetLogger configuration that was applied before registration.
+	propagateLogger(a, Logger())
+
+	if old != nil {
+		old.Close()
+	}
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAcceleratorDeviceProvider">
+    <div class="item-header">
+        <h4>func SetAcceleratorDeviceProvider</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAcceleratorDeviceProvider passes a device provider to the registered</p>
+          
+        <p>accelerator, enabling GPU device sharing. If no accelerator is registered</p>
+          
+        <p>or it doesn't support device sharing, this is a no-op.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The provider should implement HalDevice() any and HalQueue() any methods</p>
+          
+        <p>that return wgpu/hal types.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SetAcceleratorDeviceProvider(provider any) error {
+	a := Accelerator()
+	if a == nil {
+		return nil
+	}
+	if dpa, ok := a.(DeviceProviderAware); ok {
+		return dpa.SetDeviceProvider(provider)
+	}
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAcceleratorSurfaceTarget">
+    <div class="item-header">
+        <h4>func SetAcceleratorSurfaceTarget</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAcceleratorSurfaceTarget configures the registered accelerator for</p>
+          
+        <p>direct surface rendering. When view is non-nil, the accelerator renders</p>
+          
+        <p>directly to the surface texture view, eliminating GPU->CPU readback.</p>
+          
+        <p>Call with nil view to return to offscreen mode.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>If no accelerator is registered or it doesn't support surface rendering,</p>
+          
+        <p>this is a no-op. The view parameter should be a hal.TextureView.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SetAcceleratorSurfaceTarget(view any, width, height uint32) {
+	a := Accelerator()
+	if a == nil {
+		return
+	}
+	if sta, ok := a.(SurfaceTargetAware); ok {
+		sta.SetSurfaceTarget(view, width, height)
+	}
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-GPURenderTarget">
+    <div class="item-header">
+        <h4>type GPURenderTarget struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPURenderTarget provides pixel buffer access for GPU output.</p>
+        
+        <p>The Data slice must be in premultiplied RGBA format, 4 bytes per pixel,</p>
+        
+        <p>laid out row by row with the given Stride.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPURenderTarget struct {
+	Data		[]uint8
+	Width, Height	int
+	Stride		int	// bytes per row
+}
+</code></pre>
+</div>
+  
+<h3 id="interfaces">Interfaces</h3>
+
+<div class="item" id="interface-GPUAccelerator">
+    <div class="item-header">
+        <h4>type GPUAccelerator interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUAccelerator is an optional GPU acceleration provider.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>When registered via RegisterAccelerator, the Context tries GPU acceleration</p>
+        
+        <p>first for supported operations. If the accelerator returns ErrFallbackToCPU</p>
+        
+        <p>or any error, rendering transparently falls back to CPU.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Implementations should be provided by GPU backend packages (e.g., gg/gpu/).</p>
+        
+        <p>Users opt in to GPU acceleration via blank import:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>import _ "github.com/gogpu/gg/gpu" // enables GPU acceleration</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUAccelerator interface {
+	// Name returns the accelerator name (e.g., "wgpu", "vulkan").
+	Name() string
+
+	// Init initializes GPU resources. Called once during registration.
+	Init() error
+
+	// Close releases GPU resources.
+	Close()
+
+	// CanAccelerate reports whether the accelerator supports the given operation.
+	// This is a fast check used to skip GPU entirely for unsupported operations.
+	CanAccelerate(op AcceleratedOp) bool
+
+	// FillPath renders a filled path to the target.
+	// Returns ErrFallbackToCPU if the path cannot be GPU-accelerated.
+	FillPath(target GPURenderTarget, path *Path, paint *Paint) error
+
+	// StrokePath renders a stroked path to the target.
+	// Returns ErrFallbackToCPU if the path cannot be GPU-accelerated.
+	StrokePath(target GPURenderTarget, path *Path, paint *Paint) error
+
+	// FillShape renders a detected shape using SDF.
+	// This is the fast path for circles and rounded rectangles.
+	// Returns ErrFallbackToCPU if the shape is not supported.
+	FillShape(target GPURenderTarget, shape DetectedShape, paint *Paint) error
+
+	// StrokeShape renders a detected shape outline using SDF.
+	// Returns ErrFallbackToCPU if the shape is not supported.
+	StrokeShape(target GPURenderTarget, shape DetectedShape, paint *Paint) error
+
+	// Flush dispatches any pending GPU operations to the target pixel buffer.
+	// Batch-capable accelerators accumulate shapes during FillShape/StrokeShape
+	// and dispatch them all in a single GPU pass on Flush.
+	// Immediate-mode accelerators (e.g., CPU SDF) return nil.
+	Flush(target GPURenderTarget) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-DeviceProviderAware">
+    <div class="item-header">
+        <h4>type DeviceProviderAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>DeviceProviderAware is an optional interface for accelerators that can share</p>
+        
+        <p>GPU resources with an external provider (e.g., gogpu window).</p>
+        
+        <p>When SetDeviceProvider is called, the accelerator reuses the provided GPU</p>
+        
+        <p>device instead of creating its own.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type DeviceProviderAware interface {
+	SetDeviceProvider(provider any) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-SurfaceTargetAware">
+    <div class="item-header">
+        <h4>type SurfaceTargetAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SurfaceTargetAware is an optional interface for accelerators that support</p>
+        
+        <p>direct surface rendering. When SetSurfaceTarget is called with a non-nil</p>
+        
+        <p>view, the accelerator renders directly to the surface texture instead of</p>
+        
+        <p>reading back pixels to CPU. This eliminates the GPU->CPU->GPU round-trip</p>
+        
+        <p>for windowed rendering (ggcanvas + gogpu).</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Call SetSurfaceTarget with nil to return to offscreen (readback) mode.</p>
+        
+        <p>The caller retains ownership of the surface view.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SurfaceTargetAware interface {
+	SetSurfaceTarget(view any, width, height uint32)
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-GPUTextAccelerator">
+    <div class="item-header">
+        <h4>type GPUTextAccelerator interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUTextAccelerator is an optional interface for accelerators that support</p>
+        
+        <p>GPU-accelerated text rendering via MSDF (Multi-channel Signed Distance</p>
+        
+        <p>Field). When the registered accelerator implements this interface,</p>
+        
+        <p>Context.DrawString will use the GPU pipeline instead of CPU freetype.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Text is rendered as Tier 4 in the unified render pass, after SDF shapes,</p>
+        
+        <p>convex polygons, and stencil-then-cover paths. The MSDF approach provides</p>
+        
+        <p>resolution-independent, crisp text at any scale.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUTextAccelerator interface {
+	// DrawText renders text at position (x, y) in user space where y is the
+	// baseline. The face provides font metrics and glyph iteration. Color is
+	// the text color in RGBA. The matrix parameter is the context's current
+	// transformation matrix (CTM), which the GPU pipeline composes into the
+	// vertex shader uniform so that Scale, Rotate, and Skew transforms
+	// affect text rendering, not just position.
+	// Returns ErrFallbackToCPU if GPU text rendering is not available.
+	DrawText(target GPURenderTarget, face any, text string, x, y float64, color RGBA, matrix Matrix) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-ComputePipelineAware">
+    <div class="item-header">
+        <h4>type ComputePipelineAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ComputePipelineAware is an optional interface for accelerators that support</p>
+        
+        <p>the Vello-style compute pipeline. When the accelerator implements this interface</p>
+        
+        <p>and PipelineMode is Auto or Compute, the framework uses the compute pipeline</p>
+        
+        <p>for complex scenes instead of the render pass pipeline.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ComputePipelineAware interface {
+	// CanCompute reports whether the compute pipeline is available and ready.
+	CanCompute() bool
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-PipelineModeAware">
+    <div class="item-header">
+        <h4>type PipelineModeAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>PipelineModeAware is an optional interface for accelerators that support</p>
+        
+        <p>pipeline mode selection (render pass vs compute). When the registered</p>
+        
+        <p>accelerator implements this interface, the Context propagates pipeline mode</p>
+        
+        <p>changes so the accelerator can route operations accordingly.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type PipelineModeAware interface {
+	// SetPipelineMode sets the pipeline mode for subsequent operations.
+	SetPipelineMode(mode PipelineMode)
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-ForceSDFAware">
+    <div class="item-header">
+        <h4>type ForceSDFAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ForceSDFAware is an optional interface for GPU accelerators that support</p>
+        
+        <p>forced SDF rendering. When enabled, the accelerator bypasses the minimum</p>
+        
+        <p>size check for SDF shapes, allowing RasterizerSDF mode to force SDF</p>
+        
+        <p>rendering regardless of shape size.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ForceSDFAware interface {
+	SetForceSDF(force bool)
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-SceneStatsTracker">
+    <div class="item-header">
+        <h4>type SceneStatsTracker interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SceneStatsTracker is an optional interface for accelerators that track</p>
+        
+        <p>per-frame scene statistics for auto pipeline selection. The Context</p>
+        
+        <p>does not call these methods directly — the accelerator uses them internally.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SceneStatsTracker interface {
+	// SceneStats returns the accumulated scene statistics for the current frame.
+	SceneStats() SceneStats
+}
+</code></pre>
+</div>
+  
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

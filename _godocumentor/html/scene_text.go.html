@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/text.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="active">scene/text.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Config">Config</a></li>
+                    
+                    <li><a href="#func-DefaultTextRendererConfig">DefaultTextRendererConfig</a></li>
+                    
+                    <li><a href="#func-DrawGlyphs">DrawGlyphs</a></li>
+                    
+                    <li><a href="#func-DrawText">DrawText</a></li>
+                    
+                    <li><a href="#func-Get">Get</a></li>
+                    
+                    <li><a href="#func-NewTextRenderer">NewTextRenderer</a></li>
+                    
+                    <li><a href="#func-NewTextRendererPool">NewTextRendererPool</a></li>
+                    
+                    <li><a href="#func-NewTextRendererWithConfig">NewTextRendererWithConfig</a></li>
+                    
+                    <li><a href="#func-NewTextShape">NewTextShape</a></li>
+                    
+                    <li><a href="#func-Put">Put</a></li>
+                    
+                    <li><a href="#func-RenderGlyph">RenderGlyph</a></li>
+                    
+                    <li><a href="#func-RenderGlyphs">RenderGlyphs</a></li>
+                    
+                    <li><a href="#func-RenderRun">RenderRun</a></li>
+                    
+                    <li><a href="#func-RenderText">RenderText</a></li>
+                    
+                    <li><a href="#func-RenderTextToScene">RenderTextToScene</a></li>
+                    
+                    <li><a href="#func-RenderToScene">RenderToScene</a></li>
+                    
+                    <li><a href="#func-SetConfig">SetConfig</a></li>
+                    
+                    <li><a href="#func-TextAdvance">TextAdvance</a></li>
+                    
+                    <li><a href="#func-TextBounds">TextBounds</a></li>
+                    
+                    <li><a href="#func-ToCompositePath">ToCompositePath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/text.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle of the text.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ts *TextShape) Bounds() Rect {
+	if ts.path == nil {
+		return EmptyRect()
+	}
+	return ts.path.Bounds()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Config">
+    <div class="item-header">
+        <h4>func Config</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Config returns the current configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) Config() TextRendererConfig {
+	r.mu.RLock()
+	defer r.mu.RUnlock()
+	return r.config
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DefaultTextRendererConfig">
+    <div class="item-header">
+        <h4>func DefaultTextRendererConfig</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DefaultTextRendererConfig returns the default configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func DefaultTextRendererConfig() TextRendererConfig {
+	return TextRendererConfig{
+		FlipY:			false,
+		SubpixelPositioning:	true,
+		HintingEnabled:		false,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawGlyphs">
+    <div class="item-header">
+        <h4>func DrawGlyphs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawGlyphs draws pre-shaped glyphs directly to the scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) DrawGlyphs(glyphs []text.ShapedGlyph, face text.Face, brush Brush) error {
+	renderer := NewTextRenderer()
+	return renderer.RenderToScene(s, glyphs, face, brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawText">
+    <div class="item-header">
+        <h4>func DrawText</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawText is a convenience method on Scene to draw text directly.</p>
+          
+        <p>It creates a temporary TextRenderer, renders the text, and adds it to the scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) DrawText(str string, face text.Face, x, y float32, brush Brush) error {
+	renderer := NewTextRenderer()
+	return renderer.RenderTextToScene(s, str, face, x, y, brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Get">
+    <div class="item-header">
+        <h4>func Get</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Get retrieves a renderer from the pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *TextRendererPool) Get() *TextRenderer {
+	return p.pool.Get().(*TextRenderer)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewTextRenderer">
+    <div class="item-header">
+        <h4>func NewTextRenderer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewTextRenderer creates a new text renderer with default configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewTextRenderer() *TextRenderer {
+	return NewTextRendererWithConfig(DefaultTextRendererConfig())
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewTextRendererPool">
+    <div class="item-header">
+        <h4>func NewTextRendererPool</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewTextRendererPool creates a new pool of text renderers.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewTextRendererPool() *TextRendererPool {
+	return &TextRendererPool{
+		pool: sync.Pool{
+			New: func() any {
+				return NewTextRenderer()
+			},
+		},
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewTextRendererWithConfig">
+    <div class="item-header">
+        <h4>func NewTextRendererWithConfig</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewTextRendererWithConfig creates a new text renderer with the given configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewTextRendererWithConfig(config TextRendererConfig) *TextRenderer {
+	return &TextRenderer{
+		extractor:	text.NewOutlineExtractor(),
+		pathPool:	NewPathPool(),
+		config:		config,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewTextShape">
+    <div class="item-header">
+        <h4>func NewTextShape</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewTextShape creates a TextShape from text.</p>
+          
+        <p>The text is shaped and converted to a path at the specified position.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewTextShape(str string, face text.Face, x, y float32) (*TextShape, error) {
+	if str == "" {
+		return &TextShape{path: NewPath()}, nil
+	}
+
+	renderer := NewTextRenderer()
+	rendered, err := renderer.RenderText(str, face)
+	if err != nil {
+		return nil, err
+	}
+
+	// Combine all glyph paths with offset
+	composite := NewPath()
+	for _, rg := range rendered {
+		if rg.Path != nil && !rg.Path.IsEmpty() {
+			// Transform path to final position
+			transformed := rg.Path.Transform(TranslateAffine(x, y))
+			appendPath(composite, transformed)
+		}
+	}
+
+	return &TextShape{path: composite}, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Put">
+    <div class="item-header">
+        <h4>func Put</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Put returns a renderer to the pool.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *TextRendererPool) Put(r *TextRenderer) {
+	if r != nil {
+		p.pool.Put(r)
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderGlyph">
+    <div class="item-header">
+        <h4>func RenderGlyph</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderGlyph converts a single shaped glyph to a renderable path.</p>
+          
+        <p>The path is positioned at the glyph's location and scaled appropriately.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderGlyph(glyph text.ShapedGlyph, face text.Face) (*RenderedGlyph, error) {
+	r.mu.RLock()
+	config := r.config
+	r.mu.RUnlock()
+
+	// Get the font source and size
+	source := face.Source()
+	if source == nil {
+		return nil, &text.FontError{Reason: "face has no font source"}
+	}
+	size := face.Size()
+
+	// Extract the outline
+	outline, err := r.extractor.ExtractOutline(source.Parsed(), glyph.GID, size)
+	if err != nil {
+		return nil, err
+	}
+
+	// Create the rendered glyph
+	rendered := &RenderedGlyph{
+		Advance:	float32(glyph.XAdvance),
+		X:		float32(glyph.X),
+		Y:		float32(glyph.Y),
+		GID:		glyph.GID,
+		Type:		text.GlyphTypeOutline,
+		Cluster:	glyph.Cluster,
+	}
+
+	// Handle empty outlines (like space)
+	if outline == nil || outline.IsEmpty() {
+		rendered.Path = nil
+		rendered.Bounds = EmptyRect()
+		return rendered, nil
+	}
+
+	// Convert outline to path with positioning
+	path := r.outlineToPath(outline, float32(glyph.X), float32(glyph.Y), config)
+	rendered.Path = path
+	rendered.Bounds = path.Bounds()
+
+	return rendered, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderGlyphs">
+    <div class="item-header">
+        <h4>func RenderGlyphs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderGlyphs converts multiple shaped glyphs to renderable paths.</p>
+          
+        <p>Returns a slice of rendered glyphs in the same order as input.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderGlyphs(glyphs []text.ShapedGlyph, face text.Face) ([]*RenderedGlyph, error) {
+	if len(glyphs) == 0 {
+		return nil, nil
+	}
+
+	r.mu.RLock()
+	config := r.config
+	r.mu.RUnlock()
+
+	// Get the font source and size
+	source := face.Source()
+	if source == nil {
+		return nil, &text.FontError{Reason: "face has no font source"}
+	}
+	size := face.Size()
+	parsed := source.Parsed()
+
+	// Render all glyphs
+	rendered := make([]*RenderedGlyph, len(glyphs))
+	for i, glyph := range glyphs {
+		rg := &RenderedGlyph{
+			Advance:	float32(glyph.XAdvance),
+			X:		float32(glyph.X),
+			Y:		float32(glyph.Y),
+			GID:		glyph.GID,
+			Type:		text.GlyphTypeOutline,
+			Cluster:	glyph.Cluster,
+		}
+
+		// Extract outline
+		outline, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
+		if err != nil {
+			// Log error but continue - some glyphs may not have outlines
+			rg.Path = nil
+			rg.Bounds = EmptyRect()
+			rendered[i] = rg
+			continue
+		}
+
+		// Handle empty outlines
+		if outline == nil || outline.IsEmpty() {
+			rg.Path = nil
+			rg.Bounds = EmptyRect()
+			rendered[i] = rg
+			continue
+		}
+
+		// Convert to path
+		path := r.outlineToPath(outline, float32(glyph.X), float32(glyph.Y), config)
+		rg.Path = path
+		rg.Bounds = path.Bounds()
+		rendered[i] = rg
+	}
+
+	return rendered, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderRun">
+    <div class="item-header">
+        <h4>func RenderRun</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderRun converts a shaped run to renderable glyphs.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderRun(run *text.ShapedRun) ([]*RenderedGlyph, error) {
+	if run == nil || len(run.Glyphs) == 0 {
+		return nil, nil
+	}
+	return r.RenderGlyphs(run.Glyphs, run.Face)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderText">
+    <div class="item-header">
+        <h4>func RenderText</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderText shapes and renders text in one operation.</p>
+          
+        <p>Uses the global shaper for text shaping.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderText(str string, face text.Face) ([]*RenderedGlyph, error) {
+	if str == "" {
+		return nil, nil
+	}
+
+	// Shape the text
+	shaped := text.Shape(str, face)
+	if len(shaped) == 0 {
+		return nil, nil
+	}
+
+	return r.RenderGlyphs(shaped, face)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderTextToScene">
+    <div class="item-header">
+        <h4>func RenderTextToScene</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderTextToScene shapes and renders text directly into a scene.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderTextToScene(s *Scene, str string, face text.Face, x, y float32, brush Brush) error {
+	if str == "" {
+		return nil
+	}
+
+	// Shape the text
+	shaped := text.Shape(str, face)
+	if len(shaped) == 0 {
+		return nil
+	}
+
+	r.mu.RLock()
+	config := r.config
+	r.mu.RUnlock()
+
+	// Get font info
+	source := face.Source()
+	if source == nil {
+		return &text.FontError{Reason: "face has no font source"}
+	}
+	size := face.Size()
+	parsed := source.Parsed()
+
+	// Render each glyph
+	for _, glyph := range shaped {
+		outline, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
+		if err != nil || outline == nil || outline.IsEmpty() {
+			continue
+		}
+
+		// Position glyph relative to origin (x, y)
+		posX := x + float32(glyph.X)
+		posY := y + float32(glyph.Y)
+
+		path := r.outlineToPath(outline, posX, posY, config)
+		if path != nil && !path.IsEmpty() {
+			s.Fill(FillNonZero, IdentityAffine(), brush, NewPathShape(path))
+		}
+	}
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderToScene">
+    <div class="item-header">
+        <h4>func RenderToScene</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderToScene renders shaped glyphs directly into a scene.</p>
+          
+        <p>This is the primary method for GPU text rendering.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) RenderToScene(s *Scene, glyphs []text.ShapedGlyph, face text.Face, brush Brush) error {
+	rendered, err := r.RenderGlyphs(glyphs, face)
+	if err != nil {
+		return err
+	}
+
+	for _, rg := range rendered {
+		if rg.Path != nil && !rg.Path.IsEmpty() {
+			s.Fill(FillNonZero, IdentityAffine(), brush, NewPathShape(rg.Path))
+		}
+	}
+
+	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetConfig">
+    <div class="item-header">
+        <h4>func SetConfig</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetConfig updates the configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) SetConfig(config TextRendererConfig) {
+	r.mu.Lock()
+	defer r.mu.Unlock()
+	r.config = config
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TextAdvance">
+    <div class="item-header">
+        <h4>func TextAdvance</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TextAdvance returns the total advance width of rendered glyphs.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func TextAdvance(glyphs []*RenderedGlyph) float32 {
+	if len(glyphs) == 0 {
+		return 0
+	}
+
+	// The advance is the position of the last glyph plus its advance
+	last := glyphs[len(glyphs)-1]
+	return last.X + last.Advance
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TextBounds">
+    <div class="item-header">
+        <h4>func TextBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TextBounds computes the bounding box for rendered text.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func TextBounds(glyphs []*RenderedGlyph) Rect {
+	if len(glyphs) == 0 {
+		return EmptyRect()
+	}
+
+	bounds := EmptyRect()
+	for _, rg := range glyphs {
+		if rg.Path != nil {
+			bounds = bounds.Union(rg.Bounds)
+		}
+	}
+
+	return bounds
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToCompositePath">
+    <div class="item-header">
+        <h4>func ToCompositePath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToCompositePath combines multiple rendered glyphs into a single path.</p>
+          
+        <p>This is useful for text that will be rendered as a single unit.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *TextRenderer) ToCompositePath(glyphs []*RenderedGlyph) *Path {
+	if len(glyphs) == 0 {
+		return nil
+	}
+
+	composite := NewPath()
+	for _, rg := range glyphs {
+		if rg.Path != nil && !rg.Path.IsEmpty() {
+			appendPath(composite, rg.Path)
+		}
+	}
+
+	return composite
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToPath">
+    <div class="item-header">
+        <h4>func ToPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToPath returns the path representation of the text.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ts *TextShape) ToPath() *Path {
+	return ts.path
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-TextRenderer">
+    <div class="item-header">
+        <h4>type TextRenderer struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>TextRenderer converts shaped text to scene paths for GPU rendering.</p>
+        
+        <p>It supports glyph outlines and handles positioning, transforms, and caching.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>TextRenderer is safe for concurrent use.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type TextRenderer struct {
+	mu	sync.RWMutex
+
+	// extractor extracts glyph outlines from fonts
+	extractor	*text.OutlineExtractor
+
+	// pathPool reuses Path objects to reduce allocations
+	pathPool	*PathPool
+
+	// config holds renderer configuration
+	config	TextRendererConfig
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-TextRendererConfig">
+    <div class="item-header">
+        <h4>type TextRendererConfig struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>TextRendererConfig holds configuration for TextRenderer.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type TextRendererConfig struct {
+	// FlipY inverts the Y-axis for glyph outlines (default: false).
+	// Our OutlineExtractor preserves sfnt's Y-down convention
+	// (Y=0 at baseline, Y<0 above, Y>0 below), which matches
+	// screen coordinates directly. Set to true only if your
+	// coordinate system has Y increasing upward.
+	FlipY	bool
+
+	// SubpixelPositioning enables fractional glyph positioning.
+	// When false, glyphs are snapped to integer pixel positions.
+	SubpixelPositioning	bool
+
+	// HintingEnabled enables font hinting for sharper rendering at small sizes.
+	HintingEnabled	bool
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-RenderedGlyph">
+    <div class="item-header">
+        <h4>type RenderedGlyph struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>RenderedGlyph represents a glyph that has been converted to a path.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type RenderedGlyph struct {
+	// Path is the vector path representing the glyph outline.
+	// May be nil for non-outline glyphs (bitmap, empty).
+	Path	*Path
+
+	// Bounds is the bounding box of the rendered glyph.
+	Bounds	Rect
+
+	// Advance is the distance to the next glyph position.
+	Advance	float32
+
+	// Position is the glyph position relative to the text origin.
+	X, Y	float32
+
+	// GID is the glyph ID.
+	GID	text.GlyphID
+
+	// Type indicates the glyph type.
+	Type	text.GlyphType
+
+	// Cluster is the source character index.
+	Cluster	int
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-TextRendererPool">
+    <div class="item-header">
+        <h4>type TextRendererPool struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>TextRendererPool manages a pool of TextRenderers for concurrent use.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type TextRendererPool struct {
+	pool sync.Pool
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-TextShape">
+    <div class="item-header">
+        <h4>type TextShape struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>TextShape represents a shaped text string as a scene Shape.</p>
+        
+        <p>This allows text to be used with fill/stroke operations.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type TextShape struct {
+	path *Path
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

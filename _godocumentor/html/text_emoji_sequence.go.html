@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/emoji/sequence.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="active">text/emoji/sequence.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-GetFlagCode">GetFlagCode</a></li>
+                    
+                    <li><a href="#func-GetSkinTone">GetSkinTone</a></li>
+                    
+                    <li><a href="#func-GetTagSequenceCode">GetTagSequenceCode</a></li>
+                    
+                    <li><a href="#func-HasModifier">HasModifier</a></li>
+                    
+                    <li><a href="#func-IsValidSequence">IsValidSequence</a></li>
+                    
+                    <li><a href="#func-Len">Len</a></li>
+                    
+                    <li><a href="#func-Normalize">Normalize</a></li>
+                    
+                    <li><a href="#func-Parse">Parse</a></li>
+                    
+                    <li><a href="#func-ParseString">ParseString</a></li>
+                    
+                    <li><a href="#func-SkinToneRune">SkinToneRune</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>text/emoji/sequence.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-GetFlagCode">
+    <div class="item-header">
+        <h4>func GetFlagCode</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetFlagCode extracts the two-letter country code from a flag sequence.</p>
+          
+        <p>Returns empty string if not a valid flag sequence.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func GetFlagCode(seq Sequence) string {
+	if seq.Type != SequenceFlag || len(seq.Codepoints) != 2 {
+		return ""
+	}
+
+	a := seq.Codepoints[0]
+	b := seq.Codepoints[1]
+
+	if !IsRegionalIndicator(a) || !IsRegionalIndicator(b) {
+		return ""
+	}
+
+	// Regional indicators A-Z map to U+1F1E6-U+1F1FF
+	// Convert to ASCII letters
+	letterA := 'A' + (a - 0x1F1E6)
+	letterB := 'A' + (b - 0x1F1E6)
+
+	return string([]rune{letterA, letterB})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetSkinTone">
+    <div class="item-header">
+        <h4>func GetSkinTone</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetSkinTone returns the skin tone from a modifier rune.</p>
+          
+        <p>Returns SkinToneNone if the rune is not a skin tone modifier.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func GetSkinTone(r rune) SkinTone {
+	switch r {
+	case 0x1F3FB:
+		return SkinToneLight
+	case 0x1F3FC:
+		return SkinToneMediumLight
+	case 0x1F3FD:
+		return SkinToneMedium
+	case 0x1F3FE:
+		return SkinToneMediumDark
+	case 0x1F3FF:
+		return SkinToneDark
+	default:
+		return SkinToneNone
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetTagSequenceCode">
+    <div class="item-header">
+        <h4>func GetTagSequenceCode</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetTagSequenceCode extracts the subdivision code from a tag sequence.</p>
+          
+        <p>Returns empty string if not a valid tag sequence.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func GetTagSequenceCode(seq Sequence) string {
+	if seq.Type != SequenceTag || len(seq.Codepoints) < 3 {
+		return ""
+	}
+
+	// Skip black flag and cancel tag, extract middle tag characters
+	code := make([]rune, 0, len(seq.Codepoints)-2)
+	for i := 1; i < len(seq.Codepoints)-1; i++ {
+		r := seq.Codepoints[i]
+		if !IsTagCharacter(r) {
+			return ""
+		}
+		// Convert tag character to ASCII (E0020-E007E -> 0020-007E)
+		code = append(code, r-0xE0000)
+	}
+
+	return string(code)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-HasModifier">
+    <div class="item-header">
+        <h4>func HasModifier</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>HasModifier returns true if the sequence has a skin tone modifier.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s Sequence) HasModifier() bool {
+	return s.Modifier != 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsValidSequence">
+    <div class="item-header">
+        <h4>func IsValidSequence</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsValidSequence returns true if the sequence is well-formed according</p>
+          
+        <p>to Unicode emoji specification.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func IsValidSequence(seq Sequence) bool {
+	if len(seq.Codepoints) == 0 {
+		return false
+	}
+
+	switch seq.Type {
+	case SequenceSimple:
+		return len(seq.Codepoints) == 1 && IsEmoji(seq.Codepoints[0])
+
+	case SequenceFlag:
+		return len(seq.Codepoints) == 2 &&
+			IsRegionalIndicator(seq.Codepoints[0]) &&
+			IsRegionalIndicator(seq.Codepoints[1])
+
+	case SequenceKeycap:
+		if len(seq.Codepoints) < 2 || len(seq.Codepoints) > 3 {
+			return false
+		}
+		if !IsKeycapBase(seq.Codepoints[0]) {
+			return false
+		}
+		last := seq.Codepoints[len(seq.Codepoints)-1]
+		return IsCombiningEnclosingKeycap(last)
+
+	case SequenceTag:
+		if len(seq.Codepoints) < 3 {
+			return false
+		}
+		if !IsBlackFlag(seq.Codepoints[0]) {
+			return false
+		}
+		if !IsCancelTag(seq.Codepoints[len(seq.Codepoints)-1]) {
+			return false
+		}
+		// All middle characters must be tags
+		for i := 1; i < len(seq.Codepoints)-1; i++ {
+			if !IsTagCharacter(seq.Codepoints[i]) {
+				return false
+			}
+		}
+		return true
+
+	case SequenceModified:
+		if len(seq.Codepoints) < 2 {
+			return false
+		}
+		if !IsEmojiModifierBase(seq.Codepoints[0]) {
+			return false
+		}
+		return seq.HasModifier()
+
+	case SequenceZWJ:
+		// Must contain at least one ZWJ
+		hasZWJ := false
+		for _, r := range seq.Codepoints {
+			if IsZWJ(r) {
+				hasZWJ = true
+				break
+			}
+		}
+		return hasZWJ
+
+	case SequencePresentation:
+		// Must have variation selector
+		hasVS := false
+		for _, r := range seq.Codepoints {
+			if IsVariationSelector(r) {
+				hasVS = true
+				break
+			}
+		}
+		return hasVS
+
+	default:
+		return false
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Len">
+    <div class="item-header">
+        <h4>func Len</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Len returns the number of codepoints in the sequence.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s Sequence) Len() int {
+	return len(s.Codepoints)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Normalize">
+    <div class="item-header">
+        <h4>func Normalize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Normalize normalizes an emoji sequence by:</p>
+          
+        <p>- Removing text variation selectors (U+FE0E)</p>
+          
+        <p>- Ensuring emoji variation selector (U+FE0F) where needed</p>
+          
+        <p>- Validating skin tone modifiers are only on valid bases</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Normalize(seq Sequence) Sequence {
+	if len(seq.Codepoints) == 0 {
+		return seq
+	}
+
+	normalized := make([]rune, 0, len(seq.Codepoints))
+	prevBase := rune(0)
+
+	for _, r := range seq.Codepoints {
+		// Skip text variation selector
+		if IsTextPresentation(r) {
+			continue
+		}
+
+		// Skip emoji variation selector (we'll add it back if needed)
+		if IsEmojiVariation(r) {
+			// Add FE0F for text-presentation emoji that need it
+			if isTextPresentationEmoji(prevBase) {
+				normalized = append(normalized, r)
+			}
+			continue
+		}
+
+		// Skip invalid modifiers
+		if IsEmojiModifier(r) {
+			if !IsEmojiModifierBase(prevBase) {
+				continue
+			}
+		}
+
+		normalized = append(normalized, r)
+		if !IsZWJ(r) && !IsEmojiModifier(r) && !IsVariationSelector(r) {
+			prevBase = r
+		}
+	}
+
+	return Sequence{
+		Codepoints:	normalized,
+		Type:		seq.Type,
+		BaseCodepoint:	seq.BaseCodepoint,
+		Modifier:	seq.Modifier,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Parse">
+    <div class="item-header">
+        <h4>func Parse</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Parse parses emoji sequences from a slice of runes.</p>
+          
+        <p>Returns a slice of Sequence values, where each represents</p>
+          
+        <p>a complete emoji (possibly multi-codepoint).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Parse(runes []rune) []Sequence {
+	if len(runes) == 0 {
+		return nil
+	}
+
+	sequences := make([]Sequence, 0, len(runes))
+	i := 0
+
+	for i < len(runes) {
+		seq, consumed := parseSequenceAt(runes[i:])
+		if consumed > 0 {
+			sequences = append(sequences, seq)
+			i += consumed
+		} else {
+			// Skip non-emoji character
+			i++
+		}
+	}
+
+	return sequences
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ParseString">
+    <div class="item-header">
+        <h4>func ParseString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ParseString is a convenience function that parses emoji sequences from a string.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func ParseString(text string) []Sequence {
+	return Parse([]rune(text))
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SkinToneRune">
+    <div class="item-header">
+        <h4>func SkinToneRune</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SkinToneRune returns the rune for a skin tone.</p>
+          
+        <p>Returns 0 for SkinToneNone.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func SkinToneRune(tone SkinTone) rune {
+	switch tone {
+	case SkinToneLight:
+		return 0x1F3FB
+	case SkinToneMediumLight:
+		return 0x1F3FC
+	case SkinToneMedium:
+		return 0x1F3FD
+	case SkinToneMediumDark:
+		return 0x1F3FE
+	case SkinToneDark:
+		return 0x1F3FF
+	default:
+		return 0
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns the string name of the sequence type.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (t SequenceType) String() string {
+	if int(t) < len(sequenceTypeNames) {
+		return sequenceTypeNames[t]
+	}
+	return unknownStrSeq
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns the string name of the skin tone.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (t SkinTone) String() string {
+	if int(t) < len(skinToneNames) {
+		return skinToneNames[t]
+	}
+	return unknownStrSeq
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns a string representation of the sequence.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s Sequence) String() string {
+	return string(s.Codepoints)
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Sequence">
+    <div class="item-header">
+        <h4>type Sequence struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Sequence represents an emoji sequence (single or multi-codepoint).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Sequence struct {
+	// Codepoints contains all runes forming this emoji.
+	Codepoints	[]rune
+
+	// Type indicates the sequence type.
+	Type	SequenceType
+
+	// BaseCodepoint is the primary emoji character (for Modified sequences).
+	// For other types, this equals Codepoints[0].
+	BaseCodepoint	rune
+
+	// Modifier is the skin tone modifier, if present.
+	// Zero if no modifier is applied.
+	Modifier	rune
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

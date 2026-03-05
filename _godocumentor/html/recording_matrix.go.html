@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - recording/matrix.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="active">recording/matrix.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Determinant">Determinant</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-Identity">Identity</a></li>
+                    
+                    <li><a href="#func-Inset">Inset</a></li>
+                    
+                    <li><a href="#func-Intersect">Intersect</a></li>
+                    
+                    <li><a href="#func-Invert">Invert</a></li>
+                    
+                    <li><a href="#func-IsEmpty">IsEmpty</a></li>
+                    
+                    <li><a href="#func-IsIdentity">IsIdentity</a></li>
+                    
+                    <li><a href="#func-IsTranslation">IsTranslation</a></li>
+                    
+                    <li><a href="#func-Multiply">Multiply</a></li>
+                    
+                    <li><a href="#func-NewRect">NewRect</a></li>
+                    
+                    <li><a href="#func-NewRectFromPoints">NewRectFromPoints</a></li>
+                    
+                    <li><a href="#func-Offset">Offset</a></li>
+                    
+                    <li><a href="#func-Rotate">Rotate</a></li>
+                    
+                    <li><a href="#func-Scale">Scale</a></li>
+                    
+                    <li><a href="#func-ScaleFactor">ScaleFactor</a></li>
+                    
+                    <li><a href="#func-Shear">Shear</a></li>
+                    
+                    <li><a href="#func-TransformPoint">TransformPoint</a></li>
+                    
+                    <li><a href="#func-TransformVector">TransformVector</a></li>
+                    
+                    <li><a href="#func-Translate">Translate</a></li>
+                    
+                    <li><a href="#func-Translation">Translation</a></li>
+                    
+                    <li><a href="#func-Union">Union</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                    <li><a href="#func-X">X</a></li>
+                    
+                    <li><a href="#func-Y">Y</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>recording/matrix.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Contains">
+    <div class="item-header">
+        <h4>func Contains</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Contains returns true if the point is inside the rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Contains(x, y float64) bool {
+	return x >= r.MinX && x <= r.MaxX && y >= r.MinY && y <= r.MaxY
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Determinant">
+    <div class="item-header">
+        <h4>func Determinant</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Determinant returns the determinant of the 2x2 part of the matrix.</p>
+          
+        <p>A determinant of zero means the matrix is not invertible.</p>
+          
+        <p>A negative determinant means the transformation flips orientation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) Determinant() float64 {
+	return m.A*m.E - m.B*m.D
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Height">
+    <div class="item-header">
+        <h4>func Height</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Height returns the height of the rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Height() float64 {
+	return r.MaxY - r.MinY
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Identity">
+    <div class="item-header">
+        <h4>func Identity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Identity returns the identity transformation matrix.</p>
+          
+        <p>The identity matrix performs no transformation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Identity() Matrix {
+	return Matrix{
+		A:	1, B: 0, C: 0,
+		D:	0, E: 1, F: 0,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Inset">
+    <div class="item-header">
+        <h4>func Inset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Inset returns a new rectangle inset by the given amounts.</p>
+          
+        <p>Positive values shrink the rectangle, negative values expand it.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Inset(dx, dy float64) Rect {
+	return Rect{
+		MinX:	r.MinX + dx,
+		MinY:	r.MinY + dy,
+		MaxX:	r.MaxX - dx,
+		MaxY:	r.MaxY - dy,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Intersect">
+    <div class="item-header">
+        <h4>func Intersect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Intersect returns the intersection of r and other.</p>
+          
+        <p>Returns an empty rectangle if they don't intersect.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Intersect(other Rect) Rect {
+	result := Rect{
+		MinX:	math.Max(r.MinX, other.MinX),
+		MinY:	math.Max(r.MinY, other.MinY),
+		MaxX:	math.Min(r.MaxX, other.MaxX),
+		MaxY:	math.Min(r.MaxY, other.MaxY),
+	}
+	if result.IsEmpty() {
+		return Rect{}
+	}
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Invert">
+    <div class="item-header">
+        <h4>func Invert</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Invert returns the inverse matrix.</p>
+          
+        <p>Returns the identity matrix if the matrix is not invertible.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) Invert() Matrix {
+	det := m.A*m.E - m.B*m.D
+	if math.Abs(det) < 1e-10 {
+		return Identity()
+	}
+
+	invDet := 1.0 / det
+	return Matrix{
+		A:	m.E * invDet,
+		B:	-m.B * invDet,
+		C:	(m.B*m.F - m.C*m.E) * invDet,
+		D:	-m.D * invDet,
+		E:	m.A * invDet,
+		F:	(m.C*m.D - m.A*m.F) * invDet,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsEmpty">
+    <div class="item-header">
+        <h4>func IsEmpty</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsEmpty returns true if the rectangle has zero or negative area.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) IsEmpty() bool {
+	return r.MaxX <= r.MinX || r.MaxY <= r.MinY
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsIdentity">
+    <div class="item-header">
+        <h4>func IsIdentity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsIdentity returns true if the matrix is the identity matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) IsIdentity() bool {
+	const eps = 1e-10
+	return math.Abs(m.A-1) < eps && math.Abs(m.B) < eps && math.Abs(m.C) < eps &&
+		math.Abs(m.D) < eps && math.Abs(m.E-1) < eps && math.Abs(m.F) < eps
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-IsTranslation">
+    <div class="item-header">
+        <h4>func IsTranslation</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsTranslation returns true if the matrix is only a translation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) IsTranslation() bool {
+	const eps = 1e-10
+	return math.Abs(m.A-1) < eps && math.Abs(m.B) < eps &&
+		math.Abs(m.D) < eps && math.Abs(m.E-1) < eps
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Multiply">
+    <div class="item-header">
+        <h4>func Multiply</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Multiply multiplies two matrices (m * other).</p>
+          
+        <p>This applies the transformation of `other` after `m`.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) Multiply(other Matrix) Matrix {
+	return Matrix{
+		A:	m.A*other.A + m.B*other.D,
+		B:	m.A*other.B + m.B*other.E,
+		C:	m.A*other.C + m.B*other.F + m.C,
+		D:	m.D*other.A + m.E*other.D,
+		E:	m.D*other.B + m.E*other.E,
+		F:	m.D*other.C + m.E*other.F + m.F,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRect">
+    <div class="item-header">
+        <h4>func NewRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRect creates a rectangle from position and size.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRect(x, y, width, height float64) Rect {
+	return Rect{
+		MinX:	x,
+		MinY:	y,
+		MaxX:	x + width,
+		MaxY:	y + height,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRectFromPoints">
+    <div class="item-header">
+        <h4>func NewRectFromPoints</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRectFromPoints creates a rectangle from two corner points.</p>
+          
+        <p>The points are normalized so Min <= Max.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRectFromPoints(x1, y1, x2, y2 float64) Rect {
+	return Rect{
+		MinX:	math.Min(x1, x2),
+		MinY:	math.Min(y1, y2),
+		MaxX:	math.Max(x1, x2),
+		MaxY:	math.Max(y1, y2),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Offset">
+    <div class="item-header">
+        <h4>func Offset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Offset returns a new rectangle offset by the given amounts.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Offset(dx, dy float64) Rect {
+	return Rect{
+		MinX:	r.MinX + dx,
+		MinY:	r.MinY + dy,
+		MaxX:	r.MaxX + dx,
+		MaxY:	r.MaxY + dy,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Rotate">
+    <div class="item-header">
+        <h4>func Rotate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Rotate creates a rotation matrix (angle in radians).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Rotate(angle float64) Matrix {
+	cos := math.Cos(angle)
+	sin := math.Sin(angle)
+	return Matrix{
+		A:	cos, B: -sin, C: 0,
+		D:	sin, E: cos, F: 0,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Scale">
+    <div class="item-header">
+        <h4>func Scale</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Scale creates a scaling matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Scale(sx, sy float64) Matrix {
+	return Matrix{
+		A:	sx, B: 0, C: 0,
+		D:	0, E: sy, F: 0,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ScaleFactor">
+    <div class="item-header">
+        <h4>func ScaleFactor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ScaleFactor returns the maximum scale factor of the transformation.</p>
+          
+        <p>This is useful for determining effective stroke width after transform.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) ScaleFactor() float64 {
+	// Calculate the two singular values of the 2x2 part.
+	sx := math.Sqrt(m.A*m.A + m.D*m.D)
+	sy := math.Sqrt(m.B*m.B + m.E*m.E)
+	if sx > sy {
+		return sx
+	}
+	return sy
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Shear">
+    <div class="item-header">
+        <h4>func Shear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Shear creates a shear matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Shear(x, y float64) Matrix {
+	return Matrix{
+		A:	1, B: x, C: 0,
+		D:	y, E: 1, F: 0,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TransformPoint">
+    <div class="item-header">
+        <h4>func TransformPoint</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TransformPoint applies the transformation to a point.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) TransformPoint(x, y float64) (float64, float64) {
+	return m.A*x + m.B*y + m.C, m.D*x + m.E*y + m.F
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TransformVector">
+    <div class="item-header">
+        <h4>func TransformVector</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TransformVector applies the transformation to a vector (no translation).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) TransformVector(x, y float64) (float64, float64) {
+	return m.A*x + m.B*y, m.D*x + m.E*y
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Translate">
+    <div class="item-header">
+        <h4>func Translate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Translate creates a translation matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func Translate(x, y float64) Matrix {
+	return Matrix{
+		A:	1, B: 0, C: x,
+		D:	0, E: 1, F: y,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Translation">
+    <div class="item-header">
+        <h4>func Translation</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Translation returns the translation components of the matrix.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (m Matrix) Translation() (x, y float64) {
+	return m.C, m.F
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Union">
+    <div class="item-header">
+        <h4>func Union</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Union returns the smallest rectangle containing both r and other.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Union(other Rect) Rect {
+	return Rect{
+		MinX:	math.Min(r.MinX, other.MinX),
+		MinY:	math.Min(r.MinY, other.MinY),
+		MaxX:	math.Max(r.MaxX, other.MaxX),
+		MaxY:	math.Max(r.MaxY, other.MaxY),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Width">
+    <div class="item-header">
+        <h4>func Width</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Width returns the width of the rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Width() float64 {
+	return r.MaxX - r.MinX
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-X">
+    <div class="item-header">
+        <h4>func X</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>X returns the left edge of the rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) X() float64 {
+	return r.MinX
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Y">
+    <div class="item-header">
+        <h4>func Y</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Y returns the top edge of the rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) Y() float64 {
+	return r.MinY
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-Matrix">
+    <div class="item-header">
+        <h4>type Matrix struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Matrix represents a 2D affine transformation matrix.</p>
+        
+        <p>It uses a 2x3 matrix in row-major order:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>| A  B  C |</p>
+        
+        <p>| D  E  F |</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This represents the transformation:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>x' = A*x + B*y + C</p>
+        
+        <p>y' = D*x + E*y + F</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The Matrix type is designed to be compatible with gg.Matrix</p>
+        
+        <p>for seamless integration with the gg graphics library.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Matrix struct {
+	A, B, C	float64
+	D, E, F	float64
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-Rect">
+    <div class="item-header">
+        <h4>type Rect struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>Rect represents an axis-aligned rectangle.</p>
+        
+        <p>Min is the top-left corner (minimum coordinates).</p>
+        
+        <p>Max is the bottom-right corner (maximum coordinates).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type Rect struct {
+	MinX, MinY	float64
+	MaxX, MaxY	float64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
