@@ -1,0 +1,2568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/gpu/stencil_renderer.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="active">internal/gpu/stencil_renderer.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Destroy">Destroy</a></li>
+                    
+                    <li><a href="#func-EnsureTextures">EnsureTextures</a></li>
+                    
+                    <li><a href="#func-NewStencilRenderer">NewStencilRenderer</a></li>
+                    
+                    <li><a href="#func-RecordPath">RecordPath</a></li>
+                    
+                    <li><a href="#func-RenderPassDescriptor">RenderPassDescriptor</a></li>
+                    
+                    <li><a href="#func-RenderPath">RenderPath</a></li>
+                    
+                    <li><a href="#func-ResolveTexture">ResolveTexture</a></li>
+                    
+                    <li><a href="#func-Size">Size</a></li>
+                    
+                    <li><a href="#func-compositeBGRAOverRGBA">compositeBGRAOverRGBA</a></li>
+                    
+                    <li><a href="#func-convertBGRAToRGBA">convertBGRAToRGBA</a></li>
+                    
+                    <li><a href="#func-createAndUploadVertexBuffer">createAndUploadVertexBuffer</a></li>
+                    
+                    <li><a href="#func-createRenderBuffers">createRenderBuffers</a></li>
+                    
+                    <li><a href="#func-createUniformAndBindGroup">createUniformAndBindGroup</a></li>
+                    
+                    <li><a href="#func-destroy">destroy</a></li>
+                    
+                    <li><a href="#func-destroyTextures">destroyTextures</a></li>
+                    
+                    <li><a href="#func-encodeAndReadback">encodeAndReadback</a></li>
+                    
+                    <li><a href="#func-ensureReady">ensureReady</a></li>
+                    
+                    <li><a href="#func-float32SliceToBytes">float32SliceToBytes</a></li>
+                    
+                    <li><a href="#func-makeCoverUniform">makeCoverUniform</a></li>
+                    
+                    <li><a href="#func-makeStencilFillUniform">makeStencilFillUniform</a></li>
+                    
+                    <li><a href="#func-submitAndReadback">submitAndReadback</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/gpu/stencil_renderer.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Destroy">
+            <div class="item-header">
+                <h4>func Destroy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Destroy releases all GPU resources held by the renderer: pipelines, shaders,</p>
+                
+                <p>layouts, textures, and views. Safe to call multiple times or on a renderer</p>
+                
+                <p>with no allocated resources. After Destroy, createPipelines and EnsureTextures</p>
+                
+                <p>must be called again before rendering.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) Destroy() {
+	sr.destroyPipelines()
+	sr.destroyTextures()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-EnsureTextures">
+            <div class="item-header">
+                <h4>func EnsureTextures</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>EnsureTextures creates or recreates the MSAA color, stencil, and resolve textures</p>
+                
+                <p>if the requested dimensions differ from the current size. If dimensions match the</p>
+                
+                <p>current textures, this is a no-op.</p>
+                
+                <p></p>
+                
+                <p>On resize, existing textures are destroyed before creating new ones to avoid</p>
+                
+                <p>GPU memory leaks. Returns an error if any texture or view creation fails;</p>
+                
+                <p>in that case, partially created resources are cleaned up.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) EnsureTextures(width, height uint32) error {
+	return sr.textures.ensureTextures(sr.device, width, height, "stencil")
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewStencilRenderer">
+            <div class="item-header">
+                <h4>func NewStencilRenderer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewStencilRenderer creates a new StencilRenderer with the given device and queue.</p>
+                
+                <p>Textures are not allocated until EnsureTextures is called with the desired dimensions.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewStencilRenderer(device hal.Device, queue hal.Queue) *StencilRenderer {
+	return &StencilRenderer{
+		device:	device,
+		queue:	queue,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RecordPath">
+            <div class="item-header">
+                <h4>func RecordPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RecordPath records a stencil-then-cover path into an existing render pass.</p>
+                
+                <p>The render pass is owned by GPURenderSession. This method performs two</p>
+                
+                <p>pipeline switches within the pass:</p>
+                
+                <p></p>
+                
+                <p>1. SetPipeline(stencilFillPipeline) + Draw(fanVertices)</p>
+                
+                <p>2. SetPipeline(coverPipeline) + Draw(6)</p>
+                
+                <p></p>
+                
+                <p>The bufs parameter holds pre-built vertex buffers, uniform buffers, and</p>
+                
+                <p>bind groups for the current path. The fill rule selects between non-zero</p>
+                
+                <p>and even-odd stencil pipelines.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) RecordPath(rp hal.RenderPassEncoder, bufs *stencilCoverBuffers, fillRule gg.FillRule) {
+
+	stencilPipeline := sr.nonZeroStencilPipeline
+	if fillRule == gg.FillRuleEvenOdd {
+		stencilPipeline = sr.evenOddStencilPipeline
+	}
+
+	rp.SetPipeline(stencilPipeline)
+	rp.SetBindGroup(0, bufs.stencilBindGroup, nil)
+	rp.SetVertexBuffer(0, bufs.fanVertBuf, 0)
+	rp.Draw(bufs.fanVertexCount, 1, 0, 0)
+
+	rp.SetPipeline(sr.nonZeroCoverPipeline)
+	rp.SetBindGroup(0, bufs.coverBindGroup, nil)
+	rp.SetVertexBuffer(0, bufs.coverVertBuf, 0)
+	rp.SetStencilReference(0)
+	rp.Draw(6, 1, 0, 0)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RenderPassDescriptor">
+            <div class="item-header">
+                <h4>func RenderPassDescriptor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderPassDescriptor returns a configured render pass descriptor for</p>
+                
+                <p>stencil-then-cover rendering. The descriptor sets up:</p>
+                
+                <p></p>
+                
+                <p>- Color attachment: MSAA color texture with resolve to single-sample target.</p>
+                
+                <p>LoadOp is Clear (transparent black) to start with a clean canvas.</p>
+                
+                <p>StoreOp is Store to trigger MSAA resolve.</p>
+                
+                <p></p>
+                
+                <p>- Depth/stencil attachment: Stencil cleared to 0 at pass start, discarded at</p>
+                
+                <p>pass end (stencil data is transient within the pass). Depth is unused but</p>
+                
+                <p>must be configured; it is cleared to 1.0 and discarded.</p>
+                
+                <p></p>
+                
+                <p>EnsureTextures must be called before this method. Returns nil if textures</p>
+                
+                <p>have not been allocated.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) RenderPassDescriptor() *hal.RenderPassDescriptor {
+	if sr.textures.msaaView == nil || sr.textures.stencilView == nil || sr.textures.resolveView == nil {
+		return nil
+	}
+	return &hal.RenderPassDescriptor{
+		Label:	"stencil_cover_pass",
+		ColorAttachments: []hal.RenderPassColorAttachment{
+			{
+				View:		sr.textures.msaaView,
+				ResolveTarget:	sr.textures.resolveView,
+				LoadOp:		gputypes.LoadOpClear,
+				StoreOp:	gputypes.StoreOpStore,
+				ClearValue:	gputypes.Color{R: 0, G: 0, B: 0, A: 0},
+			},
+		},
+		DepthStencilAttachment: &hal.RenderPassDepthStencilAttachment{
+			View:			sr.textures.stencilView,
+			DepthLoadOp:		gputypes.LoadOpClear,
+			DepthStoreOp:		gputypes.StoreOpDiscard,
+			DepthClearValue:	1.0,
+			StencilLoadOp:		gputypes.LoadOpClear,
+			StencilStoreOp:		gputypes.StoreOpDiscard,
+			StencilClearValue:	0,
+		},
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RenderPath">
+            <div class="item-header">
+                <h4>func RenderPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderPath renders a filled path using the stencil-then-cover algorithm.</p>
+                
+                <p></p>
+                
+                <p>The algorithm works in two passes within a single render pass:</p>
+                
+                <p></p>
+                
+                <p>1. Stencil fill: Tessellate the path into triangle fan vertices and draw them</p>
+                
+                <p>with the stencil fill pipeline. The fill rule determines stencil operations:</p>
+                
+                <p>- NonZero: front faces increment, back faces decrement (winding number).</p>
+                
+                <p>- EvenOdd: both faces invert the stencil value (parity count).</p>
+                
+                <p></p>
+                
+                <p>2. Cover: Draw a bounding quad with the cover pipeline. Only pixels with</p>
+                
+                <p>non-zero stencil values pass the stencil test and receive the fill color.</p>
+                
+                <p>PassOp=Zero resets the stencil buffer for subsequent paths.</p>
+                
+                <p></p>
+                
+                <p>After the render pass, the MSAA color attachment resolves to the single-sample</p>
+                
+                <p>resolve texture. The resolve texture is then copied to a staging buffer for</p>
+                
+                <p>CPU readback. Pixel data is converted from BGRA (GPU format) to RGBA and</p>
+                
+                <p>written to target.Data.</p>
+                
+                <p></p>
+                
+                <p>Returns nil for empty paths (no triangles after tessellation).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) RenderPath(target gg.GPURenderTarget, elements []gg.PathElement, color gg.RGBA, fillRule gg.FillRule) error {
+	w, h := uint32(target.Width), uint32(target.Height)
+
+	if err := sr.ensureReady(w, h); err != nil {
+		return err
+	}
+
+	tess := NewFanTessellator()
+	tess.TessellatePath(elements)
+	fanVerts := tess.Vertices()
+	if len(fanVerts) == 0 {
+		return nil
+	}
+
+	bufs, err := sr.createRenderBuffers(w, h, fanVerts, tess.CoverQuad(), color)
+	if err != nil {
+		return err
+	}
+	defer bufs.destroy(sr.device)
+
+	return sr.encodeAndReadback(w, h, bufs, target, fillRule)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ResolveTexture">
+            <div class="item-header">
+                <h4>func ResolveTexture</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ResolveTexture returns the single-sample resolve target texture.</p>
+                
+                <p>This texture contains the final rendered output after MSAA resolve and</p>
+                
+                <p>has CopySrc usage for GPU-to-CPU readback.</p>
+                
+                <p>Returns nil if textures have not been allocated via EnsureTextures.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) ResolveTexture() hal.Texture {
+	return sr.textures.resolveTex
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Size">
+            <div class="item-header">
+                <h4>func Size</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Size returns the current texture dimensions. Returns (0, 0) if textures</p>
+                
+                <p>have not been allocated.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) Size() (uint32, uint32) {
+	return sr.textures.width, sr.textures.height
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-compositeBGRAOverRGBA">
+            <div class="item-header">
+                <h4>func compositeBGRAOverRGBA</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>compositeBGRAOverRGBA composites GPU readback pixels (BGRA, premultiplied</p>
+                
+                <p>alpha) over existing pixmap content (RGBA, premultiplied alpha) using the</p>
+                
+                <p>Porter-Duff "over" operator: out = src + dst * (1 - src_alpha).</p>
+                
+                <p></p>
+                
+                <p>Transparent source pixels (alpha=0) leave the destination unchanged. Fully</p>
+                
+                <p>opaque source pixels (alpha=255) replace the destination. Semi-transparent</p>
+                
+                <p>source pixels are blended correctly with existing content.</p>
+                
+                <p></p>
+                
+                <p>This is essential when the GPU accelerator flushes multiple times per frame</p>
+                
+                <p>(e.g., before each CPU text draw). Without compositing, each flush would</p>
+                
+                <p>clear the pixmap, losing previously rendered content.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func compositeBGRAOverRGBA(src, dst []byte, pixelCount int) {
+	for i := 0; i < pixelCount; i++ {
+		off := i * 4
+		sa := src[off+3]
+		if sa == 0 {
+			continue
+		}
+		sr, sg, sb := src[off+2], src[off+1], src[off]
+		if sa == 255 {
+
+			dst[off] = sr
+			dst[off+1] = sg
+			dst[off+2] = sb
+			dst[off+3] = 255
+			continue
+		}
+
+		invA := uint16(255 - sa)
+		dst[off] = sr + uint8(uint16(dst[off])*invA/255)
+		dst[off+1] = sg + uint8(uint16(dst[off+1])*invA/255)
+		dst[off+2] = sb + uint8(uint16(dst[off+2])*invA/255)
+		dst[off+3] = sa + uint8(uint16(dst[off+3])*invA/255)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-convertBGRAToRGBA">
+            <div class="item-header">
+                <h4>func convertBGRAToRGBA</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>convertBGRAToRGBA converts pixel data from BGRA (GPU texture format) to RGBA.</p>
+                
+                <p>Both src and dst must have at least pixelCount*4 bytes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func convertBGRAToRGBA(src, dst []byte, pixelCount int) {
+	for i := 0; i < pixelCount; i++ {
+		off := i * 4
+		b, g, r, a := src[off], src[off+1], src[off+2], src[off+3]
+		dst[off] = r
+		dst[off+1] = g
+		dst[off+2] = b
+		dst[off+3] = a
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-createAndUploadVertexBuffer">
+            <div class="item-header">
+                <h4>func createAndUploadVertexBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>createAndUploadVertexBuffer creates a vertex buffer and uploads data.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) createAndUploadVertexBuffer(label string, data []byte) (hal.Buffer, error) {
+	buf, err := sr.device.CreateBuffer(&hal.BufferDescriptor{
+		Label:	label, Size: uint64(len(data)),
+		Usage:	gputypes.BufferUsageVertex | gputypes.BufferUsageCopyDst,
+	})
+	if err != nil {
+		return nil, fmt.Errorf("create %s buffer: %w", label, err)
+	}
+	if err := sr.queue.WriteBuffer(buf, 0, data); err != nil {
+		sr.device.DestroyBuffer(buf)
+		return nil, fmt.Errorf("write %s buffer: %w", label, err)
+	}
+	return buf, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-createRenderBuffers">
+            <div class="item-header">
+                <h4>func createRenderBuffers</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>createRenderBuffers creates vertex buffers, uniform buffers, and bind groups</p>
+                
+                <p>for a stencil-then-cover render pass.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) createRenderBuffers(
+	w, h uint32, fanVerts []float32, coverQuad [12]float32, color gg.RGBA,
+) (*stencilCoverBuffers, error) {
+	b := &stencilCoverBuffers{
+		fanVertexCount: uint32(len(fanVerts) / 2),
+	}
+
+	var err error
+
+	b.fanVertBuf, err = sr.createAndUploadVertexBuffer("stencil_fan_verts", float32SliceToBytes(fanVerts))
+	if err != nil {
+		b.destroy(sr.device)
+		return nil, err
+	}
+	b.coverVertBuf, err = sr.createAndUploadVertexBuffer("stencil_cover_verts", float32SliceToBytes(coverQuad[:]))
+	if err != nil {
+		b.destroy(sr.device)
+		return nil, err
+	}
+
+	b.stencilUniBuf, b.stencilBindGroup, err = sr.createUniformAndBindGroup(
+		"stencil_fill", makeStencilFillUniform(w, h), stencilFillUniformSize,
+	)
+	if err != nil {
+		b.destroy(sr.device)
+		return nil, err
+	}
+	b.coverUniBuf, b.coverBindGroup, err = sr.createUniformAndBindGroup(
+		"cover", makeCoverUniform(w, h, color), coverUniformSize,
+	)
+	if err != nil {
+		b.destroy(sr.device)
+		return nil, err
+	}
+
+	return b, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-createUniformAndBindGroup">
+            <div class="item-header">
+                <h4>func createUniformAndBindGroup</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>createUniformAndBindGroup creates a uniform buffer, uploads data, and creates</p>
+                
+                <p>a bind group with a single buffer binding at group(0) binding(0).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) createUniformAndBindGroup(
+	label string, data []byte, size uint64,
+) (hal.Buffer, hal.BindGroup, error) {
+	buf, err := sr.device.CreateBuffer(&hal.BufferDescriptor{
+		Label:	label + "_uniform", Size: size,
+		Usage:	gputypes.BufferUsageUniform | gputypes.BufferUsageCopyDst,
+	})
+	if err != nil {
+		return nil, nil, fmt.Errorf("create %s uniform: %w", label, err)
+	}
+	if err := sr.queue.WriteBuffer(buf, 0, data); err != nil {
+		sr.device.DestroyBuffer(buf)
+		return nil, nil, fmt.Errorf("write %s uniform: %w", label, err)
+	}
+
+	bg, err := sr.device.CreateBindGroup(&hal.BindGroupDescriptor{
+		Label:	label + "_bind", Layout: sr.uniformLayout,
+		Entries: []gputypes.BindGroupEntry{
+			{Binding: 0, Resource: gputypes.BufferBinding{
+				Buffer:	buf.NativeHandle(), Offset: 0, Size: size,
+			}},
+		},
+	})
+	if err != nil {
+		sr.device.DestroyBuffer(buf)
+		return nil, nil, fmt.Errorf("create %s bind group: %w", label, err)
+	}
+	return buf, bg, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-destroy">
+            <div class="item-header">
+                <h4>func destroy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>destroy releases all GPU resources.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *stencilCoverBuffers) destroy(device hal.Device) {
+	if b.coverBindGroup != nil {
+		device.DestroyBindGroup(b.coverBindGroup)
+	}
+	if b.stencilBindGroup != nil {
+		device.DestroyBindGroup(b.stencilBindGroup)
+	}
+	if b.coverUniBuf != nil {
+		device.DestroyBuffer(b.coverUniBuf)
+	}
+	if b.stencilUniBuf != nil {
+		device.DestroyBuffer(b.stencilUniBuf)
+	}
+	if b.coverVertBuf != nil {
+		device.DestroyBuffer(b.coverVertBuf)
+	}
+	if b.fanVertBuf != nil {
+		device.DestroyBuffer(b.fanVertBuf)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-destroyTextures">
+            <div class="item-header">
+                <h4>func destroyTextures</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>destroyTextures releases all texture views and textures, resetting dimensions to zero.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) destroyTextures() {
+	sr.textures.destroyTextures(sr.device)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-encodeAndReadback">
+            <div class="item-header">
+                <h4>func encodeAndReadback</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>encodeAndReadback encodes the stencil-then-cover render pass, copies the</p>
+                
+                <p>resolve texture to a staging buffer, submits GPU commands, waits for</p>
+                
+                <p>completion, and writes pixel data to the target.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) encodeAndReadback(
+	w, h uint32, bufs *stencilCoverBuffers, target gg.GPURenderTarget, fillRule gg.FillRule,
+) error {
+	encoder, err := sr.device.CreateCommandEncoder(&hal.CommandEncoderDescriptor{
+		Label: "stencil_cover_encoder",
+	})
+	if err != nil {
+		return fmt.Errorf("create command encoder: %w", err)
+	}
+	if err := encoder.BeginEncoding("stencil_cover"); err != nil {
+		return fmt.Errorf("begin encoding: %w", err)
+	}
+
+	rp := encoder.BeginRenderPass(sr.RenderPassDescriptor())
+
+	stencilPipeline := sr.nonZeroStencilPipeline
+	if fillRule == gg.FillRuleEvenOdd {
+		stencilPipeline = sr.evenOddStencilPipeline
+	}
+
+	rp.SetPipeline(stencilPipeline)
+	rp.SetBindGroup(0, bufs.stencilBindGroup, nil)
+	rp.SetVertexBuffer(0, bufs.fanVertBuf, 0)
+	rp.Draw(bufs.fanVertexCount, 1, 0, 0)
+
+	rp.SetPipeline(sr.nonZeroCoverPipeline)
+	rp.SetBindGroup(0, bufs.coverBindGroup, nil)
+	rp.SetVertexBuffer(0, bufs.coverVertBuf, 0)
+	rp.SetStencilReference(0)
+	rp.Draw(6, 1, 0, 0)
+
+	rp.End()
+
+	encoder.TransitionTextures([]hal.TextureBarrier{{
+		Texture:	sr.textures.resolveTex,
+		Usage: hal.TextureUsageTransition{
+			OldUsage:	gputypes.TextureUsageRenderAttachment,
+			NewUsage:	gputypes.TextureUsageCopySrc,
+		},
+	}})
+
+	pixelBufSize := uint64(w) * uint64(h) * 4
+	stagingBuf, err := sr.device.CreateBuffer(&hal.BufferDescriptor{
+		Label:	"stencil_staging", Size: pixelBufSize,
+		Usage:	gputypes.BufferUsageMapRead | gputypes.BufferUsageCopyDst,
+	})
+	if err != nil {
+		encoder.DiscardEncoding()
+		return fmt.Errorf("create staging buffer: %w", err)
+	}
+	defer sr.device.DestroyBuffer(stagingBuf)
+
+	encoder.CopyTextureToBuffer(sr.textures.resolveTex, stagingBuf, []hal.BufferTextureCopy{{
+		BufferLayout:	hal.ImageDataLayout{Offset: 0, BytesPerRow: w * 4, RowsPerImage: h},
+		TextureBase:	hal.ImageCopyTexture{Texture: sr.textures.resolveTex, MipLevel: 0},
+		Size:		hal.Extent3D{Width: w, Height: h, DepthOrArrayLayers: 1},
+	}})
+
+	cmdBuf, err := encoder.EndEncoding()
+	if err != nil {
+		return fmt.Errorf("end encoding: %w", err)
+	}
+	defer sr.device.FreeCommandBuffer(cmdBuf)
+
+	return sr.submitAndReadback(cmdBuf, stagingBuf, pixelBufSize, target)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ensureReady">
+            <div class="item-header">
+                <h4>func ensureReady</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ensureReady ensures textures and pipelines are created for the given dimensions.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) ensureReady(w, h uint32) error {
+	if err := sr.EnsureTextures(w, h); err != nil {
+		return fmt.Errorf("ensure textures: %w", err)
+	}
+	if sr.nonZeroStencilPipeline == nil {
+		if err := sr.createPipelines(); err != nil {
+			return fmt.Errorf("create pipelines: %w", err)
+		}
+	}
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-float32SliceToBytes">
+            <div class="item-header">
+                <h4>func float32SliceToBytes</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>float32SliceToBytes converts a float32 slice to a byte slice without copying.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func float32SliceToBytes(s []float32) []byte {
+	if len(s) == 0 {
+		return nil
+	}
+	return unsafe.Slice((*byte)(unsafe.Pointer(&s[0])), len(s)*4)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-makeCoverUniform">
+            <div class="item-header">
+                <h4>func makeCoverUniform</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>makeCoverUniform creates the 32-byte uniform buffer for the cover pass.</p>
+                
+                <p>Layout: viewport (vec2<f32>) + padding (vec2<f32>) + color (vec4<f32>, premultiplied alpha).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func makeCoverUniform(w, h uint32, color gg.RGBA) []byte {
+	buf := make([]byte, coverUniformSize)
+	binary.LittleEndian.PutUint32(buf[0:4], math.Float32bits(float32(w)))
+	binary.LittleEndian.PutUint32(buf[4:8], math.Float32bits(float32(h)))
+
+	premulR := float32(color.R * color.A)
+	premulG := float32(color.G * color.A)
+	premulB := float32(color.B * color.A)
+	premulA := float32(color.A)
+	binary.LittleEndian.PutUint32(buf[16:20], math.Float32bits(premulR))
+	binary.LittleEndian.PutUint32(buf[20:24], math.Float32bits(premulG))
+	binary.LittleEndian.PutUint32(buf[24:28], math.Float32bits(premulB))
+	binary.LittleEndian.PutUint32(buf[28:32], math.Float32bits(premulA))
+	return buf
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-makeStencilFillUniform">
+            <div class="item-header">
+                <h4>func makeStencilFillUniform</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>makeStencilFillUniform creates the 16-byte uniform buffer for the stencil fill pass.</p>
+                
+                <p>Layout: viewport (vec2<f32>) + padding (vec2<f32>).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func makeStencilFillUniform(w, h uint32) []byte {
+	buf := make([]byte, stencilFillUniformSize)
+	binary.LittleEndian.PutUint32(buf[0:4], math.Float32bits(float32(w)))
+	binary.LittleEndian.PutUint32(buf[4:8], math.Float32bits(float32(h)))
+
+	return buf
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-submitAndReadback">
+            <div class="item-header">
+                <h4>func submitAndReadback</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>submitAndReadback submits the command buffer, waits for GPU completion,</p>
+                
+                <p>reads back pixel data, and converts BGRA to RGBA into the target buffer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StencilRenderer) submitAndReadback(
+	cmdBuf hal.CommandBuffer, stagingBuf hal.Buffer,
+	pixelBufSize uint64, target gg.GPURenderTarget,
+) error {
+	fence, err := sr.device.CreateFence()
+	if err != nil {
+		return fmt.Errorf("create fence: %w", err)
+	}
+	defer sr.device.DestroyFence(fence)
+
+	if err := sr.queue.Submit([]hal.CommandBuffer{cmdBuf}, fence, 1); err != nil {
+		return fmt.Errorf("submit: %w", err)
+	}
+	fenceOK, err := sr.device.Wait(fence, 1, 5*time.Second)
+	if err != nil || !fenceOK {
+		return fmt.Errorf("wait for GPU: ok=%v err=%w", fenceOK, err)
+	}
+
+	readback := make([]byte, pixelBufSize)
+	if err := sr.queue.ReadBuffer(stagingBuf, 0, readback); err != nil {
+		return fmt.Errorf("readback: %w", err)
+	}
+
+	compositeBGRAOverRGBA(readback, target.Data, target.Width*target.Height)
+	return nil
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-StencilRenderer">
+            <div class="item-header">
+                <h4>type StencilRenderer struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StencilRenderer manages GPU resources for stencil-then-cover path rendering.</p>
+                
+                <p>It creates and maintains MSAA color, stencil, and resolve textures that are</p>
+                
+                <p>resized automatically when the surface dimensions change.</p>
+                
+                <p></p>
+                
+                <p>The stencil-then-cover algorithm (OpenGL Red Book / NV_path_rendering / Skia Ganesh)</p>
+                
+                <p>renders arbitrary paths in two passes within a single render pass:</p>
+                
+                <p></p>
+                
+                <p>Pass 1 (Stencil Fill): Triangle fan from an anchor point fills the stencil buffer</p>
+                
+                <p>with winding number increments. Non-zero or even-odd rules determine inside/outside.</p>
+                
+                <p>Pass 2 (Cover): A bounding quad reads the stencil buffer and writes the fill color</p>
+                
+                <p>to the MSAA color attachment for pixels with non-zero stencil values.</p>
+                
+                <p></p>
+                
+                <p>Both passes execute in a single render pass via pipeline switching. The MSAA color</p>
+                
+                <p>attachment resolves to the single-sample resolve texture, which can be read back</p>
+                
+                <p>to the CPU via CopySrc usage.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type StencilRenderer struct {
+	device	hal.Device
+	queue	hal.Queue
+
+	// Shared MSAA color + depth/stencil + resolve textures.
+	textures	textureSet
+
+	// Shader modules for stencil-then-cover rendering.
+	stencilFillShader	hal.ShaderModule
+	coverShader		hal.ShaderModule
+
+	// Bind group layout and pipeline layouts shared by both passes.
+	uniformLayout		hal.BindGroupLayout
+	stencilPipeLayout	hal.PipelineLayout
+	coverPipeLayout		hal.PipelineLayout
+
+	// Render pipelines.
+	// nonZeroStencilPipeline implements the non-zero winding fill rule:
+	// front faces increment stencil, back faces decrement.
+	nonZeroStencilPipeline	hal.RenderPipeline
+
+	// evenOddStencilPipeline implements the even-odd fill rule:
+	// both front and back faces invert the stencil value.
+	evenOddStencilPipeline	hal.RenderPipeline
+
+	// nonZeroCoverPipeline draws the fill color where stencil != 0,
+	// then resets stencil to zero via PassOp. Shared by both fill rules.
+	nonZeroCoverPipeline	hal.RenderPipeline
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-stencilCoverBuffers">
+            <div class="item-header">
+                <h4>type stencilCoverBuffers struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>stencilCoverBuffers holds all GPU buffers and bind groups for a single</p>
+                
+                <p>stencil-then-cover render pass. Created by createRenderBuffers and cleaned</p>
+                
+                <p>up via destroy.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type stencilCoverBuffers struct {
+	fanVertBuf		hal.Buffer
+	coverVertBuf		hal.Buffer
+	stencilUniBuf		hal.Buffer
+	coverUniBuf		hal.Buffer
+	stencilBindGroup	hal.BindGroup
+	coverBindGroup		hal.BindGroup
+	fanVertexCount		uint32
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

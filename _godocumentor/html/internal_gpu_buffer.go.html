@@ -1,0 +1,2587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/gpu/buffer.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="active">internal/gpu/buffer.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-CreateBuffer">CreateBuffer</a></li>
+                    
+                    <li><a href="#func-CreateBufferSimple">CreateBufferSimple</a></li>
+                    
+                    <li><a href="#func-CreateStagingBuffer">CreateStagingBuffer</a></li>
+                    
+                    <li><a href="#func-Descriptor">Descriptor</a></li>
+                    
+                    <li><a href="#func-Destroy">Destroy</a></li>
+                    
+                    <li><a href="#func-GetMappedRange">GetMappedRange</a></li>
+                    
+                    <li><a href="#func-IsDestroyed">IsDestroyed</a></li>
+                    
+                    <li><a href="#func-Label">Label</a></li>
+                    
+                    <li><a href="#func-MapAsync">MapAsync</a></li>
+                    
+                    <li><a href="#func-MapState">MapState</a></li>
+                    
+                    <li><a href="#func-NewBuffer">NewBuffer</a></li>
+                    
+                    <li><a href="#func-PollMapAsync">PollMapAsync</a></li>
+                    
+                    <li><a href="#func-Raw">Raw</a></li>
+                    
+                    <li><a href="#func-Size">Size</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-Unmap">Unmap</a></li>
+                    
+                    <li><a href="#func-Usage">Usage</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/gpu/buffer.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-CreateBuffer">
+            <div class="item-header">
+                <h4>func CreateBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CreateBuffer creates a new buffer from a device.</p>
+                
+                <p></p>
+                
+                <p>This is a helper function for creating buffers using the HAL API directly.</p>
+                
+                <p>It handles validation and wraps the buffer in a Buffer.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- device: The device to create the buffer on.</p>
+                
+                <p>- desc: The buffer descriptor.</p>
+                
+                <p></p>
+                
+                <p>Returns the new Buffer and nil on success.</p>
+                
+                <p>Returns nil and an error if:</p>
+                
+                <p>- The device is nil</p>
+                
+                <p>- The descriptor is nil</p>
+                
+                <p>- Buffer size is invalid</p>
+                
+                <p>- Buffer creation fails</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func CreateBuffer(device hal.Device, desc *BufferDescriptor) (*Buffer, error) {
+	if device == nil {
+		return nil, ErrNilHALDevice
+	}
+
+	if desc == nil {
+		return nil, fmt.Errorf("buffer descriptor is nil")
+	}
+
+	if desc.Size == 0 {
+		return nil, fmt.Errorf("%w: size is 0", ErrInvalidBufferSize)
+	}
+
+	if desc.Usage == 0 {
+		return nil, fmt.Errorf("buffer usage is empty")
+	}
+
+	if desc.MappedAtCreation {
+		if !desc.Usage.Contains(gputypes.BufferUsageMapWrite) &&
+			!desc.Usage.Contains(gputypes.BufferUsageCopyDst) {
+			return nil, fmt.Errorf("MappedAtCreation requires MapWrite or CopyDst usage")
+		}
+	}
+
+	// Calculate aligned size (align to 4 bytes for copy operations)
+	const copyBufferAlignment uint64 = 4
+	alignedSize := (desc.Size + copyBufferAlignment - 1) &^ (copyBufferAlignment - 1)
+
+	halDesc := &hal.BufferDescriptor{
+		Label:			desc.Label,
+		Size:			alignedSize,
+		Usage:			desc.Usage,
+		MappedAtCreation:	desc.MappedAtCreation,
+	}
+
+	halBuffer, err := device.CreateBuffer(halDesc)
+	if err != nil {
+		return nil, fmt.Errorf("buffer creation failed: %w", err)
+	}
+
+	resolvedDesc := *desc
+	resolvedDesc.Size = alignedSize
+
+	return NewBuffer(halBuffer, device, &resolvedDesc), nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-CreateBufferSimple">
+            <div class="item-header">
+                <h4>func CreateBufferSimple</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CreateBufferSimple creates a buffer with common defaults.</p>
+                
+                <p></p>
+                
+                <p>This is a convenience function for creating simple buffers.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- device: The device to create the buffer on.</p>
+                
+                <p>- size: Buffer size in bytes.</p>
+                
+                <p>- usage: Buffer usage flags.</p>
+                
+                <p>- label: Optional debug label.</p>
+                
+                <p></p>
+                
+                <p>Returns the new Buffer and nil on success.</p>
+                
+                <p>Returns nil and an error if creation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func CreateBufferSimple(
+	device hal.Device,
+	size uint64,
+	usage gputypes.BufferUsage,
+	label string,
+) (*Buffer, error) {
+	desc := &BufferDescriptor{
+		Label:	label,
+		Size:	size,
+		Usage:	usage,
+	}
+
+	return CreateBuffer(device, desc)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-CreateStagingBuffer">
+            <div class="item-header">
+                <h4>func CreateStagingBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CreateStagingBuffer creates a staging buffer for CPU-GPU data transfer.</p>
+                
+                <p></p>
+                
+                <p>Staging buffers are used to transfer data between CPU and GPU:</p>
+                
+                <p>- For uploads: Create with MapWrite | CopySrc, map, write, copy to GPU buffer</p>
+                
+                <p>- For readback: Create with MapRead | CopyDst, copy from GPU, map, read</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- device: The device to create the buffer on.</p>
+                
+                <p>- size: Buffer size in bytes.</p>
+                
+                <p>- forUpload: If true, creates upload staging buffer (MapWrite | CopySrc).</p>
+                
+                <p>If false, creates readback staging buffer (MapRead | CopyDst).</p>
+                
+                <p>- label: Optional debug label.</p>
+                
+                <p></p>
+                
+                <p>Returns the new Buffer and nil on success.</p>
+                
+                <p>Returns nil and an error if creation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func CreateStagingBuffer(
+	device hal.Device,
+	size uint64,
+	forUpload bool,
+	label string,
+) (*Buffer, error) {
+	var usage gputypes.BufferUsage
+	if forUpload {
+		usage = gputypes.BufferUsageMapWrite | gputypes.BufferUsageCopySrc
+	} else {
+		usage = gputypes.BufferUsageMapRead | gputypes.BufferUsageCopyDst
+	}
+
+	desc := &BufferDescriptor{
+		Label:			label,
+		Size:			size,
+		Usage:			usage,
+		MappedAtCreation:	forUpload,
+	}
+
+	return CreateBuffer(device, desc)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Descriptor">
+            <div class="item-header">
+                <h4>func Descriptor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Descriptor returns a copy of the buffer descriptor.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Descriptor() BufferDescriptor {
+	return b.descriptor
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Destroy">
+            <div class="item-header">
+                <h4>func Destroy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Destroy releases the buffer and any associated resources.</p>
+                
+                <p></p>
+                
+                <p>After calling Destroy(), the buffer should not be used.</p>
+                
+                <p>If the buffer is mapped, it will be unmapped first.</p>
+                
+                <p></p>
+                
+                <p>This method is idempotent - calling it multiple times is safe.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Destroy() {
+	b.mu.Lock()
+	if b.destroyed {
+		b.mu.Unlock()
+		return
+	}
+	b.destroyed = true
+	device := b.device
+	halBuf := b.halBuffer
+	callback := b.mapCallback
+	wasMapping := b.mapState == BufferMapStatePending
+	b.halBuffer = nil
+	b.mappedData = nil
+	b.mapCallback = nil
+	b.mapState = BufferMapStateUnmapped
+	b.mu.Unlock()
+
+	if wasMapping && callback != nil {
+		callback(BufferMapAsyncStatusDestroyedBeforeCallback)
+	}
+
+	if device != nil && halBuf != nil {
+		device.DestroyBuffer(halBuf)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetMappedRange">
+            <div class="item-header">
+                <h4>func GetMappedRange</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetMappedRange returns the mapped data slice.</p>
+                
+                <p></p>
+                
+                <p>The returned slice is only valid while the buffer is mapped.</p>
+                
+                <p>Do not use the slice after calling Unmap().</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- offset: Byte offset within the mapped range</p>
+                
+                <p>- size: Number of bytes to access</p>
+                
+                <p></p>
+                
+                <p>Returns the data slice and nil on success.</p>
+                
+                <p>Returns nil and an error if:</p>
+                
+                <p>- The buffer has been destroyed</p>
+                
+                <p>- The buffer is not mapped</p>
+                
+                <p>- The range is outside the mapped region</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) GetMappedRange(offset, size uint64) ([]byte, error) {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+
+	if b.destroyed {
+		return nil, ErrBufferDestroyed
+	}
+
+	if b.mapState == BufferMapStatePending {
+		return nil, ErrBufferMapPending
+	}
+	if b.mapState != BufferMapStateMapped {
+		return nil, ErrBufferNotMapped
+	}
+
+	if offset < b.mapOffset {
+		return nil, fmt.Errorf("%w: offset %d is before mapped region start %d",
+			ErrInvalidMapRange, offset, b.mapOffset)
+	}
+	if offset+size > b.mapOffset+b.mapSize {
+		return nil, fmt.Errorf("%w: offset %d + size %d exceeds mapped region end %d",
+			ErrInvalidMapRange, offset, size, b.mapOffset+b.mapSize)
+	}
+
+	relOffset := offset - b.mapOffset
+	return b.mappedData[relOffset : relOffset+size], nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-IsDestroyed">
+            <div class="item-header">
+                <h4>func IsDestroyed</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>IsDestroyed returns true if the buffer has been destroyed.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) IsDestroyed() bool {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	return b.destroyed
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Label">
+            <div class="item-header">
+                <h4>func Label</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Label returns the buffer's debug label.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Label() string {
+	return b.descriptor.Label
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-MapAsync">
+            <div class="item-header">
+                <h4>func MapAsync</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>MapAsync initiates an async map operation.</p>
+                
+                <p></p>
+                
+                <p>The callback is invoked when mapping completes or fails. The buffer</p>
+                
+                <p>must have appropriate usage flags (MapRead for read, MapWrite for write).</p>
+                
+                <p></p>
+                
+                <p>After MapAsync returns successfully, the map state transitions to Pending.</p>
+                
+                <p>Poll the device with PollMapAsync() until the callback is invoked and</p>
+                
+                <p>the state becomes Mapped.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- mode: MapModeRead or MapModeWrite</p>
+                
+                <p>- offset: Byte offset in the buffer (must be aligned)</p>
+                
+                <p>- size: Number of bytes to map (must be aligned)</p>
+                
+                <p>- callback: Function called when mapping completes</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success (mapping initiated).</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The buffer has been destroyed</p>
+                
+                <p>- The buffer is already mapped or mapping is pending</p>
+                
+                <p>- The mode doesn't match buffer usage flags</p>
+                
+                <p>- The range is out of bounds</p>
+                
+                <p>- The callback is nil</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) MapAsync(mode gputypes.MapMode, offset, size uint64, callback func(BufferMapAsyncStatus)) error {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
+	if b.destroyed {
+		return ErrBufferDestroyed
+	}
+
+	if b.mapState != BufferMapStateUnmapped {
+		if callback != nil {
+			callback(BufferMapAsyncStatusMappingAlreadyPending)
+		}
+		return ErrBufferAlreadyMapped
+	}
+
+	if callback == nil {
+		return ErrCallbackNil
+	}
+
+	if mode == 0 {
+		callback(BufferMapAsyncStatusValidationError)
+		return ErrInvalidMapMode
+	}
+
+	if mode == gputypes.MapModeRead && !b.descriptor.Usage.Contains(gputypes.BufferUsageMapRead) {
+		callback(BufferMapAsyncStatusValidationError)
+		return fmt.Errorf("%w: buffer does not have MapRead usage", ErrMapUsageMismatch)
+	}
+	if mode == gputypes.MapModeWrite && !b.descriptor.Usage.Contains(gputypes.BufferUsageMapWrite) {
+		callback(BufferMapAsyncStatusValidationError)
+		return fmt.Errorf("%w: buffer does not have MapWrite usage", ErrMapUsageMismatch)
+	}
+
+	if offset > b.descriptor.Size {
+		callback(BufferMapAsyncStatusOffsetOutOfRange)
+		return fmt.Errorf("%w: offset %d > buffer size %d", ErrInvalidMapRange, offset, b.descriptor.Size)
+	}
+	if offset+size > b.descriptor.Size {
+		callback(BufferMapAsyncStatusSizeOutOfRange)
+		return fmt.Errorf("%w: offset %d + size %d > buffer size %d", ErrInvalidMapRange, offset, size, b.descriptor.Size)
+	}
+
+	// Validate alignment (WebGPU requires 8-byte alignment for map operations)
+	const mapAlignment uint64 = 8
+	if offset%mapAlignment != 0 {
+		callback(BufferMapAsyncStatusValidationError)
+		return fmt.Errorf("%w: offset %d must be %d-byte aligned", ErrInvalidMapRange, offset, mapAlignment)
+	}
+	if size%mapAlignment != 0 && size != b.descriptor.Size-offset {
+
+		callback(BufferMapAsyncStatusValidationError)
+		return fmt.Errorf("%w: size %d must be %d-byte aligned", ErrInvalidMapRange, size, mapAlignment)
+	}
+
+	b.mapState = BufferMapStatePending
+	b.mapMode = mode
+	b.mapOffset = offset
+	b.mapSize = size
+	b.mapCallback = callback
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-MapState">
+            <div class="item-header">
+                <h4>func MapState</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>MapState returns the current mapping state.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) MapState() BufferMapState {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	return b.mapState
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewBuffer">
+            <div class="item-header">
+                <h4>func NewBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewBuffer creates a new Buffer from a buffer handle.</p>
+                
+                <p></p>
+                
+                <p>This is typically called by CreateBuffer() after successfully</p>
+                
+                <p>creating the underlying buffer.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- halBuffer: The underlying buffer (ownership transferred)</p>
+                
+                <p>- device: The parent device (retained for operations)</p>
+                
+                <p>- desc: The buffer descriptor (copied)</p>
+                
+                <p></p>
+                
+                <p>Returns the new Buffer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewBuffer(halBuffer hal.Buffer, device hal.Device, desc *BufferDescriptor) *Buffer {
+	buf := &Buffer{
+		halBuffer:	halBuffer,
+		device:		device,
+		descriptor:	*desc,
+		mapState:	BufferMapStateUnmapped,
+	}
+
+	if desc.MappedAtCreation {
+		buf.mapState = BufferMapStateMapped
+		buf.mapMode = gputypes.MapModeWrite
+		buf.mapOffset = 0
+		buf.mapSize = desc.Size
+	}
+
+	return buf
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-PollMapAsync">
+            <div class="item-header">
+                <h4>func PollMapAsync</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PollMapAsync polls for map completion.</p>
+                
+                <p></p>
+                
+                <p>Call this method repeatedly after MapAsync() until it returns true,</p>
+                
+                <p>indicating that mapping is complete (either success or failure).</p>
+                
+                <p>The callback provided to MapAsync will be invoked when mapping completes.</p>
+                
+                <p></p>
+                
+                <p>Returns true if mapping is complete (success or failure).</p>
+                
+                <p>Returns false if mapping is still pending.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) PollMapAsync() bool {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
+	if b.mapState != BufferMapStatePending {
+		return b.mapState == BufferMapStateMapped || b.mapState == BufferMapStateUnmapped
+	}
+
+	if b.destroyed {
+		if b.mapCallback != nil {
+			callback := b.mapCallback
+			b.mapCallback = nil
+			b.mapState = BufferMapStateUnmapped
+
+			b.mu.Unlock()
+			callback(BufferMapAsyncStatusDestroyedBeforeCallback)
+			b.mu.Lock()
+		}
+		return true
+	}
+
+	b.mappedData = make([]byte, b.mapSize)
+	b.mapState = BufferMapStateMapped
+
+	if b.mapCallback != nil {
+		callback := b.mapCallback
+		b.mapCallback = nil
+
+		b.mu.Unlock()
+		callback(BufferMapAsyncStatusSuccess)
+		b.mu.Lock()
+	}
+
+	return true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Raw">
+            <div class="item-header">
+                <h4>func Raw</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Raw returns the underlying buffer handle.</p>
+                
+                <p></p>
+                
+                <p>Returns nil if the buffer has been destroyed.</p>
+                
+                <p>Use with caution - the caller should ensure the buffer is not destroyed</p>
+                
+                <p>while the handle is in use.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Raw() hal.Buffer {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	if b.destroyed {
+		return nil
+	}
+	return b.halBuffer
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Size">
+            <div class="item-header">
+                <h4>func Size</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Size returns the buffer size in bytes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Size() uint64 {
+	return b.descriptor.Size
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-String">
+            <div class="item-header">
+                <h4>func String</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>String returns the string representation of BufferMapState.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s BufferMapState) String() string {
+	switch s {
+	case BufferMapStateUnmapped:
+		return "Unmapped"
+	case BufferMapStatePending:
+		return "Pending"
+	case BufferMapStateMapped:
+		return "Mapped"
+	default:
+		return fmt.Sprintf("Unknown(%d)", int(s))
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-String">
+            <div class="item-header">
+                <h4>func String</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>String returns the string representation of BufferMapAsyncStatus.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s BufferMapAsyncStatus) String() string {
+	switch s {
+	case BufferMapAsyncStatusSuccess:
+		return "Success"
+	case BufferMapAsyncStatusValidationError:
+		return "ValidationError"
+	case BufferMapAsyncStatusUnknown:
+		return "Unknown"
+	case BufferMapAsyncStatusDeviceLost:
+		return "DeviceLost"
+	case BufferMapAsyncStatusDestroyedBeforeCallback:
+		return "DestroyedBeforeCallback"
+	case BufferMapAsyncStatusUnmappedBeforeCallback:
+		return "UnmappedBeforeCallback"
+	case BufferMapAsyncStatusMappingAlreadyPending:
+		return "MappingAlreadyPending"
+	case BufferMapAsyncStatusOffsetOutOfRange:
+		return "OffsetOutOfRange"
+	case BufferMapAsyncStatusSizeOutOfRange:
+		return "SizeOutOfRange"
+	default:
+		return fmt.Sprintf("Unknown(%d)", int(s))
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Unmap">
+            <div class="item-header">
+                <h4>func Unmap</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Unmap unmaps the buffer, making changes visible to GPU.</p>
+                
+                <p></p>
+                
+                <p>After unmapping, the buffer returns to the Unmapped state.</p>
+                
+                <p>Any slices returned by GetMappedRange become invalid.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the buffer has been destroyed.</p>
+                
+                <p>If the buffer is already unmapped, this is a no-op.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Unmap() error {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
+	if b.destroyed {
+		return ErrBufferDestroyed
+	}
+
+	if b.mapState == BufferMapStatePending {
+		if b.mapCallback != nil {
+			callback := b.mapCallback
+			b.mapCallback = nil
+			b.mapState = BufferMapStateUnmapped
+			b.mappedData = nil
+
+			b.mu.Unlock()
+			callback(BufferMapAsyncStatusUnmappedBeforeCallback)
+			b.mu.Lock()
+		}
+		return nil
+	}
+
+	if b.mapState != BufferMapStateMapped {
+		return nil
+	}
+
+	b.mapState = BufferMapStateUnmapped
+	b.mappedData = nil
+	b.mapCallback = nil
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Usage">
+            <div class="item-header">
+                <h4>func Usage</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Usage returns the buffer usage flags.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (b *Buffer) Usage() gputypes.BufferUsage {
+	return b.descriptor.Usage
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-Buffer">
+            <div class="item-header">
+                <h4>type Buffer struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Buffer represents a GPU buffer resource.</p>
+                
+                <p></p>
+                
+                <p>Buffer wraps a hal.Buffer and provides Go-idiomatic access with</p>
+                
+                <p>async buffer mapping support. This follows the wgpu pattern where</p>
+                
+                <p>buffer mapping is asynchronous and requires device polling.</p>
+                
+                <p></p>
+                
+                <p>Thread Safety:</p>
+                
+                <p>Buffer is safe for concurrent access. All state mutations are</p>
+                
+                <p>protected by a mutex. The mapping callback is invoked from the</p>
+                
+                <p>polling goroutine.</p>
+                
+                <p></p>
+                
+                <p>Lifecycle:</p>
+                
+                <p>1. Create via CreateBuffer()</p>
+                
+                <p>2. Use MapAsync() to initiate mapping</p>
+                
+                <p>3. Poll with PollMapAsync() until complete</p>
+                
+                <p>4. Access data with GetMappedRange()</p>
+                
+                <p>5. Call Unmap() when done</p>
+                
+                <p>6. Call Destroy() when the buffer is no longer needed</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type Buffer struct {
+	// mu protects mutable state.
+	mu	sync.RWMutex
+
+	// halBuffer is the underlying buffer handle.
+	halBuffer	hal.Buffer
+
+	// device is the parent device.
+	device	hal.Device
+
+	// descriptor holds the buffer configuration (immutable after creation).
+	descriptor	BufferDescriptor
+
+	// mapState is the current mapping state.
+	mapState	BufferMapState
+
+	// mapMode is the mode used for the current mapping.
+	mapMode	gputypes.MapMode
+
+	// mapOffset is the offset of the current mapping.
+	mapOffset	uint64
+
+	// mapSize is the size of the current mapping.
+	mapSize	uint64
+
+	// mappedData holds the mapped memory slice (only valid when mapped).
+	mappedData	[]byte
+
+	// mapCallback is the callback for async map operations.
+	mapCallback	func(BufferMapAsyncStatus)
+
+	// destroyed indicates whether the buffer has been destroyed.
+	destroyed	bool
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-BufferDescriptor">
+            <div class="item-header">
+                <h4>type BufferDescriptor struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>BufferDescriptor describes a buffer to create.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type BufferDescriptor struct {
+	// Label is an optional debug name.
+	Label	string
+
+	// Size is the buffer size in bytes.
+	Size	uint64
+
+	// Usage specifies how the buffer will be used.
+	Usage	gputypes.BufferUsage
+
+	// MappedAtCreation creates the buffer pre-mapped for writing.
+	MappedAtCreation	bool
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/gpu/vello_tiles.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="active">internal/gpu/vello_tiles.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-NewTileRasterizer">NewTileRasterizer</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-abs32">abs32</a></li>
+                    
+                    <li><a href="#func-addSegmentToTile">addSegmentToTile</a></li>
+                    
+                    <li><a href="#func-binSegments">binSegments</a></li>
+                    
+                    <li><a href="#func-computeBackdropPrefixSum">computeBackdropPrefixSum</a></li>
+                    
+                    <li><a href="#func-emitScanline">emitScanline</a></li>
+                    
+                    <li><a href="#func-fillPath">fillPath</a></li>
+                    
+                    <li><a href="#func-fillTileScanline">fillTileScanline</a></li>
+                    
+                    <li><a href="#func-velloSpan">velloSpan</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/gpu/vello_tiles.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Fill">
+            <div class="item-header">
+                <h4>func Fill</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Fill renders a path using Vello's tile-based algorithm.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) Fill(
+	eb *raster.EdgeBuilder,
+	fillRule raster.FillRule,
+	callback func(y int, runs *raster.AlphaRuns),
+) {
+	if eb.IsEmpty() {
+		return
+	}
+
+	tr.Reset()
+
+	aaShift := eb.AAShift()
+
+	aaScale := float32(int32(1) << uint(aaShift))
+
+	bounds := eb.Bounds()
+	pathMinY := int(math.Floor(float64(bounds.MinY)))
+	pathMaxY := int(math.Ceil(float64(bounds.MaxY)))
+	if pathMinY < 0 {
+		pathMinY = 0
+	}
+	if pathMaxY > tr.height {
+		pathMaxY = tr.height
+	}
+
+	tr.binSegments(eb, aaScale)
+
+	tr.computeBackdropPrefixSum()
+
+	for tileY := 0; tileY < tr.tilesY; tileY++ {
+
+		for localY := 0; localY < VelloTileHeight; localY++ {
+			pixelY := tileY*VelloTileHeight + localY
+			if pixelY >= tr.height || pixelY >= pathMaxY {
+				break
+			}
+
+			if pixelY < pathMinY {
+				continue
+			}
+
+			for i := range tr.rowCoverage {
+				tr.rowCoverage[i] = 0
+			}
+
+			for tileX := 0; tileX < tr.tilesX; tileX++ {
+				tileIdx := tileY*tr.tilesX + tileX
+				tile := &tr.tiles[tileIdx]
+
+				tr.fillTileScanline(tile, localY, fillRule)
+
+				baseX := tileX * VelloTileWidth
+				for i := 0; i < VelloTileWidth && baseX+i < tr.width; i++ {
+					tr.rowCoverage[baseX+i] = tr.area[i]
+				}
+			}
+
+			tr.emitScanline(pixelY, callback)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewTileRasterizer">
+            <div class="item-header">
+                <h4>func NewTileRasterizer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewTileRasterizer creates a new Vello-style tile rasterizer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewTileRasterizer(width, height int) *TileRasterizer {
+	tilesX := (width + VelloTileWidth - 1) / VelloTileWidth
+	tilesY := (height + VelloTileHeight - 1) / VelloTileHeight
+
+	return &TileRasterizer{
+		width:		width,
+		height:		height,
+		tilesX:		tilesX,
+		tilesY:		tilesY,
+		tiles:		make([]VelloTile, tilesX*tilesY),
+		area:		make([]float32, VelloTileSize),
+		rowCoverage:	make([]float32, width),
+		alphaRuns:	raster.NewAlphaRuns(width),
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Reset">
+            <div class="item-header">
+                <h4>func Reset</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Reset clears the rasterizer for reuse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) Reset() {
+	for i := range tr.tiles {
+		tr.tiles[i].Segments = tr.tiles[i].Segments[:0]
+		tr.tiles[i].Backdrop = 0
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-abs32">
+            <div class="item-header">
+                <h4>func abs32</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>abs32 returns absolute value of float32.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func abs32(x float32) float32 {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-addSegmentToTile">
+            <div class="item-header">
+                <h4>func addSegmentToTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>addSegmentToTile clips and adds a segment to a specific tile.</p>
+                
+                <p>Port of path_tiling.rs segment clipping and y_edge calculation.</p>
+                
+                <p></p>
+                
+                <p>nolint:gocognit,gocyclo,cyclop,funlen,dupl // Direct port of Vello algorithm</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) addSegmentToTile(
+	x0, y0, x1, y1 float32,
+	tileX, tileY int,
+	isDown bool,
+	i, count int,
+	a, b, _, _ float32,
+	isPositiveSlope bool,
+	epsilon, noYEdge float32,
+) {
+	const tileW = float32(VelloTileWidth)
+	const tileH = float32(VelloTileHeight)
+
+	tileLeftX := float32(tileX) * tileW
+	tileTopY := float32(tileY) * tileH
+	tileRightX := tileLeftX + tileW
+	tileBotY := tileTopY + tileH
+
+	xy0x, xy0y := x0, y0
+	xy1x, xy1y := x1, y1
+
+	if i > 0 {
+		zPrev := float32(math.Floor(float64(a*float32(i-1) + b)))
+		z := float32(math.Floor(float64(a*float32(i) + b)))
+		if z == zPrev {
+
+			if y1 != y0 {
+				t := (tileTopY - y0) / (y1 - y0)
+				xt := x0 + (x1-x0)*t
+				if xt < tileLeftX+1e-3 {
+					xt = tileLeftX + 1e-3
+				}
+				if xt > tileRightX {
+					xt = tileRightX
+				}
+				xy0x, xy0y = xt, tileTopY
+			}
+		} else {
+			// Left or right edge is clipped
+			var xClip float32
+			if isPositiveSlope {
+				xClip = tileLeftX
+			} else {
+				xClip = tileRightX
+			}
+			if x1 != x0 {
+				t := (xClip - x0) / (x1 - x0)
+				yt := y0 + (y1-y0)*t
+				if yt < tileTopY+1e-3 {
+					yt = tileTopY + 1e-3
+				}
+				if yt > tileBotY {
+					yt = tileBotY
+				}
+				xy0x, xy0y = xClip, yt
+			}
+		}
+	}
+
+	if i < count-1 {
+		zNext := float32(math.Floor(float64(a*float32(i+1) + b)))
+		z := float32(math.Floor(float64(a*float32(i) + b)))
+		if z == zNext {
+
+			if y1 != y0 {
+				t := (tileBotY - y0) / (y1 - y0)
+				xt := x0 + (x1-x0)*t
+				if xt < tileLeftX+1e-3 {
+					xt = tileLeftX + 1e-3
+				}
+				if xt > tileRightX {
+					xt = tileRightX
+				}
+				xy1x, xy1y = xt, tileBotY
+			}
+		} else {
+			// Left or right edge is clipped
+			var xClip float32
+			if isPositiveSlope {
+				xClip = tileRightX
+			} else {
+				xClip = tileLeftX
+			}
+			if x1 != x0 {
+				t := (xClip - x0) / (x1 - x0)
+				yt := y0 + (y1-y0)*t
+				if yt < tileTopY+1e-3 {
+					yt = tileTopY + 1e-3
+				}
+				if yt > tileBotY {
+					yt = tileBotY
+				}
+				xy1x, xy1y = xClip, yt
+			}
+		}
+	}
+
+	p0x := xy0x - tileLeftX
+	p0y := xy0y - tileTopY
+	p1x := xy1x - tileLeftX
+	p1y := xy1y - tileTopY
+
+	yEdge := noYEdge
+
+	if p0x == 0.0 {
+		if p1x == 0.0 {
+			p0x = epsilon
+			if p0y == 0.0 {
+				p1x = epsilon
+				p1y = tileH
+			} else {
+				p1x = 2.0 * epsilon
+				p1y = p0y
+			}
+		} else if p0y == 0.0 {
+			p0x = epsilon
+		} else {
+			yEdge = p0y
+		}
+	} else if p1x == 0.0 {
+		if p1y == 0.0 {
+			p1x = epsilon
+		} else {
+			yEdge = p1y
+		}
+	}
+
+	if p0x == float32(int(p0x)) && p0x != 0.0 {
+		p0x -= epsilon
+	}
+	if p1x == float32(int(p1x)) && p1x != 0.0 {
+		p1x -= epsilon
+	}
+
+	if !isDown {
+		p0x, p1x = p1x, p0x
+		p0y, p1y = p1y, p0y
+	}
+
+	tileIdx := tileY*tr.tilesX + tileX
+	tr.tiles[tileIdx].Segments = append(tr.tiles[tileIdx].Segments, PathSegment{
+		Point0:	[2]float32{p0x, p0y},
+		Point1:	[2]float32{p1x, p1y},
+		YEdge:	yEdge,
+	})
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-binSegments">
+            <div class="item-header">
+                <h4>func binSegments</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>binSegments distributes edge segments to tiles.</p>
+                
+                <p>Direct port of path_count.rs (backdrop) + path_tiling.rs (segments with y_edge).</p>
+                
+                <p></p>
+                
+                <p>nolint:gocognit,gocyclo,cyclop,funlen,maintidx // Direct port of Vello algorithm</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) binSegments(eb *raster.EdgeBuilder, _ float32) {
+	const epsilon float32 = 1e-6
+	const noYEdge float32 = 1e9
+
+	bounds := eb.Bounds()
+	pathBboxMinX := int(math.Floor(float64(bounds.MinX * velloTileScale)))
+	pathBboxMinY := int(math.Floor(float64(bounds.MinY * velloTileScale)))
+	pathBboxMaxX := int(math.Ceil(float64(bounds.MaxX * velloTileScale)))
+	pathBboxMaxY := int(math.Ceil(float64(bounds.MaxY * velloTileScale)))
+	if pathBboxMinX < 0 {
+		pathBboxMinX = 0
+	}
+	if pathBboxMinY < 0 {
+		pathBboxMinY = 0
+	}
+	if pathBboxMaxX > tr.tilesX {
+		pathBboxMaxX = tr.tilesX
+	}
+	if pathBboxMaxY > tr.tilesY {
+		pathBboxMaxY = tr.tilesY
+	}
+
+	for _, vl := range eb.VelloLines() {
+
+		x0, y0 := vl.P0[0], vl.P0[1]
+		x1, y1 := vl.P1[0], vl.P1[1]
+
+		isDown := vl.IsDown
+		delta := 1
+		if isDown {
+			delta = -1
+		}
+
+		s0x := x0 * velloTileScale
+		s0y := y0 * velloTileScale
+		s1x := x1 * velloTileScale
+		s1y := y1 * velloTileScale
+
+		countX := velloSpan(s0x, s1x) - 1
+		count := countX + velloSpan(s0y, s1y)
+
+		dx := float32(math.Abs(float64(s1x - s0x)))
+		dy := s1y - s0y
+
+		if dx+dy == 0.0 {
+			continue
+		}
+		if dy == 0.0 && float32(math.Floor(float64(s0y))) == s0y {
+			continue
+		}
+
+		idxdy := 1.0 / (dx + dy)
+		a := dx * idxdy
+		isPositiveSlope := s1x >= s0x
+		sign := float32(1.0)
+		if !isPositiveSlope {
+			sign = -1.0
+		}
+		xt0 := float32(math.Floor(float64(s0x * sign)))
+		c := s0x*sign - xt0
+		tileY0 := float32(math.Floor(float64(s0y)))
+		ytop := tileY0 + 1.0
+		if s0y == s1y {
+			ytop = float32(math.Ceil(float64(s0y)))
+		}
+		b := (dy*c + dx*(ytop-s0y)) * idxdy
+		if b > velloOneMinusULP {
+			b = velloOneMinusULP
+		}
+
+		robustErr := float32(math.Floor(float64(a*float32(count-1)+b))) - float32(countX)
+		if robustErr != 0.0 {
+			if robustErr > 0 {
+				a -= velloRobustEpsilon
+			} else {
+				a += velloRobustEpsilon
+			}
+		}
+
+		tileX0 := xt0 * sign
+		if !isPositiveSlope {
+			tileX0 -= 1.0
+		}
+
+		bboxMinX := pathBboxMinX
+		bboxMinY := pathBboxMinY
+		bboxMaxX := pathBboxMaxX
+		bboxMaxY := pathBboxMaxY
+
+		xmin := s0x
+		if s1x < xmin {
+			xmin = s1x
+		}
+		xmax := s0x
+		if s1x > xmax {
+			xmax = s1x
+		}
+
+		if s0y >= float32(bboxMaxY) || s1y < float32(bboxMinY) || xmin >= float32(bboxMaxX) {
+			continue
+		}
+
+		imin := 0
+		imax := count
+
+		if s0y < float32(bboxMinY) {
+			iminf := ((float32(bboxMinY) - tileY0 + b - a) / (1.0 - a))
+			iminf = float32(math.Round(float64(iminf))) - 1.0
+			if tileY0+iminf-float32(math.Floor(float64(a*iminf+b))) < float32(bboxMinY) {
+				iminf += 1.0
+			}
+			imin = int(iminf)
+		}
+		if s1y > float32(bboxMaxY) {
+			imaxf := ((float32(bboxMaxY) - tileY0 + b - a) / (1.0 - a))
+			imaxf = float32(math.Round(float64(imaxf))) - 1.0
+			if tileY0+imaxf-float32(math.Floor(float64(a*imaxf+b))) < float32(bboxMaxY) {
+				imaxf += 1.0
+			}
+			imax = int(imaxf)
+		}
+
+		ymin := 0
+		ymax := 0
+		if xmax < float32(bboxMinX) {
+			ymin = int(math.Ceil(float64(s0y)))
+			ymax = int(math.Ceil(float64(s1y)))
+			imax = imin
+		} else {
+			fudge := float32(0.0)
+			if !isPositiveSlope {
+				fudge = 1.0
+			}
+			if xmin < float32(bboxMinX) {
+				f := (sign*(float32(bboxMinX)-tileX0) - b + fudge) / a
+				f = float32(math.Round(float64(f)))
+				cond := tileX0+sign*float32(math.Floor(float64(a*f+b))) < float32(bboxMinX)
+				if cond == isPositiveSlope {
+					f += 1.0
+				}
+				ynext := int(tileY0 + f - float32(math.Floor(float64(a*f+b))) + 1.0)
+				if isPositiveSlope {
+					if int(f) > imin {
+						ymin = int(tileY0)
+						if tileY0 != s0y {
+							ymin = int(tileY0 + 1.0)
+						}
+						ymax = ynext
+						imin = int(f)
+					}
+				} else if int(f) < imax {
+					ymin = ynext
+					ymax = int(math.Ceil(float64(s1y)))
+					imax = int(f)
+				}
+			}
+			if xmax > float32(bboxMaxX) {
+				f := (sign*(float32(bboxMaxX)-tileX0) - b + fudge) / a
+				f = float32(math.Round(float64(f)))
+				cond := tileX0+sign*float32(math.Floor(float64(a*f+b))) < float32(bboxMaxX)
+				if cond == isPositiveSlope {
+					f += 1.0
+				}
+				if isPositiveSlope {
+					if int(f) < imax {
+						imax = int(f)
+					}
+				} else {
+					if int(f) > imin {
+						imin = int(f)
+					}
+				}
+			}
+		}
+
+		if imax < imin {
+			imax = imin
+		}
+		if ymin < bboxMinY {
+			ymin = bboxMinY
+		}
+		if ymax > bboxMaxY {
+			ymax = bboxMaxY
+		}
+
+		for y := ymin; y < ymax; y++ {
+			if y >= 0 && y < tr.tilesY && bboxMinX >= 0 && bboxMinX < tr.tilesX {
+				tr.tiles[y*tr.tilesX+bboxMinX].Backdrop += delta
+			}
+		}
+
+		lastZ := float32(math.Floor(float64(a*float32(imin-1) + b)))
+		for i := imin; i < imax; i++ {
+			zf := a*float32(i) + b
+			z := float32(math.Floor(float64(zf)))
+			tileY := int(tileY0 + float32(i) - z)
+			tileX := int(tileX0 + sign*z)
+
+			if tileY < 0 || tileY >= tr.tilesY || tileX < 0 || tileX >= tr.tilesX {
+				lastZ = z
+				continue
+			}
+
+			topEdge := false
+			if i == 0 {
+				topEdge = (tileY0 == s0y)
+			} else {
+				topEdge = (lastZ == z)
+			}
+
+			if topEdge && tileX+1 < tr.tilesX {
+				xBump := tileX + 1
+				if xBump < bboxMinX {
+					xBump = bboxMinX
+				}
+				if xBump < tr.tilesX {
+					tr.tiles[tileY*tr.tilesX+xBump].Backdrop += delta
+				}
+			}
+
+			edgeDx := x1 - x0
+			isVertical := edgeDx == 0
+			tileRightEdge := float32((tileX + 1) * VelloTileWidth)
+			shapeExtendsRightOfTile := bounds.MaxX > tileRightEdge
+			if i == 0 && !topEdge && tileX == bboxMinX && isVertical && shapeExtendsRightOfTile && tileX+1 < tr.tilesX {
+
+				segStartY := (s0y - float32(tileY)) * VelloTileHeight
+				if segStartY < 0 {
+					segStartY = 0
+				}
+
+				xBump := tileX + 1
+				if xBump < tr.tilesX {
+					tileIdx := tileY*tr.tilesX + xBump
+					syntheticYEdge := segStartY
+
+					tr.tiles[tileIdx].Segments = append(tr.tiles[tileIdx].Segments, PathSegment{
+						Point0:	[2]float32{0, segStartY},
+						Point1:	[2]float32{epsilon, segStartY},
+						YEdge:	syntheticYEdge,
+					})
+				}
+			}
+
+			_ = bounds
+
+			tr.addSegmentToTile(x0, y0, x1, y1, tileX, tileY, isDown, i, count, a, b, tileY0, sign, isPositiveSlope, epsilon, noYEdge)
+
+			lastZ = z
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-computeBackdropPrefixSum">
+            <div class="item-header">
+                <h4>func computeBackdropPrefixSum</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>computeBackdropPrefixSum applies prefix sum to backdrop values.</p>
+                
+                <p>Direct port of backdrop.rs - for each row, sum backdrops from left to right.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) computeBackdropPrefixSum() {
+	for ty := 0; ty < tr.tilesY; ty++ {
+		sum := 0
+		for tx := 0; tx < tr.tilesX; tx++ {
+			idx := ty*tr.tilesX + tx
+			sum += tr.tiles[idx].Backdrop
+			tr.tiles[idx].Backdrop = sum
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-emitScanline">
+            <div class="item-header">
+                <h4>func emitScanline</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>emitScanline converts row coverage to alpha runs and calls callback.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) emitScanline(pixelY int, callback func(y int, runs *raster.AlphaRuns)) {
+	tr.alphaRuns.Reset()
+
+	var runStart int
+	var currentAlpha uint8
+
+	for i := 0; i < tr.width; i++ {
+		coverage := tr.rowCoverage[i]
+		alpha := uint8(clamp32(coverage, 0, 1) * 255.0)
+
+		if i == 0 {
+			currentAlpha = alpha
+			runStart = 0
+		} else if alpha != currentAlpha {
+			if currentAlpha > 0 {
+				runLen := i - runStart
+
+				tr.alphaRuns.AddWithCoverage(runStart, currentAlpha, runLen-1, 0, currentAlpha)
+			}
+			currentAlpha = alpha
+			runStart = i
+		}
+	}
+
+	if currentAlpha > 0 {
+		runLen := tr.width - runStart
+		if runLen > 0 {
+
+			tr.alphaRuns.AddWithCoverage(runStart, currentAlpha, runLen-1, 0, currentAlpha)
+		}
+	}
+
+	callback(pixelY, tr.alphaRuns)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-fillPath">
+            <div class="item-header">
+                <h4>func fillPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>fillPath is kept for compatibility with tests.</p>
+                
+                <p></p>
+                
+                <p>nolint:gocognit // Direct port of Vello algorithm, complexity is inherent</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) fillPath(tile *VelloTile, fillRule raster.FillRule) {
+
+	backdropF := float32(tile.Backdrop)
+	for i := range tr.area {
+		tr.area[i] = backdropF
+	}
+
+	for _, seg := range tile.Segments {
+		deltaX := seg.Point1[0] - seg.Point0[0]
+		deltaY := seg.Point1[1] - seg.Point0[1]
+
+		for yi := 0; yi < VelloTileHeight; yi++ {
+			y := seg.Point0[1] - float32(yi)
+			y0 := clamp32(y, 0, 1)
+			y1 := clamp32(y+deltaY, 0, 1)
+			dy := y0 - y1
+
+			var yEdge float32
+			if deltaX > 0 {
+				yEdge = clamp32(float32(yi)-seg.YEdge+1.0, 0, 1)
+			} else if deltaX < 0 {
+				yEdge = -clamp32(float32(yi)-seg.YEdge+1.0, 0, 1)
+			}
+
+			if dy != 0 {
+				vecYRecip := 1.0 / deltaY
+				t0 := (y0 - y) * vecYRecip
+				t1 := (y1 - y) * vecYRecip
+
+				segX0 := seg.Point0[0] + t0*deltaX
+				segX1 := seg.Point0[0] + t1*deltaX
+
+				xmin0 := min32f(segX0, segX1)
+				xmax0 := max32f(segX0, segX1)
+
+				for i := 0; i < VelloTileWidth; i++ {
+					iF := float32(i)
+					xmin := min32f(xmin0-iF, 1.0) - 1.0e-6
+					xmax := xmax0 - iF
+
+					b := min32f(xmax, 1.0)
+					c := max32f(b, 0.0)
+					d := max32f(xmin, 0.0)
+
+					denom := xmax - xmin
+					var a float32
+					if denom != 0 {
+						a = (b + 0.5*(d*d-c*c) - xmin) / denom
+					}
+
+					tr.area[yi*VelloTileWidth+i] += yEdge + a*dy
+				}
+			} else if yEdge != 0 {
+				for i := 0; i < VelloTileWidth; i++ {
+					tr.area[yi*VelloTileWidth+i] += yEdge
+				}
+			}
+		}
+	}
+
+	if fillRule == raster.FillRuleEvenOdd {
+		for i := range tr.area {
+			a := tr.area[i]
+			im := float32(int32(0.5*a + 0.5))
+			tr.area[i] = abs32(a - 2.0*im)
+		}
+	} else {
+		for i := range tr.area {
+			a := tr.area[i]
+			if a < 0 {
+				a = -a
+			}
+			if a > 1 {
+				a = 1
+			}
+			tr.area[i] = a
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-fillTileScanline">
+            <div class="item-header">
+                <h4>func fillTileScanline</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>fillTileScanline computes coverage for one scanline within a tile.</p>
+                
+                <p>Direct port of fine.rs fill_path function for a single row.</p>
+                
+                <p></p>
+                
+                <p>This is a 1:1 port of Vello's fine.rs lines 51-109.</p>
+                
+                <p>No workarounds, no problem-tile/row detection — pure Vello algorithm.</p>
+                
+                <p>Uses tile-relative coordinates consistently (matching GPU fine.wgsl).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (tr *TileRasterizer) fillTileScanline(tile *VelloTile, localY int, fillRule raster.FillRule) {
+
+	backdropF := float32(tile.Backdrop)
+	for i := 0; i < VelloTileWidth; i++ {
+		tr.area[i] = backdropF
+	}
+
+	yf := float32(localY)
+
+	for _, seg := range tile.Segments {
+		delta := [2]float32{
+			seg.Point1[0] - seg.Point0[0],
+			seg.Point1[1] - seg.Point0[1],
+		}
+
+		y := seg.Point0[1] - yf
+		y0 := clamp32(y, 0, 1)
+		y1 := clamp32(y+delta[1], 0, 1)
+		dy := y0 - y1
+
+		// y_edge: signum(delta.x) * clamp(yi - y_edge + 1, 0, 1)
+		// Uses tile-relative coords consistently (matching GPU fine.wgsl).
+		// CPU fine.rs uses absolute coords but gives equivalent results
+		// since y_tile + yi - absolute_y_edge = localY - tile_relative_y_edge.
+		var yEdge float32
+		if delta[0] > 0 {
+			yEdge = clamp32(yf-seg.YEdge+1.0, 0, 1)
+		} else if delta[0] < 0 {
+			yEdge = -clamp32(yf-seg.YEdge+1.0, 0, 1)
+		}
+
+		if dy != 0 {
+			vecYRecip := 1.0 / delta[1]
+			t0 := (y0 - y) * vecYRecip
+			t1 := (y1 - y) * vecYRecip
+
+			startX := seg.Point0[0]
+			segX0 := startX + t0*delta[0]
+			segX1 := startX + t1*delta[0]
+
+			xmin0 := min32f(segX0, segX1)
+			xmax0 := max32f(segX0, segX1)
+
+			for i := 0; i < VelloTileWidth; i++ {
+				iF := float32(i)
+
+				xmin := min32f(xmin0-iF, 1.0) - 1.0e-6
+				xmax := xmax0 - iF
+
+				b := min32f(xmax, 1.0)
+				c := max32f(b, 0.0)
+				d := max32f(xmin, 0.0)
+
+				denom := xmax - xmin
+				var a float32
+				if denom != 0 {
+					a = (b + 0.5*(d*d-c*c) - xmin) / denom
+				}
+
+				tr.area[i] += yEdge + a*dy
+			}
+		} else if yEdge != 0 {
+
+			for i := 0; i < VelloTileWidth; i++ {
+				tr.area[i] += yEdge
+			}
+		}
+	}
+
+	if fillRule == raster.FillRuleEvenOdd {
+		for i := 0; i < VelloTileWidth; i++ {
+			a := tr.area[i]
+			im := float32(int32(0.5*a + 0.5))
+			tr.area[i] = abs32(a - 2.0*im)
+		}
+	} else {
+		for i := 0; i < VelloTileWidth; i++ {
+			a := tr.area[i]
+			if a < 0 {
+				a = -a
+			}
+			if a > 1 {
+				a = 1
+			}
+			tr.area[i] = a
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-velloSpan">
+            <div class="item-header">
+                <h4>func velloSpan</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>velloSpan computes the number of tiles a segment spans.</p>
+                
+                <p>Direct port of util.rs span function.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func velloSpan(a, b float32) int {
+	maxVal := a
+	if b > maxVal {
+		maxVal = b
+	}
+	minVal := a
+	if b < minVal {
+		minVal = b
+	}
+	result := float32(math.Ceil(float64(maxVal))) - float32(math.Floor(float64(minVal)))
+	if result < 1.0 {
+		result = 1.0
+	}
+	return int(result)
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-PathSegment">
+            <div class="item-header">
+                <h4>type PathSegment struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PathSegment is a direct port of Vello's PathSegment struct.</p>
+                
+                <p>Coordinates are relative to tile origin (0..TileWidth, 0..TileHeight).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type PathSegment struct {
+	Point0	[2]float32	// Start point (tile-relative)
+	Point1	[2]float32	// End point (tile-relative)
+	YEdge	float32		// Y coordinate where segment touches x=0 (left edge), or 1e9 if none
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-VelloTile">
+            <div class="item-header">
+                <h4>type VelloTile struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>VelloTile represents a tile with its segments and backdrop.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type VelloTile struct {
+	Backdrop	int		// Winding number from tiles to the left
+	Segments	[]PathSegment	// Segments in this tile
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-TileRasterizer">
+            <div class="item-header">
+                <h4>type TileRasterizer struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>TileRasterizer implements Vello-style tile-based analytic AA.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type TileRasterizer struct {
+	width, height	int
+	tilesX, tilesY	int
+	tiles		[]VelloTile
+	area		[]float32		// Per-tile pixel area buffer (TileSize elements)
+	rowCoverage	[]float32		// Full scanline coverage buffer
+	alphaRuns	*raster.AlphaRuns	// Output alpha runs
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

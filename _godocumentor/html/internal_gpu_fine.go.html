@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/gpu/fine.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="active">internal/gpu/fine.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Alphas">Alphas</a></li>
+                    
+                    <li><a href="#func-FillRule">FillRule</a></li>
+                    
+                    <li><a href="#func-Grid">Grid</a></li>
+                    
+                    <li><a href="#func-NewFineRasterizer">NewFineRasterizer</a></li>
+                    
+                    <li><a href="#func-NewStripRenderer">NewStripRenderer</a></li>
+                    
+                    <li><a href="#func-Rasterize">Rasterize</a></li>
+                    
+                    <li><a href="#func-RasterizeCurves">RasterizeCurves</a></li>
+                    
+                    <li><a href="#func-RenderTiles">RenderTiles</a></li>
+                    
+                    <li><a href="#func-RenderToBuffer">RenderToBuffer</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-SetAliasMode">SetAliasMode</a></li>
+                    
+                    <li><a href="#func-SetFillRule">SetFillRule</a></li>
+                    
+                    <li><a href="#func-SetFillRule">SetFillRule</a></li>
+                    
+                    <li><a href="#func-Strips">Strips</a></li>
+                    
+                    <li><a href="#func-clampf32">clampf32</a></li>
+                    
+                    <li><a href="#func-emitSentinel">emitSentinel</a></li>
+                    
+                    <li><a href="#func-fillTileWithBackdrop">fillTileWithBackdrop</a></li>
+                    
+                    <li><a href="#func-finalizeTile">finalizeTile</a></li>
+                    
+                    <li><a href="#func-finalizeTileFromCurves">finalizeTileFromCurves</a></li>
+                    
+                    <li><a href="#func-finalizeTileToStrip">finalizeTileToStrip</a></li>
+                    
+                    <li><a href="#func-initTileWinding">initTileWinding</a></li>
+                    
+                    <li><a href="#func-initTileWindingForStrip">initTileWindingForStrip</a></li>
+                    
+                    <li><a href="#func-lineEdgeToSegment">lineEdgeToSegment</a></li>
+                    
+                    <li><a href="#func-processCubicEdgeForTile">processCubicEdgeForTile</a></li>
+                    
+                    <li><a href="#func-processEdgeForTile">processEdgeForTile</a></li>
+                    
+                    <li><a href="#func-processLineEdgeForTile">processLineEdgeForTile</a></li>
+                    
+                    <li><a href="#func-processQuadraticEdgeForTile">processQuadraticEdgeForTile</a></li>
+                    
+                    <li><a href="#func-processSegment">processSegment</a></li>
+                    
+                    <li><a href="#func-processSegmentForStrip">processSegmentForStrip</a></li>
+                    
+                    <li><a href="#func-processTileWithCurves">processTileWithCurves</a></li>
+                    
+                    <li><a href="#func-startStrip">startStrip</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/gpu/fine.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Alphas">
+            <div class="item-header">
+                <h4>func Alphas</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Alphas returns the alpha buffer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) Alphas() []uint8 {
+	return sr.alphas
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-FillRule">
+            <div class="item-header">
+                <h4>func FillRule</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>raster.FillRule returns the current fill rule.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) FillRule() scene.FillStyle {
+	return fr.fillRule
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Grid">
+            <div class="item-header">
+                <h4>func Grid</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Grid returns the tile grid with computed coverage.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) Grid() *TileGrid {
+	return fr.grid
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewFineRasterizer">
+            <div class="item-header">
+                <h4>func NewFineRasterizer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewFineRasterizer creates a new fine rasterizer for the given dimensions.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewFineRasterizer(width, height uint16) *FineRasterizer {
+	return &FineRasterizer{
+		grid:		NewTileGrid(),
+		width:		width,
+		height:		height,
+		tileColumns:	(width + TileWidth - 1) / TileWidth,
+		tileRows:	(height + TileHeight - 1) / TileHeight,
+		fillRule:	scene.FillNonZero,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewStripRenderer">
+            <div class="item-header">
+                <h4>func NewStripRenderer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewStripRenderer creates a new strip renderer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewStripRenderer() *StripRenderer {
+	return &StripRenderer{
+		strips:		make([]SparseStrip, 0, 256),
+		alphas:		make([]uint8, 0, 4096),
+		fillRule:	scene.FillNonZero,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Rasterize">
+            <div class="item-header">
+                <h4>func Rasterize</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Rasterize performs fine rasterization on coarse tile entries.</p>
+                
+                <p>It calculates analytic anti-aliased coverage for each pixel.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) Rasterize(
+	coarse *CoarseRasterizer,
+	segments *SegmentList,
+	backdrop []int32,
+) {
+	fr.segments = segments
+	fr.backdrop = backdrop
+	fr.grid.Reset()
+
+	if segments == nil || len(coarse.Entries()) == 0 {
+		return
+	}
+
+	entries := coarse.Entries()
+	lines := segments.Segments()
+
+	coarse.SortEntries()
+
+	var currentX, currentY uint16 = 0xFFFF, 0xFFFF
+	var tileWinding [TileSize][TileSize]float32
+	var accumulatedWinding [TileSize]float32
+
+	for i, entry := range entries {
+
+		if entry.X != currentX || entry.Y != currentY {
+
+			if currentX != 0xFFFF {
+				fr.finalizeTile(currentX, currentY, &tileWinding, &accumulatedWinding)
+			}
+
+			currentX, currentY = entry.X, entry.Y
+			fr.initTileWinding(&tileWinding, &accumulatedWinding, currentX, currentY)
+		}
+
+		if int(entry.LineIdx) < len(lines) {
+			line := lines[entry.LineIdx]
+			fr.processSegment(line, currentX, currentY, &tileWinding, &accumulatedWinding)
+		}
+
+		isLast := i == len(entries)-1
+		if isLast || entries[i+1].X != currentX || entries[i+1].Y != currentY {
+			fr.finalizeTile(currentX, currentY, &tileWinding, &accumulatedWinding)
+			if !isLast {
+				currentX, currentY = 0xFFFF, 0xFFFF
+			}
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RasterizeCurves">
+            <div class="item-header">
+                <h4>func RasterizeCurves</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RasterizeCurves processes curve edges directly without pre-flattening.</p>
+                
+                <p>This is the retained mode rendering path for scene graph rendering.</p>
+                
+                <p></p>
+                
+                <p>Unlike Rasterize() which works with pre-flattened LineSegments,</p>
+                
+                <p>this method accepts curve edges from EdgeBuilder and steps through</p>
+                
+                <p>their segments during tile processing using forward differencing.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- curveBins: Map of tile coordinates (as uint64 key) to curve edge bins (from BinCurveEdges)</p>
+                
+                <p></p>
+                
+                <p>The output is stored in the FineRasterizer's TileGrid.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) RasterizeCurves(curveBins map[uint64]*CurveTileBin) {
+	fr.grid.Reset()
+
+	if len(curveBins) == 0 {
+		return
+	}
+
+	for key, bin := range curveBins {
+
+		tileX := int32(key & 0xFFFFFFFF)
+		tileY := int32(key >> 32)
+
+		if tileX < 0 || tileX >= int32(fr.tileColumns) ||
+			tileY < 0 || tileY >= int32(fr.tileRows) {
+			continue
+		}
+
+		fr.processTileWithCurves(uint16(tileX), uint16(tileY), bin.Edges, bin.Backdrop)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RenderTiles">
+            <div class="item-header">
+                <h4>func RenderTiles</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderTiles converts tiles to strips for efficient rendering.</p>
+                
+                <p></p>
+                
+                <p>nolint:gocognit,gocyclo,cyclop,nestif // Complexity is inherent to rendering algorithm - function is cohesive</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) RenderTiles(
+	coarse *CoarseRasterizer,
+	segments *SegmentList,
+	backdrop []int32,
+) {
+	sr.Reset()
+
+	if segments == nil || len(coarse.Entries()) == 0 {
+		return
+	}
+
+	entries := coarse.Entries()
+	lines := segments.Segments()
+	coarse.SortEntries()
+
+	var currentX, currentY uint16 = 0xFFFF, 0xFFFF
+	var tileWinding [TileSize][TileSize]float32
+	var accumulatedWinding [TileSize]float32
+	var windingDelta int32
+	var prevTile CoarseTileEntry
+
+	shouldFill := func(winding int32) bool {
+		switch sr.fillRule {
+		case scene.FillNonZero:
+			return winding != 0
+		case scene.FillEvenOdd:
+			return winding%2 != 0
+		default:
+			return winding != 0
+		}
+	}
+
+	for i, entry := range entries {
+
+		sameLocation := entry.X == currentX && entry.Y == currentY
+		prevLocation := (i > 0) && entry.Y == prevTile.Y && entry.X == prevTile.X+1
+
+		if !sameLocation {
+
+			if currentX != 0xFFFF {
+				sr.finalizeTileToStrip(currentX, currentY, &tileWinding, &accumulatedWinding)
+			}
+
+			if currentX != 0xFFFF && !prevLocation && prevTile.X != 0xFFFF {
+
+				if prevTile.Y != entry.Y {
+
+					if windingDelta != 0 || i == len(entries)-1 {
+						sr.emitSentinel(prevTile.Y, shouldFill(windingDelta))
+					}
+					windingDelta = 0
+					accumulatedWinding = [TileSize]float32{}
+				}
+
+				sr.startStrip(entry.X, entry.Y, shouldFill(windingDelta))
+			} else if currentX == 0xFFFF {
+
+				sr.startStrip(entry.X, entry.Y, false)
+			}
+
+			currentX, currentY = entry.X, entry.Y
+			sr.initTileWindingForStrip(&tileWinding, &accumulatedWinding, backdrop, currentX, currentY, int(coarse.TileColumns()))
+			prevTile = entry
+		}
+
+		if int(entry.LineIdx) < len(lines) {
+			line := lines[entry.LineIdx]
+			sr.processSegmentForStrip(line, currentX, currentY, &tileWinding, &accumulatedWinding)
+
+			if entry.Winding {
+				windingDelta += int32(line.Winding)
+			}
+		}
+	}
+
+	if currentX != 0xFFFF {
+		sr.finalizeTileToStrip(currentX, currentY, &tileWinding, &accumulatedWinding)
+
+		sr.emitSentinel(currentY, shouldFill(windingDelta))
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RenderToBuffer">
+            <div class="item-header">
+                <h4>func RenderToBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderToBuffer renders the tile grid to a pixel buffer.</p>
+                
+                <p>The buffer is in RGBA format with the given stride (bytes per row).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) RenderToBuffer(
+	buffer []uint8,
+	width, height int,
+	stride int,
+	color [4]uint8,
+) {
+	fr.grid.ForEach(func(tile *Tile) {
+		baseX := int(tile.PixelX())
+		baseY := int(tile.PixelY())
+
+		for py := 0; py < TileSize; py++ {
+			pixelY := baseY + py
+			if pixelY < 0 || pixelY >= height {
+				continue
+			}
+
+			rowOffset := pixelY * stride
+
+			for px := 0; px < TileSize; px++ {
+				pixelX := baseX + px
+				if pixelX < 0 || pixelX >= width {
+					continue
+				}
+
+				coverage := tile.GetCoverage(px, py)
+				if coverage == 0 {
+					continue
+				}
+
+				idx := rowOffset + pixelX*4
+
+				srcA := uint16(coverage) * uint16(color[3]) / 255
+				invA := 255 - srcA
+
+				if idx+3 < len(buffer) {
+
+					buffer[idx+0] = uint8((uint16(color[0])*srcA + uint16(buffer[idx+0])*invA) / 255)
+
+					buffer[idx+1] = uint8((uint16(color[1])*srcA + uint16(buffer[idx+1])*invA) / 255)
+
+					buffer[idx+2] = uint8((uint16(color[2])*srcA + uint16(buffer[idx+2])*invA) / 255)
+
+					buffer[idx+3] = uint8(srcA + uint16(buffer[idx+3])*invA/255)
+				}
+			}
+		}
+	})
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Reset">
+            <div class="item-header">
+                <h4>func Reset</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Reset clears the rasterizer state for reuse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) Reset() {
+	fr.grid.Reset()
+	fr.segments = nil
+	fr.backdrop = nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Reset">
+            <div class="item-header">
+                <h4>func Reset</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Reset clears the renderer state for reuse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) Reset() {
+	sr.strips = sr.strips[:0]
+	sr.alphas = sr.alphas[:0]
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetAliasMode">
+            <div class="item-header">
+                <h4>func SetAliasMode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetAliasMode enables or disables aliased (non-anti-aliased) rendering.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) SetAliasMode(enabled bool) {
+	sr.aliasMode = enabled
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetFillRule">
+            <div class="item-header">
+                <h4>func SetFillRule</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetFillRule sets the fill rule for coverage calculation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) SetFillRule(rule scene.FillStyle) {
+	fr.fillRule = rule
+	fr.grid.SetFillRule(rule)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetFillRule">
+            <div class="item-header">
+                <h4>func SetFillRule</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetFillRule sets the fill rule.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) SetFillRule(rule scene.FillStyle) {
+	sr.fillRule = rule
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Strips">
+            <div class="item-header">
+                <h4>func Strips</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Strips returns the strips.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) Strips() []SparseStrip {
+	return sr.strips
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-clampf32">
+            <div class="item-header">
+                <h4>func clampf32</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>clampf32 clamps value to [minVal, maxVal] range.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func clampf32(val, minVal, maxVal float32) float32 {
+	if val < minVal {
+		return minVal
+	}
+	if val > maxVal {
+		return maxVal
+	}
+	return val
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-emitSentinel">
+            <div class="item-header">
+                <h4>func emitSentinel</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>emitSentinel emits a sentinel strip marking end of row.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) emitSentinel(y uint16, fillGap bool) {
+	sr.strips = append(sr.strips, SparseStrip{
+		X:		0xFFFF,
+		Y:		y * TileHeight,
+		AlphaIdx:	uint32(len(sr.alphas)),
+		FillGap:	fillGap,
+	})
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-fillTileWithBackdrop">
+            <div class="item-header">
+                <h4>func fillTileWithBackdrop</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>fillTileWithBackdrop fills a tile with solid coverage based on backdrop winding.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) fillTileWithBackdrop(tile *Tile, backdrop int32) {
+	var coverage float32
+
+	switch fr.fillRule {
+	case scene.FillNonZero:
+		coverage = absf32(float32(backdrop))
+		if coverage > 1.0 {
+			coverage = 1.0
+		}
+	case scene.FillEvenOdd:
+		absBackdrop := backdrop
+		if absBackdrop < 0 {
+			absBackdrop = -absBackdrop
+		}
+		if absBackdrop%2 != 0 {
+			coverage = 1.0
+		}
+	}
+
+	if coverage > 0 {
+		alpha := uint8(coverage*255.0 + 0.5)
+		tile.FillSolid(alpha)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-finalizeTile">
+            <div class="item-header">
+                <h4>func finalizeTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>finalizeTile converts winding values to coverage and stores in grid.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) finalizeTile(
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	_ *[TileSize]float32,
+) {
+	tile := fr.grid.GetOrCreate(int32(tileX), int32(tileY))
+
+	for y := 0; y < TileSize; y++ {
+		for x := 0; x < TileSize; x++ {
+			winding := tileWinding[y][x]
+			var coverage float32
+
+			switch fr.fillRule {
+			case scene.FillNonZero:
+
+				coverage = absf32(winding)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+
+			case scene.FillEvenOdd:
+
+				absWinding := absf32(winding)
+
+				im1 := float32(int32(absWinding*0.5 + 0.5))
+				coverage = absf32(absWinding - 2.0*im1)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+			}
+
+			alpha := uint8(coverage*255.0 + 0.5)
+			tile.SetCoverage(x, y, alpha)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-finalizeTileFromCurves">
+            <div class="item-header">
+                <h4>func finalizeTileFromCurves</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>finalizeTileFromCurves converts winding values to coverage and stores in grid.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) finalizeTileFromCurves(
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+) {
+	tile := fr.grid.GetOrCreate(int32(tileX), int32(tileY))
+
+	for y := 0; y < TileSize; y++ {
+		for x := 0; x < TileSize; x++ {
+			winding := tileWinding[y][x]
+			var coverage float32
+
+			switch fr.fillRule {
+			case scene.FillNonZero:
+
+				coverage = absf32(winding)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+
+			case scene.FillEvenOdd:
+
+				absWinding := absf32(winding)
+				im1 := float32(int32(absWinding*0.5 + 0.5))
+				coverage = absf32(absWinding - 2.0*im1)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+			}
+
+			alpha := uint8(coverage*255.0 + 0.5)
+			tile.SetCoverage(x, y, alpha)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-finalizeTileToStrip">
+            <div class="item-header">
+                <h4>func finalizeTileToStrip</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>finalizeTileToStrip converts winding to alpha and appends to buffer.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) finalizeTileToStrip(
+	_, _ uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	_ *[TileSize]float32,
+) {
+
+	for x := 0; x < TileWidth; x++ {
+		for y := 0; y < TileHeight; y++ {
+			winding := tileWinding[y][x]
+			var coverage float32
+
+			switch sr.fillRule {
+			case scene.FillNonZero:
+				coverage = absf32(winding)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+			case scene.FillEvenOdd:
+				absWinding := absf32(winding)
+				im1 := float32(int32(absWinding*0.5 + 0.5))
+				coverage = absf32(absWinding - 2.0*im1)
+				if coverage > 1.0 {
+					coverage = 1.0
+				}
+			}
+
+			if sr.aliasMode {
+				if coverage >= 0.5 {
+					coverage = 1.0
+				} else {
+					coverage = 0.0
+				}
+			}
+
+			alpha := uint8(coverage*255.0 + 0.5)
+			sr.alphas = append(sr.alphas, alpha)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-initTileWinding">
+            <div class="item-header">
+                <h4>func initTileWinding</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>initTileWinding initializes the winding arrays for a new tile.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) initTileWinding(
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+	tileX, tileY uint16,
+) {
+	// Get backdrop for this tile
+	var backdropVal int32
+	if fr.backdrop != nil {
+		idx := int(tileY)*int(fr.tileColumns) + int(tileX)
+		if idx >= 0 && idx < len(fr.backdrop) {
+			backdropVal = fr.backdrop[idx]
+		}
+	}
+
+	backdropF := float32(backdropVal)
+	for y := 0; y < TileSize; y++ {
+		accumulatedWinding[y] = backdropF
+	}
+
+	for y := 0; y < TileSize; y++ {
+		for x := 0; x < TileSize; x++ {
+			tileWinding[y][x] = backdropF
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-initTileWindingForStrip">
+            <div class="item-header">
+                <h4>func initTileWindingForStrip</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>initTileWindingForStrip initializes winding for strip rendering.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) initTileWindingForStrip(
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+	backdrop []int32,
+	tileX, tileY uint16,
+	tileColumns int,
+) {
+	var backdropVal int32
+	if backdrop != nil {
+		idx := int(tileY)*tileColumns + int(tileX)
+		if idx >= 0 && idx < len(backdrop) {
+			backdropVal = backdrop[idx]
+		}
+	}
+
+	backdropF := float32(backdropVal)
+	for y := 0; y < TileSize; y++ {
+		accumulatedWinding[y] = backdropF
+		for x := 0; x < TileSize; x++ {
+			tileWinding[y][x] = backdropF
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-lineEdgeToSegment">
+            <div class="item-header">
+                <h4>func lineEdgeToSegment</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>lineEdgeToSegment converts a raster.LineEdge to a LineSegment for processSegment.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) lineEdgeToSegment(line *raster.LineEdge, _, _ uint16) LineSegment {
+
+	x0 := raster.FDot16ToFloat32(line.X)
+	y0 := float32(line.FirstY)
+	y1 := float32(line.LastY + 1)
+
+	dy := y1 - y0
+	dx := raster.FDot16ToFloat32(line.DX)
+	x1 := x0 + dx*dy
+
+	return LineSegment{
+		X0:		x0,
+		Y0:		y0,
+		X1:		x1,
+		Y1:		y1,
+		Winding:	line.Winding,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processCubicEdgeForTile">
+            <div class="item-header">
+                <h4>func processCubicEdgeForTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processCubicEdgeForTile processes a cubic curve edge for a tile.</p>
+                
+                <p>It steps through the curve segments using forward differencing.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processCubicEdgeForTile(
+	cubic *raster.CubicEdge,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+
+	for cubic.CurveCount() < 0 {
+
+		line := cubic.Line()
+		segment := fr.lineEdgeToSegment(line, tileX, tileY)
+		if segment.Y0 != segment.Y1 {
+			fr.processSegment(segment, tileX, tileY, tileWinding, accumulatedWinding)
+		}
+
+		if !cubic.Update() {
+			break
+		}
+	}
+
+	line := cubic.Line()
+	segment := fr.lineEdgeToSegment(line, tileX, tileY)
+	if segment.Y0 != segment.Y1 {
+		fr.processSegment(segment, tileX, tileY, tileWinding, accumulatedWinding)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processEdgeForTile">
+            <div class="item-header">
+                <h4>func processEdgeForTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processEdgeForTile processes a single edge (line or curve) for a tile.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processEdgeForTile(
+	edge *raster.CurveEdgeVariant,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+	switch edge.Type {
+	case raster.EdgeTypeLine:
+		if edge.Line != nil {
+			fr.processLineEdgeForTile(edge.Line, tileX, tileY, tileWinding, accumulatedWinding)
+		}
+
+	case raster.EdgeTypeQuadratic:
+		if edge.Quadratic != nil {
+			fr.processQuadraticEdgeForTile(edge.Quadratic, tileX, tileY, tileWinding, accumulatedWinding)
+		}
+
+	case raster.EdgeTypeCubic:
+		if edge.Cubic != nil {
+			fr.processCubicEdgeForTile(edge.Cubic, tileX, tileY, tileWinding, accumulatedWinding)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processLineEdgeForTile">
+            <div class="item-header">
+                <h4>func processLineEdgeForTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processLineEdgeForTile processes a simple line edge for a tile.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processLineEdgeForTile(
+	line *raster.LineEdge,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+
+	segment := fr.lineEdgeToSegment(line, tileX, tileY)
+	if segment.Y0 != segment.Y1 {
+		fr.processSegment(segment, tileX, tileY, tileWinding, accumulatedWinding)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processQuadraticEdgeForTile">
+            <div class="item-header">
+                <h4>func processQuadraticEdgeForTile</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processQuadraticEdgeForTile processes a quadratic curve edge for a tile.</p>
+                
+                <p>It steps through the curve segments using forward differencing.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processQuadraticEdgeForTile(
+	quad *raster.QuadraticEdge,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+
+	for quad.CurveCount() > 0 {
+
+		line := quad.Line()
+		segment := fr.lineEdgeToSegment(line, tileX, tileY)
+		if segment.Y0 != segment.Y1 {
+			fr.processSegment(segment, tileX, tileY, tileWinding, accumulatedWinding)
+		}
+
+		if !quad.Update() {
+			break
+		}
+	}
+
+	line := quad.Line()
+	segment := fr.lineEdgeToSegment(line, tileX, tileY)
+	if segment.Y0 != segment.Y1 {
+		fr.processSegment(segment, tileX, tileY, tileWinding, accumulatedWinding)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processSegment">
+            <div class="item-header">
+                <h4>func processSegment</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processSegment calculates the winding contribution of a segment to a tile.</p>
+                
+                <p>This is the core of the analytic anti-aliasing algorithm.</p>
+                
+                <p></p>
+                
+                <p>nolint:dupl // Duplicated with processSegmentForStrip for performance - avoiding abstraction overhead in hot path</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processSegment(
+	line LineSegment,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+
+	tileLeftX := float32(tileX) * float32(TileWidth)
+	tileTopY := float32(tileY) * float32(TileHeight)
+
+	p0x := line.X0 - tileLeftX
+	p0y := line.Y0 - tileTopY
+	p1x := line.X1 - tileLeftX
+	p1y := line.Y1 - tileTopY
+
+	if p0y == p1y {
+		return
+	}
+
+	sign := float32(line.Winding)
+
+	lineTopY := p0y
+	lineTopX := p0x
+	lineBottomY := p1y
+	lineBottomX := p1x
+
+	dy := lineBottomY - lineTopY
+	dx := lineBottomX - lineTopX
+
+	ySlope := dy / dx
+	if dx == 0 {
+
+		if lineBottomY > lineTopY {
+			ySlope = 1e10
+		} else {
+			ySlope = -1e10
+		}
+	}
+	xSlope := 1.0 / ySlope
+
+	for yIdx := 0; yIdx < TileHeight; yIdx++ {
+		pxTopY := float32(yIdx)
+		pxBottomY := pxTopY + 1.0
+
+		yMin := maxf32(lineTopY, pxTopY)
+		yMax := minf32(lineBottomY, pxBottomY)
+
+		if yMin >= yMax {
+			continue
+		}
+
+		h := yMax - yMin
+
+		acc := float32(0)
+
+		for xIdx := 0; xIdx < TileWidth; xIdx++ {
+			pxLeftX := float32(xIdx)
+			pxRightX := pxLeftX + 1.0
+
+			linePxLeftY := lineTopY + (pxLeftX-lineTopX)*ySlope
+			linePxRightY := lineTopY + (pxRightX-lineTopX)*ySlope
+
+			linePxLeftY = clampf32(linePxLeftY, yMin, yMax)
+			linePxRightY = clampf32(linePxRightY, yMin, yMax)
+
+			linePxLeftYX := lineTopX + (linePxLeftY-lineTopY)*xSlope
+			linePxRightYX := lineTopX + (linePxRightY-lineTopY)*xSlope
+
+			pixelH := absf32(linePxRightY - linePxLeftY)
+
+			area := 0.5 * pixelH * (2*pxRightX - linePxRightYX - linePxLeftYX)
+
+			tileWinding[yIdx][xIdx] += (area*sign + acc)
+			acc += pixelH * sign
+		}
+
+		accumulatedWinding[yIdx] += h * sign
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processSegmentForStrip">
+            <div class="item-header">
+                <h4>func processSegmentForStrip</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processSegmentForStrip processes a segment for strip rendering.</p>
+                
+                <p></p>
+                
+                <p>nolint:dupl // Duplicated with processSegment for performance - avoiding abstraction overhead in hot path</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) processSegmentForStrip(
+	line LineSegment,
+	tileX, tileY uint16,
+	tileWinding *[TileSize][TileSize]float32,
+	accumulatedWinding *[TileSize]float32,
+) {
+	tileLeftX := float32(tileX) * float32(TileWidth)
+	tileTopY := float32(tileY) * float32(TileHeight)
+
+	p0x := line.X0 - tileLeftX
+	p0y := line.Y0 - tileTopY
+	p1x := line.X1 - tileLeftX
+	p1y := line.Y1 - tileTopY
+
+	if p0y == p1y {
+		return
+	}
+
+	sign := float32(line.Winding)
+
+	lineTopY := p0y
+	lineTopX := p0x
+	lineBottomY := p1y
+	lineBottomX := p1x
+
+	dy := lineBottomY - lineTopY
+	dx := lineBottomX - lineTopX
+
+	var ySlope float32
+	if dx == 0 {
+		if lineBottomY > lineTopY {
+			ySlope = 1e10
+		} else {
+			ySlope = -1e10
+		}
+	} else {
+		ySlope = dy / dx
+	}
+	xSlope := 1.0 / ySlope
+
+	for yIdx := 0; yIdx < TileHeight; yIdx++ {
+		pxTopY := float32(yIdx)
+		pxBottomY := pxTopY + 1.0
+
+		yMin := maxf32(lineTopY, pxTopY)
+		yMax := minf32(lineBottomY, pxBottomY)
+
+		if yMin >= yMax {
+			continue
+		}
+
+		h := yMax - yMin
+		acc := float32(0)
+
+		for xIdx := 0; xIdx < TileWidth; xIdx++ {
+			pxLeftX := float32(xIdx)
+			pxRightX := pxLeftX + 1.0
+
+			linePxLeftY := lineTopY + (pxLeftX-lineTopX)*ySlope
+			linePxRightY := lineTopY + (pxRightX-lineTopX)*ySlope
+
+			linePxLeftY = clampf32(linePxLeftY, yMin, yMax)
+			linePxRightY = clampf32(linePxRightY, yMin, yMax)
+
+			linePxLeftYX := lineTopX + (linePxLeftY-lineTopY)*xSlope
+			linePxRightYX := lineTopX + (linePxRightY-lineTopY)*xSlope
+
+			pixelH := absf32(linePxRightY - linePxLeftY)
+			area := 0.5 * pixelH * (2*pxRightX - linePxRightYX - linePxLeftYX)
+
+			tileWinding[yIdx][xIdx] += (area*sign + acc)
+			acc += pixelH * sign
+		}
+
+		accumulatedWinding[yIdx] += h * sign
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-processTileWithCurves">
+            <div class="item-header">
+                <h4>func processTileWithCurves</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>processTileWithCurves computes coverage for a single tile using curve edges.</p>
+                
+                <p>This is the core of curve-aware fine rasterization.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (fr *FineRasterizer) processTileWithCurves(
+	tileX, tileY uint16,
+	edges []raster.CurveEdgeVariant,
+	backdrop int32,
+) {
+	if len(edges) == 0 {
+
+		if backdrop != 0 {
+			tile := fr.grid.GetOrCreate(int32(tileX), int32(tileY))
+			fr.fillTileWithBackdrop(tile, backdrop)
+		}
+		return
+	}
+
+	// Initialize winding arrays
+	var tileWinding [TileSize][TileSize]float32
+	var accumulatedWinding [TileSize]float32
+
+	backdropF := float32(backdrop)
+	for y := 0; y < TileSize; y++ {
+		accumulatedWinding[y] = backdropF
+		for x := 0; x < TileSize; x++ {
+			tileWinding[y][x] = backdropF
+		}
+	}
+
+	for i := range edges {
+		edge := &edges[i]
+		fr.processEdgeForTile(edge, tileX, tileY, &tileWinding, &accumulatedWinding)
+	}
+
+	fr.finalizeTileFromCurves(tileX, tileY, &tileWinding)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-startStrip">
+            <div class="item-header">
+                <h4>func startStrip</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>startStrip begins a new strip at the given location.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (sr *StripRenderer) startStrip(x, y uint16, fillGap bool) {
+	sr.strips = append(sr.strips, SparseStrip{
+		X:		x * TileWidth,
+		Y:		y * TileHeight,
+		AlphaIdx:	uint32(len(sr.alphas)),
+		FillGap:	fillGap,
+	})
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-FineRasterizer">
+            <div class="item-header">
+                <h4>type FineRasterizer struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>FineRasterizer performs fine rasterization with analytic anti-aliasing.</p>
+                
+                <p>It calculates exact sub-pixel coverage for each tile based on the segments</p>
+                
+                <p>that cross it and the fill rule.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type FineRasterizer struct {
+	grid		*TileGrid
+	segments	*SegmentList
+	backdrop	[]int32
+	fillRule	scene.FillStyle
+
+	// Viewport dimensions
+	width	uint16
+	height	uint16
+
+	// Tile dimensions
+	tileColumns	uint16
+	tileRows	uint16
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-SparseStrip">
+            <div class="item-header">
+                <h4>type SparseStrip struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SparseStrip represents a sparse strip for efficient rendering.</p>
+                
+                <p>A strip is a horizontal run of tiles with the same Y coordinate.</p>
+                
+                <p>This is different from the legacy Strip type in strips.go.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type SparseStrip struct {
+	X		uint16	// X coordinate in pixels
+	Y		uint16	// Y coordinate in pixels
+	AlphaIdx	uint32	// Index into alpha buffer
+	FillGap		bool	// Whether to fill gap before this strip
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-StripRenderer">
+            <div class="item-header">
+                <h4>type StripRenderer struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StripRenderer renders tiles as sparse strips.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type StripRenderer struct {
+	strips		[]SparseStrip
+	alphas		[]uint8
+	fillRule	scene.FillStyle
+	aliasMode	bool	// If true, use hard edges instead of anti-aliasing
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,2717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/clip/edge_clipper.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="active">internal/clip/edge_clipper.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Clip">Clip</a></li>
+                    
+                    <li><a href="#func-ClipCubic">ClipCubic</a></li>
+                    
+                    <li><a href="#func-ClipLine">ClipLine</a></li>
+                    
+                    <li><a href="#func-ClipQuadratic">ClipQuadratic</a></li>
+                    
+                    <li><a href="#func-NewEdgeClipper">NewEdgeClipper</a></li>
+                    
+                    <li><a href="#func-allInside">allInside</a></li>
+                    
+                    <li><a href="#func-boundsIntersect">boundsIntersect</a></li>
+                    
+                    <li><a href="#func-cbrt">cbrt</a></li>
+                    
+                    <li><a href="#func-chopCubicAt">chopCubicAt</a></li>
+                    
+                    <li><a href="#func-chopCubicAtExtremaRoots">chopCubicAtExtremaRoots</a></li>
+                    
+                    <li><a href="#func-chopCubicAtXExtrema">chopCubicAtXExtrema</a></li>
+                    
+                    <li><a href="#func-chopCubicAtYExtrema">chopCubicAtYExtrema</a></li>
+                    
+                    <li><a href="#func-chopQuadAt">chopQuadAt</a></li>
+                    
+                    <li><a href="#func-chopQuadAtXExtrema">chopQuadAtXExtrema</a></li>
+                    
+                    <li><a href="#func-chopQuadAtYExtrema">chopQuadAtYExtrema</a></li>
+                    
+                    <li><a href="#func-clipMonoCubic">clipMonoCubic</a></li>
+                    
+                    <li><a href="#func-clipMonoQuad">clipMonoQuad</a></li>
+                    
+                    <li><a href="#func-cubicIntersectX">cubicIntersectX</a></li>
+                    
+                    <li><a href="#func-cubicIntersectY">cubicIntersectY</a></li>
+                    
+                    <li><a href="#func-evalCubic">evalCubic</a></li>
+                    
+                    <li><a href="#func-evalQuad">evalQuad</a></li>
+                    
+                    <li><a href="#func-filterAndSort">filterAndSort</a></li>
+                    
+                    <li><a href="#func-isNotMonotonic">isNotMonotonic</a></li>
+                    
+                    <li><a href="#func-outcode">outcode</a></li>
+                    
+                    <li><a href="#func-quadIntersectX">quadIntersectX</a></li>
+                    
+                    <li><a href="#func-quadIntersectY">quadIntersectY</a></li>
+                    
+                    <li><a href="#func-solveCubic">solveCubic</a></li>
+                    
+                    <li><a href="#func-solveQuadratic">solveQuadratic</a></li>
+                    
+                    <li><a href="#func-subdivideCubicRange">subdivideCubicRange</a></li>
+                    
+                    <li><a href="#func-subdivideQuadRange">subdivideQuadRange</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/clip/edge_clipper.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Clip">
+            <div class="item-header">
+                <h4>func Clip</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Clip returns the clip rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) Clip() Rect {
+	return ec.clip
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClipCubic">
+            <div class="item-header">
+                <h4>func ClipCubic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClipCubic clips a cubic Bezier curve to the clip region.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) ClipCubic(p0, p1, p2, p3 Point) []CubicSeg {
+
+	if ec.allInside(p0, p1, p2, p3) {
+		return []CubicSeg{{P0: p0, P1: p1, P2: p2, P3: p3}}
+	}
+
+	bounds := CubicSeg{P0: p0, P1: p1, P2: p2, P3: p3}.Bounds()
+	if !ec.boundsIntersect(bounds) {
+		return nil
+	}
+
+	// Chop at Y extrema
+	var result []CubicSeg
+	ec.chopCubicAtYExtrema(p0, p1, p2, p3, func(c0, c1, c2, c3 Point) {
+
+		ec.chopCubicAtXExtrema(c0, c1, c2, c3, func(d0, d1, d2, d3 Point) {
+
+			clipped := ec.clipMonoCubic(d0, d1, d2, d3)
+			result = append(result, clipped...)
+		})
+	})
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClipLine">
+            <div class="item-header">
+                <h4>func ClipLine</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClipLine clips a line segment to the clip rectangle using Cohen-Sutherland algorithm.</p>
+                
+                <p>Returns nil if the line is entirely outside, or a slice with the clipped segment.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) ClipLine(p0, p1 Point) []LineSeg {
+	code0 := ec.outcode(p0)
+	code1 := ec.outcode(p1)
+
+	for {
+		if (code0 | code1) == 0 {
+
+			return []LineSeg{{P0: p0, P1: p1}}
+		}
+		if (code0 & code1) != 0 {
+
+			return nil
+		}
+
+		codeOut := code0
+		if codeOut == 0 {
+			codeOut = code1
+		}
+
+		var p Point
+
+		switch {
+		case (codeOut & outcodeTop) != 0:
+
+			t := (ec.clip.Y - p0.Y) / (p1.Y - p0.Y)
+			p.X = p0.X + t*(p1.X-p0.X)
+			p.Y = ec.clip.Y
+		case (codeOut & outcodeBottom) != 0:
+
+			t := (ec.clip.Bottom() - p0.Y) / (p1.Y - p0.Y)
+			p.X = p0.X + t*(p1.X-p0.X)
+			p.Y = ec.clip.Bottom()
+		case (codeOut & outcodeRight) != 0:
+
+			t := (ec.clip.Right() - p0.X) / (p1.X - p0.X)
+			p.Y = p0.Y + t*(p1.Y-p0.Y)
+			p.X = ec.clip.Right()
+		case (codeOut & outcodeLeft) != 0:
+
+			t := (ec.clip.X - p0.X) / (p1.X - p0.X)
+			p.Y = p0.Y + t*(p1.Y-p0.Y)
+			p.X = ec.clip.X
+		}
+
+		if codeOut == code0 {
+			p0 = p
+			code0 = ec.outcode(p0)
+		} else {
+			p1 = p
+			code1 = ec.outcode(p1)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClipQuadratic">
+            <div class="item-header">
+                <h4>func ClipQuadratic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClipQuadratic clips a quadratic Bezier curve to the clip region.</p>
+                
+                <p>The curve is first chopped at extrema to ensure monotonicity, then clipped.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) ClipQuadratic(p0, p1, p2 Point) []QuadSeg {
+
+	if ec.allInside(p0, p1, p2) {
+		return []QuadSeg{{P0: p0, P1: p1, P2: p2}}
+	}
+
+	bounds := QuadSeg{P0: p0, P1: p1, P2: p2}.Bounds()
+	if !ec.boundsIntersect(bounds) {
+		return nil
+	}
+
+	// Chop at Y extrema to ensure Y-monotonicity
+	var result []QuadSeg
+	ec.chopQuadAtYExtrema(p0, p1, p2, func(q0, q1, q2 Point) {
+
+		ec.chopQuadAtXExtrema(q0, q1, q2, func(r0, r1, r2 Point) {
+
+			clipped := ec.clipMonoQuad(r0, r1, r2)
+			result = append(result, clipped...)
+		})
+	})
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewEdgeClipper">
+            <div class="item-header">
+                <h4>func NewEdgeClipper</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewEdgeClipper creates an edge clipper for the given bounds.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewEdgeClipper(clip Rect) *EdgeClipper {
+	return &EdgeClipper{clip: clip}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-allInside">
+            <div class="item-header">
+                <h4>func allInside</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>allInside returns true if all points are inside the clip region.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) allInside(points ...Point) bool {
+	for _, p := range points {
+		if ec.outcode(p) != 0 {
+			return false
+		}
+	}
+	return true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-boundsIntersect">
+            <div class="item-header">
+                <h4>func boundsIntersect</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>boundsIntersect returns true if the given bounds intersect the clip region.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) boundsIntersect(b Rect) bool {
+	return ec.clip.Intersects(b)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-cbrt">
+            <div class="item-header">
+                <h4>func cbrt</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>cbrt computes the real cube root.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func cbrt(x float64) float64 {
+	if x < 0 {
+		return -math.Pow(-x, 1.0/3.0)
+	}
+	return math.Pow(x, 1.0/3.0)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopCubicAt">
+            <div class="item-header">
+                <h4>func chopCubicAt</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopCubicAt subdivides a cubic Bezier at parameter t using de Casteljau.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func chopCubicAt(p0, p1, p2, p3 Point, t float64) (CubicSeg, CubicSeg) {
+
+	q0 := p0
+	q1 := p0.Lerp(p1, t)
+	mid1 := p1.Lerp(p2, t)
+	q5 := p2.Lerp(p3, t)
+	q2 := q1.Lerp(mid1, t)
+	q4 := mid1.Lerp(q5, t)
+	q3 := q2.Lerp(q4, t)
+	q6 := p3
+
+	return CubicSeg{P0: q0, P1: q1, P2: q2, P3: q3},
+		CubicSeg{P0: q3, P1: q4, P2: q5, P3: q6}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopCubicAtExtremaRoots">
+            <div class="item-header">
+                <h4>func chopCubicAtExtremaRoots</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopCubicAtExtremaRoots is a helper that chops a cubic at roots of at^2 + bt + c = 0.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func chopCubicAtExtremaRoots(p0, p1, p2, p3 Point, a, b, c float64, emit func(Point, Point, Point, Point)) {
+	roots := solveQuadratic(a, b, c)
+
+	if len(roots) == 0 {
+		emit(p0, p1, p2, p3)
+		return
+	}
+
+	roots = filterAndSort(roots)
+
+	current := CubicSeg{P0: p0, P1: p1, P2: p2, P3: p3}
+	lastT := 0.0
+
+	for _, t := range roots {
+		localT := (t - lastT) / (1 - lastT)
+		if localT <= 0 || localT >= 1 {
+			continue
+		}
+
+		left, right := chopCubicAt(current.P0, current.P1, current.P2, current.P3, localT)
+		emit(left.P0, left.P1, left.P2, left.P3)
+		current = right
+		lastT = t
+	}
+
+	emit(current.P0, current.P1, current.P2, current.P3)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopCubicAtXExtrema">
+            <div class="item-header">
+                <h4>func chopCubicAtXExtrema</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopCubicAtXExtrema chops a cubic at its X extrema.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) chopCubicAtXExtrema(p0, p1, p2, p3 Point, emit func(Point, Point, Point, Point)) {
+	a := -p0.X + 3*p1.X - 3*p2.X + p3.X
+	b := 2 * (p0.X - 2*p1.X + p2.X)
+	c := p1.X - p0.X
+	chopCubicAtExtremaRoots(p0, p1, p2, p3, a, b, c, emit)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopCubicAtYExtrema">
+            <div class="item-header">
+                <h4>func chopCubicAtYExtrema</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopCubicAtYExtrema chops a cubic at its Y extrema.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) chopCubicAtYExtrema(p0, p1, p2, p3 Point, emit func(Point, Point, Point, Point)) {
+
+	a := -p0.Y + 3*p1.Y - 3*p2.Y + p3.Y
+	b := 2 * (p0.Y - 2*p1.Y + p2.Y)
+	c := p1.Y - p0.Y
+	chopCubicAtExtremaRoots(p0, p1, p2, p3, a, b, c, emit)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopQuadAt">
+            <div class="item-header">
+                <h4>func chopQuadAt</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopQuadAt subdivides a quadratic Bezier at parameter t using de Casteljau.</p>
+                
+                <p>Returns the two resulting quadratics as (q0, q1, q2) and (q2, q3, q4).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func chopQuadAt(p0, p1, p2 Point, t float64) (Point, Point, Point, Point, Point) {
+
+	q0 := p0
+	q1 := p0.Lerp(p1, t)
+	tmp := p1.Lerp(p2, t)
+	q2 := q1.Lerp(tmp, t)
+	q3 := tmp
+	q4 := p2
+	return q0, q1, q2, q3, q4
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopQuadAtXExtrema">
+            <div class="item-header">
+                <h4>func chopQuadAtXExtrema</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopQuadAtXExtrema chops a quadratic at its X extremum for X-monotonicity.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) chopQuadAtXExtrema(p0, p1, p2 Point, emit func(Point, Point, Point)) {
+	a := p0.X
+	b := p1.X
+	c := p2.X
+
+	if !isNotMonotonic(a, b, c) {
+		emit(p0, p1, p2)
+		return
+	}
+
+	denom := a - 2*b + c
+	if math.Abs(denom) < 1e-10 {
+		emit(p0, p1, p2)
+		return
+	}
+
+	t := (a - b) / denom
+	if t <= 0 || t >= 1 {
+		emit(p0, p1, p2)
+		return
+	}
+
+	q0, q1, q2, q3, q4 := chopQuadAt(p0, p1, p2, t)
+	emit(q0, q1, q2)
+	emit(q2, q3, q4)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-chopQuadAtYExtrema">
+            <div class="item-header">
+                <h4>func chopQuadAtYExtrema</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>chopQuadAtYExtrema chops a quadratic at its Y extremum for Y-monotonicity.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) chopQuadAtYExtrema(p0, p1, p2 Point, emit func(Point, Point, Point)) {
+	a := p0.Y
+	b := p1.Y
+	c := p2.Y
+
+	if !isNotMonotonic(a, b, c) {
+		emit(p0, p1, p2)
+		return
+	}
+
+	denom := a - 2*b + c
+	if math.Abs(denom) < 1e-10 {
+		emit(p0, p1, p2)
+		return
+	}
+
+	t := (a - b) / denom
+	if t <= 0 || t >= 1 {
+		emit(p0, p1, p2)
+		return
+	}
+
+	q0, q1, q2, q3, q4 := chopQuadAt(p0, p1, p2, t)
+	emit(q0, q1, q2)
+	emit(q2, q3, q4)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-clipMonoCubic">
+            <div class="item-header">
+                <h4>func clipMonoCubic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>clipMonoCubic clips a monotonic cubic to the clip bounds.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) clipMonoCubic(p0, p1, p2, p3 Point) []CubicSeg {
+	if ec.allInside(p0, p1, p2, p3) {
+		return []CubicSeg{{P0: p0, P1: p1, P2: p2, P3: p3}}
+	}
+
+	bounds := CubicSeg{P0: p0, P1: p1, P2: p2, P3: p3}.Bounds()
+	if !ec.boundsIntersect(bounds) {
+		return nil
+	}
+
+	// Find intersection t values
+	var tValues []float64
+	tValues = append(tValues, ec.cubicIntersectY(p0, p1, p2, p3, ec.clip.Y)...)
+	tValues = append(tValues, ec.cubicIntersectY(p0, p1, p2, p3, ec.clip.Bottom())...)
+	tValues = append(tValues, ec.cubicIntersectX(p0, p1, p2, p3, ec.clip.X)...)
+	tValues = append(tValues, ec.cubicIntersectX(p0, p1, p2, p3, ec.clip.Right())...)
+
+	tValues = filterAndSort(tValues)
+
+	if len(tValues) == 0 {
+		if ec.clip.Contains(p0) || ec.clip.Contains(p3) {
+			return []CubicSeg{{P0: p0, P1: p1, P2: p2, P3: p3}}
+		}
+		return nil
+	}
+
+	var result []CubicSeg
+	tValues = append([]float64{0}, tValues...)
+	tValues = append(tValues, 1)
+
+	for i := 0; i < len(tValues)-1; i++ {
+		t0 := tValues[i]
+		t1 := tValues[i+1]
+
+		sub := subdivideCubicRange(p0, p1, p2, p3, t0, t1)
+
+		midT := (t0 + t1) / 2
+		mid := evalCubic(p0, p1, p2, p3, midT)
+		if ec.clip.Contains(mid) {
+			result = append(result, sub)
+		}
+	}
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-clipMonoQuad">
+            <div class="item-header">
+                <h4>func clipMonoQuad</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>clipMonoQuad clips a monotonic quadratic Bezier to the clip bounds.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) clipMonoQuad(p0, p1, p2 Point) []QuadSeg {
+
+	if ec.allInside(p0, p1, p2) {
+		return []QuadSeg{{P0: p0, P1: p1, P2: p2}}
+	}
+
+	bounds := QuadSeg{P0: p0, P1: p1, P2: p2}.Bounds()
+	if !ec.boundsIntersect(bounds) {
+		return nil
+	}
+
+	// Find t parameters where curve crosses clip boundaries
+	var tValues []float64
+
+	tValues = append(tValues, ec.quadIntersectY(p0, p1, p2, ec.clip.Y)...)
+	tValues = append(tValues, ec.quadIntersectY(p0, p1, p2, ec.clip.Bottom())...)
+	tValues = append(tValues, ec.quadIntersectX(p0, p1, p2, ec.clip.X)...)
+	tValues = append(tValues, ec.quadIntersectX(p0, p1, p2, ec.clip.Right())...)
+
+	tValues = filterAndSort(tValues)
+
+	if len(tValues) == 0 {
+		if ec.clip.Contains(p0) || ec.clip.Contains(p2) {
+			return []QuadSeg{{P0: p0, P1: p1, P2: p2}}
+		}
+		return nil
+	}
+
+	// Split at intersection points and keep segments inside clip
+	var result []QuadSeg
+	tValues = append([]float64{0}, tValues...)
+	tValues = append(tValues, 1)
+
+	for i := 0; i < len(tValues)-1; i++ {
+		t0 := tValues[i]
+		t1 := tValues[i+1]
+
+		sub := subdivideQuadRange(p0, p1, p2, t0, t1)
+
+		midT := (t0 + t1) / 2
+		mid := evalQuad(p0, p1, p2, midT)
+		if ec.clip.Contains(mid) {
+			result = append(result, sub)
+		}
+	}
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-cubicIntersectX">
+            <div class="item-header">
+                <h4>func cubicIntersectX</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>cubicIntersectX finds t values where cubic intersects vertical line x=xVal.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) cubicIntersectX(p0, p1, p2, p3 Point, xVal float64) []float64 {
+	a := -p0.X + 3*p1.X - 3*p2.X + p3.X
+	b := 3*p0.X - 6*p1.X + 3*p2.X
+	c := -3*p0.X + 3*p1.X
+	d := p0.X - xVal
+
+	return solveCubic(a, b, c, d)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-cubicIntersectY">
+            <div class="item-header">
+                <h4>func cubicIntersectY</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>cubicIntersectY finds t values where cubic intersects horizontal line y=yVal.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) cubicIntersectY(p0, p1, p2, p3 Point, yVal float64) []float64 {
+
+	a := -p0.Y + 3*p1.Y - 3*p2.Y + p3.Y
+	b := 3*p0.Y - 6*p1.Y + 3*p2.Y
+	c := -3*p0.Y + 3*p1.Y
+	d := p0.Y - yVal
+
+	return solveCubic(a, b, c, d)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-evalCubic">
+            <div class="item-header">
+                <h4>func evalCubic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>evalCubic evaluates a cubic Bezier at parameter t.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func evalCubic(p0, p1, p2, p3 Point, t float64) Point {
+	s := 1 - t
+	s2 := s * s
+	s3 := s2 * s
+	t2 := t * t
+	t3 := t2 * t
+	return Point{
+		X:	s3*p0.X + 3*s2*t*p1.X + 3*s*t2*p2.X + t3*p3.X,
+		Y:	s3*p0.Y + 3*s2*t*p1.Y + 3*s*t2*p2.Y + t3*p3.Y,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-evalQuad">
+            <div class="item-header">
+                <h4>func evalQuad</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>evalQuad evaluates a quadratic Bezier at parameter t.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func evalQuad(p0, p1, p2 Point, t float64) Point {
+	s := 1 - t
+	return Point{
+		X:	s*s*p0.X + 2*s*t*p1.X + t*t*p2.X,
+		Y:	s*s*p0.Y + 2*s*t*p1.Y + t*t*p2.Y,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-filterAndSort">
+            <div class="item-header">
+                <h4>func filterAndSort</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>filterAndSort filters t values to (0, 1) and sorts them.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func filterAndSort(values []float64) []float64 {
+	const epsilon = 1e-10
+	var result []float64
+
+	for _, v := range values {
+		if v > epsilon && v < 1-epsilon {
+			result = append(result, v)
+		}
+	}
+
+	for i := 0; i < len(result); i++ {
+		for j := i + 1; j < len(result); j++ {
+			if result[j] < result[i] {
+				result[i], result[j] = result[j], result[i]
+			}
+		}
+	}
+
+	if len(result) <= 1 {
+		return result
+	}
+
+	unique := []float64{result[0]}
+	for i := 1; i < len(result); i++ {
+		if result[i]-unique[len(unique)-1] > epsilon {
+			unique = append(unique, result[i])
+		}
+	}
+
+	return unique
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-isNotMonotonic">
+            <div class="item-header">
+                <h4>func isNotMonotonic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>isNotMonotonic checks if values a, b, c are not monotonic (have an extremum).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func isNotMonotonic(a, b, c float64) bool {
+	ab := a - b
+	bc := b - c
+	if ab < 0 {
+		bc = -bc
+	}
+	return ab == 0 || bc < 0
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-outcode">
+            <div class="item-header">
+                <h4>func outcode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>outcode computes the Cohen-Sutherland outcode for a point.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) outcode(p Point) int {
+	code := outcodeInside
+
+	if p.X < ec.clip.X {
+		code |= outcodeLeft
+	} else if p.X > ec.clip.Right() {
+		code |= outcodeRight
+	}
+
+	if p.Y < ec.clip.Y {
+		code |= outcodeTop
+	} else if p.Y > ec.clip.Bottom() {
+		code |= outcodeBottom
+	}
+
+	return code
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-quadIntersectX">
+            <div class="item-header">
+                <h4>func quadIntersectX</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>quadIntersectX finds t values where the quadratic intersects a vertical line x=xVal.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) quadIntersectX(p0, p1, p2 Point, xVal float64) []float64 {
+	a := p0.X - 2*p1.X + p2.X
+	b := 2 * (p1.X - p0.X)
+	c := p0.X - xVal
+
+	return solveQuadratic(a, b, c)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-quadIntersectY">
+            <div class="item-header">
+                <h4>func quadIntersectY</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>quadIntersectY finds t values where the quadratic intersects a horizontal line y=yVal.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ec *EdgeClipper) quadIntersectY(p0, p1, p2 Point, yVal float64) []float64 {
+
+	a := p0.Y - 2*p1.Y + p2.Y
+	b := 2 * (p1.Y - p0.Y)
+	c := p0.Y - yVal
+
+	return solveQuadratic(a, b, c)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-solveCubic">
+            <div class="item-header">
+                <h4>func solveCubic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>solveCubic solves at^3 + bt^2 + ct + d = 0, returning roots in (0, 1).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func solveCubic(a, b, c, d float64) []float64 {
+	const epsilon = 1e-10
+
+	if math.Abs(a) < epsilon {
+
+		return solveQuadratic(b, c, d)
+	}
+
+	p := b / a
+	q := c / a
+	r := d / a
+
+	A := q - p*p/3
+	B := 2*p*p*p/27 - p*q/3 + r
+
+	disc := B*B/4 + A*A*A/27
+
+	var roots []float64
+
+	switch {
+	case disc > epsilon:
+
+		sqrtDisc := math.Sqrt(disc)
+		u := cbrt(-B/2+sqrtDisc) + cbrt(-B/2-sqrtDisc)
+		t := u - p/3
+		if t > epsilon && t < 1-epsilon {
+			roots = append(roots, t)
+		}
+	case disc < -epsilon:
+
+		phi := math.Acos(-B / 2 / math.Sqrt(-A*A*A/27))
+		sqrtA := 2 * math.Sqrt(-A/3)
+		for k := 0; k < 3; k++ {
+			t := sqrtA*math.Cos((phi+float64(k)*2*math.Pi)/3) - p/3
+			if t > epsilon && t < 1-epsilon {
+				roots = append(roots, t)
+			}
+		}
+	default:
+
+		u := cbrt(-B / 2)
+		t1 := 2*u - p/3
+		t2 := -u - p/3
+		if t1 > epsilon && t1 < 1-epsilon {
+			roots = append(roots, t1)
+		}
+		if t2 > epsilon && t2 < 1-epsilon && math.Abs(t2-t1) > epsilon {
+			roots = append(roots, t2)
+		}
+	}
+
+	return roots
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-solveQuadratic">
+            <div class="item-header">
+                <h4>func solveQuadratic</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>solveQuadratic solves at^2 + bt + c = 0, returning roots in [0, 1].</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func solveQuadratic(a, b, c float64) []float64 {
+	const epsilon = 1e-10
+
+	if math.Abs(a) < epsilon {
+
+		if math.Abs(b) < epsilon {
+			return nil
+		}
+		t := -c / b
+		if t > 0 && t < 1 {
+			return []float64{t}
+		}
+		return nil
+	}
+
+	discriminant := b*b - 4*a*c
+	if discriminant < 0 {
+		return nil
+	}
+
+	sqrtD := math.Sqrt(discriminant)
+	t1 := (-b - sqrtD) / (2 * a)
+	t2 := (-b + sqrtD) / (2 * a)
+
+	var result []float64
+	if t1 > epsilon && t1 < 1-epsilon {
+		result = append(result, t1)
+	}
+	if t2 > epsilon && t2 < 1-epsilon && math.Abs(t2-t1) > epsilon {
+		result = append(result, t2)
+	}
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-subdivideCubicRange">
+            <div class="item-header">
+                <h4>func subdivideCubicRange</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>subdivideCubicRange extracts a portion of a cubic between t0 and t1.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func subdivideCubicRange(p0, p1, p2, p3 Point, t0, t1 float64) CubicSeg {
+
+	_, right := chopCubicAt(p0, p1, p2, p3, t0)
+
+	newT := (t1 - t0) / (1 - t0)
+	if newT >= 1 {
+		return right
+	}
+
+	left, _ := chopCubicAt(right.P0, right.P1, right.P2, right.P3, newT)
+	return left
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-subdivideQuadRange">
+            <div class="item-header">
+                <h4>func subdivideQuadRange</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>subdivideQuadRange extracts a portion of a quadratic between t0 and t1.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func subdivideQuadRange(p0, p1, p2 Point, t0, t1 float64) QuadSeg {
+
+	newP0 := evalQuad(p0, p1, p2, t0)
+	newP2 := evalQuad(p0, p1, p2, t1)
+
+	dt := t1 - t0
+
+	d0 := Point{
+		X:	2 * ((1-t0)*(p1.X-p0.X) + t0*(p2.X-p1.X)),
+		Y:	2 * ((1-t0)*(p1.Y-p0.Y) + t0*(p2.Y-p1.Y)),
+	}
+
+	newP1 := Point{
+		X:	newP0.X + d0.X*dt/2,
+		Y:	newP0.Y + d0.Y*dt/2,
+	}
+
+	return QuadSeg{P0: newP0, P1: newP1, P2: newP2}
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-EdgeClipper">
+            <div class="item-header">
+                <h4>type EdgeClipper struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>EdgeClipper clips path edges against a rectangular clip region.</p>
+                
+                <p>Inspired by tiny-skia edge_clipper.rs and Skia's SkEdgeClipper.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type EdgeClipper struct {
+	clip Rect
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

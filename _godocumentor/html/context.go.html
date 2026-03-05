@@ -1,0 +1,3966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - context.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="active">context.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Clear">Clear</a></li>
+                    
+                    <li><a href="#func-ClearDash">ClearDash</a></li>
+                    
+                    <li><a href="#func-ClearPath">ClearPath</a></li>
+                    
+                    <li><a href="#func-ClearWithColor">ClearWithColor</a></li>
+                    
+                    <li><a href="#func-Close">Close</a></li>
+                    
+                    <li><a href="#func-ClosePath">ClosePath</a></li>
+                    
+                    <li><a href="#func-CubicTo">CubicTo</a></li>
+                    
+                    <li><a href="#func-DrawArc">DrawArc</a></li>
+                    
+                    <li><a href="#func-DrawCircle">DrawCircle</a></li>
+                    
+                    <li><a href="#func-DrawEllipse">DrawEllipse</a></li>
+                    
+                    <li><a href="#func-DrawEllipticalArc">DrawEllipticalArc</a></li>
+                    
+                    <li><a href="#func-DrawLine">DrawLine</a></li>
+                    
+                    <li><a href="#func-DrawPoint">DrawPoint</a></li>
+                    
+                    <li><a href="#func-DrawRectangle">DrawRectangle</a></li>
+                    
+                    <li><a href="#func-DrawRoundedRectangle">DrawRoundedRectangle</a></li>
+                    
+                    <li><a href="#func-EncodeJPEG">EncodeJPEG</a></li>
+                    
+                    <li><a href="#func-EncodePNG">EncodePNG</a></li>
+                    
+                    <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-FillBrush">FillBrush</a></li>
+                    
+                    <li><a href="#func-FillPreserve">FillPreserve</a></li>
+                    
+                    <li><a href="#func-FlushGPU">FlushGPU</a></li>
+                    
+                    <li><a href="#func-GetCurrentPoint">GetCurrentPoint</a></li>
+                    
+                    <li><a href="#func-GetStroke">GetStroke</a></li>
+                    
+                    <li><a href="#func-GetTransform">GetTransform</a></li>
+                    
+                    <li><a href="#func-Height">Height</a></li>
+                    
+                    <li><a href="#func-Identity">Identity</a></li>
+                    
+                    <li><a href="#func-Image">Image</a></li>
+                    
+                    <li><a href="#func-InvertY">InvertY</a></li>
+                    
+                    <li><a href="#func-IsDashed">IsDashed</a></li>
+                    
+                    <li><a href="#func-LineTo">LineTo</a></li>
+                    
+                    <li><a href="#func-MoveTo">MoveTo</a></li>
+                    
+                    <li><a href="#func-NewContext">NewContext</a></li>
+                    
+                    <li><a href="#func-NewContextForImage">NewContextForImage</a></li>
+                    
+                    <li><a href="#func-NewSubPath">NewSubPath</a></li>
+                    
+                    <li><a href="#func-PipelineMode">PipelineMode</a></li>
+                    
+                    <li><a href="#func-Pop">Pop</a></li>
+                    
+                    <li><a href="#func-Push">Push</a></li>
+                    
+                    <li><a href="#func-QuadraticTo">QuadraticTo</a></li>
+                    
+                    <li><a href="#func-RasterizerMode">RasterizerMode</a></li>
+                    
+                    <li><a href="#func-Resize">Resize</a></li>
+                    
+                    <li><a href="#func-ResizeTarget">ResizeTarget</a></li>
+                    
+                    <li><a href="#func-Rotate">Rotate</a></li>
+                    
+                    <li><a href="#func-RotateAbout">RotateAbout</a></li>
+                    
+                    <li><a href="#func-SavePNG">SavePNG</a></li>
+                    
+                    <li><a href="#func-Scale">Scale</a></li>
+                    
+                    <li><a href="#func-SetColor">SetColor</a></li>
+                    
+                    <li><a href="#func-SetDash">SetDash</a></li>
+                    
+                    <li><a href="#func-SetDashOffset">SetDashOffset</a></li>
+                    
+                    <li><a href="#func-SetFillBrush">SetFillBrush</a></li>
+                    
+                    <li><a href="#func-SetFillRule">SetFillRule</a></li>
+                    
+                    <li><a href="#func-SetHexColor">SetHexColor</a></li>
+                    
+                    <li><a href="#func-SetLineCap">SetLineCap</a></li>
+                    
+                    <li><a href="#func-SetLineJoin">SetLineJoin</a></li>
+                    
+                    <li><a href="#func-SetLineWidth">SetLineWidth</a></li>
+                    
+                    <li><a href="#func-SetMiterLimit">SetMiterLimit</a></li>
+                    
+                    <li><a href="#func-SetPipelineMode">SetPipelineMode</a></li>
+                    
+                    <li><a href="#func-SetPixel">SetPixel</a></li>
+                    
+                    <li><a href="#func-SetRGB">SetRGB</a></li>
+                    
+                    <li><a href="#func-SetRGBA">SetRGBA</a></li>
+                    
+                    <li><a href="#func-SetRasterizerMode">SetRasterizerMode</a></li>
+                    
+                    <li><a href="#func-SetStroke">SetStroke</a></li>
+                    
+                    <li><a href="#func-SetStrokeBrush">SetStrokeBrush</a></li>
+                    
+                    <li><a href="#func-SetTransform">SetTransform</a></li>
+                    
+                    <li><a href="#func-Shear">Shear</a></li>
+                    
+                    <li><a href="#func-Stroke">Stroke</a></li>
+                    
+                    <li><a href="#func-StrokeBrush">StrokeBrush</a></li>
+                    
+                    <li><a href="#func-StrokePreserve">StrokePreserve</a></li>
+                    
+                    <li><a href="#func-Transform">Transform</a></li>
+                    
+                    <li><a href="#func-TransformPoint">TransformPoint</a></li>
+                    
+                    <li><a href="#func-Translate">Translate</a></li>
+                    
+                    <li><a href="#func-Width">Width</a></li>
+                    
+                    <li><a href="#func-applyClipToPaint">applyClipToPaint</a></li>
+                    
+                    <li><a href="#func-arcSegment">arcSegment</a></li>
+                    
+                    <li><a href="#func-currentColor">currentColor</a></li>
+                    
+                    <li><a href="#func-doFill">doFill</a></li>
+                    
+                    <li><a href="#func-doStroke">doStroke</a></li>
+                    
+                    <li><a href="#func-flushGPUAccelerator">flushGPUAccelerator</a></li>
+                    
+                    <li><a href="#func-gpuRenderTarget">gpuRenderTarget</a></li>
+                    
+                    <li><a href="#func-sdfAccelForShape">sdfAccelForShape</a></li>
+                    
+                    <li><a href="#func-setForceSDF">setForceSDF</a></li>
+                    
+                    <li><a href="#func-tryGPUFill">tryGPUFill</a></li>
+                    
+                    <li><a href="#func-tryGPUOp">tryGPUOp</a></li>
+                    
+                    <li><a href="#func-tryGPUStroke">tryGPUStroke</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>context.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Clear">
+            <div class="item-header">
+                <h4>func Clear</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Clear fills the entire context with a color.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Clear() {
+	c.pixmap.Clear(Transparent)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClearDash">
+            <div class="item-header">
+                <h4>func ClearDash</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClearDash removes the dash pattern, returning to solid lines.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) ClearDash() {
+	if c.paint.Stroke != nil {
+		c.paint.Stroke.Dash = nil
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClearPath">
+            <div class="item-header">
+                <h4>func ClearPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClearPath clears the current path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) ClearPath() {
+	c.path.Clear()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClearWithColor">
+            <div class="item-header">
+                <h4>func ClearWithColor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClearWithColor fills the entire context with a specific color.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) ClearWithColor(col RGBA) {
+	c.pixmap.Clear(col)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Close">
+            <div class="item-header">
+                <h4>func Close</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Close releases resources associated with the Context.</p>
+                
+                <p>After Close, the Context should not be used.</p>
+                
+                <p>Close is idempotent - multiple calls are safe.</p>
+                
+                <p>Implements io.Closer.</p>
+                
+                <p></p>
+                
+                <p>Close flushes any pending GPU accelerator operations to ensure all</p>
+                
+                <p>queued draw commands are rendered before releasing context state.</p>
+                
+                <p>Note: Close does NOT shut down the global GPU accelerator itself,</p>
+                
+                <p>since it may be shared by other contexts. To release GPU resources</p>
+                
+                <p>at application shutdown, call [CloseAccelerator].</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Close() error {
+	if c.closed {
+		return nil
+	}
+	c.closed = true
+
+	c.flushGPUAccelerator()
+
+	c.ClearPath()
+
+	c.stack = nil
+	c.clipStackDepth = nil
+	c.maskStack = nil
+	c.mask = nil
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ClosePath">
+            <div class="item-header">
+                <h4>func ClosePath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ClosePath closes the current subpath.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) ClosePath() {
+	c.path.Close()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-CubicTo">
+            <div class="item-header">
+                <h4>func CubicTo</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CubicTo adds a cubic Bezier curve to the current path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) CubicTo(c1x, c1y, c2x, c2y, x, y float64) {
+	cp1 := c.matrix.TransformPoint(Pt(c1x, c1y))
+	cp2 := c.matrix.TransformPoint(Pt(c2x, c2y))
+	p := c.matrix.TransformPoint(Pt(x, y))
+	c.path.CubicTo(cp1.X, cp1.Y, cp2.X, cp2.Y, p.X, p.Y)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawArc">
+            <div class="item-header">
+                <h4>func DrawArc</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawArc draws a circular arc.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawArc(x, y, r, angle1, angle2 float64) {
+
+	center := c.matrix.TransformPoint(Pt(x, y))
+
+	// Create arc in world space
+	const twoPi = 2 * math.Pi
+	for angle2 < angle1 {
+		angle2 += twoPi
+	}
+
+	const maxAngle = math.Pi / 2
+	numSegments := int(math.Ceil((angle2 - angle1) / maxAngle))
+	angleStep := (angle2 - angle1) / float64(numSegments)
+
+	for i := 0; i < numSegments; i++ {
+		a1 := angle1 + float64(i)*angleStep
+		a2 := a1 + angleStep
+		c.arcSegment(center.X, center.Y, r, a1, a2)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawCircle">
+            <div class="item-header">
+                <h4>func DrawCircle</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawCircle draws a circle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawCircle(x, y, r float64) {
+	const k = 0.5522847498307936
+	offset := r * k
+
+	c.MoveTo(x+r, y)
+	c.CubicTo(x+r, y+offset, x+offset, y+r, x, y+r)
+	c.CubicTo(x-offset, y+r, x-r, y+offset, x-r, y)
+	c.CubicTo(x-r, y-offset, x-offset, y-r, x, y-r)
+	c.CubicTo(x+offset, y-r, x+r, y-offset, x+r, y)
+	c.ClosePath()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawEllipse">
+            <div class="item-header">
+                <h4>func DrawEllipse</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawEllipse draws an ellipse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawEllipse(x, y, rx, ry float64) {
+	const k = 0.5522847498307936
+	ox := rx * k
+	oy := ry * k
+
+	c.MoveTo(x+rx, y)
+	c.CubicTo(x+rx, y+oy, x+ox, y+ry, x, y+ry)
+	c.CubicTo(x-ox, y+ry, x-rx, y+oy, x-rx, y)
+	c.CubicTo(x-rx, y-oy, x-ox, y-ry, x, y-ry)
+	c.CubicTo(x+ox, y-ry, x+rx, y-oy, x+rx, y)
+	c.ClosePath()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawEllipticalArc">
+            <div class="item-header">
+                <h4>func DrawEllipticalArc</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawEllipticalArc draws an elliptical arc (advanced).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawEllipticalArc(x, y, rx, ry, angle1, angle2 float64) {
+
+	c.Push()
+	c.Translate(x, y)
+	c.Scale(rx, ry)
+	c.DrawArc(0, 0, 1, angle1, angle2)
+	c.Pop()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawLine">
+            <div class="item-header">
+                <h4>func DrawLine</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawLine draws a line between two points.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawLine(x1, y1, x2, y2 float64) {
+	c.MoveTo(x1, y1)
+	c.LineTo(x2, y2)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawPoint">
+            <div class="item-header">
+                <h4>func DrawPoint</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawPoint draws a single point at the given coordinates.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawPoint(x, y, r float64) {
+	c.DrawCircle(x, y, r)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawRectangle">
+            <div class="item-header">
+                <h4>func DrawRectangle</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawRectangle draws a rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawRectangle(x, y, w, h float64) {
+	c.MoveTo(x, y)
+	c.LineTo(x+w, y)
+	c.LineTo(x+w, y+h)
+	c.LineTo(x, y+h)
+	c.ClosePath()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawRoundedRectangle">
+            <div class="item-header">
+                <h4>func DrawRoundedRectangle</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawRoundedRectangle draws a rectangle with rounded corners.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) DrawRoundedRectangle(x, y, w, h, r float64) {
+	c.path.RoundedRectangle(x, y, w, h, r)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-EncodeJPEG">
+            <div class="item-header">
+                <h4>func EncodeJPEG</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>EncodeJPEG writes the image as JPEG with the given quality (1-100).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) EncodeJPEG(w io.Writer, quality int) error {
+	return jpeg.Encode(w, c.Image(), &jpeg.Options{Quality: quality})
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-EncodePNG">
+            <div class="item-header">
+                <h4>func EncodePNG</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>EncodePNG writes the image as PNG to the given writer.</p>
+                
+                <p>This is useful for streaming, network output, or custom storage.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) EncodePNG(w io.Writer) error {
+	return png.Encode(w, c.Image())
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Fill">
+            <div class="item-header">
+                <h4>func Fill</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Fill fills the current path and clears it.</p>
+                
+                <p>If a GPU accelerator is registered and supports the path, it is used first.</p>
+                
+                <p>Otherwise, the software renderer handles the operation.</p>
+                
+                <p>The RasterizerMode set via SetRasterizerMode controls algorithm selection.</p>
+                
+                <p>Returns an error if the rendering operation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Fill() error {
+	err := c.doFill()
+	c.path.Clear()
+	return err
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-FillBrush">
+            <div class="item-header">
+                <h4>func FillBrush</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>FillBrush returns the current fill brush.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) FillBrush() Brush {
+	return c.paint.GetBrush()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-FillPreserve">
+            <div class="item-header">
+                <h4>func FillPreserve</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>FillPreserve fills the current path without clearing it.</p>
+                
+                <p>If a GPU accelerator is registered and supports the path, it is used first.</p>
+                
+                <p>Otherwise, the software renderer handles the operation.</p>
+                
+                <p>Returns an error if the rendering operation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) FillPreserve() error {
+	return c.doFill()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-FlushGPU">
+            <div class="item-header">
+                <h4>func FlushGPU</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>FlushGPU flushes any pending GPU accelerator operations to the pixel buffer.</p>
+                
+                <p>Call this before reading pixel data (e.g., SavePNG, Image) when using a</p>
+                
+                <p>batch-capable GPU accelerator. For immediate-mode accelerators this is a no-op.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) FlushGPU() error {
+	a := Accelerator()
+	if a == nil {
+		return nil
+	}
+	return a.Flush(c.gpuRenderTarget())
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetCurrentPoint">
+            <div class="item-header">
+                <h4>func GetCurrentPoint</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetCurrentPoint returns the current point of the path.</p>
+                
+                <p>Returns (0, 0, false) if there is no current point.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) GetCurrentPoint() (x, y float64, ok bool) {
+	if c.path == nil || !c.path.HasCurrentPoint() {
+		return 0, 0, false
+	}
+	pt := c.path.CurrentPoint()
+	return pt.X, pt.Y, true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetStroke">
+            <div class="item-header">
+                <h4>func GetStroke</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetStroke returns the current stroke style.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) GetStroke() Stroke {
+	return c.paint.GetStroke()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetTransform">
+            <div class="item-header">
+                <h4>func GetTransform</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetTransform returns a copy of the current transformation matrix.</p>
+                
+                <p>This is similar to CanvasRenderingContext2D.getTransform() in web browsers.</p>
+                
+                <p>The returned matrix is a copy, so modifying it will not affect the context.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) GetTransform() Matrix {
+	return c.matrix
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Height">
+            <div class="item-header">
+                <h4>func Height</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Height returns the height of the context.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Height() int {
+	return c.height
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Identity">
+            <div class="item-header">
+                <h4>func Identity</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Identity resets the transformation matrix to identity.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Identity() {
+	c.matrix = Identity()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Image">
+            <div class="item-header">
+                <h4>func Image</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Image returns the context's image.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Image() image.Image {
+	return c.pixmap.ToImage()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-InvertY">
+            <div class="item-header">
+                <h4>func InvertY</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>InvertY inverts the Y axis (useful for coordinate system changes).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) InvertY() {
+	c.Translate(0, float64(c.height))
+	c.Scale(1, -1)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-IsDashed">
+            <div class="item-header">
+                <h4>func IsDashed</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>IsDashed returns true if the current stroke uses a dash pattern.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) IsDashed() bool {
+	return c.paint.IsDashed()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-LineTo">
+            <div class="item-header">
+                <h4>func LineTo</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>LineTo adds a line to the current path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) LineTo(x, y float64) {
+	p := c.matrix.TransformPoint(Pt(x, y))
+	c.path.LineTo(p.X, p.Y)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-MoveTo">
+            <div class="item-header">
+                <h4>func MoveTo</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>MoveTo starts a new subpath at the given point.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) MoveTo(x, y float64) {
+	p := c.matrix.TransformPoint(Pt(x, y))
+	c.path.MoveTo(p.X, p.Y)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewContext">
+            <div class="item-header">
+                <h4>func NewContext</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewContext creates a new drawing context with the given dimensions.</p>
+                
+                <p>Optional ContextOption arguments can be used for dependency injection:</p>
+                
+                <p></p>
+                
+                <p>// Default software rendering (uses analytic anti-aliasing)</p>
+                
+                <p>dc := gg.NewContext(800, 600)</p>
+                
+                <p></p>
+                
+                <p>// Custom GPU renderer (dependency injection)</p>
+                
+                <p>dc := gg.NewContext(800, 600, gg.WithRenderer(gpuRenderer))</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewContext(width, height int, opts ...ContextOption) *Context {
+
+	options := defaultOptions()
+	for _, opt := range opts {
+		opt(&options)
+	}
+
+	pixmap := options.pixmap
+	if pixmap == nil {
+		pixmap = NewPixmap(width, height)
+	}
+
+	renderer := options.renderer
+	if renderer == nil {
+		renderer = NewSoftwareRenderer(width, height)
+	}
+
+	return &Context{
+		width:		width,
+		height:		height,
+		pixmap:		pixmap,
+		renderer:	renderer,
+		path:		NewPath(),
+		paint:		NewPaint(),
+		matrix:		Identity(),
+		stack:		make([]Matrix, 0, 8),
+		clipStackDepth:	make([]int, 0, 8),
+		pipelineMode:	options.pipelineMode,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewContextForImage">
+            <div class="item-header">
+                <h4>func NewContextForImage</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewContextForImage creates a context for drawing on an existing image.</p>
+                
+                <p>Optional ContextOption arguments can be used for dependency injection.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewContextForImage(img image.Image, opts ...ContextOption) *Context {
+	bounds := img.Bounds()
+	width := bounds.Dx()
+	height := bounds.Dy()
+	pixmap := FromImage(img)
+
+	options := defaultOptions()
+	for _, opt := range opts {
+		opt(&options)
+	}
+
+	renderer := options.renderer
+	if renderer == nil {
+		renderer = NewSoftwareRenderer(width, height)
+	}
+
+	return &Context{
+		width:		width,
+		height:		height,
+		pixmap:		pixmap,
+		renderer:	renderer,
+		path:		NewPath(),
+		paint:		NewPaint(),
+		matrix:		Identity(),
+		stack:		make([]Matrix, 0, 8),
+		clipStackDepth:	make([]int, 0, 8),
+		pipelineMode:	options.pipelineMode,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewSubPath">
+            <div class="item-header">
+                <h4>func NewSubPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewSubPath starts a new subpath without closing the previous one.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) NewSubPath() {
+
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-PipelineMode">
+            <div class="item-header">
+                <h4>func PipelineMode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PipelineMode returns the current pipeline mode.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) PipelineMode() PipelineMode {
+	return c.pipelineMode
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Pop">
+            <div class="item-header">
+                <h4>func Pop</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Pop restores the last saved state.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Pop() {
+	if len(c.stack) == 0 {
+		return
+	}
+
+	c.matrix = c.stack[len(c.stack)-1]
+	c.stack = c.stack[:len(c.stack)-1]
+
+	if len(c.clipStackDepth) > 0 {
+		targetDepth := c.clipStackDepth[len(c.clipStackDepth)-1]
+		c.clipStackDepth = c.clipStackDepth[:len(c.clipStackDepth)-1]
+
+		if c.clipStack != nil {
+			for c.clipStack.Depth() > targetDepth {
+				c.clipStack.Pop()
+			}
+		}
+	}
+
+	if len(c.maskStack) > 0 {
+		c.mask = c.maskStack[len(c.maskStack)-1]
+		c.maskStack = c.maskStack[:len(c.maskStack)-1]
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Push">
+            <div class="item-header">
+                <h4>func Push</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Push saves the current state (transform, paint, clip, and mask).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Push() {
+	c.stack = append(c.stack, c.matrix)
+
+	depth := 0
+	if c.clipStack != nil {
+		depth = c.clipStack.Depth()
+	}
+	c.clipStackDepth = append(c.clipStackDepth, depth)
+
+	// Save current mask (clone if exists)
+	var maskCopy *Mask
+	if c.mask != nil {
+		maskCopy = c.mask.Clone()
+	}
+	c.maskStack = append(c.maskStack, maskCopy)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-QuadraticTo">
+            <div class="item-header">
+                <h4>func QuadraticTo</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>QuadraticTo adds a quadratic Bezier curve to the current path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) QuadraticTo(cx, cy, x, y float64) {
+	cp := c.matrix.TransformPoint(Pt(cx, cy))
+	p := c.matrix.TransformPoint(Pt(x, y))
+	c.path.QuadraticTo(cp.X, cp.Y, p.X, p.Y)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RasterizerMode">
+            <div class="item-header">
+                <h4>func RasterizerMode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RasterizerMode returns the current rasterizer mode.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) RasterizerMode() RasterizerMode {
+	return c.rasterizerMode
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Resize">
+            <div class="item-header">
+                <h4>func Resize</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Resize changes the context dimensions, reusing internal buffers where possible.</p>
+                
+                <p>If the dimensions haven't changed, this is a no-op.</p>
+                
+                <p>Returns an error if width or height is <= 0.</p>
+                
+                <p></p>
+                
+                <p>After Resize:</p>
+                
+                <p>- The pixmap is reallocated only if dimensions changed</p>
+                
+                <p>- The clip region is reset to the full rectangle</p>
+                
+                <p>- The transformation matrix is preserved (Push/Pop stack is preserved)</p>
+                
+                <p>- The current path is cleared</p>
+                
+                <p></p>
+                
+                <p>This method is useful for UI frameworks that need to resize the canvas</p>
+                
+                <p>when the window size changes, without creating a new Context.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Resize(width, height int) error {
+	if width <= 0 || height <= 0 {
+		return fmt.Errorf("invalid dimensions: width=%d, height=%d (both must be > 0)", width, height)
+	}
+
+	if c.width == width && c.height == height {
+		return nil
+	}
+
+	c.width = width
+	c.height = height
+
+	c.pixmap = NewPixmap(width, height)
+
+	if sr, ok := c.renderer.(*SoftwareRenderer); ok {
+		sr.Resize(width, height)
+	}
+
+	c.clipStack = nil
+
+	c.ClearPath()
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ResizeTarget">
+            <div class="item-header">
+                <h4>func ResizeTarget</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ResizeTarget returns the underlying pixmap for resize operations.</p>
+                
+                <p>This is primarily used by renderers and advanced users who need</p>
+                
+                <p>direct access to the target buffer during resize operations.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) ResizeTarget() *Pixmap {
+	return c.pixmap
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Rotate">
+            <div class="item-header">
+                <h4>func Rotate</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Rotate applies a rotation (angle in radians).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Rotate(angle float64) {
+	c.matrix = c.matrix.Multiply(Rotate(angle))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-RotateAbout">
+            <div class="item-header">
+                <h4>func RotateAbout</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RotateAbout rotates around a specific point.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) RotateAbout(angle, x, y float64) {
+	c.Translate(x, y)
+	c.Rotate(angle)
+	c.Translate(-x, -y)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SavePNG">
+            <div class="item-header">
+                <h4>func SavePNG</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SavePNG saves the context to a PNG file.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SavePNG(path string) error {
+	_ = c.FlushGPU()
+	return c.pixmap.SavePNG(path)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Scale">
+            <div class="item-header">
+                <h4>func Scale</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Scale applies a scaling transformation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Scale(x, y float64) {
+	c.matrix = c.matrix.Multiply(Scale(x, y))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetColor">
+            <div class="item-header">
+                <h4>func SetColor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetColor sets the current drawing color.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetColor(col color.Color) {
+	c.paint.SetBrush(Solid(FromColor(col)))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetDash">
+            <div class="item-header">
+                <h4>func SetDash</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetDash sets the dash pattern for stroking.</p>
+                
+                <p>Pass alternating dash and gap lengths.</p>
+                
+                <p>Passing no arguments clears the dash pattern (returns to solid lines).</p>
+                
+                <p></p>
+                
+                <p>Example:</p>
+                
+                <p></p>
+                
+                <p>ctx.SetDash(5, 3)       // 5 units dash, 3 units gap</p>
+                
+                <p>ctx.SetDash(10, 5, 2, 5) // complex pattern</p>
+                
+                <p>ctx.SetDash()           // clear dash (solid line)</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetDash(lengths ...float64) {
+	if len(lengths) == 0 {
+		c.ClearDash()
+		return
+	}
+
+	dash := NewDash(lengths...)
+	if dash == nil {
+		c.ClearDash()
+		return
+	}
+
+	if c.paint.Stroke == nil {
+		stroke := c.paint.GetStroke()
+		c.paint.Stroke = &stroke
+	}
+	c.paint.Stroke.Dash = dash
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetDashOffset">
+            <div class="item-header">
+                <h4>func SetDashOffset</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetDashOffset sets the starting offset into the dash pattern.</p>
+                
+                <p>This has no effect if no dash pattern is set.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetDashOffset(offset float64) {
+	if c.paint.Stroke == nil {
+
+		stroke := c.paint.GetStroke()
+		c.paint.Stroke = &stroke
+	}
+	if c.paint.Stroke.Dash != nil {
+		c.paint.Stroke.Dash = c.paint.Stroke.Dash.WithOffset(offset)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetFillBrush">
+            <div class="item-header">
+                <h4>func SetFillBrush</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetFillBrush sets the brush used for fill operations.</p>
+                
+                <p>This is the preferred way to set fill styling in new code.</p>
+                
+                <p></p>
+                
+                <p>Example:</p>
+                
+                <p></p>
+                
+                <p>ctx.SetFillBrush(gg.Solid(gg.Red))</p>
+                
+                <p>ctx.SetFillBrush(gg.SolidHex("#FF5733"))</p>
+                
+                <p>ctx.SetFillBrush(gg.HorizontalGradient(gg.Red, gg.Blue, 0, 100))</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetFillBrush(b Brush) {
+	c.paint.SetBrush(b)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetFillRule">
+            <div class="item-header">
+                <h4>func SetFillRule</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetFillRule sets the fill rule.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetFillRule(rule FillRule) {
+	c.paint.FillRule = rule
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetHexColor">
+            <div class="item-header">
+                <h4>func SetHexColor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetHexColor sets the current color using a hex string.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetHexColor(hex string) {
+	c.paint.SetBrush(SolidHex(hex))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetLineCap">
+            <div class="item-header">
+                <h4>func SetLineCap</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetLineCap sets the line cap style.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetLineCap(lineCap LineCap) {
+	c.paint.LineCap = lineCap
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetLineJoin">
+            <div class="item-header">
+                <h4>func SetLineJoin</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetLineJoin sets the line join style.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetLineJoin(join LineJoin) {
+	c.paint.LineJoin = join
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetLineWidth">
+            <div class="item-header">
+                <h4>func SetLineWidth</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetLineWidth sets the line width for stroking.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetLineWidth(width float64) {
+	c.paint.LineWidth = width
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetMiterLimit">
+            <div class="item-header">
+                <h4>func SetMiterLimit</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetMiterLimit sets the miter limit for line joins.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetMiterLimit(limit float64) {
+	c.paint.MiterLimit = limit
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetPipelineMode">
+            <div class="item-header">
+                <h4>func SetPipelineMode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetPipelineMode sets the GPU rendering pipeline mode.</p>
+                
+                <p>See PipelineMode for available modes.</p>
+                
+                <p></p>
+                
+                <p>If the registered accelerator implements PipelineModeAware, the mode is</p>
+                
+                <p>propagated so the accelerator can route operations to the correct pipeline</p>
+                
+                <p>(render pass vs compute).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetPipelineMode(mode PipelineMode) {
+	c.pipelineMode = mode
+	if a := Accelerator(); a != nil {
+		if pma, ok := a.(PipelineModeAware); ok {
+			pma.SetPipelineMode(mode)
+		}
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetPixel">
+            <div class="item-header">
+                <h4>func SetPixel</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetPixel sets a single pixel.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetPixel(x, y int, col RGBA) {
+	c.pixmap.SetPixel(x, y, col)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetRGB">
+            <div class="item-header">
+                <h4>func SetRGB</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetRGB sets the current color using RGB values (0-1).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetRGB(r, g, b float64) {
+	c.paint.SetBrush(SolidRGB(r, g, b))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetRGBA">
+            <div class="item-header">
+                <h4>func SetRGBA</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetRGBA sets the current color using RGBA values (0-1).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetRGBA(r, g, b, a float64) {
+	c.paint.SetBrush(SolidRGBA(r, g, b, a))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetRasterizerMode">
+            <div class="item-header">
+                <h4>func SetRasterizerMode</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetRasterizerMode sets the rasterization strategy for this context.</p>
+                
+                <p>RasterizerAuto (default) uses intelligent auto-selection based on path</p>
+                
+                <p>complexity, bounding box area, and shape type.</p>
+                
+                <p>Other modes force a specific algorithm, bypassing auto-selection.</p>
+                
+                <p></p>
+                
+                <p>The mode is per-Context — different contexts can use different strategies.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetRasterizerMode(mode RasterizerMode) {
+	c.rasterizerMode = mode
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetStroke">
+            <div class="item-header">
+                <h4>func SetStroke</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetStroke sets the complete stroke style.</p>
+                
+                <p>This is the preferred way to configure stroke properties.</p>
+                
+                <p></p>
+                
+                <p>Example:</p>
+                
+                <p></p>
+                
+                <p>ctx.SetStroke(gg.DefaultStroke().WithWidth(2).WithCap(gg.LineCapRound))</p>
+                
+                <p>ctx.SetStroke(gg.DashedStroke(5, 3))</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetStroke(stroke Stroke) {
+	c.paint.SetStroke(stroke)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetStrokeBrush">
+            <div class="item-header">
+                <h4>func SetStrokeBrush</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetStrokeBrush sets the brush used for stroke operations.</p>
+                
+                <p>Note: In the current implementation, fill and stroke share the same brush.</p>
+                
+                <p>This method is provided for API symmetry and future extensibility.</p>
+                
+                <p></p>
+                
+                <p>Example:</p>
+                
+                <p></p>
+                
+                <p>ctx.SetStrokeBrush(gg.Solid(gg.Black))</p>
+                
+                <p>ctx.SetStrokeBrush(gg.SolidRGB(0.5, 0.5, 0.5))</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetStrokeBrush(b Brush) {
+	c.paint.SetBrush(b)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetTransform">
+            <div class="item-header">
+                <h4>func SetTransform</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetTransform replaces the current transformation matrix with the given matrix.</p>
+                
+                <p>This is similar to CanvasRenderingContext2D.setTransform() in web browsers.</p>
+                
+                <p>Unlike Transform, this completely replaces the matrix rather than multiplying.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) SetTransform(m Matrix) {
+	c.matrix = m
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Shear">
+            <div class="item-header">
+                <h4>func Shear</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Shear applies a shear transformation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Shear(x, y float64) {
+	c.matrix = c.matrix.Multiply(Shear(x, y))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Stroke">
+            <div class="item-header">
+                <h4>func Stroke</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Stroke strokes the current path and clears it.</p>
+                
+                <p>If a GPU accelerator is registered and supports the path, it is used first.</p>
+                
+                <p>Otherwise, the software renderer handles the operation.</p>
+                
+                <p>The RasterizerMode set via SetRasterizerMode controls algorithm selection.</p>
+                
+                <p>Returns an error if the rendering operation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Stroke() error {
+	err := c.doStroke()
+	c.path.Clear()
+	return err
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-StrokeBrush">
+            <div class="item-header">
+                <h4>func StrokeBrush</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StrokeBrush returns the current stroke brush.</p>
+                
+                <p>Note: In the current implementation, fill and stroke share the same brush.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) StrokeBrush() Brush {
+	return c.paint.GetBrush()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-StrokePreserve">
+            <div class="item-header">
+                <h4>func StrokePreserve</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StrokePreserve strokes the current path without clearing it.</p>
+                
+                <p>If a GPU accelerator is registered and supports the path, it is used first.</p>
+                
+                <p>Otherwise, the software renderer handles the operation.</p>
+                
+                <p>Returns an error if the rendering operation fails.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) StrokePreserve() error {
+	return c.doStroke()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Transform">
+            <div class="item-header">
+                <h4>func Transform</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Transform multiplies the current transformation matrix by the given matrix.</p>
+                
+                <p>This is similar to CanvasRenderingContext2D.transform() in web browsers.</p>
+                
+                <p>The transformation is applied in the order: current * m.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Transform(m Matrix) {
+	c.matrix = c.matrix.Multiply(m)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-TransformPoint">
+            <div class="item-header">
+                <h4>func TransformPoint</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>TransformPoint transforms a point by the current matrix.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) TransformPoint(x, y float64) (float64, float64) {
+	p := c.matrix.TransformPoint(Pt(x, y))
+	return p.X, p.Y
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Translate">
+            <div class="item-header">
+                <h4>func Translate</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Translate applies a translation to the transformation matrix.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Translate(x, y float64) {
+	c.matrix = c.matrix.Multiply(Translate(x, y))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Width">
+            <div class="item-header">
+                <h4>func Width</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Width returns the width of the context.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) Width() int {
+	return c.width
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-applyClipToPaint">
+            <div class="item-header">
+                <h4>func applyClipToPaint</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>applyClipToPaint sets the ClipCoverage function on the paint when a clip</p>
+                
+                <p>stack is active and has entries. This allows the renderer to apply per-pixel</p>
+                
+                <p>clip masks during compositing.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) applyClipToPaint() {
+	if c.clipStack == nil || c.clipStack.Depth() == 0 {
+		return
+	}
+	cs := c.clipStack
+	c.paint.ClipCoverage = func(x, y float64) byte {
+		return cs.Coverage(x, y)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-arcSegment">
+            <div class="item-header">
+                <h4>func arcSegment</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>arcSegment draws a single arc segment.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) arcSegment(cx, cy, r, a1, a2 float64) {
+	alpha := math.Sin(a2-a1) * (math.Sqrt(4+3*math.Tan((a2-a1)/2)*math.Tan((a2-a1)/2)) - 1) / 3
+
+	cos1, sin1 := math.Cos(a1), math.Sin(a1)
+	cos2, sin2 := math.Cos(a2), math.Sin(a2)
+
+	x1 := cx + r*cos1
+	y1 := cy + r*sin1
+	x2 := cx + r*cos2
+	y2 := cy + r*sin2
+
+	c1x := x1 - alpha*r*sin1
+	c1y := y1 + alpha*r*cos1
+	c2x := x2 + alpha*r*sin2
+	c2y := y2 - alpha*r*cos2
+
+	if len(c.path.Elements()) == 0 {
+		c.path.MoveTo(x1, y1)
+	}
+	c.path.CubicTo(c1x, c1y, c2x, c2y, x2, y2)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-currentColor">
+            <div class="item-header">
+                <h4>func currentColor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>currentColor returns the current drawing color from the paint.</p>
+                
+                <p>If the current pattern is a solid color, returns that color.</p>
+                
+                <p>Otherwise returns black as a fallback.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) currentColor() color.Color {
+	if p, ok := c.paint.Pattern.(*SolidPattern); ok {
+		return p.Color.Color()
+	}
+	return color.Black
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-doFill">
+            <div class="item-header">
+                <h4>func doFill</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>doFill performs the fill operation respecting the current RasterizerMode.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) doFill() error {
+	mode := c.rasterizerMode
+	cpuMode := mode
+
+	if mode == RasterizerSDF {
+		c.setForceSDF(true)
+		err := c.tryGPUFill()
+		c.setForceSDF(false)
+		if err == nil {
+			return nil
+		}
+
+		cpuMode = RasterizerAuto
+	}
+
+	if mode == RasterizerAuto {
+		if err := c.tryGPUFill(); err == nil {
+			return nil
+		}
+	}
+
+	c.flushGPUAccelerator()
+	if sr, ok := c.renderer.(*SoftwareRenderer); ok {
+		sr.rasterizerMode = cpuMode
+		defer func() { sr.rasterizerMode = RasterizerAuto }()
+	}
+
+	c.applyClipToPaint()
+	defer func() { c.paint.ClipCoverage = nil }()
+
+	return c.renderer.Fill(c.pixmap, c.path, c.paint)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-doStroke">
+            <div class="item-header">
+                <h4>func doStroke</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>doStroke performs the stroke operation respecting the current RasterizerMode.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) doStroke() error {
+	c.paint.TransformScale = c.matrix.ScaleFactor()
+	mode := c.rasterizerMode
+	cpuMode := mode
+
+	if mode == RasterizerSDF {
+		c.setForceSDF(true)
+		err := c.tryGPUStroke()
+		c.setForceSDF(false)
+		if err == nil {
+			return nil
+		}
+		cpuMode = RasterizerAuto
+	}
+
+	if mode == RasterizerAuto {
+		if err := c.tryGPUStroke(); err == nil {
+			return nil
+		}
+	}
+
+	c.flushGPUAccelerator()
+	if sr, ok := c.renderer.(*SoftwareRenderer); ok {
+		sr.rasterizerMode = cpuMode
+		defer func() { sr.rasterizerMode = RasterizerAuto }()
+	}
+
+	c.applyClipToPaint()
+	defer func() { c.paint.ClipCoverage = nil }()
+
+	return c.renderer.Stroke(c.pixmap, c.path, c.paint)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-flushGPUAccelerator">
+            <div class="item-header">
+                <h4>func flushGPUAccelerator</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>flushGPUAccelerator flushes pending GPU shapes before a CPU fallback operation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) flushGPUAccelerator() {
+	a := Accelerator()
+	if a == nil {
+		return
+	}
+	_ = a.Flush(c.gpuRenderTarget())
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-gpuRenderTarget">
+            <div class="item-header">
+                <h4>func gpuRenderTarget</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>gpuRenderTarget returns the current context's pixel buffer as a GPU render target.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) gpuRenderTarget() GPURenderTarget {
+	return GPURenderTarget{
+		Data:	c.pixmap.Data(),
+		Width:	c.pixmap.Width(),
+		Height:	c.pixmap.Height(),
+		Stride:	c.pixmap.Width() * 4,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-sdfAccelForShape">
+            <div class="item-header">
+                <h4>func sdfAccelForShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>sdfAccelForShape maps a shape kind to its SDF acceleration capability.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func sdfAccelForShape(kind ShapeKind) AcceleratedOp {
+	switch kind {
+	case ShapeCircle, ShapeEllipse:
+		return AccelCircleSDF
+	case ShapeRect, ShapeRRect:
+		return AccelRRectSDF
+	default:
+		return 0
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-setForceSDF">
+            <div class="item-header">
+                <h4>func setForceSDF</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>setForceSDF enables/disables forced SDF on the registered accelerator.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) setForceSDF(force bool) {
+	a := Accelerator()
+	if a == nil {
+		return
+	}
+	if f, ok := a.(ForceSDFAware); ok {
+		f.SetForceSDF(force)
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-tryGPUFill">
+            <div class="item-header">
+                <h4>func tryGPUFill</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>tryGPUFill attempts to fill the current path using the GPU accelerator.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) tryGPUFill() error {
+	a := Accelerator()
+	if a == nil {
+		return ErrFallbackToCPU
+	}
+	return c.tryGPUOp(a, a.FillShape, a.FillPath, AccelFill)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-tryGPUOp">
+            <div class="item-header">
+                <h4>func tryGPUOp</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>tryGPUOp attempts GPU rendering using shape-specific SDF first, then general path.</p>
+                
+                <p></p>
+                
+                <p>When PipelineModeCompute is active and the accelerator supports compute,</p>
+                
+                <p>all operations are routed directly to the path function (which accumulates</p>
+                
+                <p>for the compute pipeline). Shape detection is skipped because the compute</p>
+                
+                <p>pipeline handles all shapes uniformly.</p>
+                
+                <p></p>
+                
+                <p>When PipelineModeRenderPass is active (or Auto selects RenderPass), the</p>
+                
+                <p>existing tier-based approach is used: shape SDF first, then general path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) tryGPUOp(
+	a GPUAccelerator,
+	shapeFn func(GPURenderTarget, DetectedShape, *Paint) error,
+	pathFn func(GPURenderTarget, *Path, *Paint) error,
+	pathAccel AcceleratedOp,
+) error {
+	target := c.gpuRenderTarget()
+
+	if c.pipelineMode == PipelineModeCompute {
+		if cpa, ok := a.(ComputePipelineAware); ok && cpa.CanCompute() {
+			if a.CanAccelerate(pathAccel) {
+				return pathFn(target, c.path, c.paint)
+			}
+		}
+
+	}
+
+	shape := DetectShape(c.path)
+	if accel := sdfAccelForShape(shape.Kind); accel != 0 && a.CanAccelerate(accel) {
+		if err := shapeFn(target, shape, c.paint); err == nil {
+			return nil
+		}
+	}
+
+	if a.CanAccelerate(pathAccel) {
+		return pathFn(target, c.path, c.paint)
+	}
+
+	return ErrFallbackToCPU
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-tryGPUStroke">
+            <div class="item-header">
+                <h4>func tryGPUStroke</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>tryGPUStroke attempts to stroke the current path using the GPU accelerator.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *Context) tryGPUStroke() error {
+	a := Accelerator()
+	if a == nil {
+		return ErrFallbackToCPU
+	}
+	return c.tryGPUOp(a, a.StrokeShape, a.StrokePath, AccelStroke)
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-Context">
+            <div class="item-header">
+                <h4>type Context struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Context is the main drawing context.</p>
+                
+                <p>It maintains a pixmap, current path, paint state, and transformation stack.</p>
+                
+                <p>Context implements io.Closer for proper resource cleanup.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type Context struct {
+	width		int
+	height		int
+	pixmap		*Pixmap
+	renderer	Renderer
+
+	// Current state
+	path		*Path
+	paint		*Paint
+	face		text.Face	// Current font face for text drawing
+	clipStack	*clip.ClipStack	// Clipping stack
+
+	// Transform and state stack
+	matrix		Matrix
+	stack		[]Matrix
+	clipStackDepth	[]int	// Tracks clip stack depth for each Push/Pop
+
+	// Layer support
+	layerStack	*layerStack	// Layer stack for compositing
+	basePixmap	*Pixmap		// Base pixmap when layers are active
+
+	// Mask support
+	mask		*Mask	// Current alpha mask
+	maskStack	[]*Mask	// Mask stack for Push/Pop
+
+	// Pipeline mode
+	pipelineMode	PipelineMode	// GPU pipeline selection mode
+
+	// Rasterizer mode
+	rasterizerMode	RasterizerMode	// CPU rasterizer selection mode
+
+	// Text rendering
+	outlineExtractor	*text.OutlineExtractor	// lazy: for transform-aware text (Strategy B)
+
+	// Lifecycle
+	closed	bool	// Indicates whether Close has been called
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

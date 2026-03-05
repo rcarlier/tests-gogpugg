@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - internal/gpu/render_pass.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="active">internal/gpu/render_pass.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-Destroy">Destroy</a></li>
+                    
+                    <li><a href="#func-Destroy">Destroy</a></li>
+                    
+                    <li><a href="#func-Draw">Draw</a></li>
+                    
+                    <li><a href="#func-DrawIndexed">DrawIndexed</a></li>
+                    
+                    <li><a href="#func-DrawIndexedIndirect">DrawIndexedIndirect</a></li>
+                    
+                    <li><a href="#func-DrawIndirect">DrawIndirect</a></li>
+                    
+                    <li><a href="#func-End">End</a></li>
+                    
+                    <li><a href="#func-ID">ID</a></li>
+                    
+                    <li><a href="#func-ID">ID</a></li>
+                    
+                    <li><a href="#func-IsDestroyed">IsDestroyed</a></li>
+                    
+                    <li><a href="#func-IsDestroyed">IsDestroyed</a></li>
+                    
+                    <li><a href="#func-IsEnded">IsEnded</a></li>
+                    
+                    <li><a href="#func-Label">Label</a></li>
+                    
+                    <li><a href="#func-Label">Label</a></li>
+                    
+                    <li><a href="#func-SetBindGroup">SetBindGroup</a></li>
+                    
+                    <li><a href="#func-SetBlendConstant">SetBlendConstant</a></li>
+                    
+                    <li><a href="#func-SetIndexBuffer">SetIndexBuffer</a></li>
+                    
+                    <li><a href="#func-SetPipeline">SetPipeline</a></li>
+                    
+                    <li><a href="#func-SetScissorRect">SetScissorRect</a></li>
+                    
+                    <li><a href="#func-SetStencilReference">SetStencilReference</a></li>
+                    
+                    <li><a href="#func-SetVertexBuffer">SetVertexBuffer</a></li>
+                    
+                    <li><a href="#func-SetViewport">SetViewport</a></li>
+                    
+                    <li><a href="#func-State">State</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-checkRecording">checkRecording</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>internal/gpu/render_pass.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-Destroy">
+            <div class="item-header">
+                <h4>func Destroy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Destroy releases the bind group resources.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (bg *BindGroup) Destroy() {
+	bg.mu.Lock()
+	defer bg.mu.Unlock()
+	bg.destroyed = true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Destroy">
+            <div class="item-header">
+                <h4>func Destroy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Destroy releases the pipeline resources.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPipeline) Destroy() {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	p.destroyed = true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Draw">
+            <div class="item-header">
+                <h4>func Draw</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Draw issues a non-indexed draw call.</p>
+                
+                <p></p>
+                
+                <p>This draws primitives using vertices sequentially from bound vertex buffers.</p>
+                
+                <p>A pipeline must be bound before calling Draw.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- vertexCount: The number of vertices to draw.</p>
+                
+                <p>- instanceCount: The number of instances to draw.</p>
+                
+                <p>- firstVertex: The first vertex index.</p>
+                
+                <p>- firstInstance: The first instance index.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) Draw(vertexCount, instanceCount, firstVertex, firstInstance uint32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("draw: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.Draw(vertexCount, instanceCount, firstVertex, firstInstance)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawIndexed">
+            <div class="item-header">
+                <h4>func DrawIndexed</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawIndexed issues an indexed draw call.</p>
+                
+                <p></p>
+                
+                <p>This draws primitives using indices from the bound index buffer.</p>
+                
+                <p>Both a pipeline and index buffer must be bound before calling DrawIndexed.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- indexCount: The number of indices to draw.</p>
+                
+                <p>- instanceCount: The number of instances to draw.</p>
+                
+                <p>- firstIndex: The first index in the index buffer.</p>
+                
+                <p>- baseVertex: Value added to each index before vertex lookup.</p>
+                
+                <p>- firstInstance: The first instance index.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) DrawIndexed(indexCount, instanceCount, firstIndex uint32, baseVertex int32, firstInstance uint32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("draw indexed: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.DrawIndexed(indexCount, instanceCount, firstIndex, baseVertex, firstInstance)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawIndexedIndirect">
+            <div class="item-header">
+                <h4>func DrawIndexedIndirect</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawIndexedIndirect issues an indexed draw call with GPU-generated parameters.</p>
+                
+                <p></p>
+                
+                <p>The draw parameters are read from the indirect buffer at the specified offset.</p>
+                
+                <p>The buffer must contain a DrawIndexedIndirectArgs structure:</p>
+                
+                <p></p>
+                
+                <p>struct DrawIndexedIndirectArgs {</p>
+                
+                <p>indexCount: u32,</p>
+                
+                <p>instanceCount: u32,</p>
+                
+                <p>firstIndex: u32,</p>
+                
+                <p>baseVertex: i32,</p>
+                
+                <p>firstInstance: u32,</p>
+                
+                <p>}</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- indirectBuffer: Buffer containing DrawIndexedIndirectArgs.</p>
+                
+                <p>- indirectOffset: Byte offset into the buffer (must be 4-byte aligned).</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The buffer is nil</p>
+                
+                <p>- The offset is not 4-byte aligned</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) DrawIndexedIndirect(indirectBuffer *Buffer, indirectOffset uint64) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("draw indexed indirect: %w", err)
+	}
+
+	if indirectBuffer == nil {
+		return ErrNilIndirectBuffer
+	}
+
+	if indirectOffset%4 != 0 {
+		return fmt.Errorf("%w: offset %d", ErrIndirectOffsetNotAligned, indirectOffset)
+	}
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-DrawIndirect">
+            <div class="item-header">
+                <h4>func DrawIndirect</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>DrawIndirect issues a draw call with GPU-generated parameters.</p>
+                
+                <p></p>
+                
+                <p>The draw parameters are read from the indirect buffer at the specified offset.</p>
+                
+                <p>The buffer must contain a DrawIndirectArgs structure:</p>
+                
+                <p></p>
+                
+                <p>struct DrawIndirectArgs {</p>
+                
+                <p>vertexCount: u32,</p>
+                
+                <p>instanceCount: u32,</p>
+                
+                <p>firstVertex: u32,</p>
+                
+                <p>firstInstance: u32,</p>
+                
+                <p>}</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- indirectBuffer: Buffer containing DrawIndirectArgs.</p>
+                
+                <p>- indirectOffset: Byte offset into the buffer (must be 4-byte aligned).</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The buffer is nil</p>
+                
+                <p>- The offset is not 4-byte aligned</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) DrawIndirect(indirectBuffer *Buffer, indirectOffset uint64) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("draw indirect: %w", err)
+	}
+
+	if indirectBuffer == nil {
+		return ErrNilIndirectBuffer
+	}
+
+	if indirectOffset%4 != 0 {
+		return fmt.Errorf("%w: offset %d", ErrIndirectOffsetNotAligned, indirectOffset)
+	}
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-End">
+            <div class="item-header">
+                <h4>func End</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>End completes the render pass.</p>
+                
+                <p></p>
+                
+                <p>After calling End(), the render pass encoder cannot be used for further</p>
+                
+                <p>recording. The parent command encoder returns to the Recording state.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has already ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) End() error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if p.state == RenderPassStateEnded {
+		return nil
+	}
+	p.state = RenderPassStateEnded
+
+	if p.corePass != nil {
+		if err := p.corePass.End(); err != nil {
+			return fmt.Errorf("end render pass: %w", err)
+		}
+	}
+
+	if p.encoder != nil {
+		return p.encoder.endRenderPass(p)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ID">
+            <div class="item-header">
+                <h4>func ID</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ID returns the bind group's unique identifier.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (bg *BindGroup) ID() uint64 {
+	return bg.id
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ID">
+            <div class="item-header">
+                <h4>func ID</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ID returns the pipeline's unique identifier.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPipeline) ID() uint64 {
+	return p.id
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-IsDestroyed">
+            <div class="item-header">
+                <h4>func IsDestroyed</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>IsDestroyed returns true if the bind group has been destroyed.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (bg *BindGroup) IsDestroyed() bool {
+	bg.mu.RLock()
+	defer bg.mu.RUnlock()
+	return bg.destroyed
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-IsDestroyed">
+            <div class="item-header">
+                <h4>func IsDestroyed</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>IsDestroyed returns true if the pipeline has been destroyed.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPipeline) IsDestroyed() bool {
+	p.mu.RLock()
+	defer p.mu.RUnlock()
+	return p.destroyed
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-IsEnded">
+            <div class="item-header">
+                <h4>func IsEnded</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>IsEnded returns true if the pass has been ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) IsEnded() bool {
+	return p.State() == RenderPassStateEnded
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Label">
+            <div class="item-header">
+                <h4>func Label</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Label returns the pipeline's debug label.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPipeline) Label() string {
+	return p.label
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Label">
+            <div class="item-header">
+                <h4>func Label</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Label returns the bind group's debug label.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (bg *BindGroup) Label() string {
+	return bg.label
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetBindGroup">
+            <div class="item-header">
+                <h4>func SetBindGroup</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetBindGroup binds a bind group for the given index.</p>
+                
+                <p></p>
+                
+                <p>Bind groups provide resources (buffers, textures, samplers) to shaders.</p>
+                
+                <p>WebGPU supports up to 4 bind groups (indices 0-3).</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- index: The bind group index (0, 1, 2, or 3).</p>
+                
+                <p>- bindGroup: The bind group to bind.</p>
+                
+                <p>- dynamicOffsets: Dynamic offsets for dynamic uniform/storage buffers (optional).</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The index exceeds maximum (3)</p>
+                
+                <p>- The bind group is nil</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetBindGroup(index uint32, bindGroup *BindGroup, dynamicOffsets []uint32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set bind group: %w", err)
+	}
+
+	if index > 3 {
+		return fmt.Errorf("%w: index %d", ErrBindGroupIndexOutOfRange, index)
+	}
+
+	if bindGroup == nil {
+		return ErrNilBindGroup
+	}
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetBlendConstant">
+            <div class="item-header">
+                <h4>func SetBlendConstant</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetBlendConstant sets the blend constant color.</p>
+                
+                <p></p>
+                
+                <p>The blend constant is used in blend operations when the blend factor</p>
+                
+                <p>is set to Constant or OneMinusConstant.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- color: The blend constant color.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetBlendConstant(color gputypes.Color) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set blend constant: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.SetBlendConstant(&color)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetIndexBuffer">
+            <div class="item-header">
+                <h4>func SetIndexBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetIndexBuffer binds the index buffer for indexed draw calls.</p>
+                
+                <p></p>
+                
+                <p>The index buffer provides vertex indices for indexed drawing. Only one</p>
+                
+                <p>index buffer can be bound at a time.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- buffer: The buffer containing indices.</p>
+                
+                <p>- format: The index format (Uint16 or Uint32).</p>
+                
+                <p>- offset: Byte offset into the buffer.</p>
+                
+                <p>- size: Size of the index data in bytes. Use 0 to bind the remaining buffer.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The buffer is nil</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetIndexBuffer(buffer *Buffer, format IndexFormat, offset, size uint64) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set index buffer: %w", err)
+	}
+
+	if buffer == nil {
+		return ErrNilIndexBuffer
+	}
+
+	p.hasIndexBuffer = true
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetPipeline">
+            <div class="item-header">
+                <h4>func SetPipeline</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetPipeline binds a render pipeline for subsequent draw calls.</p>
+                
+                <p></p>
+                
+                <p>The pipeline defines:</p>
+                
+                <p>- Vertex and fragment shaders</p>
+                
+                <p>- Primitive topology (triangles, lines, points)</p>
+                
+                <p>- Rasterization state (culling, depth bias)</p>
+                
+                <p>- Depth/stencil state</p>
+                
+                <p>- Blend state for color attachments</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- pipeline: The render pipeline to bind.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The pipeline is nil</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetPipeline(pipeline *RenderPipeline) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set pipeline: %w", err)
+	}
+
+	if pipeline == nil {
+		return ErrNilPipeline
+	}
+
+	p.currentPipeline = pipeline
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetScissorRect">
+            <div class="item-header">
+                <h4>func SetScissorRect</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetScissorRect sets the scissor rectangle for clipping.</p>
+                
+                <p></p>
+                
+                <p>Fragments outside the scissor rectangle are discarded. By default,</p>
+                
+                <p>the scissor rectangle matches the framebuffer size.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- x, y: The scissor origin (pixels).</p>
+                
+                <p>- width, height: The scissor size (pixels).</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetScissorRect(x, y, width, height uint32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set scissor rect: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.SetScissorRect(x, y, width, height)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetStencilReference">
+            <div class="item-header">
+                <h4>func SetStencilReference</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetStencilReference sets the stencil reference value.</p>
+                
+                <p></p>
+                
+                <p>The stencil reference is used in stencil comparison and update operations.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- reference: The stencil reference value.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetStencilReference(reference uint32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set stencil reference: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.SetStencilReference(reference)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetVertexBuffer">
+            <div class="item-header">
+                <h4>func SetVertexBuffer</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetVertexBuffer binds a vertex buffer to a slot.</p>
+                
+                <p></p>
+                
+                <p>Vertex buffers provide per-vertex data to vertex shaders. Multiple vertex</p>
+                
+                <p>buffers can be bound to different slots for interleaved or separate vertex</p>
+                
+                <p>attributes.</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- slot: The vertex buffer slot (0 to maxVertexBuffers-1).</p>
+                
+                <p>- buffer: The buffer to bind.</p>
+                
+                <p>- offset: Byte offset into the buffer.</p>
+                
+                <p>- size: Size of the vertex data in bytes. Use 0 to bind the remaining buffer.</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if:</p>
+                
+                <p>- The pass has ended</p>
+                
+                <p>- The buffer is nil</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetVertexBuffer(slot uint32, buffer *Buffer, offset, size uint64) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set vertex buffer: %w", err)
+	}
+
+	if buffer == nil {
+		return ErrNilVertexBuffer
+	}
+
+	if slot >= p.vertexBufferCount {
+		p.vertexBufferCount = slot + 1
+	}
+
+	_ = p.corePass
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SetViewport">
+            <div class="item-header">
+                <h4>func SetViewport</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SetViewport sets the viewport transformation.</p>
+                
+                <p></p>
+                
+                <p>The viewport defines how normalized device coordinates (-1 to 1) are</p>
+                
+                <p>transformed to framebuffer coordinates. The depth range is clamped to [0, 1].</p>
+                
+                <p></p>
+                
+                <p>Parameters:</p>
+                
+                <p>- x, y: The viewport origin (pixels).</p>
+                
+                <p>- width, height: The viewport size (pixels).</p>
+                
+                <p>- minDepth, maxDepth: The depth range [0, 1].</p>
+                
+                <p></p>
+                
+                <p>Returns nil on success.</p>
+                
+                <p>Returns an error if the pass has ended.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) SetViewport(x, y, width, height, minDepth, maxDepth float32) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+
+	if err := p.checkRecording(); err != nil {
+		return fmt.Errorf("set viewport: %w", err)
+	}
+
+	if p.corePass != nil {
+		p.corePass.SetViewport(x, y, width, height, minDepth, maxDepth)
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-State">
+            <div class="item-header">
+                <h4>func State</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>State returns the current pass state.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) State() RenderPassState {
+	if p == nil {
+		return RenderPassStateEnded
+	}
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	return p.state
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-String">
+            <div class="item-header">
+                <h4>func String</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>String returns the string representation of RenderPassState.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s RenderPassState) String() string {
+	switch s {
+	case RenderPassStateRecording:
+		return "Recording"
+	case RenderPassStateEnded:
+		return "Ended"
+	default:
+		return fmt.Sprintf("Unknown(%d)", int(s))
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-checkRecording">
+            <div class="item-header">
+                <h4>func checkRecording</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>checkRecording returns an error if the pass is not in Recording state.</p>
+                
+                <p>The caller must hold p.mu.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *RenderPassEncoder) checkRecording() error {
+	if p.state != RenderPassStateRecording {
+		return ErrPassEnded
+	}
+	return nil
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-RenderPassEncoder">
+            <div class="item-header">
+                <h4>type RenderPassEncoder struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderPassEncoder records render commands within a render pass.</p>
+                
+                <p></p>
+                
+                <p>RenderPassEncoder wraps core.CoreRenderPassEncoder and provides</p>
+                
+                <p>Go-idiomatic access with immediate error returns. Commands recorded include:</p>
+                
+                <p>- SetPipeline: Set the render pipeline for subsequent draw calls</p>
+                
+                <p>- SetBindGroup: Bind resource groups (textures, buffers, samplers)</p>
+                
+                <p>- SetVertexBuffer: Bind vertex buffers to slots</p>
+                
+                <p>- SetIndexBuffer: Bind the index buffer for indexed draws</p>
+                
+                <p>- SetViewport: Set the viewport transformation</p>
+                
+                <p>- SetScissorRect: Set the scissor rectangle for clipping</p>
+                
+                <p>- SetBlendConstant: Set the blend constant color</p>
+                
+                <p>- SetStencilReference: Set the stencil reference value</p>
+                
+                <p>- Draw: Draw primitives</p>
+                
+                <p>- DrawIndexed: Draw indexed primitives</p>
+                
+                <p>- DrawIndirect: Draw with GPU-generated parameters</p>
+                
+                <p>- DrawIndexedIndirect: Draw indexed with GPU-generated parameters</p>
+                
+                <p></p>
+                
+                <p>Thread Safety:</p>
+                
+                <p>RenderPassEncoder is NOT safe for concurrent use. All commands must be</p>
+                
+                <p>recorded from a single goroutine. The pass must be ended with End() before</p>
+                
+                <p>the parent command encoder can continue recording.</p>
+                
+                <p></p>
+                
+                <p>Lifecycle:</p>
+                
+                <p>1. Created by CoreCommandEncoder.BeginRenderPass()</p>
+                
+                <p>2. Record commands (SetPipeline, SetVertexBuffer, Draw, etc.)</p>
+                
+                <p>3. Call End() to complete the pass</p>
+                
+                <p></p>
+                
+                <p>State Machine:</p>
+                
+                <p></p>
+                
+                <p>Recording -> End() -> Ended</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type RenderPassEncoder struct {
+	// mu protects mutable state.
+	mu	sync.Mutex
+
+	// corePass is the underlying core render pass encoder.
+	corePass	*core.CoreRenderPassEncoder
+
+	// encoder is the parent command encoder.
+	encoder	*CoreCommandEncoder
+
+	// state is the current pass state.
+	state	RenderPassState
+
+	// currentPipeline tracks the currently bound pipeline (if any).
+	currentPipeline	*RenderPipeline
+
+	// vertexBufferCount tracks the number of vertex buffer slots used.
+	vertexBufferCount	uint32
+
+	// hasIndexBuffer tracks whether an index buffer is bound.
+	hasIndexBuffer	bool
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-RenderPipeline">
+            <div class="item-header">
+                <h4>type RenderPipeline struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RenderPipeline represents a GPU render pipeline.</p>
+                
+                <p></p>
+                
+                <p>Render pipelines define the complete rendering state including:</p>
+                
+                <p>- Vertex and fragment shaders</p>
+                
+                <p>- Primitive topology</p>
+                
+                <p>- Rasterization state</p>
+                
+                <p>- Depth/stencil state</p>
+                
+                <p>- Blend state</p>
+                
+                <p></p>
+                
+                <p>RenderPipeline is a placeholder type that will be expanded when</p>
+                
+                <p>pipeline creation is implemented.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type RenderPipeline struct {
+	// id is a unique identifier for the pipeline.
+	id	uint64
+
+	// label is an optional debug name.
+	label	string
+
+	// destroyed indicates whether the pipeline has been destroyed.
+	destroyed	bool
+
+	// mu protects mutable state.
+	mu	sync.RWMutex
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-BindGroup">
+            <div class="item-header">
+                <h4>type BindGroup struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>BindGroup represents a collection of resources bound together.</p>
+                
+                <p></p>
+                
+                <p>Bind groups contain:</p>
+                
+                <p>- Uniform buffers</p>
+                
+                <p>- Storage buffers</p>
+                
+                <p>- Texture bindings</p>
+                
+                <p>- Sampler bindings</p>
+                
+                <p></p>
+                
+                <p>BindGroup is a placeholder type that will be expanded when</p>
+                
+                <p>bind group creation is implemented.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type BindGroup struct {
+	// id is a unique identifier for the bind group.
+	id	uint64
+
+	// label is an optional debug name.
+	label	string
+
+	// destroyed indicates whether the bind group has been destroyed.
+	destroyed	bool
+
+	// mu protects mutable state.
+	mu	sync.RWMutex
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

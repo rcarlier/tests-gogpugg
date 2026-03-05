@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/shape.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="active">scene/shape.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-AddShape">AddShape</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
+                    <li><a href="#func-Length">Length</a></li>
+                    
+                    <li><a href="#func-NewArcShape">NewArcShape</a></li>
+                    
+                    <li><a href="#func-NewCircleShape">NewCircleShape</a></li>
+                    
+                    <li><a href="#func-NewCompositeShape">NewCompositeShape</a></li>
+                    
+                    <li><a href="#func-NewEllipseShape">NewEllipseShape</a></li>
+                    
+                    <li><a href="#func-NewLineShape">NewLineShape</a></li>
+                    
+                    <li><a href="#func-NewPathShape">NewPathShape</a></li>
+                    
+                    <li><a href="#func-NewPieShape">NewPieShape</a></li>
+                    
+                    <li><a href="#func-NewPolygonShape">NewPolygonShape</a></li>
+                    
+                    <li><a href="#func-NewRectShape">NewRectShape</a></li>
+                    
+                    <li><a href="#func-NewRegularPolygonShape">NewRegularPolygonShape</a></li>
+                    
+                    <li><a href="#func-NewRoundedRectShape">NewRoundedRectShape</a></li>
+                    
+                    <li><a href="#func-NewStarShape">NewStarShape</a></li>
+                    
+                    <li><a href="#func-NewTransformShape">NewTransformShape</a></li>
+                    
+                    <li><a href="#func-Point">Point</a></li>
+                    
+                    <li><a href="#func-PointCount">PointCount</a></li>
+                    
+                    <li><a href="#func-ShapeCount">ShapeCount</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>scene/shape.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        <a href="#interfaces" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Interfaces</a>
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-AddShape">
+            <div class="item-header">
+                <h4>func AddShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>AddShape adds a shape to the composite.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (cs *CompositeShape) AddShape(shape Shape) {
+	cs.shapes = append(cs.shapes, shape)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the transformed bounding rectangle.</p>
+                
+                <p>Note: This is a conservative approximation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ts *TransformShape) Bounds() Rect {
+	if ts.shape == nil {
+		return EmptyRect()
+	}
+
+	b := ts.shape.Bounds()
+	if b.IsEmpty() {
+		return b
+	}
+
+	corners := [][2]float32{
+		{b.MinX, b.MinY},
+		{b.MaxX, b.MinY},
+		{b.MaxX, b.MaxY},
+		{b.MinX, b.MaxY},
+	}
+
+	result := EmptyRect()
+	for _, c := range corners {
+		x, y := ts.transform.TransformPoint(c[0], c[1])
+		result = result.UnionPoint(x, y)
+	}
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle of the path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ps *PathShape) Bounds() Rect {
+	if ps.path == nil {
+		return EmptyRect()
+	}
+	return ps.path.Bounds()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (l *LineShape) Bounds() Rect {
+	return Rect{
+		MinX:	min32(l.X1, l.X2),
+		MinY:	min32(l.Y1, l.Y2),
+		MaxX:	max32(l.X1, l.X2),
+		MaxY:	max32(l.Y1, l.Y2),
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the union of all shape bounds.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (cs *CompositeShape) Bounds() Rect {
+	result := EmptyRect()
+	for _, shape := range cs.shapes {
+		if shape != nil {
+			result = result.Union(shape.Bounds())
+		}
+	}
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PolygonShape) Bounds() Rect {
+	if len(p.points) < 2 {
+		return EmptyRect()
+	}
+
+	bounds := Rect{
+		MinX:	p.points[0],
+		MinY:	p.points[1],
+		MaxX:	p.points[0],
+		MaxY:	p.points[1],
+	}
+
+	for i := 2; i < len(p.points); i += 2 {
+		bounds = bounds.UnionPoint(p.points[i], p.points[i+1])
+	}
+
+	return bounds
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (r *RoundedRectShape) Bounds() Rect {
+	return Rect{
+		MinX:	r.X,
+		MinY:	r.Y,
+		MaxX:	r.X + r.Width,
+		MaxY:	r.Y + r.Height,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (rp *RegularPolygonShape) Bounds() Rect {
+
+	return Rect{
+		MinX:	rp.CX - rp.R,
+		MinY:	rp.CY - rp.R,
+		MaxX:	rp.CX + rp.R,
+		MaxY:	rp.CY + rp.R,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s *StarShape) Bounds() Rect {
+
+	return Rect{
+		MinX:	s.CX - s.OuterRadius,
+		MinY:	s.CY - s.OuterRadius,
+		MaxX:	s.CX + s.OuterRadius,
+		MaxY:	s.CY + s.OuterRadius,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (r *RectShape) Bounds() Rect {
+	return Rect{
+		MinX:	r.X,
+		MinY:	r.Y,
+		MaxX:	r.X + r.Width,
+		MaxY:	r.Y + r.Height,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns a conservative bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PieShape) Bounds() Rect {
+
+	return Rect{
+		MinX:	p.CX - p.R,
+		MinY:	p.CY - p.R,
+		MaxX:	p.CX + p.R,
+		MaxY:	p.CY + p.R,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *CircleShape) Bounds() Rect {
+	return Rect{
+		MinX:	c.CX - c.R,
+		MinY:	c.CY - c.R,
+		MaxX:	c.CX + c.R,
+		MaxY:	c.CY + c.R,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns a conservative bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (a *ArcShape) Bounds() Rect {
+
+	return Rect{
+		MinX:	a.CX - a.RX,
+		MinY:	a.CY - a.RY,
+		MaxX:	a.CX + a.RX,
+		MaxY:	a.CY + a.RY,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Bounds">
+            <div class="item-header">
+                <h4>func Bounds</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Bounds returns the bounding rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *EllipseShape) Bounds() Rect {
+	return Rect{
+		MinX:	e.CX - e.RX,
+		MinY:	e.CY - e.RY,
+		MaxX:	e.CX + e.RX,
+		MaxY:	e.CY + e.RY,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Contains">
+            <div class="item-header">
+                <h4>func Contains</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Contains returns true if the point (px, py) is inside the circle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *CircleShape) Contains(px, py float32) bool {
+	dx := px - c.CX
+	dy := py - c.CY
+	return dx*dx+dy*dy <= c.R*c.R
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Contains">
+            <div class="item-header">
+                <h4>func Contains</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Contains returns true if the point (px, py) is inside the ellipse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *EllipseShape) Contains(px, py float32) bool {
+	if e.RX == 0 || e.RY == 0 {
+		return false
+	}
+	dx := (px - e.CX) / e.RX
+	dy := (py - e.CY) / e.RY
+	return dx*dx+dy*dy <= 1
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Contains">
+            <div class="item-header">
+                <h4>func Contains</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Contains returns true if the point (px, py) is inside the rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (r *RectShape) Contains(px, py float32) bool {
+	return px >= r.X && px <= r.X+r.Width &&
+		py >= r.Y && py <= r.Y+r.Height
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Length">
+            <div class="item-header">
+                <h4>func Length</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Length returns the length of the line segment.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (l *LineShape) Length() float32 {
+	dx := l.X2 - l.X1
+	dy := l.Y2 - l.Y1
+	return float32(math.Sqrt(float64(dx*dx + dy*dy)))
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewArcShape">
+            <div class="item-header">
+                <h4>func NewArcShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewArcShape creates a new arc shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewArcShape(cx, cy, rx, ry, startAngle, endAngle float32, sweepClockwise bool) *ArcShape {
+	return &ArcShape{
+		CX:	cx, CY: cy, RX: rx, RY: ry,
+		StartAngle:	startAngle, EndAngle: endAngle,
+		SweepClockwise:	sweepClockwise,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewCircleShape">
+            <div class="item-header">
+                <h4>func NewCircleShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewCircleShape creates a new circle shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewCircleShape(cx, cy, r float32) *CircleShape {
+	return &CircleShape{CX: cx, CY: cy, R: r}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewCompositeShape">
+            <div class="item-header">
+                <h4>func NewCompositeShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewCompositeShape creates a new composite shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewCompositeShape(shapes ...Shape) *CompositeShape {
+	return &CompositeShape{shapes: shapes}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewEllipseShape">
+            <div class="item-header">
+                <h4>func NewEllipseShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewEllipseShape creates a new ellipse shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewEllipseShape(cx, cy, rx, ry float32) *EllipseShape {
+	return &EllipseShape{CX: cx, CY: cy, RX: rx, RY: ry}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewLineShape">
+            <div class="item-header">
+                <h4>func NewLineShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewLineShape creates a new line shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewLineShape(x1, y1, x2, y2 float32) *LineShape {
+	return &LineShape{X1: x1, Y1: y1, X2: x2, Y2: y2}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewPathShape">
+            <div class="item-header">
+                <h4>func NewPathShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewPathShape creates a new path shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewPathShape(path *Path) *PathShape {
+	return &PathShape{path: path}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewPieShape">
+            <div class="item-header">
+                <h4>func NewPieShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewPieShape creates a new pie shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewPieShape(cx, cy, r, startAngle, endAngle float32, sweepClockwise bool) *PieShape {
+	return &PieShape{
+		CX:	cx, CY: cy, R: r,
+		StartAngle:	startAngle, EndAngle: endAngle,
+		SweepClockwise:	sweepClockwise,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewPolygonShape">
+            <div class="item-header">
+                <h4>func NewPolygonShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewPolygonShape creates a new polygon shape from a list of points.</p>
+                
+                <p>Points should be provided as x, y pairs.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewPolygonShape(points ...float32) *PolygonShape {
+	if len(points)%2 != 0 {
+
+		points = points[:len(points)-1]
+	}
+	ps := &PolygonShape{
+		points: make([]float32, len(points)),
+	}
+	copy(ps.points, points)
+	return ps
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewRectShape">
+            <div class="item-header">
+                <h4>func NewRectShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewRectShape creates a new rectangle shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewRectShape(x, y, width, height float32) *RectShape {
+	return &RectShape{X: x, Y: y, Width: width, Height: height}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewRegularPolygonShape">
+            <div class="item-header">
+                <h4>func NewRegularPolygonShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewRegularPolygonShape creates a new regular polygon shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewRegularPolygonShape(cx, cy, r float32, sides int, rotation float32) *RegularPolygonShape {
+	if sides < 3 {
+		sides = 3
+	}
+	return &RegularPolygonShape{
+		CX:	cx, CY: cy, R: r, Sides: sides, Rotation: rotation,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewRoundedRectShape">
+            <div class="item-header">
+                <h4>func NewRoundedRectShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewRoundedRectShape creates a new rounded rectangle shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewRoundedRectShape(x, y, width, height, radius float32) *RoundedRectShape {
+	return &RoundedRectShape{
+		X:	x, Y: y, Width: width, Height: height, Radius: radius,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewStarShape">
+            <div class="item-header">
+                <h4>func NewStarShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewStarShape creates a new star shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewStarShape(cx, cy, outerRadius, innerRadius float32, points int, rotation float32) *StarShape {
+	if points < 3 {
+		points = 5
+	}
+	return &StarShape{
+		CX:	cx, CY: cy,
+		OuterRadius:	outerRadius, InnerRadius: innerRadius,
+		Points:	points, Rotation: rotation,
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewTransformShape">
+            <div class="item-header">
+                <h4>func NewTransformShape</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewTransformShape creates a transformed shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewTransformShape(shape Shape, transform Affine) *TransformShape {
+	return &TransformShape{shape: shape, transform: transform}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-Point">
+            <div class="item-header">
+                <h4>func Point</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Point returns the i-th vertex of the polygon.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PolygonShape) Point(i int) (x, y float32, ok bool) {
+	idx := i * 2
+	if idx < 0 || idx+1 >= len(p.points) {
+		return 0, 0, false
+	}
+	return p.points[idx], p.points[idx+1], true
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-PointCount">
+            <div class="item-header">
+                <h4>func PointCount</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PointCount returns the number of vertices in the polygon.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PolygonShape) PointCount() int {
+	return len(p.points) / 2
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ShapeCount">
+            <div class="item-header">
+                <h4>func ShapeCount</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ShapeCount returns the number of shapes in the composite.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (cs *CompositeShape) ShapeCount() int {
+	return len(cs.shapes)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the arc to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (a *ArcShape) ToPath() *Path {
+	return NewPath().Arc(a.CX, a.CY, a.RX, a.RY, a.StartAngle, a.EndAngle, a.SweepClockwise)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the ellipse to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *EllipseShape) ToPath() *Path {
+	return NewPath().Ellipse(e.CX, e.CY, e.RX, e.RY)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the line to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (l *LineShape) ToPath() *Path {
+	return NewPath().MoveTo(l.X1, l.Y1).LineTo(l.X2, l.Y2)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the pie to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PieShape) ToPath() *Path {
+	path := NewPath()
+
+	path.MoveTo(p.CX, p.CY)
+
+	startX := p.CX + p.R*float32(math.Cos(float64(p.StartAngle)))
+	startY := p.CY + p.R*float32(math.Sin(float64(p.StartAngle)))
+	path.LineTo(startX, startY)
+
+	arc := NewPath()
+	arc.Arc(p.CX, p.CY, p.R, p.R, p.StartAngle, p.EndAngle, p.SweepClockwise)
+
+	for i, verb := range arc.verbs {
+		if i == 0 && verb == VerbMoveTo {
+			continue
+		}
+		path.verbs = append(path.verbs, verb)
+	}
+
+	if len(arc.points) > 2 {
+		path.points = append(path.points, arc.points[2:]...)
+	}
+
+	return path.Close()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the star to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s *StarShape) ToPath() *Path {
+	path := NewPath()
+
+	angleStep := math.Pi / float64(s.Points)
+	startAngle := float64(s.Rotation) - math.Pi/2
+
+	for i := 0; i < s.Points*2; i++ {
+		angle := startAngle + angleStep*float64(i)
+		var r float32
+		if i%2 == 0 {
+			r = s.OuterRadius
+		} else {
+			r = s.InnerRadius
+		}
+
+		x := s.CX + r*float32(math.Cos(angle))
+		y := s.CY + r*float32(math.Sin(angle))
+
+		if i == 0 {
+			path.MoveTo(x, y)
+		} else {
+			path.LineTo(x, y)
+		}
+	}
+
+	return path.Close()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the regular polygon to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (rp *RegularPolygonShape) ToPath() *Path {
+	path := NewPath()
+
+	angleStep := 2 * math.Pi / float64(rp.Sides)
+	startAngle := float64(rp.Rotation) - math.Pi/2
+
+	for i := 0; i < rp.Sides; i++ {
+		angle := startAngle + angleStep*float64(i)
+		x := rp.CX + rp.R*float32(math.Cos(angle))
+		y := rp.CY + rp.R*float32(math.Sin(angle))
+
+		if i == 0 {
+			path.MoveTo(x, y)
+		} else {
+			path.LineTo(x, y)
+		}
+	}
+
+	return path.Close()
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the shape to a transformed Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ts *TransformShape) ToPath() *Path {
+	if ts.shape == nil {
+		return NewPath()
+	}
+	return ts.shape.ToPath().Transform(ts.transform)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the circle to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (c *CircleShape) ToPath() *Path {
+	return NewPath().Circle(c.CX, c.CY, c.R)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the rounded rectangle to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (r *RoundedRectShape) ToPath() *Path {
+	return NewPath().RoundedRectangle(r.X, r.Y, r.Width, r.Height, r.Radius)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath returns the underlying path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (ps *PathShape) ToPath() *Path {
+	return ps.path
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts all shapes to a single Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (cs *CompositeShape) ToPath() *Path {
+	result := NewPath()
+
+	for _, shape := range cs.shapes {
+		if shape == nil {
+			continue
+		}
+		p := shape.ToPath()
+		if p == nil || p.IsEmpty() {
+			continue
+		}
+
+		result.verbs = append(result.verbs, p.verbs...)
+		result.points = append(result.points, p.points...)
+		result.bounds = result.bounds.Union(p.bounds)
+	}
+
+	return result
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the rectangle to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (r *RectShape) ToPath() *Path {
+	return NewPath().Rectangle(r.X, r.Y, r.Width, r.Height)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-ToPath">
+            <div class="item-header">
+                <h4>func ToPath</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ToPath converts the polygon to a Path.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (p *PolygonShape) ToPath() *Path {
+	if len(p.points) < 4 {
+		return NewPath()
+	}
+
+	path := NewPath()
+	path.MoveTo(p.points[0], p.points[1])
+
+	for i := 2; i < len(p.points); i += 2 {
+		path.LineTo(p.points[i], p.points[i+1])
+	}
+
+	return path.Close()
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-RectShape">
+            <div class="item-header">
+                <h4>type RectShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RectShape represents an axis-aligned rectangle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type RectShape struct {
+	X, Y		float32	// Top-left corner
+	Width, Height	float32	// Dimensions
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-RoundedRectShape">
+            <div class="item-header">
+                <h4>type RoundedRectShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RoundedRectShape represents a rectangle with rounded corners.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type RoundedRectShape struct {
+	X, Y		float32	// Top-left corner
+	Width, Height	float32	// Dimensions
+	Radius		float32	// Corner radius (same for all corners)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-CircleShape">
+            <div class="item-header">
+                <h4>type CircleShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CircleShape represents a circle.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type CircleShape struct {
+	CX, CY	float32	// Center
+	R	float32	// Radius
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-EllipseShape">
+            <div class="item-header">
+                <h4>type EllipseShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>EllipseShape represents an axis-aligned ellipse.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type EllipseShape struct {
+	CX, CY	float32	// Center
+	RX, RY	float32	// Radii
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-LineShape">
+            <div class="item-header">
+                <h4>type LineShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>LineShape represents a line segment.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type LineShape struct {
+	X1, Y1	float32	// Start point
+	X2, Y2	float32	// End point
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-PathShape">
+            <div class="item-header">
+                <h4>type PathShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PathShape wraps a Path as a Shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type PathShape struct {
+	path *Path
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-PolygonShape">
+            <div class="item-header">
+                <h4>type PolygonShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PolygonShape represents a closed polygon.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type PolygonShape struct {
+	points []float32	// x1, y1, x2, y2, ...
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-RegularPolygonShape">
+            <div class="item-header">
+                <h4>type RegularPolygonShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>RegularPolygonShape represents a regular polygon (all sides equal length).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type RegularPolygonShape struct {
+	CX, CY		float32	// Center
+	R		float32	// Radius (distance from center to vertices)
+	Sides		int	// Number of sides
+	Rotation	float32	// Rotation angle in radians
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-StarShape">
+            <div class="item-header">
+                <h4>type StarShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StarShape represents a star shape.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type StarShape struct {
+	CX, CY		float32	// Center
+	OuterRadius	float32	// Outer radius (points)
+	InnerRadius	float32	// Inner radius (valleys)
+	Points		int	// Number of points
+	Rotation	float32	// Rotation angle in radians
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-ArcShape">
+            <div class="item-header">
+                <h4>type ArcShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>ArcShape represents an arc (portion of an ellipse outline).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type ArcShape struct {
+	CX, CY		float32	// Center
+	RX, RY		float32	// Radii
+	StartAngle	float32	// Start angle in radians
+	EndAngle	float32	// End angle in radians
+	SweepClockwise	bool	// Direction
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-PieShape">
+            <div class="item-header">
+                <h4>type PieShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>PieShape represents a pie slice (wedge).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type PieShape struct {
+	CX, CY		float32	// Center
+	R		float32	// Radius
+	StartAngle	float32	// Start angle in radians
+	EndAngle	float32	// End angle in radians
+	SweepClockwise	bool	// Direction
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-TransformShape">
+            <div class="item-header">
+                <h4>type TransformShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>TransformShape wraps a shape with a transformation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type TransformShape struct {
+	shape		Shape
+	transform	Affine
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-CompositeShape">
+            <div class="item-header">
+                <h4>type CompositeShape struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CompositeShape combines multiple shapes into one.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type CompositeShape struct {
+	shapes []Shape
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+        <h3 id="interfaces">Interfaces</h3>
+        
+        <div class="item" id="interface-Shape">
+            <div class="item-header">
+                <h4>type Shape interface</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>Shape is the interface for geometric shapes that can be converted to paths.</p>
+                
+                <p>All shapes must be able to provide a path representation and their bounds.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type Shape interface {
+	// ToPath converts the shape to a Path for encoding.
+	ToPath() *Path
+
+	// Bounds returns the bounding rectangle of the shape.
+	Bounds() Rect
+}
+</code></pre>
+        </div>
+        
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

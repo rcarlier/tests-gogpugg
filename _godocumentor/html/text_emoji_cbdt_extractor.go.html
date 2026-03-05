@@ -1,0 +1,2767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/emoji/cbdt_extractor.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        :root {
+            --sidebar-width: 300px;
+            --bg-color: #ffffff;
+            --text-color: #24292f;
+            --sidebar-bg: #f6f8fa;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --code-bg: #f6f8fa;
+            --active-bg: #e8eaed;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .sidebar-menu {
+            padding: 10px 0;
+            list-style: none;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            padding: 0;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--active-bg);
+            color: var(--accent-color);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        
+        .sidebar-menu ul li a {
+            padding-left: 40px;
+            font-size: 0.85rem;
+            color: #57606a;
+            border-left: none;
+        }
+        
+        .sidebar-menu ul li a:hover {
+            color: var(--accent-color);
+            background-color: #f6f8fa;
+            border-left: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            color: var(--text-color);
+        }
+
+        .item {
+            margin-bottom: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+        }
+
+        .item-header h3 {
+            margin-top: 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+        }
+
+        .comments {
+            color: #57606a;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            margin: 0;
+            border-radius: 6px;
+            background-color: var(--code-bg);
+            padding: 10px;
+            overflow-x: auto;
+			tab-size: 4;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="cmd_ggdemo_main.go.html" class="">cmd/ggdemo/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="doc.go.html" class="">doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_basic_main.go.html" class="">examples/basic/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_bezier_test_main.go.html" class="">examples/bezier_test/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_clipping_main.go.html" class="">examples/clipping/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_color_emoji_main.go.html" class="">examples/color_emoji/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_compute_pipeline_main.go.html" class="">examples/compute_pipeline/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_gpu_main.go.html" class="">examples/gpu/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_images_main.go.html" class="">examples/images/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_recording_main.go.html" class="">examples/recording/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_scene_main.go.html" class="">examples/scene/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_shapes_main.go.html" class="">examples/shapes/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_main.go.html" class="">examples/text/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_fallback_main.go.html" class="">examples/text_fallback/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="examples_text_transform_main.go.html" class="">examples/text_transform/main.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_doc.go.html" class="">integration/ggcanvas/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_advanced.go.html" class="">internal/blend/advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_advanced.go.html" class="">internal/blend/batch_advanced.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_batch_porter_duff.go.html" class="">internal/blend/batch_porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend.go.html" class="">internal/blend/blend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_blend_batch.go.html" class="">internal/blend/blend_batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_hsl.go.html" class="">internal/blend/hsl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_layer.go.html" class="">internal/blend/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_linear.go.html" class="">internal/blend/linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_math.go.html" class="">internal/blend/math.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_blend_porter_duff.go.html" class="">internal/blend/porter_duff.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_cache.go.html" class="">internal/cache/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_doc.go.html" class="">internal/cache/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_lru.go.html" class="">internal/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_cache_sharded.go.html" class="">internal/cache/sharded.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_edge_clipper.go.html" class="">internal/clip/edge_clipper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_mask.go.html" class="">internal/clip/mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_stack.go.html" class="">internal/clip/stack.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_clip_types.go.html" class="">internal/clip/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_color.go.html" class="">internal/color/color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_convert.go.html" class="">internal/color/convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_color_lut.go.html" class="">internal/color/lut.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_blur.go.html" class="">internal/filter/blur.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_colormatrix.go.html" class="">internal/filter/colormatrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_doc.go.html" class="">internal/filter/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_kernel.go.html" class="">internal/filter/kernel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_filter_shadow.go.html" class="">internal/filter/shadow.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adapter.go.html" class="">internal/gpu/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_adaptive_filler.go.html" class="">internal/gpu/adaptive_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler.go.html" class="">internal/gpu/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_analytic_filler_vello.go.html" class="">internal/gpu/analytic_filler_vello.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_atlas.go.html" class="">internal/gpu/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_backend.go.html" class="">internal/gpu/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_buffer.go.html" class="">internal/gpu/buffer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_coarse.go.html" class="">internal/gpu/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_command_encoder.go.html" class="">internal/gpu/command_encoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_commands.go.html" class="">internal/gpu/commands.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_compute_pass.go.html" class="">internal/gpu/compute_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convex_renderer.go.html" class="">internal/gpu/convex_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_convexity.go.html" class="">internal/gpu/convexity.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_device.go.html" class="">internal/gpu/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_doc.go.html" class="">internal/gpu/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_errors.go.html" class="">internal/gpu/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_fine.go.html" class="">internal/gpu/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_flatten.go.html" class="">internal/gpu/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_coarse.go.html" class="">internal/gpu/gpu_coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_fine.go.html" class="">internal/gpu/gpu_fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_flatten.go.html" class="">internal/gpu/gpu_flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_text.go.html" class="">internal/gpu/gpu_text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_texture.go.html" class="">internal/gpu/gpu_texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_gpu_textures.go.html" class="">internal/gpu/gpu_textures.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_logger.go.html" class="">internal/gpu/logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_memory.go.html" class="">internal/gpu/memory.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_path_convert.go.html" class="">internal/gpu/path_convert.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline.go.html" class="">internal/gpu/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_pipeline_cache_core.go.html" class="">internal/gpu/pipeline_cache_core.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_pass.go.html" class="">internal/gpu/render_pass.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_render_session.go.html" class="">internal/gpu/render_session.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_renderer.go.html" class="">internal/gpu/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_scene_bridge.go.html" class="">internal/gpu/scene_bridge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_gpu.go.html" class="">internal/gpu/sdf_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sdf_render.go.html" class="">internal/gpu/sdf_render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_segment.go.html" class="">internal/gpu/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shader_helper.go.html" class="">internal/gpu/shader_helper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_shaders.go.html" class="">internal/gpu/shaders.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips.go.html" class="">internal/gpu/sparse_strips.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_filler.go.html" class="">internal/gpu/sparse_strips_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_gpu.go.html" class="">internal/gpu/sparse_strips_gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_sparse_strips_simd.go.html" class="">internal/gpu/sparse_strips_simd.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_pipeline.go.html" class="">internal/gpu/stencil_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_stencil_renderer.go.html" class="">internal/gpu/stencil_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tessellate.go.html" class="">internal/gpu/tessellate.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_text_pipeline.go.html" class="">internal/gpu/text_pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_texture.go.html" class="">internal/gpu/texture.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tile.go.html" class="">internal/gpu/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_coarse.go.html" class="">internal/gpu/tilecompute/coarse.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_compositor.go.html" class="">internal/gpu/tilecompute/compositor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_draw_leaf.go.html" class="">internal/gpu/tilecompute/draw_leaf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_euler.go.html" class="">internal/gpu/tilecompute/euler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_fine.go.html" class="">internal/gpu/tilecompute/fine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_flatten.go.html" class="">internal/gpu/tilecompute/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_count.go.html" class="">internal/gpu/tilecompute/path_count.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_path_tiling.go.html" class="">internal/gpu/tilecompute/path_tiling.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_pathtag.go.html" class="">internal/gpu/tilecompute/pathtag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_ptcl.go.html" class="">internal/gpu/tilecompute/ptcl.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_rasterizer.go.html" class="">internal/gpu/tilecompute/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_scene_encode.go.html" class="">internal/gpu/tilecompute/scene_encode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_types.go.html" class="">internal/gpu/tilecompute/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_util.go.html" class="">internal/gpu/tilecompute/util.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_tilecompute_filler.go.html" class="">internal/gpu/tilecompute_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_accelerator.go.html" class="">internal/gpu/vello_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_compute.go.html" class="">internal/gpu/vello_compute.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpu_vello_tiles.go.html" class="">internal/gpu/vello_tiles.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_adapter.go.html" class="">internal/gpucore/adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_doc.go.html" class="">internal/gpucore/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_pipeline.go.html" class="">internal/gpucore/pipeline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_gpucore_types.go.html" class="">internal/gpucore/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_affine.go.html" class="">internal/image/affine.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_buf.go.html" class="">internal/image/buf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_draw.go.html" class="">internal/image/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_format.go.html" class="">internal/image/format.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_interp.go.html" class="">internal/image/interp.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_io.go.html" class="">internal/image/io.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_mipmap.go.html" class="">internal/image/mipmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pattern.go.html" class="">internal/image/pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_image_pool.go.html" class="">internal/image/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_dirty.go.html" class="">internal/parallel/dirty.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_pool.go.html" class="">internal/parallel/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_rasterizer.go.html" class="">internal/parallel/rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile.go.html" class="">internal/parallel/tile.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_grid.go.html" class="">internal/parallel/tile_grid.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_parallel_tile_pool.go.html" class="">internal/parallel/tile_pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_edge_iter.go.html" class="">internal/path/edge_iter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_path_flatten.go.html" class="">internal/path/flatten.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_alpha_runs.go.html" class="">internal/raster/alpha_runs.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_analytic_filler.go.html" class="">internal/raster/analytic_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_aet.go.html" class="">internal/raster/curve_aet.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_curve_edge.go.html" class="">internal/raster/curve_edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_doc.go.html" class="">internal/raster/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge.go.html" class="">internal/raster/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_edge_builder.go.html" class="">internal/raster/edge_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_fixed.go.html" class="">internal/raster/fixed.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_path_geometry.go.html" class="">internal/raster/path_geometry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_raster_scene_adapter.go.html" class="">internal/raster/scene_adapter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_doc.go.html" class="">internal/stroke/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_stroke_expander.go.html" class="">internal/stroke/expander.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch.go.html" class="">internal/wide/batch.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_batch_aa.go.html" class="">internal/wide/batch_aa.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_doc.go.html" class="">internal/wide/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_f32x8.go.html" class="">internal/wide/f32x8.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="internal_wide_u16x16.go.html" class="">internal/wide/u16x16.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="raster_raster.go.html" class="">raster/raster.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_doc.go.html" class="">recording/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_doc.go.html" class="">render/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_doc.go.html" class="">surface/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_doc.go.html" class="">text/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="active">text/emoji/cbdt_extractor.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-AvailablePPEMs">AvailablePPEMs</a></li>
+                    
+                    <li><a href="#func-GetGlyph">GetGlyph</a></li>
+                    
+                    <li><a href="#func-GetGlyphAtStrike">GetGlyphAtStrike</a></li>
+                    
+                    <li><a href="#func-GetGlyphWithStrategy">GetGlyphWithStrategy</a></li>
+                    
+                    <li><a href="#func-HasGlyph">HasGlyph</a></li>
+                    
+                    <li><a href="#func-HasGlyphInStrike">HasGlyphInStrike</a></li>
+                    
+                    <li><a href="#func-NewCBDTExtractor">NewCBDTExtractor</a></li>
+                    
+                    <li><a href="#func-NumStrikes">NumStrikes</a></li>
+                    
+                    <li><a href="#func-SelectStrike">SelectStrike</a></li>
+                    
+                    <li><a href="#func-StrikeBitDepth">StrikeBitDepth</a></li>
+                    
+                    <li><a href="#func-StrikePPEM">StrikePPEM</a></li>
+                    
+                    <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-calculateGlyphLocation">calculateGlyphLocation</a></li>
+                    
+                    <li><a href="#func-extractGlyphFromSubtable">extractGlyphFromSubtable</a></li>
+                    
+                    <li><a href="#func-extractImageData">extractImageData</a></li>
+                    
+                    <li><a href="#func-hasGlyphInStrike">hasGlyphInStrike</a></li>
+                    
+                    <li><a href="#func-parseBigGlyphMetrics">parseBigGlyphMetrics</a></li>
+                    
+                    <li><a href="#func-parseBitmapSizeRecord">parseBitmapSizeRecord</a></li>
+                    
+                    <li><a href="#func-parseCBLC">parseCBLC</a></li>
+                    
+                    <li><a href="#func-parseIndexSubtable">parseIndexSubtable</a></li>
+                    
+                    <li><a href="#func-parseIndexSubtables">parseIndexSubtables</a></li>
+                    
+                    <li><a href="#func-parseSbitLineMetrics">parseSbitLineMetrics</a></li>
+                    
+                    <li><a href="#func-parseSmallGlyphMetrics">parseSmallGlyphMetrics</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_doc.go.html" class="">text/emoji/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_doc.go.html" class="">text/msdf/doc.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_errors.go.html" class="">text/msdf/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+    <h2>text/emoji/cbdt_extractor.go</h2>
+
+    <div style="margin-bottom: 20px;">
+        <a href="#functions" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Functions</a>
+        <a href="#structs" style="margin-right: 15px; color: var(--accent-color); text-decoration: none;">Structs</a>
+        
+    </div>
+
+    
+        <h3 id="functions">Functions</h3>
+        
+        <div class="item" id="func-AvailablePPEMs">
+            <div class="item-header">
+                <h4>func AvailablePPEMs</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>AvailablePPEMs returns a list of available PPEM sizes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) AvailablePPEMs() []uint16 {
+	ppems := make([]uint16, len(e.strikes))
+	for i := range e.strikes {
+		ppems[i] = uint16(e.strikes[i].ppemX)
+	}
+	return ppems
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetGlyph">
+            <div class="item-header">
+                <h4>func GetGlyph</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetGlyph extracts a bitmap glyph at the specified PPEM.</p>
+                
+                <p>Uses StrikeBestFit strategy to select the strike.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) GetGlyph(glyphID uint16, ppem uint16) (*BitmapGlyph, error) {
+	return e.GetGlyphWithStrategy(glyphID, ppem, StrikeBestFit)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetGlyphAtStrike">
+            <div class="item-header">
+                <h4>func GetGlyphAtStrike</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetGlyphAtStrike extracts a bitmap glyph at the specified strike index.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) GetGlyphAtStrike(glyphID uint16, strikeIndex int) (*BitmapGlyph, error) {
+	if strikeIndex < 0 || strikeIndex >= len(e.strikes) {
+		return nil, ErrNoStrikeAvailable
+	}
+
+	strike := &e.strikes[strikeIndex]
+
+	if glyphID < strike.startGlyphIndex || glyphID > strike.endGlyphIndex {
+		return nil, ErrGlyphNotInBitmap
+	}
+
+	if err := e.parseIndexSubtables(strikeIndex); err != nil {
+		return nil, err
+	}
+
+	for i := range strike.indexSubtables {
+		ist := &strike.indexSubtables[i]
+		if glyphID >= ist.firstGlyphIndex && glyphID <= ist.lastGlyphIndex {
+			return e.extractGlyphFromSubtable(glyphID, ist, strike)
+		}
+	}
+
+	return nil, ErrGlyphNotInBitmap
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-GetGlyphWithStrategy">
+            <div class="item-header">
+                <h4>func GetGlyphWithStrategy</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>GetGlyphWithStrategy extracts a bitmap glyph using the specified strategy.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) GetGlyphWithStrategy(glyphID uint16, ppem uint16, strategy StrikeStrategy) (*BitmapGlyph, error) {
+	strikeIndex := e.SelectStrike(ppem, strategy)
+	if strikeIndex < 0 {
+		return nil, ErrNoStrikeAvailable
+	}
+
+	return e.GetGlyphAtStrike(glyphID, strikeIndex)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-HasGlyph">
+            <div class="item-header">
+                <h4>func HasGlyph</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>HasGlyph returns true if the glyph has bitmap data at any strike.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) HasGlyph(glyphID uint16) bool {
+	for i := range e.strikes {
+		if e.hasGlyphInStrike(glyphID, i) {
+			return true
+		}
+	}
+	return false
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-HasGlyphInStrike">
+            <div class="item-header">
+                <h4>func HasGlyphInStrike</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>HasGlyphInStrike returns true if the glyph has bitmap data at the given strike.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) HasGlyphInStrike(glyphID uint16, strikeIndex int) bool {
+	if strikeIndex < 0 || strikeIndex >= len(e.strikes) {
+		return false
+	}
+	return e.hasGlyphInStrike(glyphID, strikeIndex)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NewCBDTExtractor">
+            <div class="item-header">
+                <h4>func NewCBDTExtractor</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NewCBDTExtractor creates a new CBDT/CBLC extractor.</p>
+                
+                <p>cbdtData is the raw CBDT table, cblcData is the raw CBLC table.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func NewCBDTExtractor(cbdtData, cblcData []byte) (*CBDTExtractor, error) {
+	if len(cbdtData) == 0 {
+		return nil, ErrNoCBDTTable
+	}
+	if len(cblcData) == 0 {
+		return nil, ErrNoCBLCTable
+	}
+
+	e := &CBDTExtractor{
+		cbdtData:	cbdtData,
+		cblcData:	cblcData,
+	}
+
+	if err := e.parseCBLC(); err != nil {
+		return nil, err
+	}
+
+	return e, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-NumStrikes">
+            <div class="item-header">
+                <h4>func NumStrikes</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>NumStrikes returns the number of available bitmap strikes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) NumStrikes() int {
+	return len(e.strikes)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-SelectStrike">
+            <div class="item-header">
+                <h4>func SelectStrike</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>SelectStrike selects a bitmap strike based on the requested PPEM and strategy.</p>
+                
+                <p>Returns the strike index, or -1 if no suitable strike is found.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) SelectStrike(ppem uint16, strategy StrikeStrategy) int {
+	if len(e.strikes) == 0 {
+		return -1
+	}
+
+	switch strategy {
+	case StrikeExact:
+		for i := range e.strikes {
+			if uint16(e.strikes[i].ppemX) == ppem {
+				return i
+			}
+		}
+		return -1
+
+	case StrikeLargest:
+		best := 0
+		for i := 1; i < len(e.strikes); i++ {
+			if e.strikes[i].ppemX > e.strikes[best].ppemX {
+				best = i
+			}
+		}
+		return best
+
+	default:
+
+		bestLarger := -1
+		bestLargerPPEM := uint8(255)
+
+		largest := 0
+		largestPPEM := e.strikes[0].ppemX
+
+		ppemClamped := uint8(min(int(ppem), 255))
+
+		for i := range e.strikes {
+			strikePPEM := e.strikes[i].ppemX
+
+			if strikePPEM > largestPPEM {
+				largest = i
+				largestPPEM = strikePPEM
+			}
+
+			if strikePPEM >= ppemClamped && strikePPEM < bestLargerPPEM {
+				bestLarger = i
+				bestLargerPPEM = strikePPEM
+			}
+		}
+
+		if bestLarger >= 0 {
+			return bestLarger
+		}
+		return largest
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-StrikeBitDepth">
+            <div class="item-header">
+                <h4>func StrikeBitDepth</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StrikeBitDepth returns the bit depth for a strike at the given index.</p>
+                
+                <p>For color emoji, this is typically 32 (BGRA).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) StrikeBitDepth(index int) uint8 {
+	if index < 0 || index >= len(e.strikes) {
+		return 0
+	}
+	return e.strikes[index].bitDepth
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-StrikePPEM">
+            <div class="item-header">
+                <h4>func StrikePPEM</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>StrikePPEM returns the PPEM for a strike at the given index.</p>
+                
+                <p>Returns 0 if the index is out of range.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) StrikePPEM(index int) uint16 {
+	if index < 0 || index >= len(e.strikes) {
+		return 0
+	}
+	return uint16(e.strikes[index].ppemX)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-String">
+            <div class="item-header">
+                <h4>func String</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>String returns the string representation of the strike strategy.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (s StrikeStrategy) String() string {
+	switch s {
+	case StrikeBestFit:
+		return "BestFit"
+	case StrikeExact:
+		return "Exact"
+	case StrikeLargest:
+		return "Largest"
+	default:
+		return unknownStr
+	}
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-calculateGlyphLocation">
+            <div class="item-header">
+                <h4>func calculateGlyphLocation</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>calculateGlyphLocation calculates the offset and size of glyph data in CBDT.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) calculateGlyphLocation(glyphID uint16, ist *indexSubtable) (offset uint32, size uint32, metrics *bigGlyphMetrics, err error) {
+	glyphIndex := int(glyphID) - int(ist.firstGlyphIndex)
+
+	switch ist.indexFormat {
+	case indexFormat1:
+		if glyphIndex < 0 || glyphIndex >= len(ist.offsets32)-1 {
+			return 0, 0, nil, ErrGlyphNotInBitmap
+		}
+		offset = ist.imageDataOffset + ist.offsets32[glyphIndex]
+		size = ist.offsets32[glyphIndex+1] - ist.offsets32[glyphIndex]
+
+	case indexFormat2:
+		if glyphIndex < 0 || glyphIndex >= int(ist.lastGlyphIndex-ist.firstGlyphIndex)+1 {
+			return 0, 0, nil, ErrGlyphNotInBitmap
+		}
+
+		offset = ist.imageDataOffset + uint32(glyphIndex)*ist.imageSize
+		size = ist.imageSize
+		metrics = ist.bigMetrics
+
+	case indexFormat3:
+		if glyphIndex < 0 || glyphIndex >= len(ist.offsets16)-1 {
+			return 0, 0, nil, ErrGlyphNotInBitmap
+		}
+		offset = ist.imageDataOffset + uint32(ist.offsets16[glyphIndex])
+		size = uint32(ist.offsets16[glyphIndex+1] - ist.offsets16[glyphIndex])
+
+	case indexFormat4:
+
+		found := false
+		for i := 0; i < len(ist.glyphPairs)-1; i++ {
+			if ist.glyphPairs[i].glyphID == glyphID {
+				offset = ist.imageDataOffset + uint32(ist.glyphPairs[i].sbitOffset)
+				size = uint32(ist.glyphPairs[i+1].sbitOffset - ist.glyphPairs[i].sbitOffset)
+				found = true
+				break
+			}
+		}
+		if !found {
+			return 0, 0, nil, ErrGlyphNotInBitmap
+		}
+
+	case indexFormat5:
+
+		found := false
+		for i, gid := range ist.glyphIDs {
+			if gid != glyphID {
+				continue
+			}
+
+			offset = ist.imageDataOffset + uint32(i)*ist.imageSize
+			size = ist.imageSize
+			metrics = ist.bigMetrics
+			found = true
+			break
+		}
+		if !found {
+			return 0, 0, nil, ErrGlyphNotInBitmap
+		}
+
+	default:
+		return 0, 0, nil, ErrUnsupportedIndexFormat
+	}
+
+	return offset, size, metrics, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-extractGlyphFromSubtable">
+            <div class="item-header">
+                <h4>func extractGlyphFromSubtable</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>extractGlyphFromSubtable extracts glyph data from a specific index subtable.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) extractGlyphFromSubtable(glyphID uint16, ist *indexSubtable, strike *bitmapStrike) (*BitmapGlyph, error) {
+
+	dataOffset, dataSize, metrics, err := e.calculateGlyphLocation(glyphID, ist)
+	if err != nil {
+		return nil, err
+	}
+
+	if dataSize == 0 {
+		return nil, ErrGlyphNotInBitmap
+	}
+
+	return e.extractImageData(glyphID, dataOffset, dataSize, ist.imageFormat, metrics, strike)
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-extractImageData">
+            <div class="item-header">
+                <h4>func extractImageData</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>extractImageData extracts and parses the image data from CBDT.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) extractImageData(glyphID uint16, offset, size uint32, imageFormat uint16, sharedMetrics *bigGlyphMetrics, strike *bitmapStrike) (*BitmapGlyph, error) {
+	data := e.cbdtData
+
+	if int(offset+size) > len(data) {
+		return nil, ErrInvalidCBDTData
+	}
+
+	imageData := data[offset : offset+size]
+
+	glyph := &BitmapGlyph{
+		GlyphID:	glyphID,
+		PPEM:		uint16(strike.ppemX),
+	}
+
+	switch imageFormat {
+	case imageFormat17:
+
+		if len(imageData) < 9 {
+			return nil, ErrInvalidCBDTData
+		}
+
+		var sm smallGlyphMetrics
+		parseSmallGlyphMetrics(imageData[0:5], &sm)
+
+		dataLen := binary.BigEndian.Uint32(imageData[5:9])
+		if int(9+dataLen) > len(imageData) {
+			return nil, ErrInvalidCBDTData
+		}
+
+		glyph.Width = int(sm.width)
+		glyph.Height = int(sm.height)
+		glyph.OriginX = float32(sm.bearingX)
+		glyph.OriginY = float32(sm.bearingY)
+		glyph.Data = imageData[9 : 9+dataLen]
+		glyph.Format = FormatPNG
+
+	case imageFormat18:
+
+		if len(imageData) < 12 {
+			return nil, ErrInvalidCBDTData
+		}
+
+		var bm bigGlyphMetrics
+		parseBigGlyphMetrics(imageData[0:8], &bm)
+
+		dataLen := binary.BigEndian.Uint32(imageData[8:12])
+		if int(12+dataLen) > len(imageData) {
+			return nil, ErrInvalidCBDTData
+		}
+
+		glyph.Width = int(bm.width)
+		glyph.Height = int(bm.height)
+		glyph.OriginX = float32(bm.horiBearingX)
+		glyph.OriginY = float32(bm.horiBearingY)
+		glyph.Data = imageData[12 : 12+dataLen]
+		glyph.Format = FormatPNG
+
+	case imageFormat19:
+
+		if len(imageData) < 4 {
+			return nil, ErrInvalidCBDTData
+		}
+
+		dataLen := binary.BigEndian.Uint32(imageData[0:4])
+		if int(4+dataLen) > len(imageData) {
+			return nil, ErrInvalidCBDTData
+		}
+
+		if sharedMetrics != nil {
+			glyph.Width = int(sharedMetrics.width)
+			glyph.Height = int(sharedMetrics.height)
+			glyph.OriginX = float32(sharedMetrics.horiBearingX)
+			glyph.OriginY = float32(sharedMetrics.horiBearingY)
+		}
+
+		glyph.Data = imageData[4 : 4+dataLen]
+		glyph.Format = FormatPNG
+
+	default:
+		return nil, ErrUnsupportedImageFormat
+	}
+
+	return glyph, nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-hasGlyphInStrike">
+            <div class="item-header">
+                <h4>func hasGlyphInStrike</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>hasGlyphInStrike is the internal implementation.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) hasGlyphInStrike(glyphID uint16, strikeIndex int) bool {
+	strike := &e.strikes[strikeIndex]
+
+	if glyphID < strike.startGlyphIndex || glyphID > strike.endGlyphIndex {
+		return false
+	}
+
+	if err := e.parseIndexSubtables(strikeIndex); err != nil {
+		return false
+	}
+
+	for i := range strike.indexSubtables {
+		ist := &strike.indexSubtables[i]
+		if glyphID >= ist.firstGlyphIndex && glyphID <= ist.lastGlyphIndex {
+			return true
+		}
+	}
+
+	return false
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseBigGlyphMetrics">
+            <div class="item-header">
+                <h4>func parseBigGlyphMetrics</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseBigGlyphMetrics parses BigGlyphMetrics from 8 bytes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func parseBigGlyphMetrics(data []byte, m *bigGlyphMetrics) {
+	m.height = data[0]
+	m.width = data[1]
+	m.horiBearingX = int8(data[2])
+	m.horiBearingY = int8(data[3])
+	m.horiAdvance = data[4]
+	m.vertBearingX = int8(data[5])
+	m.vertBearingY = int8(data[6])
+	m.vertAdvance = data[7]
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseBitmapSizeRecord">
+            <div class="item-header">
+                <h4>func parseBitmapSizeRecord</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseBitmapSizeRecord parses a single BitmapSize record.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) parseBitmapSizeRecord(data []byte, strike *bitmapStrike) error {
+	if len(data) < 48 {
+		return ErrInvalidCBLCData
+	}
+
+	strike.indexSubtableListOffset = binary.BigEndian.Uint32(data[0:4])
+	strike.indexSubtableListSize = binary.BigEndian.Uint32(data[4:8])
+	strike.numberOfIndexSubtables = binary.BigEndian.Uint32(data[8:12])
+
+	parseSbitLineMetrics(data[16:28], &strike.horiMetrics)
+
+	parseSbitLineMetrics(data[28:40], &strike.vertMetrics)
+
+	strike.startGlyphIndex = binary.BigEndian.Uint16(data[40:42])
+	strike.endGlyphIndex = binary.BigEndian.Uint16(data[42:44])
+	strike.ppemX = data[44]
+	strike.ppemY = data[45]
+	strike.bitDepth = data[46]
+	strike.flags = int8(data[47])
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseCBLC">
+            <div class="item-header">
+                <h4>func parseCBLC</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseCBLC parses the CBLC table header and bitmap size records.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) parseCBLC() error {
+	data := e.cblcData
+	if len(data) < 8 {
+		return ErrInvalidCBLCData
+	}
+
+	e.majorVersion = binary.BigEndian.Uint16(data[0:2])
+	e.minorVersion = binary.BigEndian.Uint16(data[2:4])
+
+	if e.majorVersion != cblcMajorVersion {
+		return fmt.Errorf("emoji: unsupported CBLC version %d.%d", e.majorVersion, e.minorVersion)
+	}
+
+	numSizes := binary.BigEndian.Uint32(data[4:8])
+
+	// Parse BitmapSize records.
+	// Each BitmapSize record is 48 bytes.
+	const bitmapSizeRecordSize = 48
+	recordsOffset := 8
+
+	if recordsOffset+int(numSizes)*bitmapSizeRecordSize > len(data) {
+		return ErrInvalidCBLCData
+	}
+
+	e.strikes = make([]bitmapStrike, numSizes)
+	for i := uint32(0); i < numSizes; i++ {
+		offset := recordsOffset + int(i)*bitmapSizeRecordSize
+		if err := e.parseBitmapSizeRecord(data[offset:offset+bitmapSizeRecordSize], &e.strikes[i]); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseIndexSubtable">
+            <div class="item-header">
+                <h4>func parseIndexSubtable</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseIndexSubtable parses a single index subtable.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) parseIndexSubtable(offset int, ist *indexSubtable) error {
+	data := e.cblcData
+
+	if offset+8 > len(data) {
+		return ErrInvalidCBLCData
+	}
+
+	ist.indexFormat = binary.BigEndian.Uint16(data[offset : offset+2])
+	ist.imageFormat = binary.BigEndian.Uint16(data[offset+2 : offset+4])
+	ist.imageDataOffset = binary.BigEndian.Uint32(data[offset+4 : offset+8])
+
+	headerEnd := offset + 8
+	numGlyphs := int(ist.lastGlyphIndex) - int(ist.firstGlyphIndex) + 1
+
+	switch ist.indexFormat {
+	case indexFormat1:
+
+		numOffsets := numGlyphs + 1
+		if headerEnd+numOffsets*4 > len(data) {
+			return ErrInvalidCBLCData
+		}
+		ist.offsets32 = make([]uint32, numOffsets)
+		for i := 0; i < numOffsets; i++ {
+			pos := headerEnd + i*4
+			ist.offsets32[i] = binary.BigEndian.Uint32(data[pos : pos+4])
+		}
+
+	case indexFormat2:
+
+		if headerEnd+4+8 > len(data) {
+			return ErrInvalidCBLCData
+		}
+		ist.imageSize = binary.BigEndian.Uint32(data[headerEnd : headerEnd+4])
+		ist.bigMetrics = &bigGlyphMetrics{}
+		parseBigGlyphMetrics(data[headerEnd+4:headerEnd+12], ist.bigMetrics)
+
+	case indexFormat3:
+
+		numOffsets := numGlyphs + 1
+		if headerEnd+numOffsets*2 > len(data) {
+			return ErrInvalidCBLCData
+		}
+		ist.offsets16 = make([]uint16, numOffsets)
+		for i := 0; i < numOffsets; i++ {
+			pos := headerEnd + i*2
+			ist.offsets16[i] = binary.BigEndian.Uint16(data[pos : pos+2])
+		}
+
+	case indexFormat4:
+
+		if headerEnd+4 > len(data) {
+			return ErrInvalidCBLCData
+		}
+		numGlyphsInTable := binary.BigEndian.Uint32(data[headerEnd : headerEnd+4])
+		numPairs := int(numGlyphsInTable) + 1
+
+		pairsOffset := headerEnd + 4
+		if pairsOffset+numPairs*4 > len(data) {
+			return ErrInvalidCBLCData
+		}
+
+		ist.glyphPairs = make([]glyphIDOffsetPair, numPairs)
+		for i := 0; i < numPairs; i++ {
+			pos := pairsOffset + i*4
+			ist.glyphPairs[i].glyphID = binary.BigEndian.Uint16(data[pos : pos+2])
+			ist.glyphPairs[i].sbitOffset = binary.BigEndian.Uint16(data[pos+2 : pos+4])
+		}
+
+	case indexFormat5:
+
+		if headerEnd+4+8+4 > len(data) {
+			return ErrInvalidCBLCData
+		}
+		ist.imageSize = binary.BigEndian.Uint32(data[headerEnd : headerEnd+4])
+		ist.bigMetrics = &bigGlyphMetrics{}
+		parseBigGlyphMetrics(data[headerEnd+4:headerEnd+12], ist.bigMetrics)
+
+		numGlyphsInTable := binary.BigEndian.Uint32(data[headerEnd+12 : headerEnd+16])
+		glyphIDsOffset := headerEnd + 16
+
+		if glyphIDsOffset+int(numGlyphsInTable)*2 > len(data) {
+			return ErrInvalidCBLCData
+		}
+
+		ist.glyphIDs = make([]uint16, numGlyphsInTable)
+		for i := uint32(0); i < numGlyphsInTable; i++ {
+			pos := glyphIDsOffset + int(i)*2
+			ist.glyphIDs[i] = binary.BigEndian.Uint16(data[pos : pos+2])
+		}
+
+	default:
+		return ErrUnsupportedIndexFormat
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseIndexSubtables">
+            <div class="item-header">
+                <h4>func parseIndexSubtables</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseIndexSubtables parses the index subtables for a strike (lazily).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func (e *CBDTExtractor) parseIndexSubtables(strikeIndex int) error {
+	strike := &e.strikes[strikeIndex]
+
+	if strike.indexSubtables != nil {
+		return nil
+	}
+
+	data := e.cblcData
+	listOffset := int(strike.indexSubtableListOffset)
+
+	if listOffset+int(strike.numberOfIndexSubtables)*8 > len(data) {
+		return ErrInvalidCBLCData
+	}
+
+	strike.indexSubtables = make([]indexSubtable, strike.numberOfIndexSubtables)
+
+	for i := uint32(0); i < strike.numberOfIndexSubtables; i++ {
+		recordOffset := listOffset + int(i)*8
+
+		ist := &strike.indexSubtables[i]
+		ist.firstGlyphIndex = binary.BigEndian.Uint16(data[recordOffset : recordOffset+2])
+		ist.lastGlyphIndex = binary.BigEndian.Uint16(data[recordOffset+2 : recordOffset+4])
+		additionalOffset := binary.BigEndian.Uint32(data[recordOffset+4 : recordOffset+8])
+
+		subtableOffset := listOffset + int(additionalOffset)
+		if err := e.parseIndexSubtable(subtableOffset, ist); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseSbitLineMetrics">
+            <div class="item-header">
+                <h4>func parseSbitLineMetrics</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseSbitLineMetrics parses a SbitLineMetrics record.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func parseSbitLineMetrics(data []byte, m *sbitLineMetrics) {
+	m.ascender = int8(data[0])
+	m.descender = int8(data[1])
+	m.widthMax = data[2]
+	m.caretSlopeNumerator = int8(data[3])
+	m.caretSlopeDenominator = int8(data[4])
+	m.caretOffset = int8(data[5])
+	m.minOriginSB = int8(data[6])
+	m.minAdvanceSB = int8(data[7])
+	m.maxBeforeBL = int8(data[8])
+	m.minAfterBL = int8(data[9])
+	m.pad1 = int8(data[10])
+	m.pad2 = int8(data[11])
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="func-parseSmallGlyphMetrics">
+            <div class="item-header">
+                <h4>func parseSmallGlyphMetrics</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>parseSmallGlyphMetrics parses SmallGlyphMetrics from 5 bytes.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">func parseSmallGlyphMetrics(data []byte, m *smallGlyphMetrics) {
+	m.height = data[0]
+	m.width = data[1]
+	m.bearingX = int8(data[2])
+	m.bearingY = int8(data[3])
+	m.advance = data[4]
+}
+</code></pre>
+        </div>
+        
+    
+
+    
+        <h3 id="structs">Structs</h3>
+        
+        <div class="item" id="struct-CBDTExtractor">
+            <div class="item-header">
+                <h4>type CBDTExtractor struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>CBDTExtractor extracts bitmap glyphs from CBDT/CBLC tables.</p>
+                
+                <p>CBDT (Color Bitmap Data Table) stores the bitmap data.</p>
+                
+                <p>CBLC (Color Bitmap Location Table) stores the index/location data.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type CBDTExtractor struct {
+	cbdtData	[]byte
+	cblcData	[]byte
+
+	// Parsed CBLC data.
+	majorVersion	uint16
+	minorVersion	uint16
+	strikes		[]bitmapStrike
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-bitmapStrike">
+            <div class="item-header">
+                <h4>type bitmapStrike struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>bitmapStrike represents one bitmap size entry from CBLC.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type bitmapStrike struct {
+	// Location info.
+	indexSubtableListOffset	uint32
+	indexSubtableListSize	uint32
+	numberOfIndexSubtables	uint32
+
+	// Glyph range.
+	startGlyphIndex	uint16
+	endGlyphIndex	uint16
+
+	// Size info.
+	ppemX		uint8
+	ppemY		uint8
+	bitDepth	uint8
+	flags		int8
+
+	// Line metrics.
+	horiMetrics	sbitLineMetrics
+	vertMetrics	sbitLineMetrics
+
+	// Parsed index subtables (lazily populated).
+	indexSubtables	[]indexSubtable
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-sbitLineMetrics">
+            <div class="item-header">
+                <h4>type sbitLineMetrics struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>sbitLineMetrics holds line metrics for a strike.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type sbitLineMetrics struct {
+	ascender		int8
+	descender		int8
+	widthMax		uint8
+	caretSlopeNumerator	int8
+	caretSlopeDenominator	int8
+	caretOffset		int8
+	minOriginSB		int8
+	minAdvanceSB		int8
+	maxBeforeBL		int8
+	minAfterBL		int8
+	pad1, pad2		int8
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-indexSubtable">
+            <div class="item-header">
+                <h4>type indexSubtable struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>indexSubtable represents a parsed index subtable.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type indexSubtable struct {
+	firstGlyphIndex	uint16
+	lastGlyphIndex	uint16
+	indexFormat	uint16
+	imageFormat	uint16
+	imageDataOffset	uint32
+
+	// Format-specific data.
+	offsets32	[]uint32		// Format 1
+	offsets16	[]uint16		// Format 3
+	imageSize	uint32			// Format 2, 5
+	bigMetrics	*bigGlyphMetrics	// Format 2, 5
+	glyphPairs	[]glyphIDOffsetPair	// Format 4
+	glyphIDs	[]uint16		// Format 5
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-glyphIDOffsetPair">
+            <div class="item-header">
+                <h4>type glyphIDOffsetPair struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>glyphIDOffsetPair for format 4.</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type glyphIDOffsetPair struct {
+	glyphID		uint16
+	sbitOffset	uint16
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-smallGlyphMetrics">
+            <div class="item-header">
+                <h4>type smallGlyphMetrics struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>smallGlyphMetrics holds metrics for small metrics format (5 bytes).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type smallGlyphMetrics struct {
+	height		uint8
+	width		uint8
+	bearingX	int8
+	bearingY	int8
+	advance		uint8
+}
+</code></pre>
+        </div>
+        
+        <div class="item" id="struct-bigGlyphMetrics">
+            <div class="item-header">
+                <h4>type bigGlyphMetrics struct</h4>
+            </div>
+            
+            
+            <div class="comments">
+                
+                <p>bigGlyphMetrics holds metrics for both horizontal and vertical layouts (8 bytes).</p>
+                
+            </div>
+            
+
+            <pre><code class="language-go">type bigGlyphMetrics struct {
+	height		uint8
+	width		uint8
+	horiBearingX	int8
+	horiBearingY	int8
+	horiAdvance	uint8
+	vertBearingX	int8
+	vertBearingY	int8
+	vertAdvance	uint8
+}
+</code></pre>
+        </div>
+        
+    
+    
+    
+
+
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>
