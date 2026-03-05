@@ -1,0 +1,8 @@
+github.com/go-text/typesetting v0.3.3 h1:ihGNJU9KzdK2QRDy1Bm7FT5RFQoYb+3n3EIhI/4eaQc=
+github.com/go-text/typesetting v0.3.3/go.mod h1:vIRUT25mLQaSh4C8H/lIsKppQz/Gdb8Pu/tNwpi52ts=
+github.com/gogpu/gg v0.33.1-0.20260304203344-14a9e195b36e h1:g4ThRVMTRIdG6JxtpiOTh4BQ6zWUL0eP63gosP4fTyc=
+github.com/gogpu/gg v0.33.1-0.20260304203344-14a9e195b36e/go.mod h1:E8FF6DdNMtrorVSfeM64vi71Ywf2FiiGh/oMpRhOt3s=
+golang.org/x/image v0.36.0 h1:Iknbfm1afbgtwPTmHnS2gTM/6PPZfH+z2EFuOkSbqwc=
+golang.org/x/image v0.36.0/go.mod h1:YsWD2TyyGKiIX1kZlu9QfKIsQ4nAAK9bdgdrIsE7xy4=
+golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=
+golang.org/x/text v0.34.0/go.mod h1:homfLqTYRFyVYemLBFl5GgL/DWEiH5wcsQ5gSh1yziA=
