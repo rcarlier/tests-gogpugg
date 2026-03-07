@@ -1,11 +1,11 @@
 {
   "project": {
     "name": "github.com/gogpu/gg",
-    "folder": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e"
+    "folder": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4"
   },
   "files": [
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/accelerator.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/accelerator.go",
       "imports": [
         {
           "path": "errors",
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/brush.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/brush.go",
       "imports": null,
       "functions": [
         {
@@ -1155,7 +1155,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/brush_custom.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/brush_custom.go",
       "imports": [
         {
           "path": "math",
@@ -1647,7 +1647,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/color.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/color.go",
       "imports": [
         {
           "path": "image/color",
@@ -2068,7 +2068,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/context.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/context.go",
       "imports": [
         {
           "path": "fmt",
@@ -4109,7 +4109,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/context_clip.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/context_clip.go",
       "imports": [
         {
           "path": "math",
@@ -4251,7 +4251,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/context_image.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/context_image.go",
       "imports": [
         {
           "path": "image",
@@ -5017,7 +5017,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/context_layer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/context_layer.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg/internal/image",
@@ -5199,7 +5199,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/context_mask.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/context_mask.go",
       "imports": null,
       "functions": [
         {
@@ -5322,7 +5322,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/coverage_filler.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/coverage_filler.go",
       "imports": [
         {
           "path": "sync",
@@ -5489,7 +5489,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/curve.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/curve.go",
       "imports": [
         {
           "path": "math",
@@ -6632,7 +6632,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/dash.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/dash.go",
       "imports": [
         {
           "path": "math",
@@ -6932,7 +6932,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/gpu/gpu.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/gpu/gpu.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg",
@@ -6981,7 +6981,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/gradient.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/gradient.go",
       "imports": [
         {
           "path": "math",
@@ -7025,7 +7025,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/gradient_linear.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/gradient_linear.go",
       "imports": null,
       "functions": [
         {
@@ -7222,7 +7222,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/gradient_radial.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/gradient_radial.go",
       "imports": [
         {
           "path": "math",
@@ -7469,7 +7469,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/gradient_sweep.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/gradient_sweep.go",
       "imports": [
         {
           "path": "math",
@@ -7706,7 +7706,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/integration/ggcanvas/canvas.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/integration/ggcanvas/canvas.go",
       "imports": [
         {
           "path": "errors",
@@ -8321,7 +8321,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/integration/ggcanvas/render.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/integration/ggcanvas/render.go",
       "imports": [
         {
           "path": "errors",
@@ -8604,7 +8604,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/logger.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/logger.go",
       "imports": [
         {
           "path": "context",
@@ -8780,7 +8780,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/mask.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/mask.go",
       "imports": [
         {
           "path": "image",
@@ -9094,7 +9094,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/matrix.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/matrix.go",
       "imports": [
         {
           "path": "math",
@@ -9600,7 +9600,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/options.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/options.go",
       "imports": null,
       "functions": [
         {
@@ -9708,7 +9708,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/paint.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/paint.go",
       "imports": null,
       "functions": [
         {
@@ -10162,7 +10162,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/painter.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/painter.go",
       "imports": null,
       "functions": [
         {
@@ -10361,7 +10361,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/path.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/path.go",
       "imports": [
         {
           "path": "math",
@@ -11038,7 +11038,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/path_builder.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/path_builder.go",
       "imports": [
         {
           "path": "math",
@@ -11571,7 +11571,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/path_ops.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/path_ops.go",
       "imports": [
         {
           "path": "math",
@@ -11931,7 +11931,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/pattern.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/pattern.go",
       "imports": null,
       "functions": [
         {
@@ -12045,7 +12045,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/pipeline_mode.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/pipeline_mode.go",
       "imports": null,
       "functions": [
         {
@@ -12184,7 +12184,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/pixmap.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/pixmap.go",
       "imports": [
         {
           "path": "image",
@@ -12935,7 +12935,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/point.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/point.go",
       "imports": [
         {
           "path": "math",
@@ -13289,7 +13289,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/rasterizer_mode.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/rasterizer_mode.go",
       "imports": null,
       "functions": [
         {
@@ -13329,7 +13329,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/backend.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/backend.go",
       "imports": [
         {
           "path": "image",
@@ -13746,7 +13746,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/backends/raster/backend.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/backends/raster/backend.go",
       "imports": [
         {
           "path": "image",
@@ -14366,7 +14366,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/brush.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/brush.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg",
@@ -15084,7 +15084,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/command.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/command.go",
       "imports": null,
       "functions": [
         {
@@ -16110,7 +16110,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/matrix.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/matrix.go",
       "imports": [
         {
           "path": "math",
@@ -16929,7 +16929,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/pool.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/pool.go",
       "imports": [
         {
           "path": "image",
@@ -17379,7 +17379,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/recorder.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/recorder.go",
       "imports": [
         {
           "path": "image",
@@ -20022,7 +20022,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/recording/registry.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/recording/registry.go",
       "imports": [
         {
           "path": "fmt",
@@ -20271,7 +20271,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/device.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/device.go",
       "imports": [
         {
           "path": "github.com/gogpu/gpucontext",
@@ -20636,7 +20636,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/gpu_renderer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/gpu_renderer.go",
       "imports": [
         {
           "path": "errors",
@@ -20892,7 +20892,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/layers.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/layers.go",
       "imports": [
         {
           "path": "fmt",
@@ -21496,7 +21496,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/renderer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/renderer.go",
       "imports": null,
       "functions": null,
       "structs": [
@@ -21677,7 +21677,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/scene.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/scene.go",
       "imports": [
         {
           "path": "image/color",
@@ -22436,7 +22436,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/software.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/software.go",
       "imports": [
         {
           "path": "errors",
@@ -22637,7 +22637,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/render/target.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/render/target.go",
       "imports": [
         {
           "path": "image",
@@ -23471,7 +23471,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/renderer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/renderer.go",
       "imports": null,
       "functions": null,
       "structs": null,
@@ -23545,7 +23545,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/blend_integration.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/blend_integration.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg/internal/blend",
@@ -23909,7 +23909,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/builder.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/builder.go",
       "imports": null,
       "functions": [
         {
@@ -24871,7 +24871,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/cache.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/cache.go",
       "imports": [
         {
           "path": "container/list",
@@ -25469,7 +25469,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/decoder.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/decoder.go",
       "imports": [
         {
           "path": "math",
@@ -26172,7 +26172,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/encoding.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/encoding.go",
       "imports": [
         {
           "path": "math",
@@ -27891,7 +27891,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/filter.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/filter.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg",
@@ -28233,7 +28233,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/layer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/layer.go",
       "imports": null,
       "functions": [
         {
@@ -29234,7 +29234,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/path.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/path.go",
       "imports": [
         {
           "path": "iter",
@@ -30478,7 +30478,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/pool.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/pool.go",
       "imports": [
         {
           "path": "sync",
@@ -30650,7 +30650,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/renderer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/renderer.go",
       "imports": [
         {
           "path": "context",
@@ -31533,7 +31533,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/scene.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/scene.go",
       "imports": null,
       "functions": [
         {
@@ -32624,7 +32624,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/shape.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/shape.go",
       "imports": [
         {
           "path": "math",
@@ -34442,7 +34442,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/tag.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/tag.go",
       "imports": null,
       "functions": [
         {
@@ -34613,7 +34613,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/scene/text.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/scene/text.go",
       "imports": [
         {
           "path": "sync",
@@ -35602,7 +35602,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/sdf.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/sdf.go",
       "imports": [
         {
           "path": "math",
@@ -35842,7 +35842,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/sdf_accelerator.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/sdf_accelerator.go",
       "imports": [
         {
           "path": "math",
@@ -36154,7 +36154,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/shape_detect.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/shape_detect.go",
       "imports": [
         {
           "path": "math",
@@ -36279,7 +36279,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/shapes.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/shapes.go",
       "imports": [
         {
           "path": "math",
@@ -36339,7 +36339,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/software.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/software.go",
       "imports": [
         {
           "path": "math",
@@ -36656,7 +36656,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/solver.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/solver.go",
       "imports": [
         {
           "path": "math",
@@ -36884,7 +36884,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/stroke.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/stroke.go",
       "imports": null,
       "functions": [
         {
@@ -37347,7 +37347,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/gpu_surface.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/gpu_surface.go",
       "imports": [
         {
           "path": "errors",
@@ -37863,7 +37863,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/image_surface.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/image_surface.go",
       "imports": [
         {
           "path": "image",
@@ -38366,7 +38366,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/path.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/path.go",
       "imports": [
         {
           "path": "math",
@@ -38998,7 +38998,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/registry.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/registry.go",
       "imports": [
         {
           "path": "errors",
@@ -39680,7 +39680,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/surface.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/surface.go",
       "imports": [
         {
           "path": "image",
@@ -40161,7 +40161,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/surface/types.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/surface/types.go",
       "imports": [
         {
           "path": "image",
@@ -40885,7 +40885,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/cache/lru.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/cache/lru.go",
       "imports": null,
       "functions": [
         {
@@ -41083,7 +41083,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/cache/shaping.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/cache/shaping.go",
       "imports": [
         {
           "path": "hash/fnv",
@@ -41806,7 +41806,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/cache.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/cache.go",
       "imports": [
         {
           "path": "sync",
@@ -42097,7 +42097,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/color_font.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/color_font.go",
       "imports": [
         {
           "path": "github.com/gogpu/gg/text/emoji",
@@ -42446,7 +42446,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/draw.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/draw.go",
       "imports": [
         {
           "path": "image",
@@ -42603,7 +42603,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/draw_emoji.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/draw_emoji.go",
       "imports": [
         {
           "path": "image",
@@ -42891,7 +42891,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/emoji/bitmap.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/emoji/bitmap.go",
       "imports": [
         {
           "path": "bytes",
@@ -43407,7 +43407,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/emoji/cbdt_extractor.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/emoji/cbdt_extractor.go",
       "imports": [
         {
           "path": "encoding/binary",
@@ -43894,7 +43894,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/emoji/colr.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/emoji/colr.go",
       "imports": [
         {
           "path": "encoding/binary",
@@ -44481,7 +44481,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/emoji/detect.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/emoji/detect.go",
       "imports": null,
       "functions": [
         {
@@ -45001,7 +45001,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/emoji/sequence.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/emoji/sequence.go",
       "imports": null,
       "functions": [
         {
@@ -45544,7 +45544,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/errors.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/errors.go",
       "imports": [
         {
           "path": "errors",
@@ -45603,7 +45603,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/face.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/face.go",
       "imports": [
         {
           "path": "iter",
@@ -46068,7 +46068,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/filtered.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/filtered.go",
       "imports": [
         {
           "path": "iter",
@@ -46386,7 +46386,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph.go",
       "imports": null,
       "functions": null,
       "structs": [
@@ -46478,7 +46478,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph_cache.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph_cache.go",
       "imports": [
         {
           "path": "sync",
@@ -47235,7 +47235,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph_outline.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph_outline.go",
       "imports": [
         {
           "path": "golang.org/x/image/font/sfnt",
@@ -47934,7 +47934,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph_renderer.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph_renderer.go",
       "imports": [
         {
           "path": "image/color",
@@ -48735,7 +48735,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph_run.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph_run.go",
       "imports": [
         {
           "path": "math",
@@ -49429,7 +49429,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/glyph_type.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/glyph_type.go",
       "imports": null,
       "functions": [
         {
@@ -49532,7 +49532,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/layout.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/layout.go",
       "imports": [
         {
           "path": "context",
@@ -49963,7 +49963,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/metrics.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/metrics.go",
       "imports": null,
       "functions": [
         {
@@ -50043,7 +50043,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/atlas.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/atlas.go",
       "imports": [
         {
           "path": "fmt",
@@ -51498,7 +51498,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/contour.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/contour.go",
       "imports": [
         {
           "path": "math",
@@ -52074,7 +52074,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/edge.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/edge.go",
       "imports": [
         {
           "path": "math",
@@ -52548,7 +52548,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/generator.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/generator.go",
       "imports": [
         {
           "path": "math",
@@ -53155,7 +53155,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/shelf.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/shelf.go",
       "imports": null,
       "functions": [
         {
@@ -53856,7 +53856,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/msdf/types.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/msdf/types.go",
       "imports": [
         {
           "path": "math",
@@ -54897,7 +54897,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/multi.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/multi.go",
       "imports": [
         {
           "path": "iter",
@@ -55227,7 +55227,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/options.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/options.go",
       "imports": null,
       "functions": [
         {
@@ -55371,7 +55371,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/parser.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/parser.go",
       "imports": null,
       "functions": [
         {
@@ -55658,7 +55658,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/parser_ximage.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/parser_ximage.go",
       "imports": [
         {
           "path": "fmt",
@@ -55942,7 +55942,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/rasterize.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/rasterize.go",
       "imports": [
         {
           "path": "image",
@@ -56104,7 +56104,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/runetobool.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/runetobool.go",
       "imports": [
         {
           "path": "sync",
@@ -56280,7 +56280,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/script.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/script.go",
       "imports": null,
       "functions": [
         {
@@ -56416,7 +56416,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/segment.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/segment.go",
       "imports": [
         {
           "path": "unicode",
@@ -56701,7 +56701,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/shaped.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/shaped.go",
       "imports": null,
       "functions": null,
       "structs": [
@@ -56766,7 +56766,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/shaped_run.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/shaped_run.go",
       "imports": null,
       "functions": [
         {
@@ -56943,7 +56943,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/shaper.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/shaper.go",
       "imports": [
         {
           "path": "sync",
@@ -57078,7 +57078,7 @@
       ]
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/shaper_builtin.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/shaper_builtin.go",
       "imports": null,
       "functions": [
         {
@@ -57195,7 +57195,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/shaper_gotext.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/shaper_gotext.go",
       "imports": [
         {
           "path": "bytes",
@@ -57431,7 +57431,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/source.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/source.go",
       "imports": [
         {
           "path": "fmt",
@@ -57715,7 +57715,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/subpixel.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/subpixel.go",
       "imports": [
         {
           "path": "sync",
@@ -58707,7 +58707,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/tab.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/tab.go",
       "imports": [
         {
           "path": "strings",
@@ -58764,7 +58764,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/types.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/types.go",
       "imports": null,
       "functions": [
         {
@@ -58959,7 +58959,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text/wrap.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text/wrap.go",
       "imports": [
         {
           "path": "strings",
@@ -59156,7 +59156,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/text.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/text.go",
       "imports": [
         {
           "path": "strings",
@@ -59311,9 +59311,17 @@
             "\t}",
             "",
             "\t// Measure the text and calculate offset based on anchor.",
-            "\tw, h := text.Measure(s, c.face)",
+            "\t// The anchor maps linearly within the text bounding box:",
+            "\t//   ay=0 → y is the top of the text (baseline = y + ascent)",
+            "\t//   ay=0.5 → y is the vertical center (baseline = y + ascent - h/2)",
+            "\t//   ay=1 → y is the bottom (baseline = y + ascent - h)",
+            "\t// Formula: baseline = y + ascent - ay * h",
+            "\t// where h = ascent + descent (visual bounding box, no lineGap).",
+            "\tw, _ := text.Measure(s, c.face)",
+            "\tmetrics := c.face.Metrics()",
+            "\th := metrics.Ascent + metrics.Descent",
             "\tx -= w * ax",
-            "\ty += h * ay\t// Note: y is baseline, so we adjust upward for top alignment",
+            "\ty = y + metrics.Ascent - ay*h",
             "",
             "\t// Try GPU text rendering first with user-space coordinates.",
             "\t// The CTM is applied in the vertex shader.",
@@ -59488,18 +59496,17 @@
             "\t\treturn 0, 0",
             "\t}",
             "\tlines := splitLines(s)",
-            "\tfh := c.fontHeight()",
+            "\tmetrics := c.face.Metrics()",
+            "\tfh := metrics.LineHeight()",
             "\tfor _, line := range lines {",
             "\t\tlw, _ := text.Measure(line, c.face)",
             "\t\tif lw \u003e width {",
             "\t\t\twidth = lw",
             "\t\t}",
             "\t}",
-            "\t// Height formula: n lines with (n-1) inter-line gaps of fh*lineSpacing,",
-            "\t// plus one line height for the last line.",
-            "\t// h = fh * ((n-1)*lineSpacing + 1)",
+            "\t// Visual height: ascent above first baseline + (n-1) inter-line gaps + descent below last baseline.",
             "\tn := float64(len(lines))",
-            "\theight = n*fh*lineSpacing - (lineSpacing-1)*fh",
+            "\theight = (n-1)*fh*lineSpacing + metrics.Ascent + metrics.Descent",
             "\treturn",
             "}"
           ]
@@ -59568,15 +59575,22 @@
             "\t\treturn",
             "\t}",
             "",
-            "\tfh := c.fontHeight()",
+            "\tmetrics := c.face.Metrics()",
+            "\tfh := metrics.LineHeight()",
             "",
-            "\t// Total height (same formula as MeasureMultilineString)",
+            "\t// Visual height of the text block:",
+            "\t// - (n-1) inter-line gaps of fh*lineSpacing",
+            "\t// - ascent above first baseline + descent below last baseline",
             "\tn := float64(len(lines))",
-            "\th := n*fh*lineSpacing - (lineSpacing-1)*fh",
+            "\th := (n-1)*fh*lineSpacing + metrics.Ascent + metrics.Descent",
             "",
-            "\t// Adjust starting position by anchor",
+            "\t// Adjust starting position by anchor (bounding-box model):",
+            "\t//   ay=0 → y is the top of the block (first baseline = y + ascent)",
+            "\t//   ay=0.5 → y is the vertical center",
+            "\t//   ay=1 → y is the bottom of the block",
+            "\t// Formula: first_baseline = y + ascent - ay * h",
             "\tx -= ax * width",
-            "\ty -= ay * h",
+            "\ty = y + metrics.Ascent - ay*h",
             "",
             "\t// Adjust x base for alignment",
             "\tswitch align {",
@@ -59607,7 +59621,7 @@
       "interfaces": null
     },
     {
-      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.1-0.20260304203344-14a9e195b36e/vec.go",
+      "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4/vec.go",
       "imports": [
         {
           "path": "math",

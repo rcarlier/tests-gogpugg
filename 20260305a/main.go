@@ -35,18 +35,20 @@ func DrawWrapText(
 ) {
 	dc.SetHexColor(color)
 	dc.SetFont(face)
-	lines := text.WrapText(
-		content,
-		face,
-		maxWidth,
-		wrap,
-	)
-	metrics := face.Metrics()
-	lineHeight := metrics.Ascent + metrics.Descent + metrics.LineGap/lgFactor
-	for _, line := range lines {
-		dc.DrawStringAnchored(line.Text, x, y, ax, ay)
-		y += lineHeight
-	}
+	// lines := text.WrapText(
+	// 	content,
+	// 	face,
+	// 	maxWidth,
+	// 	wrap,
+	// )
+	// metrics := face.Metrics()
+	// lineHeight := metrics.Ascent + metrics.Descent + metrics.LineGap/lgFactor
+	// for _, line := range lines {
+	// 	dc.DrawStringAnchored(line.Text, x, y, ax, ay)
+	// 	y += lineHeight
+	// }
+
+	dc.DrawStringWrapped(content, x, y, ax, ay, maxWidth, lgFactor, gg.AlignCenter)
 }
 
 func drawAndSave(r, tx, ty, sx, sy float64) string {

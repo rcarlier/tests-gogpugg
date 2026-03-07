@@ -767,9 +767,17 @@
 	}
 
 	// Measure the text and calculate offset based on anchor.
-	w, h := text.Measure(s, c.face)
+	// The anchor maps linearly within the text bounding box:
+	//   ay=0 → y is the top of the text (baseline = y + ascent)
+	//   ay=0.5 → y is the vertical center (baseline = y + ascent - h/2)
+	//   ay=1 → y is the bottom (baseline = y + ascent - h)
+	// Formula: baseline = y + ascent - ay * h
+	// where h = ascent + descent (visual bounding box, no lineGap).
+	w, _ := text.Measure(s, c.face)
+	metrics := c.face.Metrics()
+	h := metrics.Ascent + metrics.Descent
 	x -= w * ax
-	y += h * ay	// Note: y is baseline, so we adjust upward for top alignment
+	y = y + metrics.Ascent - ay*h
 
 	// Try GPU text rendering first with user-space coordinates.
 	// The CTM is applied in the vertex shader.
@@ -828,15 +836,22 @@
 		return
 	}
 
-	fh := c.fontHeight()
+	metrics := c.face.Metrics()
+	fh := metrics.LineHeight()
 
-	// Total height (same formula as MeasureMultilineString)
+	// Visual height of the text block:
+	// - (n-1) inter-line gaps of fh*lineSpacing
+	// - ascent above first baseline + descent below last baseline
 	n := float64(len(lines))
-	h := n*fh*lineSpacing - (lineSpacing-1)*fh
+	h := (n-1)*fh*lineSpacing + metrics.Ascent + metrics.Descent
 
-	// Adjust starting position by anchor
+	// Adjust starting position by anchor (bounding-box model):
+	//   ay=0 → y is the top of the block (first baseline = y + ascent)
+	//   ay=0.5 → y is the vertical center
+	//   ay=1 → y is the bottom of the block
+	// Formula: first_baseline = y + ascent - ay * h
 	x -= ax * width
-	y -= ay * h
+	y = y + metrics.Ascent - ay*h
 
 	// Adjust x base for alignment
 	switch align {
@@ -966,18 +981,17 @@
 		return 0, 0
 	}
 	lines := splitLines(s)
-	fh := c.fontHeight()
+	metrics := c.face.Metrics()
+	fh := metrics.LineHeight()
 	for _, line := range lines {
 		lw, _ := text.Measure(line, c.face)
 		if lw > width {
 			width = lw
 		}
 	}
-	// Height formula: n lines with (n-1) inter-line gaps of fh*lineSpacing,
-	// plus one line height for the last line.
-	// h = fh * ((n-1)*lineSpacing + 1)
+	// Visual height: ascent above first baseline + (n-1) inter-line gaps + descent below last baseline.
 	n := float64(len(lines))
-	height = n*fh*lineSpacing - (lineSpacing-1)*fh
+	height = (n-1)*fh*lineSpacing + metrics.Ascent + metrics.Descent
 	return
 }
 </code></pre>
