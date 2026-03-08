@@ -39,7 +39,7 @@ func main() {
 	lineMulti(dc, 300., gg.LineJoinRound, "#0177E1")
 	lineMulti(dc, 400., gg.LineJoinBevel, "#FD3502")
 
-	save(dc, "join")
+	save(dc, "join", "join2")
 }
 
 func lineMulti(dc *gg.Context, y float64, join gg.LineJoin, color string) {
@@ -59,8 +59,8 @@ func line(dc *gg.Context, y float64, color string) {
 	dc.Stroke()
 }
 
-func save(dc *gg.Context, filename string) {
-	if err := dc.SavePNG("richnou_examples/" + filename + "/" + filename + ".png"); err != nil {
+func save(dc *gg.Context, folder, filename string) {
+	if err := dc.SavePNG("richnou_examples/" + folder + "/" + filename + ".png"); err != nil {
 		log.Fatalf("Failed to save PNG: %v", err)
 	}
 	log.Println("DONE")
