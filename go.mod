@@ -3,7 +3,7 @@ module gogpugg
 go 1.25.5
 
 require (
-	github.com/gogpu/gg v0.33.4
+	github.com/gogpu/gg v0.33.5
 	github.com/gogpu/gg-pdf v0.1.0
 	github.com/gogpu/gg-svg v0.1.0
 )
