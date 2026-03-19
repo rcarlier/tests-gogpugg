@@ -7,7 +7,7 @@ digraph G {
     label = <<table border="0" cellborder="0" cellspacing="0">
 		<tr><td><font point-size="44" color="#333333"><b>github.com/gogpu/gg</b></font></td></tr>
 		<tr><td height="10"></td></tr>
-		<tr><td><font point-size="12" color="#666666">/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4 - 2026-03-07 14:22</font></td></tr>
+		<tr><td><font point-size="12" color="#666666">/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.33.4 - 2026-03-10 17:48</font></td></tr>
 	</table>>
     labelloc = top;
 

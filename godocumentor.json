@@ -21,7 +21,7 @@
     },
     "markdown": {
         "file": "result.md",
-        "format": "name"
+        "format": "signature"
     },
     "html": {
         "outDir": "html"

@@ -2,13 +2,30 @@ package main
 
 import (
 	"gogpugg/internal/grid"
-	"log"
+	"gogpugg/internal/tools"
 
 	"github.com/gogpu/gg"
 )
 
 var w = 512.
 var h = 512.
+
+func lineMulti(dc *gg.Context, y float64, join gg.LineJoin, color string) {
+	dc.SetLineJoin(join)
+	dc.SetHexColor(color)
+	dc.MoveTo(10., y)
+	dc.LineTo(100., y)
+	dc.LineTo(130., y+50)
+	dc.LineTo(130., y+10)
+	dc.LineTo(250., y)
+	dc.LineTo(450., y)
+	dc.Stroke()
+}
+func line(dc *gg.Context, y float64, color string) {
+	dc.SetHexColor(color)
+	dc.DrawLine(10., y, 492, y)
+	dc.Stroke()
+}
 
 func main() {
 	dc := gg.NewContext(int(w), int(h))
@@ -39,29 +56,5 @@ func main() {
 	lineMulti(dc, 300., gg.LineJoinRound, "#0177E1")
 	lineMulti(dc, 400., gg.LineJoinBevel, "#FD3502")
 
-	save(dc, "join", "join2")
-}
-
-func lineMulti(dc *gg.Context, y float64, join gg.LineJoin, color string) {
-	dc.SetLineJoin(join)
-	dc.SetHexColor(color)
-	dc.MoveTo(10., y)
-	dc.LineTo(100., y)
-	dc.LineTo(130., y+50)
-	dc.LineTo(130., y+10)
-	dc.LineTo(250., y)
-	dc.LineTo(450., y)
-	dc.Stroke()
-}
-func line(dc *gg.Context, y float64, color string) {
-	dc.SetHexColor(color)
-	dc.DrawLine(10., y, 492, y)
-	dc.Stroke()
-}
-
-func save(dc *gg.Context, folder, filename string) {
-	if err := dc.SavePNG("richnou_examples/" + folder + "/" + filename + ".png"); err != nil {
-		log.Fatalf("Failed to save PNG: %v", err)
-	}
-	log.Println("DONE")
+	tools.Save(dc, "join", "join2")
 }
