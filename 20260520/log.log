@@ -1,0 +1,388 @@
+runtime: goroutine stack exceeds 1000000000-byte limit
+runtime: sp=0x2c9436bba380 stack=[0x2c9436bba000, 0x2c9456bba000]
+fatal error: stack overflow
+
+runtime stack:
+runtime.throw({0x1057c666f?, 0x200000001?})
+        /usr/local/go/src/runtime/panic.go:1229 +0x38 fp=0x16b102da0 sp=0x16b102d70 pc=0x105032308
+runtime.newstack()
+        /usr/local/go/src/runtime/stack.go:1178 +0x498 fp=0x16b102ed0 sp=0x16b102da0 pc=0x105019418
+runtime.morestack()
+        /usr/local/go/src/runtime/asm_arm64.s:507 +0x70 fp=0x16b102ed0 sp=0x16b102ed0 pc=0x105037750
+
+goroutine 1 gp=0x2c94162701e0 m=5 mp=0x2c94162ef808 [running]:
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x7ff8000000000001?, 0x7ff8000000000001?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:714 +0x22c fp=0x2c9436bba380 sp=0x2c9436bba380 pc=0x105176fbc
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba450 sp=0x2c9436bba380 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba520 sp=0x2c9436bba450 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba5f0 sp=0x2c9436bba520 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba6c0 sp=0x2c9436bba5f0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba790 sp=0x2c9436bba6c0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba860 sp=0x2c9436bba790 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bba930 sp=0x2c9436bba860 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbaa00 sp=0x2c9436bba930 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbaad0 sp=0x2c9436bbaa00 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbaba0 sp=0x2c9436bbaad0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbac70 sp=0x2c9436bbaba0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbad40 sp=0x2c9436bbac70 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbae10 sp=0x2c9436bbad40 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbaee0 sp=0x2c9436bbae10 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbafb0 sp=0x2c9436bbaee0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb080 sp=0x2c9436bbafb0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb150 sp=0x2c9436bbb080 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb220 sp=0x2c9436bbb150 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb2f0 sp=0x2c9436bbb220 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb3c0 sp=0x2c9436bbb2f0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb490 sp=0x2c9436bbb3c0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb560 sp=0x2c9436bbb490 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb630 sp=0x2c9436bbb560 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb700 sp=0x2c9436bbb630 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb7d0 sp=0x2c9436bbb700 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb8a0 sp=0x2c9436bbb7d0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbb970 sp=0x2c9436bbb8a0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbba40 sp=0x2c9436bbb970 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbb10 sp=0x2c9436bbba40 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbbe0 sp=0x2c9436bbbb10 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbcb0 sp=0x2c9436bbbbe0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbd80 sp=0x2c9436bbbcb0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbe50 sp=0x2c9436bbbd80 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbf20 sp=0x2c9436bbbe50 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbbff0 sp=0x2c9436bbbf20 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc0c0 sp=0x2c9436bbbff0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc190 sp=0x2c9436bbc0c0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc260 sp=0x2c9436bbc190 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc330 sp=0x2c9436bbc260 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc400 sp=0x2c9436bbc330 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc4d0 sp=0x2c9436bbc400 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc5a0 sp=0x2c9436bbc4d0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc670 sp=0x2c9436bbc5a0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc740 sp=0x2c9436bbc670 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc810 sp=0x2c9436bbc740 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc8e0 sp=0x2c9436bbc810 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbc9b0 sp=0x2c9436bbc8e0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbca80 sp=0x2c9436bbc9b0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x0?, 0x0?}, {0x0?, 0x0?}, {0x0?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9436bbcb50 sp=0x2c9436bbca80 pc=0x105176f6c
+...2581015 frames elided...
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x10502feb4?, 0x0?}, {0x910?, 0x0?}, {0x2c941633e960?, 0x100000000?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb7ed0 sp=0x2c9456bb7e00 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x800000008?, 0x32?}, {0x20?, 0x2b?}, {0x57?, 0x2c94167d4028?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb7fa0 sp=0x2c9456bb7ed0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x10510f2ac?, 0x12?}, {0x100000011?, 0xffff6900ffff5540?}, {0xff4000033333?, 0x2c94167d4178?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb8070 sp=0x2c9456bb7fa0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x12?, 0x0?}, {0x0?, 0x2c94167d4378?}, {0x10510df8c?, 0x2c94163766c0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb8140 sp=0x2c9456bb8070 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x2c9416705400?, 0x2c941633e780?}, {0x0?, 0x0?}, {0x90e?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb8210 sp=0x2c9456bb8140 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x7ff8000000000001?, 0x7ff8000000000001?}, {0x10?, 0x2c94162ef808?}, {0x2c9416493cf0?, 0x2c94167d4348?}, {0x105034b04?, 0x0?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb82e0 sp=0x2c9456bb8210 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubicRec(0x2c9456bb8628, {0x2c94167d44c8?, 0x4410809c167d4408?}, {0x400000004?, 0x2?}, {0x246?, 0x245?}, {0x3f0288104410daec?, 0x2c94167d44b8?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:733 +0x1dc fp=0x2c9456bb83b0 sp=0x2c9456bb82e0 pc=0x105176f6c
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).flattenCubic(...)
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:710
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).doCubic(0x2c9456bb8628, {0x105387b64?, 0x2c94167d4558?}, {0x105387b3c?, 0x2c94165454d0?}, {0x8?, 0x2c94167d44f8?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:480 +0x104 fp=0x2c9456bb8480 sp=0x2c9456bb83b0 pc=0x105175404
+github.com/gogpu/gg/internal/stroke.(*StrokeExpander).Expand(0x2c9456bb8628, {0x2c9456bb8578, 0x6, 0x105382014?}, {0x2c94162a34a0, 0x1a, 0x2c94167d4598?})
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/internal/stroke/expander.go:276 +0x2b0 fp=0x2c9456bb8520 sp=0x2c9456bb8480 pc=0x105173920
+github.com/gogpu/gg.(*SoftwareRenderer).Stroke(0x2c94163b2460, 0x2c941659c000, 0x2c94167d4858?, 0x2c941664e9a0)
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/software.go:833 +0x3f4 fp=0x2c9456bb87e0 sp=0x2c9456bb8520 pc=0x10518a6e4
+github.com/gogpu/gg.(*Context).doStroke(0x2c9416328000)
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/context.go:1775 +0x2f4 fp=0x2c9456bb8910 sp=0x2c9456bb87e0 pc=0x10517bd94
+github.com/gogpu/gg.(*Context).Stroke(0x2c9416328000)
+        /Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.47.3/context.go:878 +0x98 fp=0x2c9456bb8950 sp=0x2c9456bb8910 pc=0x105178e98
+richnou/internal/language.applyColor(0x2c94164e5ad0, {0x1057c2915?, 0x7ff8000000000001?}, {0x2c9416493ce0, 0x7}, 0x3ff0000000000000)
+        /Users/richnou/Development/richnou-lang/richnou/internal/language/builtins_color.go:512 +0xfc fp=0x2c9456bb8980 sp=0x2c9456bb8950 pc=0x1056fe2bc
+richnou/internal/language.DrawPoint(0x2c94164e5ad0, 0x2c94163b41a0?, 0x4?, {0x2c9416493ce0, 0x7}, 0x3ff0000000000000)
+        /Users/richnou/Development/richnou-lang/richnou/internal/language/draw.go:67 +0x60 fp=0x2c9456bb89c0 sp=0x2c9456bb8980 pc=0x105745200
+richnou/internal/language.NativePoint(0x2c94164e5ad0, {0x2c94163b41a0?, 0x1?, 0x2c941634126e?})
+        /Users/richnou/Development/richnou-lang/richnou/internal/language/builtins_shape.go:455 +0x14c fp=0x2c9456bb8a10 sp=0x2c9456bb89c0 pc=0x10572911c
+richnou/internal/language.registerShape.func6({0x2c94163b41a0?, 0x2c941634126e?, 0x2c94167d4a88?})
+        /Users/richnou/Development/richnou-lang/richnou/internal/language/builtins_shape.go:172 +0x34 fp=0x2c9456bb8a40 sp=0x2c9456bb8a10 pc=0x1057286c4
+richnou/internal/core.(*Runtime).evalCall(0x2c94164e5ad0, 0x2c9416698910, 0x2c9416794130)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:687 +0xf28 fp=0x2c9456bb8db0 sp=0x2c9456bb8a40 pc=0x105383c38
+richnou/internal/core.(*Runtime).evalPrimary(0x2c94164e5ad0, 0x2c94166b2230, 0x2c9416794130)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:543 +0x1bc fp=0x2c9456bb8f10 sp=0x2c9456bb8db0 pc=0x10538217c
+richnou/internal/core.(*Runtime).evalUnary(0x2c94167d5048?, 0x105381820?, 0x401c000000000000?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:344 +0x600 fp=0x2c9456bb8fe0 sp=0x2c9456bb8f10 pc=0x105381f90
+richnou/internal/core.(*Runtime).evalMultiplicative(0x2c94164e5ad0, 0x2c94166aa780, 0x2c9416794130)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:323 +0x2c fp=0x2c9456bb9040 sp=0x2c9456bb8fe0 pc=0x1053818bc
+richnou/internal/core.(*Runtime).evalAdditive(0x2c94164e5ad0, 0x2c94166aa7a0, 0x2c9416794130)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:303 +0x2c fp=0x2c9456bb90a0 sp=0x2c9456bb9040 pc=0x1053817bc
+richnou/internal/core.(*Runtime).evalRelational(0x2c94167d5148?, 0x105381760?, 0x2c94167d5118?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:287 +0xa0 fp=0x2c9456bb90e0 sp=0x2c9456bb90a0 pc=0x105381760
+richnou/internal/core.(*Runtime).evalEquality(0x0?, 0x105381300?, 0x2c94167d5158?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:270 +0xa0 fp=0x2c9456bb9120 sp=0x2c9456bb90e0 pc=0x105381690
+richnou/internal/core.(*Runtime).evalLogicAnd(0x2c94167d51a8?, 0x1050300d0?, 0xc8?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:243 +0xe4 fp=0x2c9456bb9170 sp=0x2c9456bb9120 pc=0x1053814f4
+richnou/internal/core.(*Runtime).evalLogicOr(0x2c94167d5218?, 0x10502fe8c?, 0x2c94167d51e8?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:216 +0xe0 fp=0x2c9456bb91b0 sp=0x2c9456bb9170 pc=0x105381300
+richnou/internal/core.(*Runtime).evalAssignment(0x10885e4e8?, 0x10?, 0x2c94162ef808?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:22 +0x1e4 fp=0x2c9456bb9220 sp=0x2c9456bb91b0 pc=0x105380534
+richnou/internal/core.(*Runtime).evalExpression(0x10?, 0x10614db00?, 0x2c94167d5278?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:15 +0x24 fp=0x2c9456bb9250 sp=0x2c9456bb9220 pc=0x105380304
+richnou/internal/core.(*Runtime).ExecuteStatement(0x2c94167d52c8?, 0x2c941664fd50, 0x2c94167d52f8?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:42 +0xc4 fp=0x2c9456bb92b0 sp=0x2c9456bb9250 pc=0x105384d64
+richnou/internal/core.(*Runtime).evalBlockWithScope(0x2c94164e5ad0, 0x2c941659b740?, 0x2c9416794120?, 0x8?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:105 +0xbc fp=0x2c9456bb9300 sp=0x2c9456bb92b0 pc=0x105384ffc
+richnou/internal/core.(*Runtime).evalBlock(...)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:95
+richnou/internal/core.(*Runtime).evalCall(0x2c94164e5ad0, 0x2c9416699590, 0x2c9416794010)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:762 +0x7f8 fp=0x2c9456bb9670 sp=0x2c9456bb9300 pc=0x105383508
+richnou/internal/core.(*Runtime).evalPrimary(0x2c94164e5ad0, 0x2c9416723880, 0x2c9416794010)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:543 +0x1bc fp=0x2c9456bb97d0 sp=0x2c9456bb9670 pc=0x10538217c
+richnou/internal/core.(*Runtime).evalUnary(0x10885e4e8?, 0x8?, 0x2c94162ef808?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:344 +0x600 fp=0x2c9456bb98a0 sp=0x2c9456bb97d0 pc=0x105381f90
+richnou/internal/core.(*Runtime).evalMultiplicative(0x2c94164e5ad0, 0x2c941656d560, 0x2c9416794010)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:323 +0x2c fp=0x2c9456bb9900 sp=0x2c9456bb98a0 pc=0x1053818bc
+richnou/internal/core.(*Runtime).evalAdditive(0x2c94164e5ad0, 0x2c941656d580, 0x2c9416794010)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:303 +0x2c fp=0x2c9456bb9960 sp=0x2c9456bb9900 pc=0x1053817bc
+richnou/internal/core.(*Runtime).evalRelational(0x2c94167d5a68?, 0x105385140?, 0x2c94165feff0?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:287 +0xa0 fp=0x2c9456bb99a0 sp=0x2c9456bb9960 pc=0x105381760
+richnou/internal/core.(*Runtime).evalEquality(0x10885e4e8?, 0x1?, 0x2c94162ef808?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:270 +0xa0 fp=0x2c9456bb99e0 sp=0x2c9456bb99a0 pc=0x105381690
+richnou/internal/core.(*Runtime).evalLogicAnd(0x2c94167d5a68?, 0x2c94165feff0?, 0x4?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:243 +0xe4 fp=0x2c9456bb9a30 sp=0x2c9456bb99e0 pc=0x1053814f4
+richnou/internal/core.(*Runtime).evalLogicOr(0x106117be0?, 0x2c9416668120?, 0x2c94165feff0?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:216 +0xe0 fp=0x2c9456bb9a70 sp=0x2c9456bb9a30 pc=0x105381300
+richnou/internal/core.(*Runtime).evalAssignment(0x4a?, 0x6d0?, 0x49?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:22 +0x1e4 fp=0x2c9456bb9ae0 sp=0x2c9456bb9a70 pc=0x105380534
+richnou/internal/core.(*Runtime).evalExpression(0x2c94164e5ad0?, 0x2c9416814fc0?, 0x2c9416794010?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_expr.go:15 +0x24 fp=0x2c9456bb9b10 sp=0x2c9456bb9ae0 pc=0x105380304
+richnou/internal/core.(*Runtime).ExecuteStatement(0x2c9416794000?, 0x2c94167230a0, 0x2c94167d5bb8?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:42 +0xc4 fp=0x2c9456bb9b70 sp=0x2c9456bb9b10 pc=0x105384d64
+richnou/internal/core.(*Runtime).evalBlockWithScope(0x2c94164e5ad0, 0x2c9416815440?, 0x2c9416794000?, 0xc7?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:105 +0xbc fp=0x2c9456bb9bc0 sp=0x2c9456bb9b70 pc=0x105384ffc
+richnou/internal/core.(*Runtime).evalForStmt(0x2c94164e5ad0, 0x2c9416554a00, 0x2c941654f030)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:190 +0x140 fp=0x2c9456bb9c00 sp=0x2c9456bb9bc0 pc=0x1053856e0
+richnou/internal/core.(*Runtime).ExecuteStatement(0x1057ba7f9?, 0x2c94166b2bd0, 0x2f?)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/eval_stmt.go:27 +0x100 fp=0x2c9456bb9c60 sp=0x2c9456bb9c00 pc=0x105384da0
+richnou/internal/core.(*Runtime).Run(0x2c94164e5ad0, 0x2c941659a580)
+        /Users/richnou/Development/richnou-lang/richnou/internal/core/runtime.go:74 +0xe8 fp=0x2c9456bb9d00 sp=0x2c9456bb9c60 pc=0x105387598
+main.main()
+        /Users/richnou/Development/richnou-lang/richnou/cmd/main.go:128 +0x484 fp=0x2c9456bb9f30 sp=0x2c9456bb9d00 pc=0x105769534
+runtime.main()
+        /usr/local/go/src/runtime/proc.go:290 +0x2b4 fp=0x2c9456bb9fd0 sp=0x2c9456bb9f30 pc=0x104fff4a4
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c9456bb9fd0 sp=0x2c9456bb9fd0 pc=0x105039664
+
+goroutine 2 gp=0x2c9416270780 m=nil [force gc (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162eaf90 sp=0x2c94162eaf70 pc=0x10503241c
+runtime.goparkunlock(...)
+        /usr/local/go/src/runtime/proc.go:468
+runtime.forcegchelper()
+        /usr/local/go/src/runtime/proc.go:375 +0xb4 fp=0x2c94162eafd0 sp=0x2c94162eaf90 pc=0x104fff7c4
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162eafd0 sp=0x2c94162eafd0 pc=0x105039664
+created by runtime.init.7 in goroutine 1
+        /usr/local/go/src/runtime/proc.go:363 +0x24
+
+goroutine 3 gp=0x2c9416270d20 m=nil [GC sweep wait]:
+runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162eb770 sp=0x2c94162eb750 pc=0x10503241c
+runtime.goparkunlock(...)
+        /usr/local/go/src/runtime/proc.go:468
+runtime.bgsweep(0x2c94162b4100)
+        /usr/local/go/src/runtime/mgcsweep.go:324 +0x178 fp=0x2c94162eb7b0 sp=0x2c94162eb770 pc=0x104fea6e8
+runtime.gcenable.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:214 +0x20 fp=0x2c94162eb7d0 sp=0x2c94162eb7b0 pc=0x104fdbb30
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162eb7d0 sp=0x2c94162eb7d0 pc=0x105039664
+created by runtime.gcenable in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:214 +0x6c
+
+goroutine 4 gp=0x2c9416270f00 m=nil [GC scavenge wait]:
+runtime.gopark(0x10000?, 0x105989868?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162ebf60 sp=0x2c94162ebf40 pc=0x10503241c
+runtime.goparkunlock(...)
+        /usr/local/go/src/runtime/proc.go:468
+runtime.(*scavengerState).park(0x106435960)
+        /usr/local/go/src/runtime/mgcscavenge.go:425 +0x5c fp=0x2c94162ebf90 sp=0x2c94162ebf60 pc=0x104fe81fc
+runtime.bgscavenge(0x2c94162b4100)
+        /usr/local/go/src/runtime/mgcscavenge.go:658 +0xac fp=0x2c94162ebfb0 sp=0x2c94162ebf90 pc=0x104fe879c
+runtime.gcenable.gowrap2()
+        /usr/local/go/src/runtime/mgc.go:215 +0x20 fp=0x2c94162ebfd0 sp=0x2c94162ebfb0 pc=0x104fdbaf0
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162ebfd0 sp=0x2c94162ebfd0 pc=0x105039664
+created by runtime.gcenable in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:215 +0xac
+
+goroutine 5 gp=0x2c94162714a0 m=nil [GOMAXPROCS updater (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162ec770 sp=0x2c94162ec750 pc=0x10503241c
+runtime.goparkunlock(...)
+        /usr/local/go/src/runtime/proc.go:468
+runtime.updateMaxProcsGoroutine()
+        /usr/local/go/src/runtime/proc.go:7095 +0xf4 fp=0x2c94162ec7d0 sp=0x2c94162ec770 pc=0x10500de14
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162ec7d0 sp=0x2c94162ec7d0 pc=0x105039664
+created by runtime.defaultGOMAXPROCSUpdateEnable in goroutine 1
+        /usr/local/go/src/runtime/proc.go:7083 +0x48
+
+goroutine 6 gp=0x2c9416271680 m=nil [finalizer wait]:
+runtime.gopark(0x106119cc0?, 0xa7?, 0xd8?, 0xa5?, 0x1000000000000?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162ea580 sp=0x2c94162ea560 pc=0x10503241c
+runtime.runFinalizers()
+        /usr/local/go/src/runtime/mfinal.go:210 +0x100 fp=0x2c94162ea7d0 sp=0x2c94162ea580 pc=0x104fdab50
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162ea7d0 sp=0x2c94162ea7d0 pc=0x105039664
+created by runtime.createfing in goroutine 1
+        /usr/local/go/src/runtime/mfinal.go:172 +0x78
+
+goroutine 7 gp=0x2c9416371860 m=nil [cleanup wait]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162ecf50 sp=0x2c94162ecf30 pc=0x10503241c
+runtime.goparkunlock(...)
+        /usr/local/go/src/runtime/proc.go:468
+runtime.(*cleanupQueue).dequeue(0x106436000)
+        /usr/local/go/src/runtime/mcleanup.go:522 +0x160 fp=0x2c94162ecf90 sp=0x2c94162ecf50 pc=0x104fd7c00
+runtime.runCleanups()
+        /usr/local/go/src/runtime/mcleanup.go:718 +0x40 fp=0x2c94162ecfd0 sp=0x2c94162ecf90 pc=0x104fd8350
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162ecfd0 sp=0x2c94162ecfd0 pc=0x105039664
+created by runtime.(*cleanupQueue).createGs in goroutine 1
+        /usr/local/go/src/runtime/mcleanup.go:672 +0x108
+
+goroutine 8 gp=0x2c94165bb860 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162ed720 sp=0x2c94162ed700 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162ed7b0 sp=0x2c94162ed720 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162ed7d0 sp=0x2c94162ed7b0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162ed7d0 sp=0x2c94162ed7d0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 9 gp=0x2c94165bba40 m=nil [GC worker (idle)]:
+runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162edf20 sp=0x2c94162edf00 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162edfb0 sp=0x2c94162edf20 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162edfd0 sp=0x2c94162edfb0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162edfd0 sp=0x2c94162edfd0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 10 gp=0x2c94165bbc20 m=nil [GC worker (idle)]:
+runtime.gopark(0x1064653e0?, 0x1?, 0x83?, 0x68?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162e6720 sp=0x2c94162e6700 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162e67b0 sp=0x2c94162e6720 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162e67d0 sp=0x2c94162e67b0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162e67d0 sp=0x2c94162e67d0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 11 gp=0x2c9416706000 m=nil [GC worker (idle)]:
+runtime.gopark(0x10eea53ba71f7?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162e6f20 sp=0x2c94162e6f00 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162e6fb0 sp=0x2c94162e6f20 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162e6fd0 sp=0x2c94162e6fb0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162e6fd0 sp=0x2c94162e6fd0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 12 gp=0x2c94167061e0 m=nil [GC worker (idle)]:
+runtime.gopark(0x10eea53ba9c72?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c941630ef20 sp=0x2c941630ef00 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c941630efb0 sp=0x2c941630ef20 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c941630efd0 sp=0x2c941630efb0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c941630efd0 sp=0x2c941630efd0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 13 gp=0x2c94167063c0 m=nil [GC worker (idle)]:
+runtime.gopark(0x10eea53b05b48?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162e7f20 sp=0x2c94162e7f00 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162e7fb0 sp=0x2c94162e7f20 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162e7fd0 sp=0x2c94162e7fb0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162e7fd0 sp=0x2c94162e7fd0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 14 gp=0x2c94167065a0 m=nil [GC worker (idle)]:
+runtime.gopark(0x10eea53ba73eb?, 0x0?, 0x0?, 0x0?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162e8720 sp=0x2c94162e8700 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162e87b0 sp=0x2c94162e8720 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162e87d0 sp=0x2c94162e87b0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162e87d0 sp=0x2c94162e87d0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134
+
+goroutine 15 gp=0x2c9416706780 m=nil [GC worker (idle)]:
+runtime.gopark(0x10eea53ba86f6?, 0x3?, 0xe?, 0xc7?, 0x0?)
+        /usr/local/go/src/runtime/proc.go:462 +0xbc fp=0x2c94162e8f20 sp=0x2c94162e8f00 pc=0x10503241c
+runtime.gcBgMarkWorker(0x2c94162ba460)
+        /usr/local/go/src/runtime/mgc.go:1791 +0xe0 fp=0x2c94162e8fb0 sp=0x2c94162e8f20 pc=0x104fde590
+runtime.gcBgMarkStartWorkers.gowrap1()
+        /usr/local/go/src/runtime/mgc.go:1695 +0x20 fp=0x2c94162e8fd0 sp=0x2c94162e8fb0 pc=0x104fde490
+runtime.goexit({})
+        /usr/local/go/src/runtime/asm_arm64.s:1447 +0x4 fp=0x2c94162e8fd0 sp=0x2c94162e8fd0 pc=0x105039664
+created by runtime.gcBgMarkStartWorkers in goroutine 1
+        /usr/local/go/src/runtime/mgc.go:1695 +0x134

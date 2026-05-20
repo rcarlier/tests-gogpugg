@@ -48,7 +48,7 @@ func gradient(dc *gg.Context, color1, color2 string) {
 }
 
 func main() {
-	dc := gg.NewContext(400, 400)
+	dc := gg.NewContext(400, 800)
 	dc.SetRGB(0.95, 0.95, 0.95)
 	dc.Clear()
 	gradient(dc, "#E3F2FD", "#0D47A1")
@@ -58,5 +58,26 @@ func main() {
 	hole2 := []float64{280, 150, 250, 200, 280, 250, 310, 200}
 	hole3 := []float64{130, 280, 140, 310, 145, 315, 150, 320, 155, 322, 200, 325, 245, 322, 250, 320, 255, 315, 260, 310, 270, 280}
 	DrawPolygonWithHoles(dc, ring, [][]float64{hole1, hole2, hole3}, "#FF6F00")
+
+	dc.Translate(0, 400)
+
+	// Outer polygon
+	dc.MoveTo(50, 50)
+	dc.LineTo(350, 50)
+	dc.LineTo(350, 350)
+	dc.LineTo(50, 350)
+	dc.ClosePath()
+
+	// Inner hole (wound in opposite direction)
+	dc.MoveTo(100, 100)
+	dc.LineTo(100, 300)
+	dc.LineTo(300, 300)
+	dc.LineTo(300, 100)
+	dc.ClosePath()
+
+	dc.SetFillRule(gg.FillRuleEvenOdd)
+	dc.SetHexColor("#3498dbaa")
+	dc.Fill()
+
 	tools.Save(dc, "clipping", "clipping")
 }
