@@ -23,3 +23,5 @@ coverage.out
 __PRIVATE__/
 __PRIVATE__/*
 **/*.afdesign~lock~
+
+**/*t.md
