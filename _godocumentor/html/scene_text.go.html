@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -361,10 +376,6 @@
                     <li><a href="#func-RenderRun">RenderRun</a></li>
                     
                     <li><a href="#func-RenderText">RenderText</a></li>
-                    
-                    <li><a href="#func-RenderTextToScene">RenderTextToScene</a></li>
-                    
-                    <li><a href="#func-RenderToScene">RenderToScene</a></li>
                     
                     <li><a href="#func-SetConfig">SetConfig</a></li>
                     
@@ -442,6 +453,21 @@
             
             <li>
                 <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
                 
             </li>
             
@@ -531,6 +557,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -552,6 +588,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -681,6 +722,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -782,14 +828,24 @@
     
     <div class="comments">
          
-        <p>DrawGlyphs draws pre-shaped glyphs directly to the scene.</p>
+        <p>DrawGlyphs draws pre-shaped glyphs to the scene as a TagText glyph run.</p>
+          
+        <p>Like DrawText but skips shaping — use when glyphs are already shaped.</p>
+          
+        <p>The original text string is required for GPU renderer's DrawString path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (s *Scene) DrawGlyphs(glyphs []text.ShapedGlyph, face text.Face, brush Brush) error {
-	renderer := NewTextRenderer()
-	return renderer.RenderToScene(s, glyphs, face, brush)
+    <pre><code class="language-go">func (s *Scene) DrawGlyphs(str string, glyphs []text.ShapedGlyph, face text.Face, x, y float32, brush Brush) error {
+	if len(glyphs) == 0 {
+		return nil
+	}
+	if face == nil {
+		return &text.FontError{Reason: "face is nil"}
+	}
+
+	return s.encodeTextRun(str, glyphs, face, x, y, brush)
 }
 </code></pre>
 </div>
@@ -802,16 +858,39 @@
     
     <div class="comments">
          
-        <p>DrawText is a convenience method on Scene to draw text directly.</p>
+        <p>DrawText shapes text and records it as a TagText glyph run in the scene.</p>
           
-        <p>It creates a temporary TextRenderer, renders the text, and adds it to the scene.</p>
+        <p>Shaping (HarfBuzz) is performed once at recording time. Resolution to pixels</p>
+          
+        <p>(atlas, outline, text op) is deferred to render/playback time via the renderer's</p>
+          
+        <p>text resolution capability. See ADR-022.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Breaking change from v0.45: previously converted glyphs to vector paths</p>
+          
+        <p>(one Fill per glyph, no hinting). Now stores compact glyph references</p>
+          
+        <p>that renderers resolve at playback time with full hinting and atlas batching.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (s *Scene) DrawText(str string, face text.Face, x, y float32, brush Brush) error {
-	renderer := NewTextRenderer()
-	return renderer.RenderTextToScene(s, str, face, x, y, brush)
+	if str == "" {
+		return nil
+	}
+	if face == nil {
+		return &text.FontError{Reason: "face is nil"}
+	}
+
+	shaped := text.Shape(str, face)
+	if len(shaped) == 0 {
+		return nil
+	}
+
+	return s.encodeTextRun(str, shaped, face, x, y, brush)
 }
 </code></pre>
 </div>
@@ -990,12 +1069,25 @@
 		return nil, &text.FontError{Reason: "face has no font source"}
 	}
 	size := face.Size()
+	parsed := source.Parsed()
 
-	// Extract the outline
-	outline, err := r.extractor.ExtractOutline(source.Parsed(), glyph.GID, size)
-	if err != nil {
-		return nil, err
+	cache := r.ensureCache()
+	fontID := computeSceneTextFontID(source)
+	sizeKey := computeSizeKey(size)
+
+	cacheKey := text.OutlineCacheKey{
+		FontID:		fontID,
+		GID:		glyph.GID,
+		Size:		sizeKey,
+		Hinting:	text.HintingNone,
 	}
+	outline := cache.GetOrCreate(cacheKey, func() *text.GlyphOutline {
+		o, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
+		if err != nil || o == nil || o.IsEmpty() {
+			return nil
+		}
+		return o
+	})
 
 	// Create the rendered glyph
 	rendered := &RenderedGlyph{
@@ -1008,7 +1100,7 @@
 	}
 
 	// Handle empty outlines (like space)
-	if outline == nil || outline.IsEmpty() {
+	if outline == nil {
 		rendered.Path = nil
 		rendered.Bounds = EmptyRect()
 		return rendered, nil
@@ -1056,6 +1148,10 @@
 	size := face.Size()
 	parsed := source.Parsed()
 
+	cache := r.ensureCache()
+	fontID := computeSceneTextFontID(source)
+	sizeKey := computeSizeKey(size)
+
 	// Render all glyphs
 	rendered := make([]*RenderedGlyph, len(glyphs))
 	for i, glyph := range glyphs {
@@ -1068,18 +1164,21 @@
 			Cluster:	glyph.Cluster,
 		}
 
-		// Extract outline
-		outline, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
-		if err != nil {
-			// Log error but continue - some glyphs may not have outlines
-			rg.Path = nil
-			rg.Bounds = EmptyRect()
-			rendered[i] = rg
-			continue
+		cacheKey := text.OutlineCacheKey{
+			FontID:		fontID,
+			GID:		glyph.GID,
+			Size:		sizeKey,
+			Hinting:	text.HintingNone,
 		}
+		outline := cache.GetOrCreate(cacheKey, func() *text.GlyphOutline {
+			o, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
+			if err != nil || o == nil || o.IsEmpty() {
+				return nil
+			}
+			return o
+		})
 
-		// Handle empty outlines
-		if outline == nil || outline.IsEmpty() {
+		if outline == nil {
 			rg.Path = nil
 			rg.Bounds = EmptyRect()
 			rendered[i] = rg
@@ -1147,96 +1246,6 @@
 	}
 
 	return r.RenderGlyphs(shaped, face)
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-RenderTextToScene">
-    <div class="item-header">
-        <h4>func RenderTextToScene</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>RenderTextToScene shapes and renders text directly into a scene.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (r *TextRenderer) RenderTextToScene(s *Scene, str string, face text.Face, x, y float32, brush Brush) error {
-	if str == "" {
-		return nil
-	}
-
-	// Shape the text
-	shaped := text.Shape(str, face)
-	if len(shaped) == 0 {
-		return nil
-	}
-
-	r.mu.RLock()
-	config := r.config
-	r.mu.RUnlock()
-
-	// Get font info
-	source := face.Source()
-	if source == nil {
-		return &text.FontError{Reason: "face has no font source"}
-	}
-	size := face.Size()
-	parsed := source.Parsed()
-
-	// Render each glyph
-	for _, glyph := range shaped {
-		outline, err := r.extractor.ExtractOutline(parsed, glyph.GID, size)
-		if err != nil || outline == nil || outline.IsEmpty() {
-			continue
-		}
-
-		// Position glyph relative to origin (x, y)
-		posX := x + float32(glyph.X)
-		posY := y + float32(glyph.Y)
-
-		path := r.outlineToPath(outline, posX, posY, config)
-		if path != nil && !path.IsEmpty() {
-			s.Fill(FillNonZero, IdentityAffine(), brush, NewPathShape(path))
-		}
-	}
-
-	return nil
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-RenderToScene">
-    <div class="item-header">
-        <h4>func RenderToScene</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>RenderToScene renders shaped glyphs directly into a scene.</p>
-          
-        <p>This is the primary method for GPU text rendering.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (r *TextRenderer) RenderToScene(s *Scene, glyphs []text.ShapedGlyph, face text.Face, brush Brush) error {
-	rendered, err := r.RenderGlyphs(glyphs, face)
-	if err != nil {
-		return err
-	}
-
-	for _, rg := range rendered {
-		if rg.Path != nil && !rg.Path.IsEmpty() {
-			s.Fill(FillNonZero, IdentityAffine(), brush, NewPathShape(rg.Path))
-		}
-	}
-
-	return nil
 }
 </code></pre>
 </div>
@@ -1400,6 +1409,9 @@
 
 	// config holds renderer configuration
 	config	TextRendererConfig
+
+	// cache holds cached glyph outlines (lazy-initialized from global)
+	cache	*text.GlyphCache
 }
 </code></pre>
 </div>

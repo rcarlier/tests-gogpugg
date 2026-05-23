@@ -24,13 +24,15 @@
                     
                     <li><a href="#func-Accelerator">Accelerator</a></li>
                     
+                    <li><a href="#func-AcceleratorCanRenderDirect">AcceleratorCanRenderDirect</a></li>
+                    
+                    <li><a href="#func-BeginAcceleratorFrame">BeginAcceleratorFrame</a></li>
+                    
                     <li><a href="#func-CloseAccelerator">CloseAccelerator</a></li>
                     
                     <li><a href="#func-RegisterAccelerator">RegisterAccelerator</a></li>
                     
                     <li><a href="#func-SetAcceleratorDeviceProvider">SetAcceleratorDeviceProvider</a></li>
-                    
-                    <li><a href="#func-SetAcceleratorSurfaceTarget">SetAcceleratorSurfaceTarget</a></li>
                     
                 </ul>
                 
@@ -172,6 +174,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -292,6 +299,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -303,6 +315,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -412,6 +429,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -497,6 +529,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -518,6 +560,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -647,6 +694,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -696,6 +748,113 @@
 	a := accel
 	accelMu.RUnlock()
 	return a
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AcceleratorCanRenderDirect">
+    <div class="item-header">
+        <h4>func AcceleratorCanRenderDirect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AcceleratorCanRenderDirect returns true if the registered GPU accelerator</p>
+          
+        <p>is initialized and capable of rendering directly to a surface target.</p>
+          
+        <p>Returns false if no accelerator is registered, GPU init failed (e.g.,</p>
+          
+        <p>CPU-only adapter like llvmpipe), or the accelerator doesn't support</p>
+          
+        <p>direct surface rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Respects GOGPU_RENDER_MODE environment variable (ADR-020):</p>
+          
+        <p>- auto (default): returns false for software adapters (CPU rasterizer is faster)</p>
+          
+        <p>- cpu: always returns false (force CPU rasterizer)</p>
+          
+        <p>- gpu: uses accelerator's own CanRenderDirect (force GPU path)</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Use this to decide whether to attempt RenderDirect or go straight to</p>
+          
+        <p>the universal CPU→texture→present path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func AcceleratorCanRenderDirect() bool {
+	switch renderMode() {
+	case renderModeCPU:
+		return false
+	case renderModeGPU:
+		a := Accelerator()
+		if a == nil {
+			return false
+		}
+		if drc, ok := a.(DirectRenderCapable); ok {
+			return drc.CanRenderDirect()
+		}
+		return false
+	}
+
+	// Auto mode: check adapter type
+	a := Accelerator()
+	if a == nil {
+		return false
+	}
+	if aa, ok := a.(AdapterAware); ok {
+		if aa.IsSoftwareAdapter() {
+			return false
+		}
+	}
+	if drc, ok := a.(DirectRenderCapable); ok {
+		return drc.CanRenderDirect()
+	}
+	return false
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BeginAcceleratorFrame">
+    <div class="item-header">
+        <h4>func BeginAcceleratorFrame</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BeginAcceleratorFrame signals the start of a new rendering frame.</p>
+          
+        <p>This resets per-frame state so that the first render pass clears the</p>
+          
+        <p>surface. Must be called once per frame before any drawing operations</p>
+          
+        <p>when using direct surface rendering (RenderDirect).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>If no accelerator is registered or it doesn't implement FrameAware,</p>
+          
+        <p>this is a no-op.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func BeginAcceleratorFrame() {
+	a := Accelerator()
+	if a == nil {
+		return
+	}
+	if fa, ok := a.(FrameAware); ok {
+		fa.BeginFrame()
+	}
 }
 </code></pre>
 </div>
@@ -818,14 +977,14 @@
           
         <p class="empty">&nbsp;</p>
           
-        <p>The provider should implement HalDevice() any and HalQueue() any methods</p>
+        <p>The provider's Device() returns gpucontext.Device; accelerators type-assert</p>
           
-        <p>that return wgpu/hal types.</p>
+        <p>to *wgpu.Device to obtain HAL access for GPU operations.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func SetAcceleratorDeviceProvider(provider any) error {
+    <pre><code class="language-go">func SetAcceleratorDeviceProvider(provider gpucontext.DeviceProvider) error {
 	a := Accelerator()
 	if a == nil {
 		return nil
@@ -834,43 +993,6 @@
 		return dpa.SetDeviceProvider(provider)
 	}
 	return nil
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-SetAcceleratorSurfaceTarget">
-    <div class="item-header">
-        <h4>func SetAcceleratorSurfaceTarget</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>SetAcceleratorSurfaceTarget configures the registered accelerator for</p>
-          
-        <p>direct surface rendering. When view is non-nil, the accelerator renders</p>
-          
-        <p>directly to the surface texture view, eliminating GPU->CPU readback.</p>
-          
-        <p>Call with nil view to return to offscreen mode.</p>
-          
-        <p class="empty">&nbsp;</p>
-          
-        <p>If no accelerator is registered or it doesn't support surface rendering,</p>
-          
-        <p>this is a no-op. The view parameter should be a hal.TextureView.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func SetAcceleratorSurfaceTarget(view any, width, height uint32) {
-	a := Accelerator()
-	if a == nil {
-		return
-	}
-	if sta, ok := a.(SurfaceTargetAware); ok {
-		sta.SetSurfaceTarget(view, width, height)
-	}
 }
 </code></pre>
 </div>
@@ -887,14 +1009,50 @@
         
         <p>GPURenderTarget provides pixel buffer access for GPU output.</p>
         
-        <p>The Data slice must be in premultiplied RGBA format, 4 bytes per pixel,</p>
+        <p>&nbsp;</p>
         
-        <p>laid out row by row with the given Stride.</p>
+        <p>Two mutually exclusive modes:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>GPU-direct mode: when View is non-nil, the render pass resolves directly</p>
+        
+        <p>to this texture view. Data/Stride are ignored and no CPU readback occurs.</p>
+        
+        <p>ViewWidth and ViewHeight specify the view dimensions in device pixels.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>CPU readback mode: when View is nil, rendering goes to an internal resolve</p>
+        
+        <p>texture and pixels are copied back into Data. Width, Height, and Stride</p>
+        
+        <p>describe the destination pixel buffer layout.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The Data slice (when used) must be in premultiplied RGBA format, 4 bytes</p>
+        
+        <p>per pixel, laid out row by row with the given Stride.</p>
         
     </div>
     
 
     <pre><code class="language-go">type GPURenderTarget struct {
+	// GPU-direct path: resolve directly to this view.
+	// When non-nil, Data/Stride are ignored -- no CPU readback.
+	// Type-assert to *wgpu.TextureView in internal/gpu consumers.
+	View		gpucontext.TextureView
+	ViewWidth	uint32
+	ViewHeight	uint32
+
+	// Damage-aware compositing (ADR-026/028): when non-empty, compositor
+	// uses LoadOpLoad (preserve previous frame) and per-rect scissor.
+	// Single rect: one scissor for entire pass.
+	// Multiple rects: per-draw dynamic scissor (ADR-028).
+	DamageRects	[]image.Rectangle
+
+	// CPU readback path.
 	Data		[]uint8
 	Width, Height	int
 	Stride		int	// bytes per row
@@ -991,44 +1149,92 @@
         
         <p>device instead of creating its own.</p>
         
+        <p>&nbsp;</p>
+        
+        <p>The provider's Device() returns gpucontext.Device which consumers</p>
+        
+        <p>type-assert to *wgpu.Device for full HAL access:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>dev := provider.Device().(*wgpu.Device)</p>
+        
+        <p>halDevice := dev.HalDevice()</p>
+        
     </div>
     
 
     <pre><code class="language-go">type DeviceProviderAware interface {
-	SetDeviceProvider(provider any) error
+	SetDeviceProvider(provider gpucontext.DeviceProvider) error
 }
 </code></pre>
 </div>
 
-<div class="item" id="interface-SurfaceTargetAware">
+<div class="item" id="interface-GPURenderContextProvider">
     <div class="item-header">
-        <h4>type SurfaceTargetAware interface</h4>
+        <h4>type GPURenderContextProvider interface</h4>
     </div>
 
     
     <div class="comments">
         
-        <p>SurfaceTargetAware is an optional interface for accelerators that support</p>
+        <p>GPURenderContextProvider is an optional interface for accelerators that</p>
         
-        <p>direct surface rendering. When SetSurfaceTarget is called with a non-nil</p>
+        <p>support per-context GPU rendering. When the accelerator implements this</p>
         
-        <p>view, the accelerator renders directly to the surface texture instead of</p>
+        <p>interface, each gg.Context lazily creates its own GPURenderContext for</p>
         
-        <p>reading back pixels to CPU. This eliminates the GPU->CPU->GPU round-trip</p>
-        
-        <p>for windowed rendering (ggcanvas + gogpu).</p>
+        <p>isolated pending command queues, clip state, and frame tracking.</p>
         
         <p>&nbsp;</p>
         
-        <p>Call SetSurfaceTarget with nil to return to offscreen (readback) mode.</p>
+        <p>This follows the Skia GrContext pattern: shared device/pipelines/atlas,</p>
         
-        <p>The caller retains ownership of the surface view.</p>
+        <p>per-context pending ops. Without this, all contexts share one default</p>
+        
+        <p>render context (backward compatible, single-context behavior).</p>
         
     </div>
     
 
-    <pre><code class="language-go">type SurfaceTargetAware interface {
-	SetSurfaceTarget(view any, width, height uint32)
+    <pre><code class="language-go">type GPURenderContextProvider interface {
+	// NewGPURenderContext creates a new per-context GPU render context.
+	// The returned value should be stored on the gg.Context and closed
+	// when the Context is closed.
+	NewGPURenderContext() any
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-FrameAware">
+    <div class="item-header">
+        <h4>type FrameAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>FrameAware is an optional interface for accelerators that need per-frame</p>
+        
+        <p>lifecycle management. BeginFrame resets per-frame state so that the first</p>
+        
+        <p>render pass of each frame clears the surface (LoadOpClear), while</p>
+        
+        <p>subsequent mid-frame flushes preserve content (LoadOpLoad).</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Without calling BeginFrame, the surface is only cleared on the very first</p>
+        
+        <p>frame and all subsequent frames composite on top of previous content,</p>
+        
+        <p>causing progressive accumulation artifacts.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type FrameAware interface {
+	BeginFrame()
 }
 </code></pre>
 </div>
@@ -1067,8 +1273,175 @@
 	// transformation matrix (CTM), which the GPU pipeline composes into the
 	// vertex shader uniform so that Scale, Rotate, and Skew transforms
 	// affect text rendering, not just position.
+	//
+	// The deviceScale parameter is the ratio of physical pixels to logical
+	// pixels (e.g., 2.0 on a Retina display). The MSDF pipeline uses this
+	// to compute an effective font size (logical size * deviceScale), which
+	// produces a higher screenPxRange and crisper text on HiDPI displays.
+	// Pass 1.0 for standard (non-HiDPI) rendering.
+	//
 	// Returns ErrFallbackToCPU if GPU text rendering is not available.
-	DrawText(target GPURenderTarget, face any, text string, x, y float64, color RGBA, matrix Matrix) error
+	DrawText(target GPURenderTarget, face any, text string, x, y float64, color RGBA, matrix Matrix, deviceScale float64) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-GPUGlyphMaskAccelerator">
+    <div class="item-header">
+        <h4>type GPUGlyphMaskAccelerator interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUGlyphMaskAccelerator is an optional interface for accelerators that</p>
+        
+        <p>support Tier 6 glyph mask text rendering. When the registered accelerator</p>
+        
+        <p>implements this interface, Context.DrawString routes small horizontal text</p>
+        
+        <p>through the glyph mask pipeline instead of MSDF.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Glyph mask rendering CPU-rasterizes glyphs at the exact device pixel size</p>
+        
+        <p>into an R8 alpha atlas, then draws them as textured quads on the GPU. This</p>
+        
+        <p>produces pixel-perfect hinted text for horizontal layouts at small sizes</p>
+        
+        <p>(typically <48px), matching the quality of native platform text renderers.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The MSDF pipeline (GPUTextAccelerator) remains the preferred path for</p>
+        
+        <p>rotated, scaled, or large text where resolution-independence matters.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUGlyphMaskAccelerator interface {
+	// DrawGlyphMaskText renders text at position (x, y) in user space where
+	// y is the baseline. The face provides font metrics and glyph iteration.
+	//
+	// The paint parameter provides the text color. The matrix parameter is
+	// the context's current transformation matrix (CTM). The deviceScale
+	// parameter is the ratio of physical to logical pixels.
+	//
+	// viewportW and viewportH are the viewport dimensions for building the
+	// ortho projection in the vertex shader.
+	//
+	// Returns ErrFallbackToCPU if glyph mask rendering is not available.
+	DrawGlyphMaskText(target GPURenderTarget, face any, s string, x, y float64, color RGBA, matrix Matrix, deviceScale float64) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-GPUAliasedTextAccelerator">
+    <div class="item-header">
+        <h4>type GPUAliasedTextAccelerator interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUAliasedTextAccelerator is an optional interface for accelerators that</p>
+        
+        <p>support aliased (non-anti-aliased) text rendering through the glyph mask</p>
+        
+        <p>pipeline. When TextModeAliased is set, Context.DrawString routes text</p>
+        
+        <p>through this interface instead of GPUGlyphMaskAccelerator.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The glyph masks are rasterized with binary coverage (0 or 255 only) using</p>
+        
+        <p>the NoAAFiller, matching Skia's SkFont::Edging::kAlias behavior.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUAliasedTextAccelerator interface {
+	DrawGlyphMaskTextAliased(target GPURenderTarget, face any, s string, x, y float64, color RGBA, matrix Matrix, deviceScale float64) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-GPUShapedTextAccelerator">
+    <div class="item-header">
+        <h4>type GPUShapedTextAccelerator interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUShapedTextAccelerator extends GPUGlyphMaskAccelerator with support for</p>
+        
+        <p>pre-shaped glyph rendering. This eliminates re-shaping at render time —</p>
+        
+        <p>the scene's stored glyph IDs and positions are used directly.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Implements the ADR-022 "shape once, render anywhere" guarantee.</p>
+        
+        <p>Enterprise pattern: Skia drawTextBlob, Vello draw_glyphs, Flutter drawParagraph.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUShapedTextAccelerator interface {
+	DrawShapedGlyphMaskText(target GPURenderTarget, face any, glyphs []text.ShapedGlyph, x, y float64, color RGBA, matrix Matrix, deviceScale float64) error
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-DirectRenderCapable">
+    <div class="item-header">
+        <h4>type DirectRenderCapable interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>DirectRenderCapable is an optional interface for accelerators that can</p>
+        
+        <p>report whether they are capable of rendering directly to a surface.</p>
+        
+        <p>CPU-only adapters (llvmpipe, SwiftShader) return false because SDF/MSDF</p>
+        
+        <p>shaders should not run on CPU — the accelerator stays uninitialized.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type DirectRenderCapable interface {
+	CanRenderDirect() bool
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-AdapterAware">
+    <div class="item-header">
+        <h4>type AdapterAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>AdapterAware is an optional interface for accelerators that know</p>
+        
+        <p>whether they are running on a software (CPU) adapter.</p>
+        
+        <p>Used by AcceleratorCanRenderDirect in auto mode (ADR-020).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type AdapterAware interface {
+	IsSoftwareAdapter() bool
 }
 </code></pre>
 </div>
@@ -1146,6 +1519,220 @@
 
     <pre><code class="language-go">type ForceSDFAware interface {
 	SetForceSDF(force bool)
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-ClipAware">
+    <div class="item-header">
+        <h4>type ClipAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ClipAware is an optional interface for accelerators that support</p>
+        
+        <p>hardware scissor rect clipping. When the Context has an active</p>
+        
+        <p>rectangular clip region (ClipRect), it passes the clip bounds to the</p>
+        
+        <p>accelerator as a scissor rect. The accelerator maps this to</p>
+        
+        <p>hal.RenderPassEncoder.SetScissorRect() for zero-cost GPU clipping.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This covers ~95% of real-world UI clipping (scroll views, panels,</p>
+        
+        <p>list items). Path-based clips require GPU-CLIP-002 (stencil buffer).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ClipAware interface {
+	// SetClipRect sets the scissor rect for subsequent GPU draw commands.
+	// Coordinates are in device pixels (uint32). The scissor rect clips
+	// all rendering to the rectangle (x, y, w, h).
+	SetClipRect(x, y, w, h uint32)
+
+	// ClearClipRect removes the scissor rect, restoring full-framebuffer
+	// rendering for subsequent draw commands.
+	ClearClipRect()
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-RRectClipAware">
+    <div class="item-header">
+        <h4>type RRectClipAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>RRectClipAware is an optional interface for accelerators that support</p>
+        
+        <p>GPU-accelerated rounded rectangle clipping via analytic SDF in fragment</p>
+        
+        <p>shaders. When the Context has an active RRect clip region (ClipRoundRect),</p>
+        
+        <p>it passes the clip parameters to the accelerator. The fragment shader</p>
+        
+        <p>evaluates the RRect SDF per pixel and discards fragments outside the</p>
+        
+        <p>rounded rectangle.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This is a two-level clip strategy: the scissor rect (via ClipAware)</p>
+        
+        <p>provides a free coarse clip to the bounding box, while the RRect SDF</p>
+        
+        <p>provides fine per-pixel clipping with anti-aliased rounded corners.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This covers ~95% of non-rectangular UI clipping (card views, dialogs,</p>
+        
+        <p>avatars, pill buttons). Path-based clips require GPU-CLIP-003 (stencil).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type RRectClipAware interface {
+	// SetClipRRect sets the rounded rectangle clip for subsequent GPU draw
+	// commands. Coordinates are in device pixels (float32). The clip region
+	// is defined by the rectangle (x, y, w, h) with uniform corner radius.
+	SetClipRRect(x, y, w, h, radius float32)
+
+	// ClearClipRRect removes the rounded rectangle clip, restoring full
+	// rendering for subsequent draw commands.
+	ClearClipRRect()
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-PathClipAware">
+    <div class="item-header">
+        <h4>type PathClipAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>PathClipAware is an optional interface for accelerators that support</p>
+        
+        <p>GPU-accelerated arbitrary path clipping via depth buffer. When the Context</p>
+        
+        <p>has an active path-based clip region (dc.Clip() with non-rect/non-rrect</p>
+        
+        <p>path), it passes the device-space clip path to the accelerator.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The GPU renders the clip path to the depth buffer using fan tessellation</p>
+        
+        <p>(DepthClipPipeline), then content shaders test against the clip depth.</p>
+        
+        <p>This is GPU-CLIP-003a — the third level of clip support after scissor rect</p>
+        
+        <p>(ClipAware) and SDF rrect (RRectClipAware).</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Follows the Flutter Impeller pattern: depth buffer for clip discrimination,</p>
+        
+        <p>stencil exclusively for path fill (Tier 2b).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type PathClipAware interface {
+	// SetClipPath sets an arbitrary clip path for depth-based clipping.
+	// The path is in device-space coordinates. Subsequent GPU draw commands
+	// are clipped to the path region via the depth buffer.
+	SetClipPath(path *Path)
+
+	// ClearClipPath removes the arbitrary clip path, restoring full
+	// rendering for subsequent draw commands.
+	ClearClipPath()
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-LCDLayoutAware">
+    <div class="item-header">
+        <h4>type LCDLayoutAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>LCDLayoutAware is an optional interface for accelerators that support</p>
+        
+        <p>LCD subpixel (ClearType) text rendering. When the Context calls</p>
+        
+        <p>SetLCDLayout, it propagates the layout to the accelerator so the</p>
+        
+        <p>glyph mask engine can rasterize glyphs with 3x horizontal oversampling</p>
+        
+        <p>and the GPU pipeline selects the LCD fragment shader.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Use LCDLayoutRGB for most monitors, LCDLayoutBGR for rare BGR panels,</p>
+        
+        <p>or LCDLayoutNone to disable subpixel rendering (grayscale, the default).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type LCDLayoutAware interface {
+	// SetLCDLayout sets the LCD subpixel layout for ClearType rendering.
+	SetLCDLayout(layout LCDLayout)
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-MaskAware">
+    <div class="item-header">
+        <h4>type MaskAware interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>MaskAware is an optional interface for accelerators that support</p>
+        
+        <p>GPU-accelerated alpha masking. When the Context has an active mask,</p>
+        
+        <p>it uploads the mask data to the accelerator as a texture. The fragment</p>
+        
+        <p>shader multiplies output alpha by the mask texel, eliminating the need</p>
+        
+        <p>to fall back to CPU rendering for masked shapes.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>SetMaskTexture uploads the mask data (8-bit per pixel, row-major).</p>
+        
+        <p>Pass nil data to clear the mask texture.</p>
+        
+        <p>ClearMaskTexture removes the mask, restoring unmasked rendering.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type MaskAware interface {
+	// SetMaskTexture uploads an alpha mask for GPU rendering.
+	// data is an 8-bit grayscale buffer (width*height bytes).
+	// The accelerator creates an R8Unorm texture and samples it in the
+	// fragment shader to modulate output alpha.
+	SetMaskTexture(data []byte, width, height int)
+
+	// ClearMaskTexture removes the GPU mask texture.
+	ClearMaskTexture()
 }
 </code></pre>
 </div>

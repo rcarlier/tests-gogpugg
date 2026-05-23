@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -350,6 +365,22 @@
                     
                     <li><a href="#func-Bounds">Bounds</a></li>
                     
+                    <li><a href="#func-Bounds">Bounds</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-BuildPathInto">BuildPathInto</a></li>
+                    
+                    <li><a href="#func-Contains">Contains</a></li>
+                    
                     <li><a href="#func-Contains">Contains</a></li>
                     
                     <li><a href="#func-Contains">Contains</a></li>
@@ -366,6 +397,8 @@
                     
                     <li><a href="#func-NewEllipseShape">NewEllipseShape</a></li>
                     
+                    <li><a href="#func-NewGGPathShape">NewGGPathShape</a></li>
+                    
                     <li><a href="#func-NewLineShape">NewLineShape</a></li>
                     
                     <li><a href="#func-NewPathShape">NewPathShape</a></li>
@@ -378,6 +411,10 @@
                     
                     <li><a href="#func-NewRegularPolygonShape">NewRegularPolygonShape</a></li>
                     
+                    <li><a href="#func-NewRoundRectShape">NewRoundRectShape</a></li>
+                    
+                    <li><a href="#func-NewRoundRectShapeUniform">NewRoundRectShapeUniform</a></li>
+                    
                     <li><a href="#func-NewRoundedRectShape">NewRoundedRectShape</a></li>
                     
                     <li><a href="#func-NewStarShape">NewStarShape</a></li>
@@ -389,6 +426,8 @@
                     <li><a href="#func-PointCount">PointCount</a></li>
                     
                     <li><a href="#func-ShapeCount">ShapeCount</a></li>
+                    
+                    <li><a href="#func-ToPath">ToPath</a></li>
                     
                     <li><a href="#func-ToPath">ToPath</a></li>
                     
@@ -496,6 +535,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -581,6 +635,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -602,6 +666,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -731,6 +800,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -789,109 +863,20 @@
     
     <div class="comments">
          
-        <p>Bounds returns the transformed bounding rectangle.</p>
-          
-        <p>Note: This is a conservative approximation.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (ts *TransformShape) Bounds() Rect {
-	if ts.shape == nil {
-		return EmptyRect()
-	}
-
-	b := ts.shape.Bounds()
-	if b.IsEmpty() {
-		return b
-	}
-
-	// Transform all four corners and compute new bounds
-	corners := [][2]float32{
-		{b.MinX, b.MinY},
-		{b.MaxX, b.MinY},
-		{b.MaxX, b.MaxY},
-		{b.MinX, b.MaxY},
-	}
-
-	result := EmptyRect()
-	for _, c := range corners {
-		x, y := ts.transform.TransformPoint(c[0], c[1])
-		result = result.UnionPoint(x, y)
-	}
-
-	return result
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Bounds returns the bounding rectangle of the path.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (ps *PathShape) Bounds() Rect {
-	if ps.path == nil {
-		return EmptyRect()
-	}
-	return ps.path.Bounds()
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
         <p>Bounds returns the bounding rectangle.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (l *LineShape) Bounds() Rect {
+    <pre><code class="language-go">func (rp *RegularPolygonShape) Bounds() Rect {
+	// For simplicity, use the circumscribed circle bounds
+	// More accurate bounds would require computing all vertices
 	return Rect{
-		MinX:	min32(l.X1, l.X2),
-		MinY:	min32(l.Y1, l.Y2),
-		MaxX:	max32(l.X1, l.X2),
-		MaxY:	max32(l.Y1, l.Y2),
+		MinX:	rp.CX - rp.R,
+		MinY:	rp.CY - rp.R,
+		MaxX:	rp.CX + rp.R,
+		MaxY:	rp.CY + rp.R,
 	}
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Bounds returns the union of all shape bounds.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (cs *CompositeShape) Bounds() Rect {
-	result := EmptyRect()
-	for _, shape := range cs.shapes {
-		if shape != nil {
-			result = result.Union(shape.Bounds())
-		}
-	}
-	return result
 }
 </code></pre>
 </div>
@@ -943,87 +928,62 @@
     </div>
     
 
-    <pre><code class="language-go">func (r *RoundedRectShape) Bounds() Rect {
-	return Rect{
-		MinX:	r.X,
-		MinY:	r.Y,
-		MaxX:	r.X + r.Width,
-		MaxY:	r.Y + r.Height,
-	}
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Bounds returns the bounding rectangle.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (rp *RegularPolygonShape) Bounds() Rect {
-	// For simplicity, use the circumscribed circle bounds
-	// More accurate bounds would require computing all vertices
-	return Rect{
-		MinX:	rp.CX - rp.R,
-		MinY:	rp.CY - rp.R,
-		MaxX:	rp.CX + rp.R,
-		MaxY:	rp.CY + rp.R,
-	}
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Bounds returns the bounding rectangle.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (s *StarShape) Bounds() Rect {
-	// Use outer radius for bounds (conservative)
-	return Rect{
-		MinX:	s.CX - s.OuterRadius,
-		MinY:	s.CY - s.OuterRadius,
-		MaxX:	s.CX + s.OuterRadius,
-		MaxY:	s.CY + s.OuterRadius,
-	}
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Bounds">
-    <div class="item-header">
-        <h4>func Bounds</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Bounds returns the bounding rectangle.</p>
-         
-    </div>
-    
-
     <pre><code class="language-go">func (r *RectShape) Bounds() Rect {
 	return Rect{
 		MinX:	r.X,
 		MinY:	r.Y,
 		MaxX:	r.X + r.Width,
 		MaxY:	r.Y + r.Height,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (l *LineShape) Bounds() Rect {
+	return Rect{
+		MinX:	min32(l.X1, l.X2),
+		MinY:	min32(l.Y1, l.Y2),
+		MaxX:	max32(l.X1, l.X2),
+		MaxY:	max32(l.Y1, l.Y2),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns a conservative bounding rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *ArcShape) Bounds() Rect {
+	// Conservative: use the full ellipse bounds
+	// More accurate bounds would compute arc extrema
+	return Rect{
+		MinX:	a.CX - a.RX,
+		MinY:	a.CY - a.RY,
+		MaxX:	a.CX + a.RX,
+		MaxY:	a.CY + a.RY,
 	}
 }
 </code></pre>
@@ -1067,12 +1027,31 @@
     </div>
     
 
-    <pre><code class="language-go">func (c *CircleShape) Bounds() Rect {
+    <pre><code class="language-go">func (s *RoundRectShape) Bounds() Rect {
+	return s.Rect
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *RoundedRectShape) Bounds() Rect {
 	return Rect{
-		MinX:	c.CX - c.R,
-		MinY:	c.CY - c.R,
-		MaxX:	c.CX + c.R,
-		MaxY:	c.CY + c.R,
+		MinX:	r.X,
+		MinY:	r.Y,
+		MaxX:	r.X + r.Width,
+		MaxY:	r.Y + r.Height,
 	}
 }
 </code></pre>
@@ -1086,19 +1065,108 @@
     
     <div class="comments">
          
-        <p>Bounds returns a conservative bounding rectangle.</p>
+        <p>Bounds returns the bounding rectangle of the path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (a *ArcShape) Bounds() Rect {
-	// Conservative: use the full ellipse bounds
-	// More accurate bounds would compute arc extrema
+    <pre><code class="language-go">func (ps *PathShape) Bounds() Rect {
+	if ps.path == nil {
+		return EmptyRect()
+	}
+	return ps.path.Bounds()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the transformed bounding rectangle.</p>
+          
+        <p>Note: This is a conservative approximation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ts *TransformShape) Bounds() Rect {
+	if ts.shape == nil {
+		return EmptyRect()
+	}
+
+	b := ts.shape.Bounds()
+	if b.IsEmpty() {
+		return b
+	}
+
+	// Transform all four corners and compute new bounds
+	corners := [][2]float32{
+		{b.MinX, b.MinY},
+		{b.MaxX, b.MinY},
+		{b.MaxX, b.MaxY},
+		{b.MinX, b.MaxY},
+	}
+
+	result := EmptyRect()
+	for _, c := range corners {
+		x, y := ts.transform.TransformPoint(c[0], c[1])
+		result = result.UnionPoint(x, y)
+	}
+
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *StarShape) Bounds() Rect {
+	// Use outer radius for bounds (conservative)
 	return Rect{
-		MinX:	a.CX - a.RX,
-		MinY:	a.CY - a.RY,
-		MaxX:	a.CX + a.RX,
-		MaxY:	a.CY + a.RY,
+		MinX:	s.CX - s.OuterRadius,
+		MinY:	s.CY - s.OuterRadius,
+		MaxX:	s.CX + s.OuterRadius,
+		MaxY:	s.CY + s.OuterRadius,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the bounding rectangle.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *CircleShape) Bounds() Rect {
+	return Rect{
+		MinX:	c.CX - c.R,
+		MinY:	c.CY - c.R,
+		MaxX:	c.CX + c.R,
+		MaxY:	c.CY + c.R,
 	}
 }
 </code></pre>
@@ -1128,6 +1196,159 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the union of all shape bounds.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (cs *CompositeShape) Bounds() Rect {
+	result := EmptyRect()
+	for _, shape := range cs.shapes {
+		if shape != nil {
+			result = result.Union(shape.Bounds())
+		}
+	}
+	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the ellipse path into an existing Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *EllipseShape) BuildPathInto(p *Path) {
+	p.Reset()
+	p.Ellipse(e.CX, e.CY, e.RX, e.RY)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the rectangle path into an existing Path, avoiding allocation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *RectShape) BuildPathInto(p *Path) {
+	p.Reset()
+	p.Rectangle(r.X, r.Y, r.Width, r.Height)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the circle path into an existing Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *CircleShape) BuildPathInto(p *Path) {
+	p.Reset()
+	p.Circle(c.CX, c.CY, c.R)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the rounded rectangle path into an existing Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *RoundedRectShape) BuildPathInto(p *Path) {
+	p.Reset()
+	p.RoundedRectangle(r.X, r.Y, r.Width, r.Height, r.Radius)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the polygon path into an existing Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *PolygonShape) BuildPathInto(dst *Path) {
+	dst.Reset()
+	if len(p.points) < 4 {
+		return
+	}
+	dst.MoveTo(p.points[0], p.points[1])
+	for i := 2; i < len(p.points); i += 2 {
+		dst.LineTo(p.points[i], p.points[i+1])
+	}
+	dst.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-BuildPathInto">
+    <div class="item-header">
+        <h4>func BuildPathInto</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>BuildPathInto builds the line path into an existing Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (l *LineShape) BuildPathInto(p *Path) {
+	p.Reset()
+	p.MoveTo(l.X1, l.Y1)
+	p.LineTo(l.X2, l.Y2)
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Contains">
     <div class="item-header">
         <h4>func Contains</h4>
@@ -1136,15 +1357,14 @@
     
     <div class="comments">
          
-        <p>Contains returns true if the point (px, py) is inside the circle.</p>
+        <p>Contains returns true if the point (px, py) is inside the rectangle.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (c *CircleShape) Contains(px, py float32) bool {
-	dx := px - c.CX
-	dy := py - c.CY
-	return dx*dx+dy*dy <= c.R*c.R
+    <pre><code class="language-go">func (r *RectShape) Contains(px, py float32) bool {
+	return px >= r.X && px <= r.X+r.Width &&
+		py >= r.Y && py <= r.Y+r.Height
 }
 </code></pre>
 </div>
@@ -1181,14 +1401,48 @@
     
     <div class="comments">
          
-        <p>Contains returns true if the point (px, py) is inside the rectangle.</p>
+        <p>Contains returns true if the point (px, py) is inside the circle.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (r *RectShape) Contains(px, py float32) bool {
-	return px >= r.X && px <= r.X+r.Width &&
-		py >= r.Y && py <= r.Y+r.Height
+    <pre><code class="language-go">func (c *CircleShape) Contains(px, py float32) bool {
+	dx := px - c.CX
+	dy := py - c.CY
+	return dx*dx+dy*dy <= c.R*c.R
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Contains">
+    <div class="item-header">
+        <h4>func Contains</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Contains returns true if the point (px, py) is inside the rounded rectangle,</p>
+          
+        <p>using SDF-based point containment for accurate corner testing.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *RoundRectShape) Contains(px, py float32) bool {
+	// Quick AABB reject
+	if px < s.Rect.MinX || px > s.Rect.MaxX || py < s.Rect.MinY || py > s.Rect.MaxY {
+		return false
+	}
+
+	cx := (s.Rect.MinX + s.Rect.MaxX) / 2
+	cy := (s.Rect.MinY + s.Rect.MaxY) / 2
+	halfW := s.Rect.Width() / 2
+	halfH := s.Rect.Height() / 2
+	r := min32(s.RadiusX, s.RadiusY)
+
+	dist := sdfRoundRect(px, py, cx, cy, halfW, halfH, r)
+	return dist <= 0
 }
 </code></pre>
 </div>
@@ -1290,6 +1544,45 @@
 
     <pre><code class="language-go">func NewEllipseShape(cx, cy, rx, ry float32) *EllipseShape {
 	return &EllipseShape{CX: cx, CY: cy, RX: rx, RY: ry}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewGGPathShape">
+    <div class="item-header">
+        <h4>func NewGGPathShape</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewGGPathShape creates a PathShape from a gg.Path (float64 → float32 conversion).</p>
+          
+        <p>Use this when working with paths from gg APIs (e.g., gg.ParseSVGPath).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewGGPathShape(ggPath *gg.Path) *PathShape {
+	if ggPath == nil || ggPath.NumVerbs() == 0 {
+		return &PathShape{path: NewPath()}
+	}
+	p := NewPath()
+	ggPath.Iterate(func(verb gg.PathVerb, coords []float64) {
+		switch verb {
+		case gg.MoveTo:
+			p.MoveTo(float32(coords[0]), float32(coords[1]))
+		case gg.LineTo:
+			p.LineTo(float32(coords[0]), float32(coords[1]))
+		case gg.QuadTo:
+			p.QuadTo(float32(coords[0]), float32(coords[1]), float32(coords[2]), float32(coords[3]))
+		case gg.CubicTo:
+			p.CubicTo(float32(coords[0]), float32(coords[1]), float32(coords[2]), float32(coords[3]), float32(coords[4]), float32(coords[5]))
+		case gg.Close:
+			p.Close()
+		}
+	})
+	return &PathShape{path: p}
 }
 </code></pre>
 </div>
@@ -1423,6 +1716,56 @@
 	return &RegularPolygonShape{
 		CX:	cx, CY: cy, R: r, Sides: sides, Rotation: rotation,
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRoundRectShape">
+    <div class="item-header">
+        <h4>func NewRoundRectShape</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRoundRectShape creates a new rounded rectangle shape with independent X/Y corner radii.</p>
+          
+        <p>Radii are clamped to half the rectangle's width/height respectively.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRoundRectShape(rect Rect, rx, ry float32) *RoundRectShape {
+	rx = min32(rx, rect.Width()/2)
+	ry = min32(ry, rect.Height()/2)
+	if rx < 0 {
+		rx = 0
+	}
+	if ry < 0 {
+		ry = 0
+	}
+	return &RoundRectShape{Rect: rect, RadiusX: rx, RadiusY: ry}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewRoundRectShapeUniform">
+    <div class="item-header">
+        <h4>func NewRoundRectShapeUniform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewRoundRectShapeUniform creates a new rounded rectangle shape with uniform corner radius.</p>
+          
+        <p>The radius is clamped to half the smaller dimension.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewRoundRectShapeUniform(rect Rect, r float32) *RoundRectShape {
+	return NewRoundRectShape(rect, r, r)
 }
 </code></pre>
 </div>
@@ -1562,44 +1905,6 @@
     
     <div class="comments">
          
-        <p>ToPath converts the arc to a Path.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (a *ArcShape) ToPath() *Path {
-	return NewPath().Arc(a.CX, a.CY, a.RX, a.RY, a.StartAngle, a.EndAngle, a.SweepClockwise)
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-ToPath">
-    <div class="item-header">
-        <h4>func ToPath</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>ToPath converts the ellipse to a Path.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (e *EllipseShape) ToPath() *Path {
-	return NewPath().Ellipse(e.CX, e.CY, e.RX, e.RY)
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-ToPath">
-    <div class="item-header">
-        <h4>func ToPath</h4>
-    </div>
-
-    
-    <div class="comments">
-         
         <p>ToPath converts the line to a Path.</p>
          
     </div>
@@ -1619,40 +1924,16 @@
     
     <div class="comments">
          
-        <p>ToPath converts the pie to a Path.</p>
+        <p>ToPath converts the shape to a transformed Path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (p *PieShape) ToPath() *Path {
-	path := NewPath()
-
-	// Start at center
-	path.MoveTo(p.CX, p.CY)
-
-	// Line to start of arc
-	startX := p.CX + p.R*float32(math.Cos(float64(p.StartAngle)))
-	startY := p.CY + p.R*float32(math.Sin(float64(p.StartAngle)))
-	path.LineTo(startX, startY)
-
-	// Add arc using the Path's Arc method (but we need the interior arc)
-	// We'll manually add the arc segments
-	arc := NewPath()
-	arc.Arc(p.CX, p.CY, p.R, p.R, p.StartAngle, p.EndAngle, p.SweepClockwise)
-
-	// Copy arc verbs and points (skip the initial MoveTo)
-	for i, verb := range arc.verbs {
-		if i == 0 && verb == VerbMoveTo {
-			continue	// Skip initial MoveTo
-		}
-		path.verbs = append(path.verbs, verb)
+    <pre><code class="language-go">func (ts *TransformShape) ToPath() *Path {
+	if ts.shape == nil {
+		return NewPath()
 	}
-	// Copy points (skip first 2 for the MoveTo)
-	if len(arc.points) > 2 {
-		path.points = append(path.points, arc.points[2:]...)
-	}
-
-	return path.Close()
+	return ts.shape.ToPath().Transform(ts.transform)
 }
 </code></pre>
 </div>
@@ -1665,38 +1946,13 @@
     
     <div class="comments">
          
-        <p>ToPath converts the star to a Path.</p>
+        <p>ToPath converts the ellipse to a Path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (s *StarShape) ToPath() *Path {
-	path := NewPath()
-
-	// Each star point alternates between outer and inner vertices
-	angleStep := math.Pi / float64(s.Points)
-	startAngle := float64(s.Rotation) - math.Pi/2	// Start from top
-
-	for i := 0; i < s.Points*2; i++ {
-		angle := startAngle + angleStep*float64(i)
-		var r float32
-		if i%2 == 0 {
-			r = s.OuterRadius
-		} else {
-			r = s.InnerRadius
-		}
-
-		x := s.CX + r*float32(math.Cos(angle))
-		y := s.CY + r*float32(math.Sin(angle))
-
-		if i == 0 {
-			path.MoveTo(x, y)
-		} else {
-			path.LineTo(x, y)
-		}
-	}
-
-	return path.Close()
+    <pre><code class="language-go">func (e *EllipseShape) ToPath() *Path {
+	return NewPath().Ellipse(e.CX, e.CY, e.RX, e.RY)
 }
 </code></pre>
 </div>
@@ -1745,16 +2001,113 @@
     
     <div class="comments">
          
-        <p>ToPath converts the shape to a transformed Path.</p>
+        <p>ToPath converts the pie to a Path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (ts *TransformShape) ToPath() *Path {
-	if ts.shape == nil {
+    <pre><code class="language-go">func (p *PieShape) ToPath() *Path {
+	path := NewPath()
+
+	// Start at center
+	path.MoveTo(p.CX, p.CY)
+
+	// Line to start of arc
+	startX := p.CX + p.R*float32(math.Cos(float64(p.StartAngle)))
+	startY := p.CY + p.R*float32(math.Sin(float64(p.StartAngle)))
+	path.LineTo(startX, startY)
+
+	// Add arc using the Path's Arc method (but we need the interior arc)
+	// We'll manually add the arc segments
+	arc := NewPath()
+	arc.Arc(p.CX, p.CY, p.R, p.R, p.StartAngle, p.EndAngle, p.SweepClockwise)
+
+	// Copy arc verbs and points (skip the initial MoveTo)
+	for i, verb := range arc.verbs {
+		if i == 0 && verb == MoveTo {
+			continue	// Skip initial MoveTo
+		}
+		path.verbs = append(path.verbs, verb)
+	}
+	// Copy points (skip first 2 for the MoveTo)
+	if len(arc.points) > 2 {
+		path.points = append(path.points, arc.points[2:]...)
+	}
+
+	return path.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToPath">
+    <div class="item-header">
+        <h4>func ToPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToPath converts the rounded rectangle to a Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *RoundRectShape) ToPath() *Path {
+	x := s.Rect.MinX
+	y := s.Rect.MinY
+	w := s.Rect.Width()
+	h := s.Rect.Height()
+	r := min32(s.RadiusX, s.RadiusY)
+	return NewPath().RoundedRectangle(x, y, w, h, r)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToPath">
+    <div class="item-header">
+        <h4>func ToPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToPath converts the polygon to a Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *PolygonShape) ToPath() *Path {
+	if len(p.points) < 4 {	// Need at least 2 points (4 floats)
 		return NewPath()
 	}
-	return ts.shape.ToPath().Transform(ts.transform)
+
+	path := NewPath()
+	path.MoveTo(p.points[0], p.points[1])
+
+	for i := 2; i < len(p.points); i += 2 {
+		path.LineTo(p.points[i], p.points[i+1])
+	}
+
+	return path.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ToPath">
+    <div class="item-header">
+        <h4>func ToPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ToPath converts the arc to a Path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *ArcShape) ToPath() *Path {
+	return NewPath().Arc(a.CX, a.CY, a.RX, a.RY, a.StartAngle, a.EndAngle, a.SweepClockwise)
 }
 </code></pre>
 </div>
@@ -1879,21 +2232,35 @@
     
     <div class="comments">
          
-        <p>ToPath converts the polygon to a Path.</p>
+        <p>ToPath converts the star to a Path.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (p *PolygonShape) ToPath() *Path {
-	if len(p.points) < 4 {	// Need at least 2 points (4 floats)
-		return NewPath()
-	}
-
+    <pre><code class="language-go">func (s *StarShape) ToPath() *Path {
 	path := NewPath()
-	path.MoveTo(p.points[0], p.points[1])
 
-	for i := 2; i < len(p.points); i += 2 {
-		path.LineTo(p.points[i], p.points[i+1])
+	// Each star point alternates between outer and inner vertices
+	angleStep := math.Pi / float64(s.Points)
+	startAngle := float64(s.Rotation) - math.Pi/2	// Start from top
+
+	for i := 0; i < s.Points*2; i++ {
+		angle := startAngle + angleStep*float64(i)
+		var r float32
+		if i%2 == 0 {
+			r = s.OuterRadius
+		} else {
+			r = s.InnerRadius
+		}
+
+		x := s.CX + r*float32(math.Cos(angle))
+		y := s.CY + r*float32(math.Sin(angle))
+
+		if i == 0 {
+			path.MoveTo(x, y)
+		} else {
+			path.LineTo(x, y)
+		}
 	}
 
 	return path.Close()
@@ -1980,6 +2347,32 @@
     <pre><code class="language-go">type EllipseShape struct {
 	CX, CY	float32	// Center
 	RX, RY	float32	// Radii
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-RoundRectShape">
+    <div class="item-header">
+        <h4>type RoundRectShape struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>RoundRectShape represents a rounded rectangle with independent X/Y corner radii.</p>
+        
+        <p>Unlike RoundedRectShape which only supports path-based rendering via ToPath(),</p>
+        
+        <p>RoundRectShape supports dedicated SDF-based rendering in the tile renderer</p>
+        
+        <p>for high-quality anti-aliased output without path encoding overhead.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type RoundRectShape struct {
+	Rect			Rect	// Bounding rectangle
+	RadiusX, RadiusY	float32	// Corner radii (clamped to half-width/height)
 }
 </code></pre>
 </div>
@@ -2195,6 +2588,30 @@
 
 	// Bounds returns the bounding rectangle of the shape.
 	Bounds() Rect
+}
+</code></pre>
+</div>
+
+<div class="item" id="interface-PathBuilder">
+    <div class="item-header">
+        <h4>type PathBuilder interface</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>PathBuilder is an optional interface that shapes can implement to build</p>
+        
+        <p>their path into an existing Path object, avoiding allocation of a new Path.</p>
+        
+        <p>Scene.Fill/Stroke check for this interface and use a pooled Path when available.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type PathBuilder interface {
+	// BuildPathInto resets p and builds the shape's path data into it.
+	BuildPathInto(p *Path)
 }
 </code></pre>
 </div>

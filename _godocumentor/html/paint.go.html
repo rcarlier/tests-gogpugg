@@ -157,11 +157,15 @@
                     
                     <li><a href="#func-IsDashed">IsDashed</a></li>
                     
+                    <li><a href="#func-IsSolid">IsSolid</a></li>
+                    
                     <li><a href="#func-NewPaint">NewPaint</a></li>
                     
                     <li><a href="#func-SetBrush">SetBrush</a></li>
                     
                     <li><a href="#func-SetStroke">SetStroke</a></li>
+                    
+                    <li><a href="#func-SolidColor">SolidColor</a></li>
                     
                 </ul>
                 
@@ -184,6 +188,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -308,6 +317,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -319,6 +333,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -428,6 +447,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -513,6 +547,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -534,6 +578,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -663,6 +712,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -705,6 +759,8 @@
 
     <pre><code class="language-go">func (p *Paint) Clone() *Paint {
 	clone := &Paint{
+		solidColor:	p.solidColor,
+		isSolid:	p.isSolid,
 		Pattern:	p.Pattern,
 		Brush:		p.Brush,
 		LineWidth:	p.LineWidth,
@@ -733,12 +789,17 @@
          
         <p>ColorAt returns the color at the given position.</p>
           
-        <p>It uses Brush if set, otherwise falls back to Pattern.</p>
+        <p>For solid colors, returns the inline color directly (no interface dispatch).</p>
+          
+        <p>For non-solid paints, uses Brush if set, otherwise falls back to Pattern.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (p *Paint) ColorAt(x, y float64) RGBA {
+	if p.isSolid {
+		return p.solidColor
+	}
 	if p.Brush != nil {
 		return p.Brush.ColorAt(x, y)
 	}
@@ -880,19 +941,24 @@
          
         <p>GetBrush returns the current brush.</p>
           
-        <p>If Brush is nil, it returns a brush converted from Pattern.</p>
+        <p>For solid colors, returns a SolidBrush value (no allocation).</p>
+          
+        <p>If Brush is nil and not solid, it returns a brush converted from Pattern.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (p *Paint) GetBrush() Brush {
+	if p.isSolid {
+		return SolidBrush{Color: p.solidColor}
+	}
 	if p.Brush != nil {
 		return p.Brush
 	}
 	if p.Pattern != nil {
 		return BrushFromPattern(p.Pattern)
 	}
-	return Solid(Black)
+	return SolidBrush{Color: Black}
 }
 </code></pre>
 </div>
@@ -948,6 +1014,25 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-IsSolid">
+    <div class="item-header">
+        <h4>func IsSolid</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsSolid reports whether the paint is a solid color stored inline.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Paint) IsSolid() bool {
+	return p.isSolid
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-NewPaint">
     <div class="item-header">
         <h4>func NewPaint</h4>
@@ -963,8 +1048,8 @@
 
     <pre><code class="language-go">func NewPaint() *Paint {
 	return &Paint{
-		Pattern:	NewSolidPattern(Black),
-		Brush:		Solid(Black),
+		solidColor:	Black,
+		isSolid:	true,
 		LineWidth:	1.0,
 		LineCap:	LineCapButt,
 		LineJoin:	LineJoinMiter,
@@ -986,14 +1071,24 @@
          
         <p>SetBrush sets the brush for this Paint.</p>
           
-        <p>It also updates the Pattern field for backward compatibility.</p>
+        <p>For solid colors, the color is stored inline (zero allocations).</p>
+          
+        <p>For non-solid brushes, it also updates the Pattern field for backward compatibility.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (p *Paint) SetBrush(b Brush) {
+	if sb, ok := b.(SolidBrush); ok {
+		p.solidColor = sb.Color
+		p.isSolid = true
+		p.Brush = nil
+		p.Pattern = nil
+		return
+	}
 	p.Brush = b
 	p.Pattern = PatternFromBrush(b)
+	p.isSolid = false
 }
 </code></pre>
 </div>
@@ -1025,6 +1120,34 @@
 }
 </code></pre>
 </div>
+
+<div class="item" id="func-SolidColor">
+    <div class="item-header">
+        <h4>func SolidColor</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SolidColor returns the inline solid color and true if the paint is a solid</p>
+          
+        <p>color. Returns (zero, false) for non-solid paints (gradients, patterns).</p>
+          
+        <p>This is the recommended way for external packages to check solid color</p>
+          
+        <p>without interface type assertions on Brush/Pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Paint) SolidColor() (RGBA, bool) {
+	if p.isSolid {
+		return p.solidColor, true
+	}
+	return RGBA{}, false
+}
+</code></pre>
+</div>
   
 <h3 id="structs">Structs</h3>
 
@@ -1042,6 +1165,15 @@
     
 
     <pre><code class="language-go">type Paint struct {
+	// solidColor stores the solid color inline (Skia fColor4f pattern).
+	// When isSolid is true, this is the authoritative color source —
+	// Brush and Pattern are nil, avoiding interface boxing allocations.
+	solidColor	RGBA
+
+	// isSolid is true when the paint represents a single solid color
+	// stored in solidColor. When true, Brush and Pattern are nil.
+	isSolid	bool
+
 	// Pattern is the fill or stroke pattern.
 	//
 	// Deprecated: Use Brush instead. Pattern is maintained for backward compatibility.
@@ -1094,6 +1226,13 @@
 	// pixel alpha by this coverage to apply the clip mask.
 	// Set automatically by Context before rendering when a clip is active.
 	ClipCoverage	func(x, y float64) byte
+
+	// MaskCoverage is a function that returns the alpha mask coverage (0-255)
+	// at a given pixel coordinate. When non-nil, the renderer multiplies
+	// pixel alpha by this coverage to apply the alpha mask.
+	// Uses int coords because masks are pixel-aligned (no sub-pixel sampling).
+	// Set automatically by Context before rendering when a mask is active.
+	MaskCoverage	func(x, y int) uint8
 }
 </code></pre>
 </div>

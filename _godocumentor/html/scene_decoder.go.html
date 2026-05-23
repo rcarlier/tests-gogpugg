@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,9 +283,16 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="active">scene/decoder.go</a>
                 
                 <ul>
+                    
+                    <li><a href="#func-AntiAlias">AntiAlias</a></li>
                     
                     <li><a href="#func-Brush">Brush</a></li>
                     
@@ -291,6 +303,8 @@
                     <li><a href="#func-Encoding">Encoding</a></li>
                     
                     <li><a href="#func-Fill">Fill</a></li>
+                    
+                    <li><a href="#func-FillRoundRect">FillRoundRect</a></li>
                     
                     <li><a href="#func-HasMore">HasMore</a></li>
                     
@@ -320,6 +334,8 @@
                     
                     <li><a href="#func-Tag">Tag</a></li>
                     
+                    <li><a href="#func-Text">Text</a></li>
+                    
                     <li><a href="#func-Transform">Transform</a></li>
                     
                 </ul>
@@ -333,6 +349,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -442,6 +463,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -527,6 +563,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -548,6 +594,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -677,6 +728,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -703,6 +759,34 @@
 
 
 <h3 id="functions">Functions</h3>
+
+<div class="item" id="func-AntiAlias">
+    <div class="item-header">
+        <h4>func AntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AntiAlias reads the current SetAntiAlias command data.</p>
+          
+        <p>Returns true if anti-aliasing is enabled, false if disabled.</p>
+          
+        <p>Only valid when Tag() == TagSetAntiAlias.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (d *Decoder) AntiAlias() bool {
+	if d.drawIdx+1 > len(d.enc.drawData) {
+		return true	// default: AA enabled
+	}
+	val := d.enc.drawData[d.drawIdx]
+	d.drawIdx++
+	return val != 0
+}
+</code></pre>
+</div>
 
 <div class="item" id="func-Brush">
     <div class="item-header">
@@ -868,6 +952,56 @@
 	}
 	style = FillStyle(styleVal)
 	return brush, style
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillRoundRect">
+    <div class="item-header">
+        <h4>func FillRoundRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillRoundRect reads the current FillRoundRect command data.</p>
+          
+        <p>Returns the brush, fill style, bounding rectangle, and corner radii.</p>
+          
+        <p>Only valid when Tag() == TagFillRoundRect.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (d *Decoder) FillRoundRect() (brush Brush, style FillStyle, rect Rect, rx, ry float32) {
+	if d.drawIdx+2 > len(d.enc.drawData) {
+		return Brush{}, FillNonZero, Rect{}, 0, 0
+	}
+
+	brushIdx := d.enc.drawData[d.drawIdx]
+	styleVal := d.enc.drawData[d.drawIdx+1]
+	d.drawIdx += 2
+
+	if int(brushIdx) < len(d.enc.brushes) {
+		brush = d.enc.brushes[brushIdx]
+	}
+	style = FillStyle(styleVal)
+
+	if d.pathIdx+6 > len(d.enc.pathData) {
+		return brush, style, Rect{}, 0, 0
+	}
+
+	rect = Rect{
+		MinX:	d.enc.pathData[d.pathIdx],
+		MinY:	d.enc.pathData[d.pathIdx+1],
+		MaxX:	d.enc.pathData[d.pathIdx+2],
+		MaxY:	d.enc.pathData[d.pathIdx+3],
+	}
+	rx = d.enc.pathData[d.pathIdx+4]
+	ry = d.enc.pathData[d.pathIdx+5]
+	d.pathIdx += 6
+
+	return brush, style, rect, rx, ry
 }
 </code></pre>
 </div>
@@ -1170,6 +1304,7 @@
 	d.pathIdx = 0
 	d.drawIdx = 0
 	d.transIdx = 0
+	d.textIdx = 0
 	d.currentTag = 0
 }
 </code></pre>
@@ -1274,6 +1409,78 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-Text">
+    <div class="item-header">
+        <h4>func Text</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Text reads the current TagText command data.</p>
+          
+        <p>Returns the glyph run header, glyph entries, original text string, and the brush.</p>
+          
+        <p>Only valid when Tag() == TagText.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (d *Decoder) Text() (run GlyphRunData, glyphs []GlyphEntry, str string, brush Brush) {
+	td := d.enc.textData
+	if d.textIdx+glyphRunDataSize > len(td) {
+		return GlyphRunData{}, nil, "", Brush{}
+	}
+
+	off := d.textIdx
+	run.FontSourceID = binary.LittleEndian.Uint64(td[off:])
+	off += 8
+	run.FontSize = math.Float32frombits(binary.LittleEndian.Uint32(td[off:]))
+	off += 4
+	run.GlyphCount = binary.LittleEndian.Uint16(td[off:])
+	off += 2
+	run.Flags = TextFlags(binary.LittleEndian.Uint16(td[off:]))
+	off += 2
+	run.OriginX = math.Float32frombits(binary.LittleEndian.Uint32(td[off:]))
+	off += 4
+	run.OriginY = math.Float32frombits(binary.LittleEndian.Uint32(td[off:]))
+	off += 4
+	run.BrushIndex = binary.LittleEndian.Uint32(td[off:])
+	off += 4
+	run.TextLen = binary.LittleEndian.Uint16(td[off:])
+	off += 2
+
+	n := int(run.GlyphCount)
+	if off+n*glyphEntrySize > len(td) {
+		d.textIdx = off
+		return run, nil, "", Brush{}
+	}
+
+	glyphs = make([]GlyphEntry, n)
+	for i := range n {
+		glyphs[i].GlyphID = text.GlyphID(binary.LittleEndian.Uint16(td[off:]))
+		off += 2
+		glyphs[i].X = math.Float32frombits(binary.LittleEndian.Uint32(td[off:]))
+		off += 4
+		glyphs[i].Y = math.Float32frombits(binary.LittleEndian.Uint32(td[off:]))
+		off += 4
+	}
+
+	textLen := int(run.TextLen)
+	if off+textLen <= len(td) {
+		str = string(td[off : off+textLen])
+		off += textLen
+	}
+	d.textIdx = off
+
+	if int(run.BrushIndex) < len(d.enc.brushes) {
+		brush = d.enc.brushes[run.BrushIndex]
+	}
+	return run, glyphs, str, brush
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Transform">
     <div class="item-header">
         <h4>func Transform</h4>
@@ -1369,6 +1576,7 @@
 	pathIdx		int
 	drawIdx		int
 	transIdx	int
+	textIdx		int
 
 	// Current tag being processed
 	currentTag	Tag

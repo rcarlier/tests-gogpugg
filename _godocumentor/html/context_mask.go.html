@@ -62,6 +62,8 @@
                 
                 <ul>
                     
+                    <li><a href="#func-ApplyMask">ApplyMask</a></li>
+                    
                     <li><a href="#func-AsMask">AsMask</a></li>
                     
                     <li><a href="#func-ClearMask">ClearMask</a></li>
@@ -168,6 +170,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -292,6 +299,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -303,6 +315,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -412,6 +429,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -497,6 +529,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -518,6 +560,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -647,6 +694,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -670,6 +722,46 @@
 
 <h3 id="functions">Functions</h3>
 
+<div class="item" id="func-ApplyMask">
+    <div class="item-header">
+        <h4>func ApplyMask</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ApplyMask applies a mask to already-drawn content using DestinationIn blending.</p>
+          
+        <p>For each pixel, the alpha is modulated by the mask value:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>pixel.A = pixel.A * mask.At(x,y) / 255</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>RGB channels are also scaled proportionally (premultiplied alpha).</p>
+          
+        <p>This is a post-processing operation — it modifies existing pixel content,</p>
+          
+        <p>not future draws. Pass nil to no-op.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Matches tiny-skia apply_mask() with DestinationIn blend (research §3).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) ApplyMask(mask *Mask) {
+	if mask == nil {
+		return
+	}
+	applyMaskToPixmapData(c.pixmap, mask)
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-AsMask">
     <div class="item-header">
         <h4>func AsMask</h4>
@@ -678,11 +770,67 @@
     
     <div class="comments">
          
-        <p>AsMask creates a mask from the current path.</p>
+        <p>AsMask creates a mask from the current unfilled path.</p>
           
-        <p>The mask is filled according to the current fill rule.</p>
+        <p>The current path is rasterized (filled with white on a transparent background)</p>
           
-        <p>The path is NOT cleared after this operation.</p>
+        <p>and the alpha channel is extracted into a Mask. The fill rule from the context</p>
+          
+        <p>is used for rasterization. The path is NOT cleared after this operation.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>IMPORTANT: AsMask works with the current path, which is cleared by [Context.Fill].</p>
+          
+        <p>Call AsMask BEFORE Fill, or use [Context.FillPreserve] to keep the path.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Correct usage patterns:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>// Pattern 1: AsMask before Fill</p>
+          
+        <p>dc.DrawCircle(50, 50, 30)</p>
+          
+        <p>mask := dc.AsMask()    // captures the circle path as a mask</p>
+          
+        <p>dc.Fill()              // fills the circle (clears the path)</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>// Pattern 2: FillPreserve + AsMask</p>
+          
+        <p>dc.DrawCircle(50, 50, 30)</p>
+          
+        <p>dc.FillPreserve()      // fills but keeps the path</p>
+          
+        <p>mask := dc.AsMask()    // still has the circle path</p>
+          
+        <p>dc.ClearPath()</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>// Pattern 3: Capture rendered output as mask</p>
+          
+        <p>dc.DrawCircle(50, 50, 30)</p>
+          
+        <p>dc.Fill()              // path is now cleared</p>
+          
+        <p>mask := NewMaskFromAlpha(dc.Image()) // capture from rendered pixels</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Common mistake (returns empty mask):</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>dc.DrawCircle(50, 50, 30)</p>
+          
+        <p>dc.Fill()              // clears the path!</p>
+          
+        <p>mask := dc.AsMask()    // path is empty → mask is all zeros</p>
          
     </div>
     
@@ -784,7 +932,19 @@
          
         <p>SetMask sets an alpha mask for subsequent drawing operations.</p>
           
-        <p>The mask modulates the alpha of all drawing operations.</p>
+        <p>The mask modulates the alpha of all Fill and Stroke operations —</p>
+          
+        <p>each pixel's coverage is multiplied by the mask value at that pixel.</p>
+          
+        <p>A mask value of 255 means fully visible, 0 means fully transparent.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>When both a mask and a clip are active, they compose multiplicatively:</p>
+          
+        <p>finalCoverage = shapeCoverage * clipCoverage * maskCoverage / (255*255).</p>
+          
+        <p class="empty">&nbsp;</p>
           
         <p>Pass nil to clear the mask.</p>
          

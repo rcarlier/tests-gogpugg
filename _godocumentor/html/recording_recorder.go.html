@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -217,6 +222,8 @@
                 
                 <ul>
                     
+                    <li><a href="#func-AntiAlias">AntiAlias</a></li>
+                    
                     <li><a href="#func-Clear">Clear</a></li>
                     
                     <li><a href="#func-ClearDash">ClearDash</a></li>
@@ -228,6 +235,8 @@
                     <li><a href="#func-Clip">Clip</a></li>
                     
                     <li><a href="#func-ClipPreserve">ClipPreserve</a></li>
+                    
+                    <li><a href="#func-ClipRoundRect">ClipRoundRect</a></li>
                     
                     <li><a href="#func-ClosePath">ClosePath</a></li>
                     
@@ -319,6 +328,8 @@
                     
                     <li><a href="#func-Scale">Scale</a></li>
                     
+                    <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
+                    
                     <li><a href="#func-SetColor">SetColor</a></li>
                     
                     <li><a href="#func-SetDash">SetDash</a></li>
@@ -378,6 +389,10 @@
                     <li><a href="#func-StrokePreserve">StrokePreserve</a></li>
                     
                     <li><a href="#func-StrokeRectangle">StrokeRectangle</a></li>
+                    
+                    <li><a href="#func-StrokeString">StrokeString</a></li>
+                    
+                    <li><a href="#func-StrokeStringAnchored">StrokeStringAnchored</a></li>
                     
                     <li><a href="#func-Transform">Transform</a></li>
                     
@@ -456,6 +471,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -467,6 +487,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -576,6 +601,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -661,6 +701,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -682,6 +732,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -811,6 +866,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -838,6 +898,25 @@
 
 <h3 id="functions">Functions</h3>
 
+<div class="item" id="func-AntiAlias">
+    <div class="item-header">
+        <h4>func AntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AntiAlias returns whether anti-aliasing is enabled.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) AntiAlias() bool {
+	return r.antiAlias
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Clear">
     <div class="item-header">
         <h4>func Clear</h4>
@@ -846,15 +925,17 @@
     
     <div class="comments">
          
-        <p>Clear fills the entire canvas with the current fill color.</p>
+        <p>Clear resets the entire canvas to transparent (zero alpha),</p>
           
-        <p>This is equivalent to drawing a rectangle covering the entire canvas.</p>
+        <p>matching [gg.Context.Clear] semantics. To fill with a specific</p>
+          
+        <p>background color, use [Recorder.ClearWithColor].</p>
          
     </div>
     
 
     <pre><code class="language-go">func (r *Recorder) Clear() {
-	r.FillRectangle(0, 0, float64(r.width), float64(r.height))
+	r.ClearWithColor(gg.Transparent)
 }
 </code></pre>
 </div>
@@ -907,7 +988,9 @@
     
     <div class="comments">
          
-        <p>ClearWithColor fills the entire canvas with a specific color.</p>
+        <p>ClearWithColor fills the entire canvas with the specified color.</p>
+          
+        <p>This is the recommended way to set a background color before drawing.</p>
          
     </div>
     
@@ -935,7 +1018,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) Clip() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -964,7 +1047,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) ClipPreserve() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -972,6 +1055,29 @@
 	r.commands = append(r.commands, SetClipCommand{
 		Path:	pathRef,
 		Rule:	r.fillRule,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ClipRoundRect">
+    <div class="item-header">
+        <h4>func ClipRoundRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ClipRoundRect sets a rounded rectangle as the clipping region.</p>
+          
+        <p>The rectangle is defined in user-space coordinates with uniform corner radius.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) ClipRoundRect(x, y, w, h, radius float64) {
+	r.commands = append(r.commands, ClipRoundRectCommand{
+		X:	x, Y: y, W: w, H: h, Radius: radius,
 	})
 }
 </code></pre>
@@ -1501,7 +1607,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) Fill() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -1533,7 +1639,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) FillPreserve() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -1886,6 +1992,7 @@
 		lineJoin:	LineJoinMiter,
 		miterLimit:	4.0,
 		fillRule:	FillRuleNonZero,
+		antiAlias:	true,
 		transform:	Identity(),
 		stateStack:	make([]recorderState, 0, 8),
 	}
@@ -1947,6 +2054,11 @@
 			backend.SetClip(path, c.Rule)
 		case ClearClipCommand:
 			backend.ClearClip()
+		case ClipRoundRectCommand:
+			// Convert RRect clip to a path for backends that don't
+			// natively support rounded rectangle clipping.
+			rrPath := gg.BuildPath().RoundRect(c.X, c.Y, c.W, c.H, c.Radius).Build()
+			backend.SetClip(rrPath, FillRuleNonZero)
 		case FillPathCommand:
 			path := r.resources.GetPath(c.Path)
 			brush := r.resources.GetBrush(c.Brush)
@@ -1964,6 +2076,12 @@
 		case DrawTextCommand:
 			brush := r.resources.GetBrush(c.Brush)
 			// Font face lookup would need additional handling
+			backend.DrawText(c.Text, c.X, c.Y, nil, brush)
+		case StrokeTextCommand:
+			brush := r.resources.GetBrush(c.Brush)
+			// StrokeText is recorded as a stroke text command.
+			// Backends that support text stroking can use the stroke style;
+			// others fall back to DrawText (fill) as an approximation.
 			backend.DrawText(c.Text, c.X, c.Y, nil, brush)
 		// Style commands are handled by the backend's internal state
 		// during the actual drawing operations
@@ -2109,6 +2227,7 @@
 	r.dashPattern = state.dashPattern
 	r.dashOffset = state.dashOffset
 	r.fillRule = state.fillRule
+	r.antiAlias = state.antiAlias
 	r.transform = state.transform
 	r.fontFace = state.fontFace
 	r.fontFamily = state.fontFamily
@@ -2193,6 +2312,7 @@
 		dashPattern:	dashCopy,
 		dashOffset:	r.dashOffset,
 		fillRule:	r.fillRule,
+		antiAlias:	r.antiAlias,
 		transform:	r.transform,
 		fontFace:	r.fontFace,
 		fontFamily:	r.fontFamily,
@@ -2220,6 +2340,28 @@
     <pre><code class="language-go">func (r *Recorder) Scale(sx, sy float64) {
 	r.transform = r.transform.Multiply(Scale(sx, sy))
 	r.commands = append(r.commands, SetTransformCommand{Matrix: r.transform})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAntiAlias">
+    <div class="item-header">
+        <h4>func SetAntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAntiAlias enables or disables anti-aliasing for geometry rendering.</p>
+          
+        <p>When disabled, shapes are rendered with binary coverage (no gray edge pixels).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) SetAntiAlias(enabled bool) {
+	r.antiAlias = enabled
+	r.commands = append(r.commands, SetAntiAliasCommand{Enabled: enabled})
 }
 </code></pre>
 </div>
@@ -2785,7 +2927,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) Stroke() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -2826,7 +2968,7 @@
     
 
     <pre><code class="language-go">func (r *Recorder) StrokePreserve() {
-	if len(r.currentPath.Elements()) == 0 {
+	if r.currentPath.NumVerbs() == 0 {
 		return
 	}
 
@@ -2886,6 +3028,71 @@
 		Brush:	brushRef,
 		Stroke:	stroke,
 	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeString">
+    <div class="item-header">
+        <h4>func StrokeString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeString strokes text outlines at position (x, y) where y is the baseline.</p>
+          
+        <p>The stroke width, cap, join, and dash are captured from the current recorder state.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) StrokeString(s string, x, y float64) {
+	px, py := r.transform.TransformPoint(x, y)
+
+	brushRef := r.resources.AddBrush(r.strokeBrush)
+
+	stroke := Stroke{
+		Width:		r.lineWidth,
+		Cap:		r.lineCap,
+		Join:		r.lineJoin,
+		MiterLimit:	r.miterLimit,
+		DashPattern:	r.dashPattern,
+		DashOffset:	r.dashOffset,
+	}
+
+	r.commands = append(r.commands, StrokeTextCommand{
+		Text:		s,
+		X:		px,
+		Y:		py,
+		FontSize:	r.fontSize,
+		FontFamily:	r.fontFamily,
+		Brush:		brushRef,
+		Stroke:		stroke,
+	})
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeStringAnchored">
+    <div class="item-header">
+        <h4>func StrokeStringAnchored</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeStringAnchored strokes text outlines with an anchor point.</p>
+          
+        <p>The anchor point is specified by ax and ay, which are in the range [0, 1].</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Recorder) StrokeStringAnchored(s string, x, y, ax, ay float64) {
+	// For recording, we store the base position and let the backend handle anchoring
+	// This is a simplification; a full implementation would measure text
+	r.StrokeString(s, x, y)
 }
 </code></pre>
 </div>
@@ -3077,6 +3284,7 @@
 	dashPattern	[]float64
 	dashOffset	float64
 	fillRule	FillRule
+	antiAlias	bool
 	transform	Matrix
 
 	// Current font

@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -336,6 +341,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -347,6 +357,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -456,6 +471,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -541,6 +571,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -562,6 +602,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -691,6 +736,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -804,7 +854,7 @@
     
 
     <pre><code class="language-go">func (s *Scene) ClosePath() {
-	s.currentPath.verbs = append(s.currentPath.verbs, raster.VerbClose)
+	s.currentPath.verbs = append(s.currentPath.verbs, raster.Close)
 }
 </code></pre>
 </div>
@@ -842,7 +892,7 @@
     
 
     <pre><code class="language-go">func (s *Scene) CubicTo(c1x, c1y, c2x, c2y, x, y float64) {
-	s.currentPath.verbs = append(s.currentPath.verbs, raster.VerbCubicTo)
+	s.currentPath.verbs = append(s.currentPath.verbs, raster.CubicTo)
 	s.currentPath.points = append(s.currentPath.points,
 		float32(c1x), float32(c1y),
 		float32(c2x), float32(c2y),
@@ -1046,7 +1096,7 @@
     
 
     <pre><code class="language-go">func (s *Scene) LineTo(x, y float64) {
-	s.currentPath.verbs = append(s.currentPath.verbs, raster.VerbLineTo)
+	s.currentPath.verbs = append(s.currentPath.verbs, raster.LineTo)
 	s.currentPath.points = append(s.currentPath.points, float32(x), float32(y))
 }
 </code></pre>
@@ -1066,7 +1116,7 @@
     
 
     <pre><code class="language-go">func (s *Scene) MoveTo(x, y float64) {
-	s.currentPath.verbs = append(s.currentPath.verbs, raster.VerbMoveTo)
+	s.currentPath.verbs = append(s.currentPath.verbs, raster.MoveTo)
 	s.currentPath.points = append(s.currentPath.points, float32(x), float32(y))
 }
 </code></pre>
@@ -1147,7 +1197,7 @@
     
 
     <pre><code class="language-go">func (s *Scene) QuadTo(cx, cy, x, y float64) {
-	s.currentPath.verbs = append(s.currentPath.verbs, raster.VerbQuadTo)
+	s.currentPath.verbs = append(s.currentPath.verbs, raster.QuadTo)
 	s.currentPath.points = append(s.currentPath.points,
 		float32(cx), float32(cy),
 		float32(x), float32(y))

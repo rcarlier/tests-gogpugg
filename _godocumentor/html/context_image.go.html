@@ -56,6 +56,14 @@
                     
                     <li><a href="#func-CreateImagePattern">CreateImagePattern</a></li>
                     
+                    <li><a href="#func-CreateOffscreenTexture">CreateOffscreenTexture</a></li>
+                    
+                    <li><a href="#func-DrawGPUTexture">DrawGPUTexture</a></li>
+                    
+                    <li><a href="#func-DrawGPUTextureBase">DrawGPUTextureBase</a></li>
+                    
+                    <li><a href="#func-DrawGPUTextureWithOpacity">DrawGPUTextureWithOpacity</a></li>
+                    
                     <li><a href="#func-DrawImage">DrawImage</a></li>
                     
                     <li><a href="#func-DrawImageCircular">DrawImageCircular</a></li>
@@ -83,6 +91,8 @@
                     <li><a href="#func-SetScale">SetScale</a></li>
                     
                     <li><a href="#func-SetStrokePattern">SetStrokePattern</a></li>
+                    
+                    <li><a href="#func-SetTransform">SetTransform</a></li>
                     
                 </ul>
                 
@@ -190,6 +200,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -314,6 +329,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -325,6 +345,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -434,6 +459,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -519,6 +559,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -540,6 +590,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -669,6 +724,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -706,31 +766,22 @@
          
         <p>ColorAt implements the Pattern interface.</p>
           
-        <p>It samples the image at the given coordinates. If an anchor is set,</p>
+        <p>It samples the image at the given device-space coordinates by applying the</p>
           
-        <p>coordinates are offset by the anchor position. In clamp mode, out-of-bounds</p>
+        <p>pre-computed inverse transform to map back to image-space. In clamp mode,</p>
           
-        <p>coordinates return transparent black; otherwise the pattern tiles.</p>
+        <p>out-of-bounds coordinates return transparent black; otherwise the pattern tiles.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (p *ImagePattern) ColorAt(x, y float64) RGBA {
-	// Subtract anchor to get local coordinates relative to the image origin.
-	lx := x - p.anchorX
-	ly := y - p.anchorY
+	// Apply inverse transform: device-space -> image-space.
+	imgPt := p.inverse.TransformPoint(Pt(x, y))
+	lx := imgPt.X
+	ly := imgPt.Y
 
-	// Apply inverse scale (map destination coords to source coords).
-	sx := p.scaleX
-	sy := p.scaleY
-	if sx != 0 {
-		lx /= sx
-	}
-	if sy != 0 {
-		ly /= sy
-	}
-
-	// Get image bounds
+	// Get image bounds.
 	imgW, imgH := p.image.Bounds()
 
 	// Determine pattern region.
@@ -828,12 +879,192 @@
 
     <pre><code class="language-go">func (c *Context) CreateImagePattern(img *ImageBuf, x, y, w, h int) Pattern {
 	return &ImagePattern{
-		image:	img,
-		x:	x,
-		y:	y,
-		w:	w,
-		h:	h,
+		image:		img,
+		x:		x,
+		y:		y,
+		w:		w,
+		h:		h,
+		inverse:	Identity(),	// identity transform: device coords = image coords (tiling from origin)
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CreateOffscreenTexture">
+    <div class="item-header">
+        <h4>func CreateOffscreenTexture</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CreateOffscreenTexture allocates a GPU texture for offscreen rendering.</p>
+          
+        <p>The texture can be rendered to via FlushGPUWithView and composited via</p>
+          
+        <p>DrawGPUTexture. Returns (nil, nil) if GPU is not available.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The returned TextureView is valid until release() is called.</p>
+          
+        <p>Call release() to return the texture resources to the GPU.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Usage flags: RenderAttachment | CopySrc | TextureBinding.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) CreateOffscreenTexture(width, height int) (gpucontext.TextureView, func()) {
+	rc := c.gpuCtxOps()
+	if rc == nil {
+		return gpucontext.TextureView{}, nil
+	}
+	type offscreenCreator interface {
+		CreateOffscreenTexture(w, h int) (gpucontext.TextureView, func())
+	}
+	if oc, ok := rc.(offscreenCreator); ok {
+		return oc.CreateOffscreenTexture(width, height)
+	}
+	return gpucontext.TextureView{}, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawGPUTexture">
+    <div class="item-header">
+        <h4>func DrawGPUTexture</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawGPUTexture composites an existing GPU texture view as a textured quad</p>
+          
+        <p>at (x, y) with the given dimensions. No CPU readback or upload — pure</p>
+          
+        <p>GPU-to-GPU compositing. The view must be from the same device (e.g.,</p>
+          
+        <p>FlushGPUWithView output). CTM and scissor clip are applied.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This is the Skia GrSurfaceProxyView direct-bind pattern for cached</p>
+          
+        <p>offscreen rendering (RepaintBoundary, layer compositing).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) DrawGPUTexture(view gpucontext.TextureView, x, y float64, width, height int) {
+	rc := c.gpuCtxOps()
+	if rc == nil || view.IsNil() {
+		return
+	}
+	defer c.setGPUClipRect()()
+
+	ctm := c.totalMatrix()
+	tl := ctm.TransformPoint(Pt(x, y))
+	br := ctm.TransformPoint(Pt(x+float64(width), y+float64(height)))
+
+	target := c.gpuRenderTarget()
+	vpW := uint32(target.Width)	//nolint:gosec // viewport fits uint32
+	vpH := uint32(target.Height)	//nolint:gosec // viewport fits uint32
+
+	rc.QueueGPUTextureDraw(target, view,
+		float32(tl.X), float32(tl.Y), float32(br.X-tl.X), float32(br.Y-tl.Y),
+		1.0, vpW, vpH)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawGPUTextureBase">
+    <div class="item-header">
+        <h4>func DrawGPUTextureBase</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawGPUTextureBase composites a GPU texture view as the compositor base layer.</p>
+          
+        <p>The base layer is drawn BEFORE all GPU tiers (SDF, convex, stencil, text) in</p>
+          
+        <p>the render pass, making it the background for zero-readback rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Use this to composite a CPU pixmap texture as the background, with GPU shapes</p>
+          
+        <p>rendered on top in the same render pass. Last call per frame wins.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>See ADR-015 (Compositor Base Layer), Flutter OffsetLayer pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) DrawGPUTextureBase(view gpucontext.TextureView, x, y float64, width, height int) {
+	rc := c.gpuCtxOps()
+	if rc == nil || view.IsNil() {
+		return
+	}
+
+	ctm := c.totalMatrix()
+	tl := ctm.TransformPoint(Pt(x, y))
+	br := ctm.TransformPoint(Pt(x+float64(width), y+float64(height)))
+
+	target := c.gpuRenderTarget()
+	vpW := uint32(target.Width)	//nolint:gosec // viewport fits uint32
+	vpH := uint32(target.Height)	//nolint:gosec // viewport fits uint32
+
+	rc.QueueBaseLayer(target, view,
+		float32(tl.X), float32(tl.Y), float32(br.X-tl.X), float32(br.Y-tl.Y),
+		1.0, vpW, vpH)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DrawGPUTextureWithOpacity">
+    <div class="item-header">
+        <h4>func DrawGPUTextureWithOpacity</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawGPUTextureWithOpacity composites a GPU texture view as an overlay with</p>
+          
+        <p>the specified opacity (0.0 = fully transparent, 1.0 = fully opaque).</p>
+          
+        <p>Same as DrawGPUTexture but with alpha blending for fade transitions</p>
+          
+        <p>and OpacityLayer compositing (Flutter pattern).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) DrawGPUTextureWithOpacity(view gpucontext.TextureView, x, y float64, width, height int, opacity float32) {
+	rc := c.gpuCtxOps()
+	if rc == nil || view.IsNil() {
+		return
+	}
+	defer c.setGPUClipRect()()
+
+	ctm := c.totalMatrix()
+	tl := ctm.TransformPoint(Pt(x, y))
+	br := ctm.TransformPoint(Pt(x+float64(width), y+float64(height)))
+
+	target := c.gpuRenderTarget()
+	vpW := uint32(target.Width)	//nolint:gosec // viewport fits uint32
+	vpH := uint32(target.Height)	//nolint:gosec // viewport fits uint32
+
+	rc.QueueGPUTextureDraw(target, view,
+		float32(tl.X), float32(tl.Y), float32(br.X-tl.X), float32(br.Y-tl.Y),
+		opacity, vpW, vpH)
 }
 </code></pre>
 </div>
@@ -988,27 +1219,44 @@
 		dstHeight = float64(srcH)
 	}
 
+	// Try GPU textured quad path first (Tier 3).
+	// This avoids the SetFillPattern→Fill() path which triggers mid-frame
+	// CPU flushes when GPU is active (the ImagePattern fallback problem).
+	if c.tryGPUDrawImage(img, opts, srcX, srcY, srcW, srcH, dstWidth, dstHeight) {
+		return
+	}
+
 	// Compute scale factors for the image pattern.
 	// The pattern maps source pixels to destination pixels.
 	scaleX := dstWidth / float64(srcW)
 	scaleY := dstHeight / float64(srcH)
 
-	// Transform destination rectangle to device coordinates for the anchor.
-	topLeft := c.matrix.TransformPoint(Pt(opts.X, opts.Y))
+	// Compose the full forward transform: image-space -> device-space.
+	//
+	// The transform chain is:
+	//   1. Scale source pixels to destination size: Scale(scaleX, scaleY)
+	//   2. Position at destination: Translate(opts.X, opts.Y)
+	//   3. Apply current CTM to device space: totalMatrix()
+	//
+	// Forward: device = totalMatrix * Translate(x,y) * Scale(sx,sy) * imageCoord
+	// Inverse: imageCoord = inverse(totalMatrix * Translate(x,y) * Scale(sx,sy)) * device
+	//
+	// This follows the Cairo/Skia/tiny-skia pattern (see IMAGE-PATTERN-TRANSFORM-RESEARCH.md).
+	patternTransform := c.totalMatrix().
+		Multiply(Translate(opts.X, opts.Y)).
+		Multiply(Scale(scaleX, scaleY))
+	inverse := patternTransform.Invert()
 
-	// Create image pattern anchored at the destination position.
+	// Create image pattern with pre-computed inverse transform.
 	pattern := &ImagePattern{
 		image:		img,
 		x:		srcX,
 		y:		srcY,
 		w:		srcW,
 		h:		srcH,
-		anchorX:	topLeft.X,
-		anchorY:	topLeft.Y,
+		inverse:	inverse,
 		opacity:	opts.Opacity,
 		clamp:		true,	// Don't tile — clamp to image bounds
-		scaleX:		scaleX,
-		scaleY:		scaleY,
 	}
 
 	// Save current state (paint, path, transform).
@@ -1163,6 +1411,8 @@
         <p>This offsets all coordinate lookups so the image appears at (x, y)</p>
           
         <p>on the canvas rather than tiled from the origin.</p>
+          
+        <p>The inverse transform is rebuilt to reflect the new anchor.</p>
          
     </div>
     
@@ -1170,6 +1420,7 @@
     <pre><code class="language-go">func (p *ImagePattern) SetAnchor(x, y float64) {
 	p.anchorX = x
 	p.anchorY = y
+	p.rebuildInverse()
 }
 </code></pre>
 </div>
@@ -1206,13 +1457,23 @@
         <p>SetFillPattern sets the fill pattern.</p>
           
         <p>It also updates the Brush field for consistency with ColorAt precedence.</p>
+          
+        <p>For solid patterns, stores the color inline (zero allocations).</p>
          
     </div>
     
 
     <pre><code class="language-go">func (c *Context) SetFillPattern(pattern Pattern) {
+	if sp, ok := pattern.(*SolidPattern); ok {
+		c.paint.solidColor = sp.Color
+		c.paint.isSolid = true
+		c.paint.Brush = nil
+		c.paint.Pattern = nil
+		return
+	}
 	c.paint.Pattern = pattern
 	c.paint.Brush = BrushFromPattern(pattern)
+	c.paint.isSolid = false
 }
 </code></pre>
 </div>
@@ -1249,6 +1510,8 @@
         <p>by these factors before being sampled. For example, SetScale(2, 2) makes</p>
           
         <p>each source pixel cover 2x2 destination pixels.</p>
+          
+        <p>The inverse transform is rebuilt to reflect the new scale.</p>
          
     </div>
     
@@ -1256,6 +1519,7 @@
     <pre><code class="language-go">func (p *ImagePattern) SetScale(sx, sy float64) {
 	p.scaleX = sx
 	p.scaleY = sy
+	p.rebuildInverse()
 }
 </code></pre>
 </div>
@@ -1271,13 +1535,46 @@
         <p>SetStrokePattern sets the stroke pattern.</p>
           
         <p>It also updates the Brush field for consistency with ColorAt precedence.</p>
+          
+        <p>For solid patterns, stores the color inline (zero allocations).</p>
          
     </div>
     
 
     <pre><code class="language-go">func (c *Context) SetStrokePattern(pattern Pattern) {
+	if sp, ok := pattern.(*SolidPattern); ok {
+		c.paint.solidColor = sp.Color
+		c.paint.isSolid = true
+		c.paint.Brush = nil
+		c.paint.Pattern = nil
+		return
+	}
 	c.paint.Pattern = pattern
 	c.paint.Brush = BrushFromPattern(pattern)
+	c.paint.isSolid = false
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetTransform">
+    <div class="item-header">
+        <h4>func SetTransform</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetTransform sets the full forward transform (image-space to device-space)</p>
+          
+        <p>for the pattern. The inverse is computed and cached for sampling.</p>
+          
+        <p>This overrides any anchor/scale settings.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *ImagePattern) SetTransform(m Matrix) {
+	p.inverse = m.Invert()
 }
 </code></pre>
 </div>
@@ -1334,13 +1631,21 @@
     
     <div class="comments">
         
-        <p>ImagePattern represents an image-based pattern.</p>
+        <p>ImagePattern represents an image-based pattern with full affine transform support.</p>
         
-        <p>When anchorX/anchorY are set, the pattern is positioned at that canvas</p>
+        <p>The pattern stores a pre-computed inverse matrix that maps device-space coordinates</p>
         
-        <p>location instead of tiling from (0,0). Coordinates outside the image region</p>
+        <p>back to image-space for sampling. This enables correct rendering under rotation,</p>
         
-        <p>return transparent black (clamp mode) when clamp is true.</p>
+        <p>scale, skew, and any combination of affine transforms.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>For backward compatibility, SetAnchor/SetScale convenience methods rebuild</p>
+        
+        <p>the inverse from anchor+scale parameters. For full affine control, the inverse</p>
+        
+        <p>is set directly by DrawImageEx or via SetTransform.</p>
         
     </div>
     
@@ -1349,10 +1654,14 @@
 	image	*ImageBuf
 	x, y	int	// source region offset within the image
 	w, h	int	// source region size (0 = full image dimension)
-	anchorX	float64	// canvas anchor X
-	anchorY	float64	// canvas anchor Y
+	inverse	Matrix	// maps device-space -> image-space (pre-computed)
 	opacity	float64	// opacity multiplier (0=transparent, 1=opaque; 0 means default=1)
 	clamp	bool	// when true, out-of-bounds returns transparent instead of tiling
+
+	// Legacy fields for SetAnchor/SetScale backward compatibility.
+	// When these are used, rebuildInverse() computes the inverse from them.
+	anchorX	float64
+	anchorY	float64
 	scaleX	float64	// horizontal scale factor (0 means 1.0)
 	scaleY	float64	// vertical scale factor (0 means 1.0)
 }

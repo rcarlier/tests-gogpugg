@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -335,6 +350,8 @@
                     <li><a href="#func-RenderDirtyWithContext">RenderDirtyWithContext</a></li>
                     
                     <li><a href="#func-RenderWithContext">RenderWithContext</a></li>
+                    
+                    <li><a href="#func-RenderWithDamage">RenderWithDamage</a></li>
                     
                     <li><a href="#func-Resize">Resize</a></li>
                     
@@ -444,6 +461,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -529,6 +561,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -550,6 +592,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -675,6 +722,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -1008,9 +1060,11 @@
 		dirtyRegion = r.dirty
 	}
 
-	// Get the flattened encoding
+	// Get the flattened encoding, image registry, and font registry.
 	startEncode := time.Now()
 	enc := scene.Encoding()
+	images := scene.Images()
+	r.fontRegistry = scene.FontRegistry()
 	encodeTime := time.Since(startEncode)
 
 	// Check for cancellation after encoding
@@ -1038,7 +1092,7 @@
 
 	// Render dirty tiles in parallel with context
 	startRaster := time.Now()
-	if err := r.renderTilesWithContext(ctx, tiles, enc, target); err != nil {
+	if err := r.renderTilesWithContext(ctx, tiles, enc, target, images); err != nil {
 		return err
 	}
 	rasterTime := time.Since(startRaster)
@@ -1098,6 +1152,15 @@
 	default:
 	}
 
+	// GPU fast path: if a GPU accelerator is registered, render through
+	// GPUSceneRenderer which decodes scene commands into gg.Context GPU calls.
+	// The gg.Context handles GPU→CPU fallback automatically per-shape.
+	if gg.Accelerator() != nil {
+		if err := r.renderGPU(target, scene); err == nil {
+			return nil
+		}
+	}
+
 	startTotal := time.Now()
 	r.statsMu.Lock()
 	r.stats = RenderStats{}	// Reset stats
@@ -1106,9 +1169,11 @@
 	// Mark all tiles dirty for full render
 	r.dirty.MarkAll()
 
-	// Get the flattened encoding
+	// Get the flattened encoding, image registry, and font registry.
 	startEncode := time.Now()
 	enc := scene.Encoding()
+	images := scene.Images()
+	r.fontRegistry = scene.FontRegistry()
 	encodeTime := time.Since(startEncode)
 
 	// Check for cancellation after encoding
@@ -1124,7 +1189,7 @@
 
 	// Render tiles in parallel with context
 	startRaster := time.Now()
-	if err := r.renderTilesWithContext(ctx, tiles, enc, target); err != nil {
+	if err := r.renderTilesWithContext(ctx, tiles, enc, target, images); err != nil {
 		return err
 	}
 	rasterTime := time.Since(startRaster)
@@ -1150,6 +1215,77 @@
 	r.updateStats(tilesTotal, tilesTotal, tilesTotal, encodeTime, rasterTime, compositeTime, totalTime)
 
 	return nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderWithDamage">
+    <div class="item-header">
+        <h4>func RenderWithDamage</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderWithDamage uses a DamageTracker to compute the minimal dirty region</p>
+          
+        <p>from frame-to-frame object changes, then renders only affected tiles.</p>
+          
+        <p>This is Level 1-2 of the four-level damage pipeline (ADR-021).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns the damage rect (in pixels) for downstream use by ggcanvas/gogpu</p>
+          
+        <p>(Level 3-4: GPU scissor + OS present). Returns image.Rectangle{} if</p>
+          
+        <p>nothing changed (caller can skip GPU upload + present entirely).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>On first frame, renders everything (full scene).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *Renderer) RenderWithDamage(target *gg.Pixmap, scene *Scene, tracker *DamageTracker) (
+	damageRect image.Rectangle, err error,
+) {
+	if target == nil || scene == nil {
+		return image.Rectangle{}, nil
+	}
+
+	objects := scene.TaggedBounds()
+	damage := tracker.ComputeDamage(objects)
+
+	if damage.Empty() && !tracker.IsFirstRender() {
+		return image.Rectangle{}, nil
+	}
+
+	// First render or actual damage — determine what to redraw
+	if tracker.IsFirstRender() {
+		tracker.MarkRendered()
+		r.dirty.MarkAll()
+		err = r.RenderDirty(target, scene, nil)
+		return scene.encoding.Bounds().ImageRect(), err
+	}
+
+	// Convert pixel damage rect to tile coordinates and mark dirty
+	tileW := r.tileSize
+	tileH := r.tileSize
+	tx0 := damage.Min.X / tileW
+	ty0 := damage.Min.Y / tileH
+	tx1 := (damage.Max.X + tileW - 1) / tileW
+	ty1 := (damage.Max.Y + tileH - 1) / tileH
+
+	for ty := ty0; ty < ty1; ty++ {
+		for tx := tx0; tx < tx1; tx++ {
+			r.dirty.Mark(tx, ty)
+		}
+	}
+
+	err = r.RenderDirty(target, scene, nil)
+	return damage, err
 }
 </code></pre>
 </div>
@@ -1417,6 +1553,9 @@
 	// Configuration
 	tileSize	int
 	workers		int
+
+	// Font registry for TagText resolution (set per-render from Scene).
+	fontRegistry	map[uint64]*text.FontSource
 
 	// Statistics
 	stats		RenderStats

@@ -147,7 +147,11 @@
                 
                 <ul>
                     
+                    <li><a href="#func-Append">Append</a></li>
+                    
                     <li><a href="#func-Arc">Arc</a></li>
+                    
+                    <li><a href="#func-Bounds">Bounds</a></li>
                     
                     <li><a href="#func-Circle">Circle</a></li>
                     
@@ -157,15 +161,19 @@
                     
                     <li><a href="#func-Close">Close</a></li>
                     
+                    <li><a href="#func-Coords">Coords</a></li>
+                    
                     <li><a href="#func-CubicTo">CubicTo</a></li>
                     
                     <li><a href="#func-CurrentPoint">CurrentPoint</a></li>
                     
-                    <li><a href="#func-Elements">Elements</a></li>
-                    
                     <li><a href="#func-Ellipse">Ellipse</a></li>
                     
                     <li><a href="#func-HasCurrentPoint">HasCurrentPoint</a></li>
+                    
+                    <li><a href="#func-HasCurves">HasCurves</a></li>
+                    
+                    <li><a href="#func-Iterate">Iterate</a></li>
                     
                     <li><a href="#func-LineTo">LineTo</a></li>
                     
@@ -173,13 +181,21 @@
                     
                     <li><a href="#func-NewPath">NewPath</a></li>
                     
+                    <li><a href="#func-NumVerbs">NumVerbs</a></li>
+                    
                     <li><a href="#func-QuadraticTo">QuadraticTo</a></li>
                     
                     <li><a href="#func-Rectangle">Rectangle</a></li>
                     
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
                     <li><a href="#func-RoundedRectangle">RoundedRectangle</a></li>
                     
+                    <li><a href="#func-String">String</a></li>
+                    
                     <li><a href="#func-Transform">Transform</a></li>
+                    
+                    <li><a href="#func-Verbs">Verbs</a></li>
                     
                 </ul>
                 
@@ -192,6 +208,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -316,6 +337,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -327,6 +353,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -436,6 +467,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -521,6 +567,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -542,6 +598,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -671,6 +732,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -692,15 +758,38 @@
         href="#structs"
         style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
         >Structs</a
-    > <a
-        href="#interfaces"
-        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
-        >Interfaces</a
-    >
+    > 
 </div>
 
 
 <h3 id="functions">Functions</h3>
+
+<div class="item" id="func-Append">
+    <div class="item-header">
+        <h4>func Append</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Append adds all elements from other to this path.</p>
+          
+        <p>The current point and subpath start are updated to match other's state.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Append(other *Path) {
+	if other == nil || len(other.verbs) == 0 {
+		return
+	}
+	p.verbs = append(p.verbs, other.verbs...)
+	p.coords = append(p.coords, other.coords...)
+	p.current = other.current
+	p.start = other.start
+}
+</code></pre>
+</div>
 
 <div class="item" id="func-Arc">
     <div class="item-header">
@@ -735,6 +824,37 @@
 		a2 := a1 + angleStep
 		p.arcSegment(cx, cy, r, a1, a2)
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the axis-aligned bounding box of the path as image.Rectangle.</p>
+          
+        <p>Computed incrementally during path construction (O(1) per operation).</p>
+          
+        <p>Returns empty rectangle for empty paths.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Bounds() image.Rectangle {
+	if !p.boundsValid {
+		return image.Rectangle{}
+	}
+	return image.Rect(
+		int(math.Floor(p.boundsMinX)),
+		int(math.Floor(p.boundsMinY)),
+		int(math.Ceil(p.boundsMaxX)),
+		int(math.Ceil(p.boundsMaxY)),
+	)
 }
 </code></pre>
 </div>
@@ -775,15 +895,17 @@
     
     <div class="comments">
          
-        <p>Clear removes all elements from the path.</p>
+        <p>Clear removes all elements from the path, releasing the underlying storage.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (p *Path) Clear() {
-	p.elements = p.elements[:0]
+	p.verbs = p.verbs[:0]
+	p.coords = p.coords[:0]
 	p.start = Point{}
 	p.current = Point{}
+	p.boundsValid = false
 }
 </code></pre>
 </div>
@@ -802,11 +924,14 @@
     
 
     <pre><code class="language-go">func (p *Path) Clone() *Path {
-	result := NewPath()
-	result.elements = make([]PathElement, len(p.elements))
-	copy(result.elements, p.elements)
-	result.start = p.start
-	result.current = p.current
+	result := &Path{
+		verbs:		make([]PathVerb, len(p.verbs)),
+		coords:		make([]float64, len(p.coords)),
+		start:		p.start,
+		current:	p.current,
+	}
+	copy(result.verbs, p.verbs)
+	copy(result.coords, p.coords)
 	return result
 }
 </code></pre>
@@ -826,8 +951,27 @@
     
 
     <pre><code class="language-go">func (p *Path) Close() {
-	p.elements = append(p.elements, Close{})
+	p.verbs = append(p.verbs, Close)
 	p.current = p.start
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Coords">
+    <div class="item-header">
+        <h4>func Coords</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Coords returns the coordinate stream. The returned slice must not be modified.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Coords() []float64 {
+	return p.coords
 }
 </code></pre>
 </div>
@@ -846,15 +990,12 @@
     
 
     <pre><code class="language-go">func (p *Path) CubicTo(c1x, c1y, c2x, c2y, x, y float64) {
-	ctrl1 := Pt(c1x, c1y)
-	ctrl2 := Pt(c2x, c2y)
-	pt := Pt(x, y)
-	p.elements = append(p.elements, CubicTo{
-		Control1:	ctrl1,
-		Control2:	ctrl2,
-		Point:		pt,
-	})
-	p.current = pt
+	p.verbs = append(p.verbs, CubicTo)
+	p.coords = append(p.coords, c1x, c1y, c2x, c2y, x, y)
+	p.expandBounds(c1x, c1y)
+	p.expandBounds(c2x, c2y)
+	p.expandBounds(x, y)
+	p.current = Pt(x, y)
 }
 </code></pre>
 </div>
@@ -874,25 +1015,6 @@
 
     <pre><code class="language-go">func (p *Path) CurrentPoint() Point {
 	return p.current
-}
-</code></pre>
-</div>
-
-<div class="item" id="func-Elements">
-    <div class="item-header">
-        <h4>func Elements</h4>
-    </div>
-
-    
-    <div class="comments">
-         
-        <p>Elements returns the path elements.</p>
-         
-    </div>
-    
-
-    <pre><code class="language-go">func (p *Path) Elements() []PathElement {
-	return p.elements
 }
 </code></pre>
 </div>
@@ -941,7 +1063,75 @@
     
 
     <pre><code class="language-go">func (p *Path) HasCurrentPoint() bool {
-	return len(p.elements) > 0
+	return len(p.verbs) > 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-HasCurves">
+    <div class="item-header">
+        <h4>func HasCurves</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>HasCurves reports whether the path contains any quadratic or cubic curves.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) HasCurves() bool {
+	for _, v := range p.verbs {
+		if v == QuadTo || v == CubicTo {
+			return true
+		}
+	}
+	return false
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Iterate">
+    <div class="item-header">
+        <h4>func Iterate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Iterate calls fn for each verb in the path with the corresponding coordinate slice.</p>
+          
+        <p>This is the primary zero-allocation iteration API.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The coords slice passed to fn is a sub-slice of the path's coordinate buffer:</p>
+          
+        <p>- MoveTo:  coords has 2 elements (x, y)</p>
+          
+        <p>- LineTo:  coords has 2 elements (x, y)</p>
+          
+        <p>- QuadTo:  coords has 4 elements (cx, cy, x, y)</p>
+          
+        <p>- CubicTo: coords has 6 elements (c1x, c1y, c2x, c2y, x, y)</p>
+          
+        <p>- Close:   coords has 0 elements (nil)</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Iterate(fn func(verb PathVerb, coords []float64)) {
+	ci := 0
+	for _, v := range p.verbs {
+		n := verbCoordCount(v)
+		if n > 0 {
+			fn(v, p.coords[ci:ci+n])
+		} else {
+			fn(v, nil)
+		}
+		ci += n
+	}
 }
 </code></pre>
 </div>
@@ -960,9 +1150,10 @@
     
 
     <pre><code class="language-go">func (p *Path) LineTo(x, y float64) {
-	pt := Pt(x, y)
-	p.elements = append(p.elements, LineTo{Point: pt})
-	p.current = pt
+	p.verbs = append(p.verbs, LineTo)
+	p.coords = append(p.coords, x, y)
+	p.expandBounds(x, y)
+	p.current = Pt(x, y)
 }
 </code></pre>
 </div>
@@ -981,10 +1172,11 @@
     
 
     <pre><code class="language-go">func (p *Path) MoveTo(x, y float64) {
-	pt := Pt(x, y)
-	p.elements = append(p.elements, MoveTo{Point: pt})
-	p.start = pt
-	p.current = pt
+	p.verbs = append(p.verbs, MoveTo)
+	p.coords = append(p.coords, x, y)
+	p.expandBounds(x, y)
+	p.start = Pt(x, y)
+	p.current = p.start
 }
 </code></pre>
 </div>
@@ -997,15 +1189,35 @@
     
     <div class="comments">
          
-        <p>NewPath creates a new empty path.</p>
+        <p>NewPath creates a new empty path with stack-backed buffers.</p>
          
     </div>
     
 
     <pre><code class="language-go">func NewPath() *Path {
-	return &Path{
-		elements: make([]PathElement, 0, 16),
-	}
+	p := &Path{}
+	p.verbs = p.verbsBuf[:0]
+	p.coords = p.coordsBuf[:0]
+	return p
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NumVerbs">
+    <div class="item-header">
+        <h4>func NumVerbs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NumVerbs returns the number of verbs in the path.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) NumVerbs() int {
+	return len(p.verbs)
 }
 </code></pre>
 </div>
@@ -1024,10 +1236,11 @@
     
 
     <pre><code class="language-go">func (p *Path) QuadraticTo(cx, cy, x, y float64) {
-	ctrl := Pt(cx, cy)
-	pt := Pt(x, y)
-	p.elements = append(p.elements, QuadTo{Control: ctrl, Point: pt})
-	p.current = pt
+	p.verbs = append(p.verbs, QuadTo)
+	p.coords = append(p.coords, cx, cy, x, y)
+	p.expandBounds(cx, cy)
+	p.expandBounds(x, y)
+	p.current = Pt(x, y)
 }
 </code></pre>
 </div>
@@ -1051,6 +1264,30 @@
 	p.LineTo(x+w, y+h)
 	p.LineTo(x, y+h)
 	p.Close()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the path for reuse, keeping allocated capacity.</p>
+          
+        <p>This is identical to Clear in the current implementation.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Reset() {
+	p.verbs = p.verbs[:0]
+	p.coords = p.coords[:0]
+	p.start = Point{}
+	p.current = Point{}
 }
 </code></pre>
 </div>
@@ -1089,6 +1326,38 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-String">
+    <div class="item-header">
+        <h4>func String</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>String returns a human-readable name for the verb.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (v PathVerb) String() string {
+	switch v {
+	case MoveTo:
+		return "MoveTo"
+	case LineTo:
+		return "LineTo"
+	case QuadTo:
+		return "QuadTo"
+	case CubicTo:
+		return "CubicTo"
+	case Close:
+		return "Close"
+	default:
+		return "Unknown"
+	}
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Transform">
     <div class="item-header">
         <h4>func Transform</h4>
@@ -1104,129 +1373,52 @@
 
     <pre><code class="language-go">func (p *Path) Transform(m Matrix) *Path {
 	result := NewPath()
-	for _, elem := range p.elements {
-		switch e := elem.(type) {
+	p.Iterate(func(verb PathVerb, coords []float64) {
+		switch verb {
 		case MoveTo:
-			pt := m.TransformPoint(e.Point)
+			pt := m.TransformPoint(Pt(coords[0], coords[1]))
 			result.MoveTo(pt.X, pt.Y)
 		case LineTo:
-			pt := m.TransformPoint(e.Point)
+			pt := m.TransformPoint(Pt(coords[0], coords[1]))
 			result.LineTo(pt.X, pt.Y)
 		case QuadTo:
-			ctrl := m.TransformPoint(e.Control)
-			pt := m.TransformPoint(e.Point)
+			ctrl := m.TransformPoint(Pt(coords[0], coords[1]))
+			pt := m.TransformPoint(Pt(coords[2], coords[3]))
 			result.QuadraticTo(ctrl.X, ctrl.Y, pt.X, pt.Y)
 		case CubicTo:
-			ctrl1 := m.TransformPoint(e.Control1)
-			ctrl2 := m.TransformPoint(e.Control2)
-			pt := m.TransformPoint(e.Point)
+			ctrl1 := m.TransformPoint(Pt(coords[0], coords[1]))
+			ctrl2 := m.TransformPoint(Pt(coords[2], coords[3]))
+			pt := m.TransformPoint(Pt(coords[4], coords[5]))
 			result.CubicTo(ctrl1.X, ctrl1.Y, ctrl2.X, ctrl2.Y, pt.X, pt.Y)
 		case Close:
 			result.Close()
 		}
-	}
+	})
 	return result
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Verbs">
+    <div class="item-header">
+        <h4>func Verbs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Verbs returns the verb stream. The returned slice must not be modified.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Path) Verbs() []PathVerb {
+	return p.verbs
 }
 </code></pre>
 </div>
   
 <h3 id="structs">Structs</h3>
-
-<div class="item" id="struct-MoveTo">
-    <div class="item-header">
-        <h4>type MoveTo struct</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>MoveTo moves to a point without drawing.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type MoveTo struct {
-	Point Point
-}
-</code></pre>
-</div>
-
-<div class="item" id="struct-LineTo">
-    <div class="item-header">
-        <h4>type LineTo struct</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>LineTo draws a line to a point.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type LineTo struct {
-	Point Point
-}
-</code></pre>
-</div>
-
-<div class="item" id="struct-QuadTo">
-    <div class="item-header">
-        <h4>type QuadTo struct</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>QuadTo draws a quadratic Bezier curve.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type QuadTo struct {
-	Control	Point
-	Point	Point
-}
-</code></pre>
-</div>
-
-<div class="item" id="struct-CubicTo">
-    <div class="item-header">
-        <h4>type CubicTo struct</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>CubicTo draws a cubic Bezier curve.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type CubicTo struct {
-	Control1	Point
-	Control2	Point
-	Point		Point
-}
-</code></pre>
-</div>
-
-<div class="item" id="struct-Close">
-    <div class="item-header">
-        <h4>type Close struct</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>Close closes the current subpath.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type Close struct{}
-</code></pre>
-</div>
 
 <div class="item" id="struct-Path">
     <div class="item-header">
@@ -1236,40 +1428,40 @@
     
     <div class="comments">
         
-        <p>Path represents a vector path.</p>
+        <p>Path represents a vector path using SOA (Structure of Arrays) layout.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Internally, the path stores verbs and coordinates in separate contiguous slices</p>
+        
+        <p>for cache efficiency and zero per-verb heap allocations. This matches the</p>
+        
+        <p>enterprise standard used by Skia, Cairo, tiny-skia, Blend2D, and femtovg.</p>
         
     </div>
     
 
     <pre><code class="language-go">type Path struct {
-	elements	[]PathElement
-	start		Point	// Starting point of current subpath
-	current		Point	// Current point
+	verbs	[]PathVerb
+	coords	[]float64
+	start	Point	// Starting point of current subpath
+	current	Point	// Current point
+
+	// Incremental bounding box (Skia pattern: updated on every MoveTo/LineTo/etc).
+	// O(1) per path operation, zero extra cost vs computing at Fill() time.
+	boundsMinX, boundsMinY	float64
+	boundsMaxX, boundsMaxY	float64
+	boundsValid		bool
+
+	// Embedded stack buffers for small paths (≤32 verbs, ≤10 cubics).
+	// Avoids heap allocation for typical shapes (rect=5, circle=7, icon≤20 verbs).
+	// Slices point to these buffers initially; grow to heap only if exceeded.
+	verbsBuf	[32]PathVerb
+	coordsBuf	[96]float64	// 96 = 16 cubics × 6 coords, or 48 lines × 2 coords
 }
 </code></pre>
 </div>
-  
-<h3 id="interfaces">Interfaces</h3>
-
-<div class="item" id="interface-PathElement">
-    <div class="item-header">
-        <h4>type PathElement interface</h4>
-    </div>
-
-    
-    <div class="comments">
-        
-        <p>PathElement represents a single element in a path.</p>
-        
-    </div>
-    
-
-    <pre><code class="language-go">type PathElement interface {
-	isPathElement()
-}
-</code></pre>
-</div>
-  
+   
         </div>
     </main>
 

@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -186,17 +191,27 @@
                     
                     <li><a href="#func-EncodePNG">EncodePNG</a></li>
                     
+                    <li><a href="#func-FillRect">FillRect</a></li>
+                    
                     <li><a href="#func-FillSpan">FillSpan</a></li>
                     
                     <li><a href="#func-FillSpanBlend">FillSpanBlend</a></li>
                     
                     <li><a href="#func-FromImage">FromImage</a></li>
                     
+                    <li><a href="#func-GenerationID">GenerationID</a></li>
+                    
                     <li><a href="#func-GetPixel">GetPixel</a></li>
                     
                     <li><a href="#func-Height">Height</a></li>
                     
+                    <li><a href="#func-ImageView">ImageView</a></li>
+                    
                     <li><a href="#func-NewPixmap">NewPixmap</a></li>
+                    
+                    <li><a href="#func-NewPixmapFromBuffer">NewPixmapFromBuffer</a></li>
+                    
+                    <li><a href="#func-NotifyPixelsChanged">NotifyPixelsChanged</a></li>
                     
                     <li><a href="#func-SavePNG">SavePNG</a></li>
                     
@@ -320,6 +335,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -331,6 +351,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -440,6 +465,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -525,6 +565,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -546,6 +596,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -671,6 +726,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -853,6 +913,62 @@
 
     <pre><code class="language-go">func (p *Pixmap) EncodePNG(w io.Writer) error {
 	return png.Encode(w, p.ToImage())
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillRect">
+    <div class="item-header">
+        <h4>func FillRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillRect fills a rectangular region with a solid premultiplied color.</p>
+          
+        <p>The rectangle is clamped to pixmap bounds. This is a CPU-only operation —</p>
+          
+        <p>it writes directly to the pixel buffer without engaging the GPU accelerator.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Use for dirty-region clearing in retained-mode compositors where GPU</p>
+          
+        <p>acceleration is counterproductive (would block the non-MSAA blit path).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) FillRect(r image.Rectangle, pr, pg, pb, pa uint8) {
+	r = r.Intersect(image.Rect(0, 0, p.width, p.height))
+	if r.Empty() {
+		return
+	}
+
+	stride := p.width * 4
+	pixel := [4]uint8{pr, pg, pb, pa}
+
+	y0, y1 := r.Min.Y, r.Max.Y
+	x0, x1 := r.Min.X, r.Max.X
+	rowBytes := (x1 - x0) * 4
+
+	first := y0*stride + x0*4
+	for x := x0; x < x1; x++ {
+		off := first + (x-x0)*4
+		p.data[off+0] = pixel[0]
+		p.data[off+1] = pixel[1]
+		p.data[off+2] = pixel[2]
+		p.data[off+3] = pixel[3]
+	}
+
+	src := p.data[first : first+rowBytes]
+	for y := y0 + 1; y < y1; y++ {
+		dst := y*stride + x0*4
+		copy(p.data[dst:dst+rowBytes], src)
+	}
+
+	p.genID = nextPixmapGenID.Add(1)
 }
 </code></pre>
 </div>
@@ -1065,6 +1181,29 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-GenerationID">
+    <div class="item-header">
+        <h4>func GenerationID</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GenerationID returns the unique identifier for this pixmap's current content.</p>
+          
+        <p>Used by GPU texture cache to avoid stale texture reuse (ADR-014).</p>
+          
+        <p>The ID changes when NotifyPixelsChanged() is called.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) GenerationID() uint64 {
+	return p.genID
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-GetPixel">
     <div class="item-header">
         <h4>func GetPixel</h4>
@@ -1118,6 +1257,33 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-ImageView">
+    <div class="item-header">
+        <h4>func ImageView</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ImageView returns an *image.RGBA whose Pix aliases the pixmap's buffer</p>
+          
+        <p>(zero-copy alternative to ToImage). External writes through the returned</p>
+          
+        <p>image must be followed by NotifyPixelsChanged for GPU cache correctness.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) ImageView() *image.RGBA {
+	return &image.RGBA{
+		Pix:	p.data,
+		Stride:	p.width * 4,
+		Rect:	image.Rect(0, 0, p.width, p.height),
+	}
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-NewPixmap">
     <div class="item-header">
         <h4>func NewPixmap</h4>
@@ -1136,7 +1302,100 @@
 		width:	width,
 		height:	height,
 		data:	make([]uint8, width*height*4),
+		genID:	nextPixmapGenID.Add(1),
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewPixmapFromBuffer">
+    <div class="item-header">
+        <h4>func NewPixmapFromBuffer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewPixmapFromBuffer wraps an existing premultiplied-RGBA buffer as a Pixmap</p>
+          
+        <p>without allocating. The Pixmap aliases buf[:width*height*4]; the caller</p>
+          
+        <p>keeps ownership and must not reuse buf until the Pixmap is done.</p>
+          
+        <p>Panics on non-positive dimensions, dimensions that overflow int, or undersized buf.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>After modifying the buffer externally, call NotifyPixelsChanged() to</p>
+          
+        <p>invalidate cached GPU textures (ADR-014).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The Pixmap holds a reference to buf's backing array; the garbage collector</p>
+          
+        <p>will not free the array while the Pixmap exists.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The Pixmap is not safe for concurrent use. External writes to buf must</p>
+          
+        <p>not overlap with gg drawing operations on this Pixmap.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewPixmapFromBuffer(buf []uint8, width, height int) *Pixmap {
+	if width <= 0 || height <= 0 {
+		panic("gg: NewPixmapFromBuffer: width and height must be > 0")
+	}
+	// Guard against silent overflow on 32-bit platforms (GOARCH=386/arm):
+	// e.g. 32768*32768*4 wraps to 0 in a 32-bit int, defeating the size check.
+	// Capping each dimension at 2^30 keeps width*height*4 within int64 range
+	// (max 2^62 < 2^63-1) before the int conversion check below.
+	const maxDim = 1 << 30
+	if width > maxDim || height > maxDim {
+		panic("gg: NewPixmapFromBuffer: width or height too large")
+	}
+	need64 := int64(width) * int64(height) * 4
+	if need64 > int64(^uint(0)>>1) {
+		panic("gg: NewPixmapFromBuffer: width*height*4 overflows int")
+	}
+	need := int(need64)
+	if len(buf) < need {
+		panic("gg: NewPixmapFromBuffer: buffer too small")
+	}
+	return &Pixmap{
+		width:	width,
+		height:	height,
+		data:	buf[:need],
+		genID:	nextPixmapGenID.Add(1),
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NotifyPixelsChanged">
+    <div class="item-header">
+        <h4>func NotifyPixelsChanged</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NotifyPixelsChanged assigns a new generation ID, invalidating any cached</p>
+          
+        <p>GPU textures. Call after modifying pixel data directly (e.g., bulk writes).</p>
+          
+        <p>Individual SetPixel/Clear calls do NOT auto-notify — call explicitly after</p>
+          
+        <p>batch mutations. Follows Skia's SkPixelRef::notifyPixelsChanged() pattern.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *Pixmap) NotifyPixelsChanged() {
+	p.genID = nextPixmapGenID.Add(1)
 }
 </code></pre>
 </div>
@@ -1321,6 +1580,7 @@
 	width	int
 	height	int
 	data	[]uint8	// Premultiplied RGBA format, 4 bytes per pixel
+	genID	uint64	// Unique generation ID for GPU texture cache keying
 }
 </code></pre>
 </div>

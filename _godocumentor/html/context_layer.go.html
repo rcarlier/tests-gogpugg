@@ -61,6 +61,8 @@
                     
                     <li><a href="#func-PushLayer">PushLayer</a></li>
                     
+                    <li><a href="#func-PushMaskLayer">PushMaskLayer</a></li>
+                    
                     <li><a href="#func-SetBlendMode">SetBlendMode</a></li>
                     
                 </ul>
@@ -164,6 +166,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -288,6 +295,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -299,6 +311,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -408,6 +425,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -493,6 +525,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -514,6 +556,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -643,6 +690,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -725,6 +777,11 @@
 		// Restore base pixmap
 		parentPixmap = c.basePixmap
 		c.basePixmap = nil
+	}
+
+	// Apply mask to layer content before compositing (PushMaskLayer).
+	if layer.mask != nil {
+		c.applyMaskToPixmap(layer.pixmap, layer.mask)
 	}
 
 	// Composite layer onto parent
@@ -818,6 +875,91 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-PushMaskLayer">
+    <div class="item-header">
+        <h4>func PushMaskLayer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PushMaskLayer creates an isolated layer with an associated alpha mask.</p>
+          
+        <p>All subsequent drawing operations render to this layer normally (without masking).</p>
+          
+        <p>When PopLayer is called, the ENTIRE layer is masked by the mask and then</p>
+          
+        <p>composited onto the parent using source-over blending with full opacity.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This produces different results from SetMask: PushMaskLayer masks the</p>
+          
+        <p>composited group, while SetMask masks each shape individually.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Matches Vello push_mask_layer() semantics (research §4).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Example:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>mask := gg.NewMaskFromAlpha(maskImage)</p>
+          
+        <p>dc.PushMaskLayer(mask)</p>
+          
+        <p>dc.DrawCircle(100, 100, 50)</p>
+          
+        <p>dc.Fill()</p>
+          
+        <p>dc.DrawRect(80, 80, 40, 40)</p>
+          
+        <p>dc.Fill()</p>
+          
+        <p>dc.PopLayer() // entire layer content masked, then composited</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) PushMaskLayer(mask *Mask) {
+	// Clamp: nil mask means no masking (equivalent to PushLayer).
+	if mask == nil {
+		c.PushLayer(BlendNormal, 1.0)
+		return
+	}
+
+	// Initialize layer stack if needed.
+	if c.layerStack == nil {
+		c.layerStack = newLayerStack()
+	}
+
+	// Save base pixmap on first push.
+	if len(c.layerStack.layers) == 0 && c.basePixmap == nil {
+		c.basePixmap = c.pixmap
+	}
+
+	// Create new pixmap for the layer (same size as context).
+	layerPixmap := NewPixmap(c.width, c.height)
+	layerPixmap.Clear(Transparent)
+
+	// Create layer with mask.
+	layer := &Layer{
+		pixmap:		layerPixmap,
+		blendMode:	BlendNormal,
+		opacity:	1.0,
+		mask:		mask,
+	}
+
+	// Switch to layer pixmap.
+	c.layerStack.layers = append(c.layerStack.layers, layer)
+	c.pixmap = layerPixmap
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-SetBlendMode">
     <div class="item-header">
         <h4>func SetBlendMode</h4>
@@ -879,6 +1021,7 @@
 	pixmap		*Pixmap
 	blendMode	BlendMode
 	opacity		float64
+	mask		*Mask	// optional alpha mask, applied on PopLayer (nil = no mask)
 }
 </code></pre>
 </div>

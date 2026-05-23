@@ -3,10 +3,11 @@
 ## accelerator.go
 
 -   `func Accelerator() GPUAccelerator`
+-   `func AcceleratorCanRenderDirect() bool`
+-   `func BeginAcceleratorFrame()`
 -   `func CloseAccelerator()`
 -   `func RegisterAccelerator(a GPUAccelerator) error`
--   `func SetAcceleratorDeviceProvider(provider any) error`
--   `func SetAcceleratorSurfaceTarget(view any, width, height uint32)`
+-   `func SetAcceleratorDeviceProvider(provider gpucontext.DeviceProvider) error`
 
 ## brush.go
 
@@ -42,6 +43,7 @@
 -   `func HSL(h, s, l float64) RGBA`
 -   `func Hex(hex string) RGBA`
 -   `func (RGBA) (c RGBA) Lerp(other RGBA, t float64) RGBA`
+-   `func ParseHex(hex string) (RGBA, error)`
 -   `func (RGBA) (c RGBA) Premultiply() RGBA`
 -   `func RGB(r, g, b float64) RGBA`
 -   `func (RGBA) (c RGBA) RGBA() (r, g, b, a uint32)`
@@ -50,18 +52,24 @@
 
 ## context.go
 
+-   `func (*Context) (c *Context) AntiAlias() bool`
+-   `func (*Context) (c *Context) AppendPath(p *Path)`
+-   `func (*Context) (c *Context) BeginGPUFrame()`
 -   `func (*Context) (c *Context) Clear()`
 -   `func (*Context) (c *Context) ClearDash()`
 -   `func (*Context) (c *Context) ClearPath()`
 -   `func (*Context) (c *Context) ClearWithColor(col RGBA)`
 -   `func (*Context) (c *Context) Close() error`
 -   `func (*Context) (c *Context) ClosePath()`
+-   `func (*Context) (c *Context) CreateSharedEncoder() gpucontext.CommandEncoder`
 -   `func (*Context) (c *Context) CubicTo(c1x, c1y, c2x, c2y, x, y float64)`
+-   `func (*Context) (c *Context) DeviceScale() float64`
 -   `func (*Context) (c *Context) DrawArc(x, y, r, angle1, angle2 float64)`
 -   `func (*Context) (c *Context) DrawCircle(x, y, r float64)`
 -   `func (*Context) (c *Context) DrawEllipse(x, y, rx, ry float64)`
 -   `func (*Context) (c *Context) DrawEllipticalArc(x, y, rx, ry, angle1, angle2 float64)`
 -   `func (*Context) (c *Context) DrawLine(x1, y1, x2, y2 float64)`
+-   `func (*Context) (c *Context) DrawPath(p *Path)`
 -   `func (*Context) (c *Context) DrawPoint(x, y, r float64)`
 -   `func (*Context) (c *Context) DrawRectangle(x, y, w, h float64)`
 -   `func (*Context) (c *Context) DrawRoundedRectangle(x, y, w, h, r float64)`
@@ -69,8 +77,16 @@
 -   `func (*Context) (c *Context) EncodePNG(w io.Writer) error`
 -   `func (*Context) (c *Context) Fill() error`
 -   `func (*Context) (c *Context) FillBrush() Brush`
+-   `func (*Context) (c *Context) FillPath(p *Path) error`
 -   `func (*Context) (c *Context) FillPreserve() error`
+-   `func (*Context) (c *Context) FillRectCPU(x, y, w, h float64, col RGBA)`
 -   `func (*Context) (c *Context) FlushGPU() error`
+-   `func (*Context) (c *Context) FlushGPUWithView(view gpucontext.TextureView, width, height uint32) error`
+-   `func (*Context) (c *Context) FlushGPUWithViewDamage(view gpucontext.TextureView, width, height uint32, damageRect image.Rectangle) error`
+-   `func (*Context) (c *Context) FlushGPUWithViewDamageRects(view gpucontext.TextureView, width, height uint32, rects []image.Rectangle) error`
+-   `func (*Context) (c *Context) FrameDamage() []image.Rectangle`
+-   `func (*Context) (c *Context) FrameDamageUnion() image.Rectangle`
+-   `func (*Context) (c *Context) GPURenderContext() any`
 -   `func (*Context) (c *Context) GetCurrentPoint() (x, y float64, ok bool)`
 -   `func (*Context) (c *Context) GetStroke() Stroke`
 -   `func (*Context) (c *Context) GetTransform() Matrix`
@@ -83,40 +99,56 @@
 -   `func (*Context) (c *Context) MoveTo(x, y float64)`
 -   `func NewContext(width, height int, opts ...ContextOption) *Context`
 -   `func NewContextForImage(img image.Image, opts ...ContextOption) *Context`
+-   `func NewContextForPixmap(pm *Pixmap) *Context`
+-   `func NewContextWithScale(width, height int, scale float64) *Context`
 -   `func (*Context) (c *Context) NewSubPath()`
 -   `func (*Context) (c *Context) PipelineMode() PipelineMode`
+-   `func (*Context) (c *Context) PixelHeight() int`
+-   `func (*Context) (c *Context) PixelWidth() int`
 -   `func (*Context) (c *Context) Pop()`
 -   `func (*Context) (c *Context) Push()`
 -   `func (*Context) (c *Context) QuadraticTo(cx, cy, x, y float64)`
 -   `func (*Context) (c *Context) RasterizerMode() RasterizerMode`
+-   `func (*Context) (c *Context) ResetFrameDamage()`
 -   `func (*Context) (c *Context) Resize(width, height int) error`
 -   `func (*Context) (c *Context) ResizeTarget() *Pixmap`
 -   `func (*Context) (c *Context) Rotate(angle float64)`
 -   `func (*Context) (c *Context) RotateAbout(angle, x, y float64)`
 -   `func (*Context) (c *Context) SavePNG(path string) error`
 -   `func (*Context) (c *Context) Scale(x, y float64)`
+-   `func (*Context) (c *Context) SetAntiAlias(enabled bool)`
 -   `func (*Context) (c *Context) SetColor(col color.Color)`
+-   `func (*Context) (c *Context) SetDamageTracking(enabled bool)`
 -   `func (*Context) (c *Context) SetDash(lengths ...float64)`
 -   `func (*Context) (c *Context) SetDashOffset(offset float64)`
+-   `func (*Context) (c *Context) SetDeviceScale(scale float64)`
 -   `func (*Context) (c *Context) SetFillBrush(b Brush)`
 -   `func (*Context) (c *Context) SetFillRule(rule FillRule)`
 -   `func (*Context) (c *Context) SetHexColor(hex string)`
+-   `func (*Context) (c *Context) SetLCDLayout(layout LCDLayout)`
 -   `func (*Context) (c *Context) SetLineCap(lineCap LineCap)`
 -   `func (*Context) (c *Context) SetLineJoin(join LineJoin)`
 -   `func (*Context) (c *Context) SetLineWidth(width float64)`
 -   `func (*Context) (c *Context) SetMiterLimit(limit float64)`
+-   `func (*Context) (c *Context) SetPath(p *Path)`
 -   `func (*Context) (c *Context) SetPipelineMode(mode PipelineMode)`
 -   `func (*Context) (c *Context) SetPixel(x, y int, col RGBA)`
 -   `func (*Context) (c *Context) SetRGB(r, g, b float64)`
 -   `func (*Context) (c *Context) SetRGBA(r, g, b, a float64)`
 -   `func (*Context) (c *Context) SetRasterizerMode(mode RasterizerMode)`
+-   `func (*Context) (c *Context) SetSharedEncoder(encoder gpucontext.CommandEncoder)`
 -   `func (*Context) (c *Context) SetStroke(stroke Stroke)`
 -   `func (*Context) (c *Context) SetStrokeBrush(b Brush)`
+-   `func (*Context) (c *Context) SetTextMode(mode TextMode)`
 -   `func (*Context) (c *Context) SetTransform(m Matrix)`
 -   `func (*Context) (c *Context) Shear(x, y float64)`
 -   `func (*Context) (c *Context) Stroke() error`
 -   `func (*Context) (c *Context) StrokeBrush() Brush`
+-   `func (*Context) (c *Context) StrokePath(p *Path) error`
 -   `func (*Context) (c *Context) StrokePreserve() error`
+-   `func (*Context) (c *Context) SubmitSharedEncoder(encoder gpucontext.CommandEncoder) error`
+-   `func (*Context) (c *Context) TextMode() TextMode`
+-   `func (*Context) (c *Context) TrackDamageRect(bounds image.Rectangle)`
 -   `func (*Context) (c *Context) Transform(m Matrix)`
 -   `func (*Context) (c *Context) TransformPoint(x, y float64) (float64, float64)`
 -   `func (*Context) (c *Context) Translate(x, y float64)`
@@ -127,12 +159,17 @@
 -   `func (*Context) (c *Context) Clip()`
 -   `func (*Context) (c *Context) ClipPreserve()`
 -   `func (*Context) (c *Context) ClipRect(x, y, w, h float64)`
+-   `func (*Context) (c *Context) ClipRoundRect(x, y, w, h, radius float64)`
 -   `func (*Context) (c *Context) ResetClip()`
 
 ## context_image.go
 
 -   `func (*ImagePattern) (p *ImagePattern) ColorAt(x, y float64) RGBA`
 -   `func (*Context) (c *Context) CreateImagePattern(img *ImageBuf, x, y, w, h int) Pattern`
+-   `func (*Context) (c *Context) CreateOffscreenTexture(width, height int) (gpucontext.TextureView, func())`
+-   `func (*Context) (c *Context) DrawGPUTexture(view gpucontext.TextureView, x, y float64, width, height int)`
+-   `func (*Context) (c *Context) DrawGPUTextureBase(view gpucontext.TextureView, x, y float64, width, height int)`
+-   `func (*Context) (c *Context) DrawGPUTextureWithOpacity(view gpucontext.TextureView, x, y float64, width, height int, opacity float32)`
 -   `func (*Context) (c *Context) DrawImage(img *ImageBuf, x, y float64)`
 -   `func (*Context) (c *Context) DrawImageCircular(img *ImageBuf, cx, cy, radius float64)`
 -   `func (*Context) (c *Context) DrawImageEx(img *ImageBuf, opts DrawImageOptions)`
@@ -147,15 +184,18 @@
 -   `func (*ImagePattern) (p *ImagePattern) SetOpacity(opacity float64)`
 -   `func (*ImagePattern) (p *ImagePattern) SetScale(sx, sy float64)`
 -   `func (*Context) (c *Context) SetStrokePattern(pattern Pattern)`
+-   `func (*ImagePattern) (p *ImagePattern) SetTransform(m Matrix)`
 
 ## context_layer.go
 
 -   `func (*Context) (c *Context) PopLayer()`
 -   `func (*Context) (c *Context) PushLayer(blendMode BlendMode, opacity float64)`
+-   `func (*Context) (c *Context) PushMaskLayer(mask *Mask)`
 -   `func (*Context) (c *Context) SetBlendMode(_ BlendMode)`
 
 ## context_mask.go
 
+-   `func (*Context) (c *Context) ApplyMask(mask *Mask)`
 -   `func (*Context) (c *Context) AsMask() *Mask`
 -   `func (*Context) (c *Context) ClearMask()`
 -   `func (*Context) (c *Context) GetMask() *Mask`
@@ -218,7 +258,7 @@
 
 ## gpu/gpu.go
 
--   `func SetDeviceProvider(provider any) error`
+-   `func SetDeviceProvider(provider gpucontext.DeviceProvider) error`
 
 ## gradient_linear.go
 
@@ -247,16 +287,31 @@
 
 -   `func (*Canvas) (c *Canvas) Close() error`
 -   `func (*Canvas) (c *Canvas) Context() *gg.Context`
+-   `func (*Canvas) (c *Canvas) DeviceScale() float64`
 -   `func (*Canvas) (c *Canvas) Draw(fn func(*gg.Context)) error`
+-   `func (*Canvas) (c *Canvas) EnsureGPUTexture(dc RenderTarget) error`
 -   `func (*Canvas) (c *Canvas) Flush() (any, error)`
+-   `func (*Canvas) (c *Canvas) FlushPixmap() (any, error)`
 -   `func (*Canvas) (c *Canvas) Height() int`
 -   `func (*Canvas) (c *Canvas) IsDirty() bool`
+-   `func (*Canvas) (c *Canvas) LastDamage() image.Rectangle`
+-   `func (*Canvas) (c *Canvas) LastDamageRects() []image.Rectangle`
 -   `func (*Canvas) (c *Canvas) MarkDirty()`
+-   `func (*Canvas) (c *Canvas) MarkDirtyRegion(r image.Rectangle)`
 -   `func MustNew(provider gpucontext.DeviceProvider, width, height int) *Canvas`
+-   `func MustNewWithScale(provider gpucontext.DeviceProvider, width, height int, scale float64) *Canvas`
+-   `func (*Canvas) (c *Canvas) NeedsAnimationFrame() bool`
 -   `func New(provider gpucontext.DeviceProvider, width, height int) (*Canvas, error)`
+-   `func NewWithScale(provider gpucontext.DeviceProvider, width, height int, scale float64) (*Canvas, error)`
+-   `func (*Canvas) (c *Canvas) PixmapTextureView() gpucontext.TextureView`
 -   `func (*Canvas) (c *Canvas) Provider() gpucontext.DeviceProvider`
--   `func (*Canvas) (c *Canvas) RenderDirect(surfaceView any, width, height uint32) error`
+-   `func (*Canvas) (c *Canvas) Render(dc RenderTarget) error`
+-   `func (*Canvas) (c *Canvas) RenderDirect(surfaceView gpucontext.TextureView, width, height uint32) error`
+-   `func (*Canvas) (c *Canvas) RenderDirectWithDamage(surfaceView gpucontext.TextureView, width, height uint32, damage image.Rectangle) error`
+-   `func (*Canvas) (c *Canvas) RenderDirectWithDamageRects(surfaceView gpucontext.TextureView, width, height uint32, rects []image.Rectangle) error`
 -   `func (*Canvas) (c *Canvas) Resize(width, height int) error`
+-   `func (*Canvas) (c *Canvas) SetDeviceScale(scale float64)`
+-   `func (*Canvas) (c *Canvas) SetPresentDamage(rects []image.Rectangle)`
 -   `func (*Canvas) (c *Canvas) Size() (width, height int)`
 -   `func (*Canvas) (c *Canvas) Texture() any`
 -   `func (*Canvas) (c *Canvas) Width() int`
@@ -288,8 +343,10 @@
 -   `func (*Mask) (m *Mask) Fill(value uint8)`
 -   `func (*Mask) (m *Mask) Height() int`
 -   `func (*Mask) (m *Mask) Invert()`
+-   `func NewLuminanceMask(img image.Image) *Mask`
 -   `func NewMask(width, height int) *Mask`
 -   `func NewMaskFromAlpha(img image.Image) *Mask`
+-   `func NewMaskFromData(data []byte, width, height int) *Mask`
 -   `func (*Mask) (m *Mask) Set(x, y int, value uint8)`
 -   `func (*Mask) (m *Mask) Width() int`
 
@@ -313,6 +370,7 @@
 
 ## options.go
 
+-   `func WithDeviceScale(scale float64) ContextOption`
 -   `func WithPipelineMode(mode PipelineMode) ContextOption`
 -   `func WithPixmap(pm *Pixmap) ContextOption`
 -   `func WithRenderer(r Renderer) ContextOption`
@@ -329,9 +387,11 @@
 -   `func (*Paint) (p *Paint) GetBrush() Brush`
 -   `func (*Paint) (p *Paint) GetStroke() Stroke`
 -   `func (*Paint) (p *Paint) IsDashed() bool`
+-   `func (*Paint) (p *Paint) IsSolid() bool`
 -   `func NewPaint() *Paint`
 -   `func (*Paint) (p *Paint) SetBrush(b Brush)`
 -   `func (*Paint) (p *Paint) SetStroke(s Stroke)`
+-   `func (*Paint) (p *Paint) SolidColor() (RGBA, bool)`
 
 ## painter.go
 
@@ -341,23 +401,31 @@
 
 ## path.go
 
+-   `func (*Path) (p *Path) Append(other *Path)`
 -   `func (*Path) (p *Path) Arc(cx, cy, r, angle1, angle2 float64)`
+-   `func (*Path) (p *Path) Bounds() image.Rectangle`
 -   `func (*Path) (p *Path) Circle(cx, cy, r float64)`
 -   `func (*Path) (p *Path) Clear()`
 -   `func (*Path) (p *Path) Clone() *Path`
 -   `func (*Path) (p *Path) Close()`
+-   `func (*Path) (p *Path) Coords() []float64`
 -   `func (*Path) (p *Path) CubicTo(c1x, c1y, c2x, c2y, x, y float64)`
 -   `func (*Path) (p *Path) CurrentPoint() Point`
--   `func (*Path) (p *Path) Elements() []PathElement`
 -   `func (*Path) (p *Path) Ellipse(cx, cy, rx, ry float64)`
 -   `func (*Path) (p *Path) HasCurrentPoint() bool`
+-   `func (*Path) (p *Path) HasCurves() bool`
+-   `func (*Path) (p *Path) Iterate(fn func(verb PathVerb, coords []float64))`
 -   `func (*Path) (p *Path) LineTo(x, y float64)`
 -   `func (*Path) (p *Path) MoveTo(x, y float64)`
 -   `func NewPath() *Path`
+-   `func (*Path) (p *Path) NumVerbs() int`
 -   `func (*Path) (p *Path) QuadraticTo(cx, cy, x, y float64)`
 -   `func (*Path) (p *Path) Rectangle(x, y, w, h float64)`
+-   `func (*Path) (p *Path) Reset()`
 -   `func (*Path) (p *Path) RoundedRectangle(x, y, w, h, r float64)`
+-   `func (PathVerb) (v PathVerb) String() string`
 -   `func (*Path) (p *Path) Transform(m Matrix) *Path`
+-   `func (*Path) (p *Path) Verbs() []PathVerb`
 
 ## path_builder.go
 
@@ -387,6 +455,10 @@
 -   `func (*Path) (p *Path) Reversed() *Path`
 -   `func (*Path) (p *Path) Winding(pt Point) int`
 
+## path_svg.go
+
+-   `func ParseSVGPath(d string) (*Path, error)`
+
 ## pattern.go
 
 -   `func (*SolidPattern) (p *SolidPattern) ColorAt(x, y float64) RGBA`
@@ -406,12 +478,17 @@
 -   `func (*Pixmap) (p *Pixmap) Data() []uint8`
 -   `func (*Pixmap) (p *Pixmap) EncodeJPEG(w io.Writer, quality int) error`
 -   `func (*Pixmap) (p *Pixmap) EncodePNG(w io.Writer) error`
+-   `func (*Pixmap) (p *Pixmap) FillRect(r image.Rectangle, pr, pg, pb, pa uint8)`
 -   `func (*Pixmap) (p *Pixmap) FillSpan(x1, x2, y int, c RGBA)`
 -   `func (*Pixmap) (p *Pixmap) FillSpanBlend(x1, x2, y int, c RGBA)`
 -   `func FromImage(img image.Image) *Pixmap`
+-   `func (*Pixmap) (p *Pixmap) GenerationID() uint64`
 -   `func (*Pixmap) (p *Pixmap) GetPixel(x, y int) RGBA`
 -   `func (*Pixmap) (p *Pixmap) Height() int`
+-   `func (*Pixmap) (p *Pixmap) ImageView() *image.RGBA`
 -   `func NewPixmap(width, height int) *Pixmap`
+-   `func NewPixmapFromBuffer(buf []uint8, width, height int) *Pixmap`
+-   `func (*Pixmap) (p *Pixmap) NotifyPixelsChanged()`
 -   `func (*Pixmap) (p *Pixmap) SavePNG(path string) error`
 -   `func (*Pixmap) (p *Pixmap) Set(x, y int, c color.Color)`
 -   `func (*Pixmap) (p *Pixmap) SetPixel(x, y int, c RGBA)`
@@ -491,14 +568,16 @@
 -   `func (BrushRef) (r BrushRef) IsValid() bool`
 -   `func (ImageRef) (r ImageRef) IsValid() bool`
 -   `func (CommandType) (c CommandType) String() string`
--   `func (StrokeRectCommand) (StrokeRectCommand) Type() CommandType`
+-   `func (DrawImageCommand) (DrawImageCommand) Type() CommandType`
 -   `func (SetStrokeStyleCommand) (SetStrokeStyleCommand) Type() CommandType`
+-   `func (ClipRoundRectCommand) (ClipRoundRectCommand) Type() CommandType`
 -   `func (FillPathCommand) (FillPathCommand) Type() CommandType`
 -   `func (StrokePathCommand) (StrokePathCommand) Type() CommandType`
 -   `func (FillRectCommand) (FillRectCommand) Type() CommandType`
+-   `func (StrokeRectCommand) (StrokeRectCommand) Type() CommandType`
 -   `func (SetClipCommand) (SetClipCommand) Type() CommandType`
--   `func (DrawImageCommand) (DrawImageCommand) Type() CommandType`
 -   `func (DrawTextCommand) (DrawTextCommand) Type() CommandType`
+-   `func (StrokeTextCommand) (StrokeTextCommand) Type() CommandType`
 -   `func (SetFillStyleCommand) (SetFillStyleCommand) Type() CommandType`
 -   `func (ClearClipCommand) (ClearClipCommand) Type() CommandType`
 -   `func (SetLineWidthCommand) (SetLineWidthCommand) Type() CommandType`
@@ -507,6 +586,7 @@
 -   `func (SetMiterLimitCommand) (SetMiterLimitCommand) Type() CommandType`
 -   `func (SetDashCommand) (SetDashCommand) Type() CommandType`
 -   `func (SetFillRuleCommand) (SetFillRuleCommand) Type() CommandType`
+-   `func (SetAntiAliasCommand) (SetAntiAliasCommand) Type() CommandType`
 -   `func (SetTransformCommand) (SetTransformCommand) Type() CommandType`
 -   `func (RestoreCommand) (RestoreCommand) Type() CommandType`
 -   `func (SaveCommand) (SaveCommand) Type() CommandType`
@@ -561,12 +641,14 @@
 
 ## recording/recorder.go
 
+-   `func (*Recorder) (r *Recorder) AntiAlias() bool`
 -   `func (*Recorder) (r *Recorder) Clear()`
 -   `func (*Recorder) (r *Recorder) ClearDash()`
 -   `func (*Recorder) (r *Recorder) ClearPath()`
 -   `func (*Recorder) (r *Recorder) ClearWithColor(c gg.RGBA)`
 -   `func (*Recorder) (r *Recorder) Clip()`
 -   `func (*Recorder) (r *Recorder) ClipPreserve()`
+-   `func (*Recorder) (r *Recorder) ClipRoundRect(x, y, w, h, radius float64)`
 -   `func (*Recorder) (r *Recorder) ClosePath()`
 -   `func (*Recording) (r *Recording) Commands() []Command`
 -   `func (*Recorder) (r *Recorder) CubicTo(c1x, c1y, c2x, c2y, x, y float64)`
@@ -612,6 +694,7 @@
 -   `func (*Recorder) (r *Recorder) RotateAbout(angle, x, y float64)`
 -   `func (*Recorder) (r *Recorder) Save()`
 -   `func (*Recorder) (r *Recorder) Scale(sx, sy float64)`
+-   `func (*Recorder) (r *Recorder) SetAntiAlias(enabled bool)`
 -   `func (*Recorder) (r *Recorder) SetColor(c gg.RGBA)`
 -   `func (*Recorder) (r *Recorder) SetDash(lengths ...float64)`
 -   `func (*Recorder) (r *Recorder) SetDashOffset(offset float64)`
@@ -642,6 +725,8 @@
 -   `func (*Recorder) (r *Recorder) Stroke()`
 -   `func (*Recorder) (r *Recorder) StrokePreserve()`
 -   `func (*Recorder) (r *Recorder) StrokeRectangle(x, y, w, h float64)`
+-   `func (*Recorder) (r *Recorder) StrokeString(s string, x, y float64)`
+-   `func (*Recorder) (r *Recorder) StrokeStringAnchored(s string, x, y, ax, ay float64)`
 -   `func (*Recorder) (r *Recorder) Transform(m Matrix)`
 -   `func (*Recorder) (r *Recorder) TransformPoint(x, y float64) (float64, float64)`
 -   `func (*Recorder) (r *Recorder) Translate(x, y float64)`
@@ -662,6 +747,7 @@
 ## render/device.go
 
 -   `func (NullDeviceHandle) (NullDeviceHandle) Adapter() gpucontext.Adapter`
+-   `func (NullDeviceHandle) (NullDeviceHandle) AdapterInfo() gpucontext.AdapterInfo`
 -   `func DefaultTextureDescriptor(width, height uint32, format gputypes.TextureFormat) TextureDescriptor`
 -   `func (NullDeviceHandle) (NullDeviceHandle) Device() gpucontext.Device`
 -   `func (NullDeviceHandle) (NullDeviceHandle) Queue() gpucontext.Queue`
@@ -775,6 +861,7 @@
 
 ## scene/builder.go
 
+-   `func (*SceneBuilder) (b *SceneBuilder) AntiAlias() bool`
 -   `func (*SceneBuilder) (b *SceneBuilder) Build() *Scene`
 -   `func (*SceneBuilder) (b *SceneBuilder) Clip(shape Shape, fn func(*SceneBuilder)) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) CurrentTransform() Affine`
@@ -783,6 +870,7 @@
 -   `func (*SceneBuilder) (b *SceneBuilder) FillCircle(cx, cy, r float32, brush Brush) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) FillPath(path *Path, brush Brush) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) FillRect(x, y, width, height float32, brush Brush) *SceneBuilder`
+-   `func (*SceneBuilder) (b *SceneBuilder) FillRoundRect(x, y, w, h, rx, ry float32, brush Brush) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) FillWith(shape Shape, brush Brush, style FillStyle) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) Group(fn func(*SceneBuilder)) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) Image(img *Image, rect Rect) *SceneBuilder`
@@ -794,6 +882,7 @@
 -   `func (*SceneBuilder) (b *SceneBuilder) Rotate(angle float32) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) Scale(x, y float32) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) Scene() *Scene`
+-   `func (*SceneBuilder) (b *SceneBuilder) SetAntiAlias(enabled bool) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) Stroke(shape Shape, brush Brush, width float32) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) StrokeCircle(cx, cy, r float32, brush Brush, lineWidth float32) *SceneBuilder`
 -   `func (*SceneBuilder) (b *SceneBuilder) StrokePath(path *Path, brush Brush, lineWidth float32) *SceneBuilder`
@@ -821,13 +910,23 @@
 -   `func (*LayerCache) (c *LayerCache) Stats() CacheStats`
 -   `func (*LayerCache) (c *LayerCache) Trim(targetSize int64)`
 
+## scene/damage.go
+
+-   `func (*DamageTracker) (dt *DamageTracker) ComputeDamage(objects []TaggedBounds) image.Rectangle`
+-   `func (*DamageTracker) (dt *DamageTracker) IsFirstRender() bool`
+-   `func (*DamageTracker) (dt *DamageTracker) MarkRendered()`
+-   `func NewDamageTracker() *DamageTracker`
+-   `func (*DamageTracker) (dt *DamageTracker) Reset()`
+
 ## scene/decoder.go
 
+-   `func (*Decoder) (d *Decoder) AntiAlias() bool`
 -   `func (*Decoder) (d *Decoder) Brush() (r, g, b, a float32)`
 -   `func (*Decoder) (d *Decoder) CollectPath() *Path`
 -   `func (*Decoder) (d *Decoder) CubicTo() (c1x, c1y, c2x, c2y, x, y float32)`
 -   `func (*Decoder) (d *Decoder) Encoding() *Encoding`
 -   `func (*Decoder) (d *Decoder) Fill() (brush Brush, style FillStyle)`
+-   `func (*Decoder) (d *Decoder) FillRoundRect() (brush Brush, style FillStyle, rect Rect, rx, ry float32)`
 -   `func (*Decoder) (d *Decoder) HasMore() bool`
 -   `func (*Decoder) (d *Decoder) Image() (imageIndex uint32, transform Affine)`
 -   `func (*Decoder) (d *Decoder) LineTo() (x, y float32)`
@@ -842,34 +941,42 @@
 -   `func (*Decoder) (d *Decoder) SkipPath()`
 -   `func (*Decoder) (d *Decoder) Stroke() (brush Brush, style *StrokeStyle)`
 -   `func (*Decoder) (d *Decoder) Tag() Tag`
+-   `func (*Decoder) (d *Decoder) Text() (run GlyphRunData, glyphs []GlyphEntry, str string, brush Brush)`
 -   `func (*Decoder) (d *Decoder) Transform() Affine`
 
 ## scene/encoding.go
 
 -   `func AffineFromMatrix(m gg.Matrix) Affine`
 -   `func (*Encoding) (e *Encoding) Append(other *Encoding)`
+-   `func (*Encoding) (e *Encoding) AppendWithImages(other *Encoding, imageOffset uint32)`
+-   `func (*Encoding) (e *Encoding) AppendWithTranslation(other *Encoding, dx, dy float32, imageOffset uint32)`
 -   `func (*Encoding) (e *Encoding) Bounds() Rect`
 -   `func (*Encoding) (e *Encoding) Brushes() []Brush`
 -   `func (*Encoding) (e *Encoding) Capacity() int`
 -   `func (*Encoding) (e *Encoding) Clone() *Encoding`
+-   `func (*Encoding) (e *Encoding) CommandBounds() []TaggedBounds`
 -   `func DefaultStrokeStyle() *StrokeStyle`
 -   `func (*Encoding) (e *Encoding) DrawData() []uint32`
 -   `func EmptyRect() Rect`
+-   `func (*Encoding) (e *Encoding) EncodeAntiAlias(enabled bool)`
 -   `func (*Encoding) (e *Encoding) EncodeBeginClip()`
 -   `func (*Encoding) (e *Encoding) EncodeBrush(brush Brush) int`
 -   `func (*Encoding) (e *Encoding) EncodeEndClip()`
 -   `func (*Encoding) (e *Encoding) EncodeFill(brush Brush, style FillStyle)`
+-   `func (*Encoding) (e *Encoding) EncodeFillRoundRect(brush Brush, style FillStyle, rect Rect, rx, ry float32)`
 -   `func (*Encoding) (e *Encoding) EncodeImage(imageIndex uint32, transform Affine)`
 -   `func (*Encoding) (e *Encoding) EncodePath(p *gg.Path)`
 -   `func (*Encoding) (e *Encoding) EncodePopLayer()`
 -   `func (*Encoding) (e *Encoding) EncodePushLayer(blend BlendMode, alpha float32)`
 -   `func (*Encoding) (e *Encoding) EncodeStroke(brush Brush, style *StrokeStyle)`
+-   `func (*Encoding) (e *Encoding) EncodeText(run GlyphRunData, glyphs []GlyphEntry, str string)`
 -   `func (*Encoding) (e *Encoding) EncodeTransform(t Affine)`
 -   `func (*Encoding) (e *Encoding) EncodeTransformFromMatrix(m gg.Matrix)`
 -   `func (*Iterator) (it *Iterator) GetBrush(idx uint32) (Brush, bool)`
 -   `func (*Encoding) (e *Encoding) Hash() uint64`
 -   `func (Rect) (r Rect) Height() float32`
 -   `func IdentityAffine() Affine`
+-   `func (Rect) (r Rect) ImageRect() image.Rectangle`
 -   `func (BlendMode) (mode BlendMode) IsAdvanced() bool`
 -   `func (Rect) (r Rect) IsEmpty() bool`
 -   `func (*Encoding) (e *Encoding) IsEmpty() bool`
@@ -877,6 +984,7 @@
 -   `func (Affine) (a Affine) IsIdentity() bool`
 -   `func (BlendMode) (mode BlendMode) IsPorterDuff() bool`
 -   `func (Affine) (a Affine) Multiply(b Affine) Affine`
+-   `func NewAffine(a, b, c, d, e, f float32) Affine`
 -   `func NewEncoding() *Encoding`
 -   `func (*Encoding) (e *Encoding) NewIterator() *Iterator`
 -   `func (*Iterator) (it *Iterator) Next() (Tag, bool)`
@@ -885,8 +993,9 @@
 -   `func (*Iterator) (it *Iterator) ReadDrawData(n int) []uint32`
 -   `func (*Iterator) (it *Iterator) ReadPathData(n int) []float32`
 -   `func (*Iterator) (it *Iterator) ReadTransform() (Affine, bool)`
--   `func (*Encoding) (e *Encoding) Reset()`
+-   `func (*Encoding) (e *Encoding) RecordCommandBounds(bounds Rect)`
 -   `func (*Iterator) (it *Iterator) Reset()`
+-   `func (*Encoding) (e *Encoding) Reset()`
 -   `func RotateAffine(angle float32) Affine`
 -   `func ScaleAffine(x, y float32) Affine`
 -   `func (*Encoding) (e *Encoding) ShapeCount() int`
@@ -894,6 +1003,7 @@
 -   `func SolidBrush(c gg.RGBA) Brush`
 -   `func (BlendMode) (mode BlendMode) String() string`
 -   `func (*Encoding) (e *Encoding) Tags() []Tag`
+-   `func (*Encoding) (e *Encoding) TextData() []byte`
 -   `func (Affine) (a Affine) TransformPoint(x, y float32) (float32, float32)`
 -   `func (*Encoding) (e *Encoding) Transforms() []Affine`
 -   `func TranslateAffine(x, y float32) Affine`
@@ -912,6 +1022,12 @@
 -   `func (*FilterChain) (fc *FilterChain) Len() int`
 -   `func NewFilterChain(filters ...Filter) *FilterChain`
 -   `func (FilterType) (ft FilterType) String() string`
+
+## scene/gpu_renderer.go
+
+-   `func CanUseGPU() bool`
+-   `func NewGPUSceneRenderer(dc *gg.Context) *GPUSceneRenderer`
+-   `func (*GPUSceneRenderer) (r *GPUSceneRenderer) RenderScene(scene *Scene) error`
 
 ## scene/layer.go
 
@@ -1005,6 +1121,9 @@
 -   `func (*Renderer) (r *Renderer) RenderDirty(target *gg.Pixmap, scene *Scene, dirty *parallel.DirtyRegion) error`
 -   `func (*Renderer) (r *Renderer) RenderDirtyWithContext(ctx context.Context, target *gg.Pixmap, scene *Scene, dirty *parallel.DirtyRegion) error`
 -   `func (*Renderer) (r *Renderer) RenderWithContext(ctx context.Context, target *gg.Pixmap, scene *Scene) error`
+-   `func (*Renderer) (r *Renderer) RenderWithDamage(target *gg.Pixmap, scene *Scene, tracker *DamageTracker) (
+	damageRect image.Rectangle, err error,
+)`
 -   `func (*Renderer) (r *Renderer) Resize(width, height int)`
 -   `func (*Renderer) (r *Renderer) Stats() RenderStats`
 -   `func (*Renderer) (r *Renderer) TileCount() int`
@@ -1017,18 +1136,22 @@
 
 ## scene/scene.go
 
--   `func (*Scene) (s *Scene) Bounds() Rect`
+-   `func (*Scene) (s *Scene) AntiAlias() bool`
+-   `func (*Scene) (s *Scene) Append(other *Scene)`
+-   `func (*Scene) (s *Scene) AppendWithTranslation(other *Scene, dx, dy float32)`
 -   `func (*Image) (img *Image) Bounds() Rect`
+-   `func (*Scene) (s *Scene) Bounds() Rect`
 -   `func (*Scene) (s *Scene) ClipBounds() Rect`
 -   `func (*Scene) (s *Scene) ClipDepth() int`
 -   `func (*Scene) (s *Scene) DrawImage(img *Image, transform Affine)`
 -   `func (*Scene) (s *Scene) Encoding() *Encoding`
 -   `func (*Scene) (s *Scene) Fill(style FillStyle, transform Affine, brush Brush, shape Shape)`
 -   `func (*Scene) (s *Scene) Flatten() *Encoding`
+-   `func (*Scene) (s *Scene) FontRegistry() map[uint64]*text.FontSource`
 -   `func (*ScenePool) (sp *ScenePool) Get() *Scene`
 -   `func (*Scene) (s *Scene) Images() []*Image`
--   `func (*Scene) (s *Scene) IsEmpty() bool`
 -   `func (*Image) (img *Image) IsEmpty() bool`
+-   `func (*Scene) (s *Scene) IsEmpty() bool`
 -   `func (*Scene) (s *Scene) LayerDepth() int`
 -   `func NewImage(width, height int) *Image`
 -   `func NewScene() *Scene`
@@ -1040,11 +1163,14 @@
 -   `func (*Scene) (s *Scene) PushLayer(blend BlendMode, alpha float32, clip Shape)`
 -   `func (*Scene) (s *Scene) PushTransform(t Affine)`
 -   `func (*ScenePool) (sp *ScenePool) Put(scene *Scene)`
+-   `func (*Scene) (s *Scene) RegisterFont(source *text.FontSource) uint64`
 -   `func (*Scene) (s *Scene) Reset()`
 -   `func (*Scene) (s *Scene) Rotate(angle float32)`
 -   `func (*Scene) (s *Scene) Scale(x, y float32)`
+-   `func (*Scene) (s *Scene) SetAntiAlias(enabled bool)`
 -   `func (*Scene) (s *Scene) SetTransform(t Affine)`
 -   `func (*Scene) (s *Scene) Stroke(style *StrokeStyle, transform Affine, brush Brush, shape Shape)`
+-   `func (*Scene) (s *Scene) TaggedBounds() []TaggedBounds`
 -   `func (*Scene) (s *Scene) Transform() Affine`
 -   `func (*Scene) (s *Scene) TransformDepth() int`
 -   `func (*Scene) (s *Scene) Translate(x, y float32)`
@@ -1054,52 +1180,64 @@
 ## scene/shape.go
 
 -   `func (*CompositeShape) (cs *CompositeShape) AddShape(shape Shape)`
--   `func (*TransformShape) (ts *TransformShape) Bounds() Rect`
--   `func (*PathShape) (ps *PathShape) Bounds() Rect`
--   `func (*LineShape) (l *LineShape) Bounds() Rect`
--   `func (*CompositeShape) (cs *CompositeShape) Bounds() Rect`
--   `func (*PolygonShape) (p *PolygonShape) Bounds() Rect`
--   `func (*RoundedRectShape) (r *RoundedRectShape) Bounds() Rect`
 -   `func (*RegularPolygonShape) (rp *RegularPolygonShape) Bounds() Rect`
--   `func (*StarShape) (s *StarShape) Bounds() Rect`
+-   `func (*PolygonShape) (p *PolygonShape) Bounds() Rect`
 -   `func (*RectShape) (r *RectShape) Bounds() Rect`
--   `func (*PieShape) (p *PieShape) Bounds() Rect`
--   `func (*CircleShape) (c *CircleShape) Bounds() Rect`
+-   `func (*LineShape) (l *LineShape) Bounds() Rect`
 -   `func (*ArcShape) (a *ArcShape) Bounds() Rect`
+-   `func (*PieShape) (p *PieShape) Bounds() Rect`
+-   `func (*RoundRectShape) (s *RoundRectShape) Bounds() Rect`
+-   `func (*RoundedRectShape) (r *RoundedRectShape) Bounds() Rect`
+-   `func (*PathShape) (ps *PathShape) Bounds() Rect`
+-   `func (*TransformShape) (ts *TransformShape) Bounds() Rect`
+-   `func (*StarShape) (s *StarShape) Bounds() Rect`
+-   `func (*CircleShape) (c *CircleShape) Bounds() Rect`
 -   `func (*EllipseShape) (e *EllipseShape) Bounds() Rect`
--   `func (*CircleShape) (c *CircleShape) Contains(px, py float32) bool`
--   `func (*EllipseShape) (e *EllipseShape) Contains(px, py float32) bool`
+-   `func (*CompositeShape) (cs *CompositeShape) Bounds() Rect`
+-   `func (*EllipseShape) (e *EllipseShape) BuildPathInto(p *Path)`
+-   `func (*RectShape) (r *RectShape) BuildPathInto(p *Path)`
+-   `func (*CircleShape) (c *CircleShape) BuildPathInto(p *Path)`
+-   `func (*RoundedRectShape) (r *RoundedRectShape) BuildPathInto(p *Path)`
+-   `func (*PolygonShape) (p *PolygonShape) BuildPathInto(dst *Path)`
+-   `func (*LineShape) (l *LineShape) BuildPathInto(p *Path)`
 -   `func (*RectShape) (r *RectShape) Contains(px, py float32) bool`
+-   `func (*EllipseShape) (e *EllipseShape) Contains(px, py float32) bool`
+-   `func (*CircleShape) (c *CircleShape) Contains(px, py float32) bool`
+-   `func (*RoundRectShape) (s *RoundRectShape) Contains(px, py float32) bool`
 -   `func (*LineShape) (l *LineShape) Length() float32`
 -   `func NewArcShape(cx, cy, rx, ry, startAngle, endAngle float32, sweepClockwise bool) *ArcShape`
 -   `func NewCircleShape(cx, cy, r float32) *CircleShape`
 -   `func NewCompositeShape(shapes ...Shape) *CompositeShape`
 -   `func NewEllipseShape(cx, cy, rx, ry float32) *EllipseShape`
+-   `func NewGGPathShape(ggPath *gg.Path) *PathShape`
 -   `func NewLineShape(x1, y1, x2, y2 float32) *LineShape`
 -   `func NewPathShape(path *Path) *PathShape`
 -   `func NewPieShape(cx, cy, r, startAngle, endAngle float32, sweepClockwise bool) *PieShape`
 -   `func NewPolygonShape(points ...float32) *PolygonShape`
 -   `func NewRectShape(x, y, width, height float32) *RectShape`
 -   `func NewRegularPolygonShape(cx, cy, r float32, sides int, rotation float32) *RegularPolygonShape`
+-   `func NewRoundRectShape(rect Rect, rx, ry float32) *RoundRectShape`
+-   `func NewRoundRectShapeUniform(rect Rect, r float32) *RoundRectShape`
 -   `func NewRoundedRectShape(x, y, width, height, radius float32) *RoundedRectShape`
 -   `func NewStarShape(cx, cy, outerRadius, innerRadius float32, points int, rotation float32) *StarShape`
 -   `func NewTransformShape(shape Shape, transform Affine) *TransformShape`
 -   `func (*PolygonShape) (p *PolygonShape) Point(i int) (x, y float32, ok bool)`
 -   `func (*PolygonShape) (p *PolygonShape) PointCount() int`
 -   `func (*CompositeShape) (cs *CompositeShape) ShapeCount() int`
--   `func (*ArcShape) (a *ArcShape) ToPath() *Path`
--   `func (*EllipseShape) (e *EllipseShape) ToPath() *Path`
 -   `func (*LineShape) (l *LineShape) ToPath() *Path`
--   `func (*PieShape) (p *PieShape) ToPath() *Path`
--   `func (*StarShape) (s *StarShape) ToPath() *Path`
--   `func (*RegularPolygonShape) (rp *RegularPolygonShape) ToPath() *Path`
 -   `func (*TransformShape) (ts *TransformShape) ToPath() *Path`
+-   `func (*EllipseShape) (e *EllipseShape) ToPath() *Path`
+-   `func (*RegularPolygonShape) (rp *RegularPolygonShape) ToPath() *Path`
+-   `func (*PieShape) (p *PieShape) ToPath() *Path`
+-   `func (*RoundRectShape) (s *RoundRectShape) ToPath() *Path`
+-   `func (*PolygonShape) (p *PolygonShape) ToPath() *Path`
+-   `func (*ArcShape) (a *ArcShape) ToPath() *Path`
 -   `func (*CircleShape) (c *CircleShape) ToPath() *Path`
 -   `func (*RoundedRectShape) (r *RoundedRectShape) ToPath() *Path`
 -   `func (*PathShape) (ps *PathShape) ToPath() *Path`
 -   `func (*CompositeShape) (cs *CompositeShape) ToPath() *Path`
 -   `func (*RectShape) (r *RectShape) ToPath() *Path`
--   `func (*PolygonShape) (p *PolygonShape) ToPath() *Path`
+-   `func (*StarShape) (s *StarShape) ToPath() *Path`
 
 ## scene/tag.go
 
@@ -1115,7 +1253,7 @@
 -   `func (*TextShape) (ts *TextShape) Bounds() Rect`
 -   `func (*TextRenderer) (r *TextRenderer) Config() TextRendererConfig`
 -   `func DefaultTextRendererConfig() TextRendererConfig`
--   `func (*Scene) (s *Scene) DrawGlyphs(glyphs []text.ShapedGlyph, face text.Face, brush Brush) error`
+-   `func (*Scene) (s *Scene) DrawGlyphs(str string, glyphs []text.ShapedGlyph, face text.Face, x, y float32, brush Brush) error`
 -   `func (*Scene) (s *Scene) DrawText(str string, face text.Face, x, y float32, brush Brush) error`
 -   `func (*TextRendererPool) (p *TextRendererPool) Get() *TextRenderer`
 -   `func NewTextRenderer() *TextRenderer`
@@ -1127,8 +1265,6 @@
 -   `func (*TextRenderer) (r *TextRenderer) RenderGlyphs(glyphs []text.ShapedGlyph, face text.Face) ([]*RenderedGlyph, error)`
 -   `func (*TextRenderer) (r *TextRenderer) RenderRun(run *text.ShapedRun) ([]*RenderedGlyph, error)`
 -   `func (*TextRenderer) (r *TextRenderer) RenderText(str string, face text.Face) ([]*RenderedGlyph, error)`
--   `func (*TextRenderer) (r *TextRenderer) RenderTextToScene(s *Scene, str string, face text.Face, x, y float32, brush Brush) error`
--   `func (*TextRenderer) (r *TextRenderer) RenderToScene(s *Scene, glyphs []text.ShapedGlyph, face text.Face, brush Brush) error`
 -   `func (*TextRenderer) (r *TextRenderer) SetConfig(config TextRendererConfig)`
 -   `func TextAdvance(glyphs []*RenderedGlyph) float32`
 -   `func TextBounds(glyphs []*RenderedGlyph) Rect`
@@ -1168,6 +1304,8 @@
 -   `func (*SoftwareRenderer) (r *SoftwareRenderer) Fill(pixmap *Pixmap, p *Path, paint *Paint) error`
 -   `func NewSoftwareRenderer(width, height int) *SoftwareRenderer`
 -   `func (*SoftwareRenderer) (r *SoftwareRenderer) Resize(width, height int)`
+-   `func (*SoftwareRenderer) (r *SoftwareRenderer) SetAntiAlias(enabled bool)`
+-   `func (*SoftwareRenderer) (r *SoftwareRenderer) SetDeviceScale(scale float32)`
 -   `func (*SoftwareRenderer) (r *SoftwareRenderer) Stroke(pixmap *Pixmap, p *Path, paint *Paint) error`
 
 ## solver.go
@@ -1291,8 +1429,23 @@
 -   `func (FillStyle) (f FillStyle) WithRule(r FillRule) FillStyle`
 -   `func (StrokeStyle) (s StrokeStyle) WithWidth(w float64) StrokeStyle`
 
+## svg/parser.go
+
+-   `func Parse(data []byte) (*Document, error)`
+
+## svg/svg.go
+
+-   `func Render(data []byte, width, height int) (*image.RGBA, error)`
+-   `func (*Document) (d *Document) Render(width, height int) *image.RGBA`
+-   `func (*Document) (d *Document) RenderTo(dc *gg.Context, x, y, width, height float64)`
+-   `func (*Document) (d *Document) RenderToWithColor(dc *gg.Context, x, y, width, height float64, c color.Color)`
+-   `func RenderWithColor(data []byte, width, height int, c color.Color) (*image.RGBA, error)`
+-   `func (*Document) (d *Document) RenderWithColor(width, height int, c color.Color) *image.RGBA`
+-   `func (*Document) (d *Document) String() string`
+
 ## text.go
 
+-   `func (*Context) (c *Context) DrawShapedGlyphs(glyphs []text.ShapedGlyph, face text.Face, x, y float64)`
 -   `func (*Context) (c *Context) DrawString(s string, x, y float64)`
 -   `func (*Context) (c *Context) DrawStringAnchored(s string, x, y, ax, ay float64)`
 -   `func (*Context) (c *Context) DrawStringWrapped(s string, x, y, ax, ay, width, lineSpacing float64, align Align)`
@@ -1301,6 +1454,9 @@
 -   `func (*Context) (c *Context) MeasureMultilineString(s string, lineSpacing float64) (width, height float64)`
 -   `func (*Context) (c *Context) MeasureString(s string) (w, h float64)`
 -   `func (*Context) (c *Context) SetFont(face text.Face)`
+-   `func (*Context) (c *Context) StrokeString(s string, x, y float64)`
+-   `func (*Context) (c *Context) StrokeStringAnchored(s string, x, y, ax, ay float64)`
+-   `func (*Context) (c *Context) TextPath(s string, x, y float64) *Path`
 -   `func (*Context) (c *Context) WordWrap(s string, w float64) []string`
 
 ## text/cache.go
@@ -1494,11 +1650,89 @@
 -   `func SetGlobalGlyphCache(cache *GlyphCache) *GlyphCache`
 -   `func (*GlyphCache) (c *GlyphCache) Stats() (hits, misses, evictions, insertions uint64)`
 
+## text/glyph_mask_atlas.go
+
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) AdvanceFrame()`
+-   `func (*glyphMaskShelfAllocator) (a *glyphMaskShelfAllocator) Allocate(w, h int) (x, y int, ok bool)`
+-   `func (*glyphMaskShelfAllocator) (a *glyphMaskShelfAllocator) CanFit(w, h int) bool`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) Clear()`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) Config() GlyphMaskAtlasConfig`
+-   `func DefaultGlyphMaskAtlasConfig() GlyphMaskAtlasConfig`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) DirtyPages() []int`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) EntryCount() int`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) Get(key GlyphMaskKey) (GlyphMaskRegion, bool)`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) GetOrRasterize(
+	key GlyphMaskKey,
+	rasterize func() (mask []byte, maskW, maskH int, bearingX, bearingY float32, err error),
+) (GlyphMaskRegion, error)`
+-   `func MakeGlyphMaskKey(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey`
+-   `func MakeGlyphMaskKeyAliased(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey`
+-   `func MakeGlyphMaskKeyBucketed(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) MarkClean(index int)`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) MemoryUsage() int64`
+-   `func NewGlyphMaskAtlas(config GlyphMaskAtlasConfig) (*GlyphMaskAtlas, error)`
+-   `func NewGlyphMaskAtlasDefault() *GlyphMaskAtlas`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) PageCount() int`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) PageR8Data(index int) (data []byte, width, height int)`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) Put(key GlyphMaskKey, mask []byte, maskW, maskH int, bearingX, bearingY float32) (GlyphMaskRegion, error)`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) PutLCD(key GlyphMaskKey, rgbMask []byte, logicalW, maskH int, bearingX, bearingY float32) (GlyphMaskRegion, error)`
+-   `func (*glyphMaskShelfAllocator) (a *glyphMaskShelfAllocator) Reset()`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) Stats() (hits, misses uint64, entryCount, pageCount int)`
+-   `func (*GlyphMaskAtlas) (a *GlyphMaskAtlas) UnderPressure() bool`
+-   `func (*GlyphMaskAtlasConfig) (c *GlyphMaskAtlasConfig) Validate() error`
+
+## text/glyph_mask_rasterizer.go
+
+-   `func (*glyphPath) (p *glyphPath) IsEmpty() bool`
+-   `func NewGlyphMaskRasterizer() *GlyphMaskRasterizer`
+-   `func (*glyphPath) (p *glyphPath) Points() []float32`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) Rasterize(
+	font ParsedFont,
+	gid GlyphID,
+	size float64,
+	subpixelX, subpixelY float64,
+) (*GlyphMaskResult, error)`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) RasterizeAliased(
+	font ParsedFont,
+	gid GlyphID,
+	size float64,
+	subpixelX, subpixelY float64,
+	hinting Hinting,
+) (*GlyphMaskResult, error)`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) RasterizeHinted(
+	font ParsedFont,
+	gid GlyphID,
+	size float64,
+	subpixelX, subpixelY float64,
+	hinting Hinting,
+) (*GlyphMaskResult, error)`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) RasterizeLCD(
+	font ParsedFont,
+	gid GlyphID,
+	size float64,
+	subpixelX, subpixelY float64,
+	hinting Hinting,
+	filter LCDFilter,
+	layout LCDLayout,
+) (*LCDMaskResult, error)`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) RasterizeLCDOutline(
+	outline *GlyphOutline,
+	subpixelX, subpixelY float64,
+	filter LCDFilter,
+	layout LCDLayout,
+) (*LCDMaskResult, error)`
+-   `func (*GlyphMaskRasterizer) (r *GlyphMaskRasterizer) RasterizeOutline(
+	outline *GlyphOutline,
+	subpixelX, subpixelY float64,
+) (*GlyphMaskResult, error)`
+-   `func (*glyphPath) (p *glyphPath) Verbs() []raster.PathVerb`
+
 ## text/glyph_outline.go
 
 -   `func (*GlyphOutline) (o *GlyphOutline) Clone() *GlyphOutline`
 -   `func (*FontError) (e *FontError) Error() string`
--   `func (*OutlineExtractor) (e *OutlineExtractor) ExtractOutline(font ParsedFont, gid GlyphID, size float64) (*GlyphOutline, error)`
+-   `func (*OutlineExtractor) (e *OutlineExtractor) ExtractOutline(parsedFont ParsedFont, gid GlyphID, size float64) (*GlyphOutline, error)`
+-   `func (*OutlineExtractor) (e *OutlineExtractor) ExtractOutlineHinted(parsedFont ParsedFont, gid GlyphID, size float64, hinting Hinting) (*GlyphOutline, error)`
 -   `func IdentityTransform() *AffineTransform`
 -   `func (*GlyphOutline) (o *GlyphOutline) IsEmpty() bool`
 -   `func (*AffineTransform) (m *AffineTransform) Multiply(other *AffineTransform) *AffineTransform`
@@ -1582,6 +1816,12 @@
 -   `func LayoutTextSimple(text string, face Face) *Layout`
 -   `func LayoutTextWithContext(ctx context.Context, text string, face Face, opts LayoutOptions) (*Layout, error)`
 -   `func (Alignment) (a Alignment) String() string`
+
+## text/lcd_filter.go
+
+-   `func (*LCDFilter) (f *LCDFilter) Apply(dst []byte, src []byte, width int)`
+-   `func DefaultLCDFilter() LCDFilter`
+-   `func (LCDLayout) (l LCDLayout) String() string`
 
 ## text/metrics.go
 
@@ -1752,6 +1992,7 @@
 ## text/options.go
 
 -   `func WithCacheLimit(n int) SourceOption`
+-   `func WithCollectionIndex(index int) SourceOption`
 -   `func WithDirection(d Direction) FaceOption`
 -   `func WithHinting(h Hinting) FaceOption`
 -   `func WithLanguage(lang string) FaceOption`
@@ -1772,6 +2013,7 @@
 -   `func (*ximageParsedFont) (f *ximageParsedFont) Name() string`
 -   `func (*ximageParsedFont) (f *ximageParsedFont) NumGlyphs() int`
 -   `func (*ximageParser) (p *ximageParser) Parse(data []byte) (ParsedFont, error)`
+-   `func (*ximageParser) (p *ximageParser) ParseIndex(data []byte, index int) (ParsedFont, error)`
 -   `func (*ximageParsedFont) (f *ximageParsedFont) UnitsPerEm() int`
 
 ## text/rasterize.go
@@ -1888,9 +2130,14 @@
 
 ## text/wrap.go
 
+-   `func IsCJKRune(r rune) bool`
 -   `func MeasureText(text string, face Face) float64`
 -   `func (WrapMode) (m WrapMode) String() string`
 -   `func WrapText(text string, face Face, maxWidth float64, mode WrapMode) []WrapResult`
+
+## text_mode.go
+
+-   `func (TextMode) (m TextMode) String() string`
 
 ## vec.go
 

@@ -47,6 +47,8 @@
                     
                     <li><a href="#func-Lerp">Lerp</a></li>
                     
+                    <li><a href="#func-ParseHex">ParseHex</a></li>
+                    
                     <li><a href="#func-Premultiply">Premultiply</a></li>
                     
                     <li><a href="#func-RGB">RGB</a></li>
@@ -182,6 +184,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -302,6 +309,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -313,6 +325,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -422,6 +439,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -507,6 +539,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -528,6 +570,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -653,6 +700,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -807,44 +859,10 @@
     
 
     <pre><code class="language-go">func Hex(hex string) RGBA {
-	if hex != "" && hex[0] == '#' {
-		hex = hex[1:]
+	if c, err := ParseHex(hex); err == nil {
+		return c
 	}
-
-	var r, g, b, a uint32
-	a = 255
-
-	switch len(hex) {
-	case 3:	// RGB
-		parseHex(hex[0:1], &r)
-		parseHex(hex[1:2], &g)
-		parseHex(hex[2:3], &b)
-		r, g, b = r*17, g*17, b*17
-	case 4:	// RGBA
-		parseHex(hex[0:1], &r)
-		parseHex(hex[1:2], &g)
-		parseHex(hex[2:3], &b)
-		parseHex(hex[3:4], &a)
-		r, g, b, a = r*17, g*17, b*17, a*17
-	case 6:	// RRGGBB
-		parseHex(hex[0:2], &r)
-		parseHex(hex[2:4], &g)
-		parseHex(hex[4:6], &b)
-	case 8:	// RRGGBBAA
-		parseHex(hex[0:2], &r)
-		parseHex(hex[2:4], &g)
-		parseHex(hex[4:6], &b)
-		parseHex(hex[6:8], &a)
-	default:
-		return RGBA{R: 0, G: 0, B: 0, A: 1}
-	}
-
-	return RGBA{
-		R:	float64(r) / 255,
-		G:	float64(g) / 255,
-		B:	float64(b) / 255,
-		A:	float64(a) / 255,
-	}
+	return RGBA{R: 0, G: 0, B: 0, A: 1}
 }
 </code></pre>
 </div>
@@ -869,6 +887,60 @@
 		B:	c.B + (other.B-c.B)*t,
 		A:	c.A + (other.A-c.A)*t,
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ParseHex">
+    <div class="item-header">
+        <h4>func ParseHex</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ParseHex creates a color from a hex string, returning an error for invalid formats.</p>
+          
+        <p>Supports formats: "RGB", "RGBA", "RRGGBB", "RRGGBBAA".</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func ParseHex(hex string) (RGBA, error) {
+	original := hex
+	if hex != "" && hex[0] == '#' {
+		hex = hex[1:]
+	}
+
+	var r, g, b, a uint32
+	a = 255
+	var valid bool
+
+	switch len(hex) {
+	case 3:	// RGB
+		valid = parseHex(hex[0:1], &r) && parseHex(hex[1:2], &g) && parseHex(hex[2:3], &b)
+		r, g, b = r*17, g*17, b*17
+	case 4:	// RGBA
+		valid = parseHex(hex[0:1], &r) && parseHex(hex[1:2], &g) && parseHex(hex[2:3], &b) && parseHex(hex[3:4], &a)
+		r, g, b, a = r*17, g*17, b*17, a*17
+	case 6:	// RRGGBB
+		valid = parseHex(hex[0:2], &r) && parseHex(hex[2:4], &g) && parseHex(hex[4:6], &b)
+	case 8:	// RRGGBBAA
+		valid = parseHex(hex[0:2], &r) && parseHex(hex[2:4], &g) && parseHex(hex[4:6], &b) && parseHex(hex[6:8], &a)
+	default:
+		valid = false
+	}
+
+	if !valid {
+		return RGBA{R: 0, G: 0, B: 0, A: 1}, fmt.Errorf("invalid hex color format: %q", original)
+	}
+
+	return RGBA{
+		R:	float64(r) / 255,
+		G:	float64(g) / 255,
+		B:	float64(b) / 255,
+		A:	float64(a) / 255,
+	}, nil
 }
 </code></pre>
 </div>

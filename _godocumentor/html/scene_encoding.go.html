@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -291,6 +301,10 @@
                     
                     <li><a href="#func-Append">Append</a></li>
                     
+                    <li><a href="#func-AppendWithImages">AppendWithImages</a></li>
+                    
+                    <li><a href="#func-AppendWithTranslation">AppendWithTranslation</a></li>
+                    
                     <li><a href="#func-Bounds">Bounds</a></li>
                     
                     <li><a href="#func-Brushes">Brushes</a></li>
@@ -299,11 +313,15 @@
                     
                     <li><a href="#func-Clone">Clone</a></li>
                     
+                    <li><a href="#func-CommandBounds">CommandBounds</a></li>
+                    
                     <li><a href="#func-DefaultStrokeStyle">DefaultStrokeStyle</a></li>
                     
                     <li><a href="#func-DrawData">DrawData</a></li>
                     
                     <li><a href="#func-EmptyRect">EmptyRect</a></li>
+                    
+                    <li><a href="#func-EncodeAntiAlias">EncodeAntiAlias</a></li>
                     
                     <li><a href="#func-EncodeBeginClip">EncodeBeginClip</a></li>
                     
@@ -312,6 +330,8 @@
                     <li><a href="#func-EncodeEndClip">EncodeEndClip</a></li>
                     
                     <li><a href="#func-EncodeFill">EncodeFill</a></li>
+                    
+                    <li><a href="#func-EncodeFillRoundRect">EncodeFillRoundRect</a></li>
                     
                     <li><a href="#func-EncodeImage">EncodeImage</a></li>
                     
@@ -322,6 +342,8 @@
                     <li><a href="#func-EncodePushLayer">EncodePushLayer</a></li>
                     
                     <li><a href="#func-EncodeStroke">EncodeStroke</a></li>
+                    
+                    <li><a href="#func-EncodeText">EncodeText</a></li>
                     
                     <li><a href="#func-EncodeTransform">EncodeTransform</a></li>
                     
@@ -334,6 +356,8 @@
                     <li><a href="#func-Height">Height</a></li>
                     
                     <li><a href="#func-IdentityAffine">IdentityAffine</a></li>
+                    
+                    <li><a href="#func-ImageRect">ImageRect</a></li>
                     
                     <li><a href="#func-IsAdvanced">IsAdvanced</a></li>
                     
@@ -348,6 +372,8 @@
                     <li><a href="#func-IsPorterDuff">IsPorterDuff</a></li>
                     
                     <li><a href="#func-Multiply">Multiply</a></li>
+                    
+                    <li><a href="#func-NewAffine">NewAffine</a></li>
                     
                     <li><a href="#func-NewEncoding">NewEncoding</a></li>
                     
@@ -364,6 +390,8 @@
                     <li><a href="#func-ReadPathData">ReadPathData</a></li>
                     
                     <li><a href="#func-ReadTransform">ReadTransform</a></li>
+                    
+                    <li><a href="#func-RecordCommandBounds">RecordCommandBounds</a></li>
                     
                     <li><a href="#func-Reset">Reset</a></li>
                     
@@ -382,6 +410,8 @@
                     <li><a href="#func-String">String</a></li>
                     
                     <li><a href="#func-Tags">Tags</a></li>
+                    
+                    <li><a href="#func-TextData">TextData</a></li>
                     
                     <li><a href="#func-TransformPoint">TransformPoint</a></li>
                     
@@ -403,6 +433,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -512,6 +547,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -597,6 +647,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -618,6 +678,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -747,6 +812,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -811,11 +881,42 @@
         <p>Append merges another encoding into this one.</p>
           
         <p>The other encoding's content is appended after the current content.</p>
+          
+        <p>Append merges another Encoding into this one, adjusting brush indices.</p>
+          
+        <p>For scene-level merging with image registry offset, use AppendWithImages.</p>
          
     </div>
     
 
     <pre><code class="language-go">func (e *Encoding) Append(other *Encoding) {
+	e.AppendWithImages(other, 0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AppendWithImages">
+    <div class="item-header">
+        <h4>func AppendWithImages</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AppendWithImages merges another Encoding into this one, adjusting both</p>
+          
+        <p>brush indices and image indices by their respective offsets.</p>
+          
+        <p>imageOffset is the number of images already registered in the target scene;</p>
+          
+        <p>it shifts TagImage drawData entries so they reference the correct images</p>
+          
+        <p>after merging two image registries.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) AppendWithImages(other *Encoding, imageOffset uint32) {
 	if other == nil || len(other.tags) == 0 {
 		return
 	}
@@ -835,27 +936,48 @@
 	drawDataStart := len(e.drawData)
 	e.drawData = append(e.drawData, other.drawData...)
 
-	// Adjust brush indices in the appended draw data
-	// This requires walking through the other's tags to find Fill/Stroke commands
+	// Adjust brush indices in the appended draw data.
+	// Also adjust brush indices embedded in textData for TagText commands.
 	drawIdx := 0
+	textDataStart := len(e.textData)
+	e.textData = append(e.textData, other.textData...)
+	textOff := 0
 	for _, tag := range other.tags {
 		switch tag {
 		case TagFill:
-			// Fill has brush index at drawIdx, fill style at drawIdx+1
+			if drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += brushOffset
+			}
+			drawIdx += 2
+		case TagFillRoundRect:
 			if drawIdx < len(other.drawData) {
 				e.drawData[drawDataStart+drawIdx] += brushOffset
 			}
 			drawIdx += 2
 		case TagStroke:
-			// Stroke has brush index at drawIdx, then style params
 			if drawIdx < len(other.drawData) {
 				e.drawData[drawDataStart+drawIdx] += brushOffset
 			}
-			drawIdx += 5	// brush + width + miterLimit + cap + join
+			drawIdx += 5
 		case TagPushLayer:
-			drawIdx += 2	// blend mode + alpha
+			drawIdx += 2
+		case TagSetAntiAlias:
+			drawIdx++	// 1 uint32: 0 or 1
 		case TagImage:
-			drawIdx++	// image index (not adjusted, handled separately)
+			if imageOffset > 0 && drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += imageOffset
+			}
+			drawIdx++
+		case TagText:
+			if textOff+glyphRunDataSize <= len(other.textData) {
+				glyphCount := int(binary.LittleEndian.Uint16(other.textData[textOff+12:]))
+				textLen := int(binary.LittleEndian.Uint16(other.textData[textOff+28:]))
+				// Adjust brush index (at offset 24 in GlyphRunData)
+				brushIdxOff := textDataStart + textOff + 24
+				oldBrush := binary.LittleEndian.Uint32(e.textData[brushIdxOff:])
+				binary.LittleEndian.PutUint32(e.textData[brushIdxOff:], oldBrush+brushOffset)
+				textOff += glyphRunDataSize + glyphCount*glyphEntrySize + textLen
+			}
 		}
 	}
 
@@ -869,6 +991,219 @@
 	e.bounds = e.bounds.Union(other.bounds)
 
 	// Update statistics
+	e.pathCount += other.pathCount
+	e.shapeCount += other.shapeCount
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AppendWithTranslation">
+    <div class="item-header">
+        <h4>func AppendWithTranslation</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AppendWithTranslation merges another encoding with a translation offset</p>
+          
+        <p>applied to all path coordinates.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Architecture: pathData coordinate offset approach.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Our SceneCanvas pre-bakes absolute coordinates via applyTransform() and</p>
+          
+        <p>records Identity transforms in the encoding. This differs from Vello where</p>
+          
+        <p>paths stay in local coordinates and the transform stream carries the full</p>
+          
+        <p>transformation (Vello composes transforms at append: parent * child).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Because our pathData already contains absolute coordinates with Identity</p>
+          
+        <p>transforms, the correct offset strategy is:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>- pathData: offset all coordinate float32 values by (dx, dy)</p>
+          
+        <p>- transforms: copy VERBATIM (they are Identity; composing translation</p>
+          
+        <p>would cause double-offset since the renderer applies transforms to</p>
+          
+        <p>already-offset pathData coordinates)</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Alternative approaches considered:</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>- Vello pattern (transform composition only): multiply each child</p>
+          
+        <p>transform by TranslateAffine(dx, dy). Does NOT work with our</p>
+          
+        <p>pre-baked coordinate architecture — coordinates would stay at (0,0)</p>
+          
+        <p>since transforms are Identity.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>- Skia/Flutter pattern (replay-time canvas transform): wrap replay in</p>
+          
+        <p>Push/Translate/Pop on the target canvas. Works with render.Canvas</p>
+          
+        <p>(used by current desktop compositor) but NOT with SceneCanvas</p>
+          
+        <p>(Scene.Append has no canvas context).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>- Migrate to Vello architecture: stop pre-baking coordinates, record</p>
+          
+        <p>transforms in encoding, compose at append. Correct long-term but</p>
+          
+        <p>requires rewriting SceneCanvas coordinate handling.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Tag exhaustiveness: every Tag that consumes pathData floats MUST have a</p>
+          
+        <p>case in the switch below. Adding a new tag with pathData without updating</p>
+          
+        <p>this switch will cause silent coordinate corruption. The default case</p>
+          
+        <p>handles tags with zero pathData/drawData (markers, clip, pop).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) AppendWithTranslation(other *Encoding, dx, dy float32, imageOffset uint32) {
+	if other == nil || len(other.tags) == 0 {
+		return
+	}
+	if dx == 0 && dy == 0 {
+		e.AppendWithImages(other, imageOffset)
+		return
+	}
+
+	//nolint:gosec // brush slice length is bounded
+	brushOffset := uint32(len(e.brushes))
+
+	e.tags = append(e.tags, other.tags...)
+
+	pathStart := len(e.pathData)
+	e.pathData = append(e.pathData, other.pathData...)
+
+	drawDataStart := len(e.drawData)
+	e.drawData = append(e.drawData, other.drawData...)
+
+	pathIdx := 0
+	drawIdx := 0
+	for _, tag := range other.tags {
+		switch tag {
+		// --- Coordinate tags: offset pathData by (dx, dy) ---
+
+		case TagMoveTo, TagLineTo:
+			e.pathData[pathStart+pathIdx] += dx
+			e.pathData[pathStart+pathIdx+1] += dy
+			pathIdx += 2
+
+		case TagQuadTo:
+			for i := 0; i < 4; i += 2 {
+				e.pathData[pathStart+pathIdx+i] += dx
+				e.pathData[pathStart+pathIdx+i+1] += dy
+			}
+			pathIdx += 4
+
+		case TagCubicTo:
+			for i := 0; i < 6; i += 2 {
+				e.pathData[pathStart+pathIdx+i] += dx
+				e.pathData[pathStart+pathIdx+i+1] += dy
+			}
+			pathIdx += 6
+
+		case TagFillRoundRect:
+			// 6 floats: minX, minY, maxX, maxY (offset), radiusX, radiusY (no offset).
+			e.pathData[pathStart+pathIdx] += dx
+			e.pathData[pathStart+pathIdx+1] += dy
+			e.pathData[pathStart+pathIdx+2] += dx
+			e.pathData[pathStart+pathIdx+3] += dy
+			pathIdx += 6
+			if drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += brushOffset
+			}
+			drawIdx += 2
+
+		// --- Non-coordinate pathData: skip without offset ---
+
+		case TagBrush:
+			pathIdx += 4	// 4 float32: R, G, B, A — not coordinates
+
+		// --- Draw data only (no pathData) ---
+
+		case TagFill:
+			if drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += brushOffset
+			}
+			drawIdx += 2
+
+		case TagStroke:
+			if drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += brushOffset
+			}
+			drawIdx += 5	// brush + width + miterLimit + cap + join
+
+		case TagPushLayer:
+			drawIdx += 2	// blend mode + alpha
+
+		case TagSetAntiAlias:
+			drawIdx++	// 1 uint32: 0 or 1, no coordinate data
+
+		case TagImage:
+			if imageOffset > 0 && drawIdx < len(other.drawData) {
+				e.drawData[drawDataStart+drawIdx] += imageOffset
+			}
+			drawIdx++	// image index only; transform is in transforms stream
+
+		case TagText:
+			// Text data is in the textData stream. Handled in a second pass below.
+
+		// --- Marker/structural tags: zero pathData, zero drawData ---
+
+		case TagTransform:
+			// Transform data is in the separate transforms stream, not pathData.
+			// Handled below (copied verbatim).
+
+		case TagBeginPath, TagEndPath, TagClosePath,
+			TagPopLayer, TagBeginClip, TagEndClip:
+			// Pure markers — no data in any stream.
+
+		default:
+			panic(fmt.Sprintf("scene.AppendWithTranslation: unhandled tag 0x%02X (%s) — update switch to handle pathData/drawData layout for this tag", byte(tag), tag))
+		}
+	}
+
+	e.appendTextDataWithTranslation(other, brushOffset, dx, dy)
+
+	// Transforms copied verbatim — see architecture note above.
+	e.transforms = append(e.transforms, other.transforms...)
+
+	e.brushes = append(e.brushes, other.brushes...)
+
+	ob := other.bounds
+	ob.MinX += dx
+	ob.MinY += dy
+	ob.MaxX += dx
+	ob.MaxY += dy
+	e.bounds = e.bounds.Union(ob)
+
 	e.pathCount += other.pathCount
 	e.shapeCount += other.shapeCount
 }
@@ -930,6 +1265,7 @@
 	return cap(e.tags) +
 		cap(e.pathData)*4 +
 		cap(e.drawData)*4 +
+		cap(e.textData) +
 		cap(e.transforms)*24 +
 		cap(e.brushes)*20
 }
@@ -964,6 +1300,9 @@
 	clone.transforms = make([]Affine, len(e.transforms))
 	copy(clone.transforms, e.transforms)
 
+	clone.textData = make([]byte, len(e.textData))
+	copy(clone.textData, e.textData)
+
 	clone.brushes = make([]Brush, len(e.brushes))
 	copy(clone.brushes, e.brushes)
 
@@ -973,6 +1312,36 @@
 	clone.shapeCount = e.shapeCount
 
 	return clone
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CommandBounds">
+    <div class="item-header">
+        <h4>func CommandBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CommandBounds returns per-draw-command bounding boxes as TaggedBounds.</p>
+          
+        <p>The command index serves as a stable ID — valid when scene is built</p>
+          
+        <p>in the same order each frame (standard immediate-mode pattern).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) CommandBounds() []TaggedBounds {
+	result := make([]TaggedBounds, len(e.commandBounds))
+	for i, b := range e.commandBounds {
+		result[i] = TaggedBounds{
+			ID:	uint64(i),
+			Rect:	b.ImageRect(),
+		}
+	}
+	return result
 }
 </code></pre>
 </div>
@@ -1040,6 +1409,32 @@
 		MaxX:	-math.MaxFloat32,
 		MaxY:	-math.MaxFloat32,
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EncodeAntiAlias">
+    <div class="item-header">
+        <h4>func EncodeAntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EncodeAntiAlias adds an anti-aliasing state change command.</p>
+          
+        <p>The value is stored as 1 uint32 in drawData (0 = disabled, 1 = enabled).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) EncodeAntiAlias(enabled bool) {
+	e.tags = append(e.tags, TagSetAntiAlias)
+	var val uint32
+	if enabled {
+		val = 1
+	}
+	e.drawData = append(e.drawData, val)
 }
 </code></pre>
 </div>
@@ -1138,6 +1533,38 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-EncodeFillRoundRect">
+    <div class="item-header">
+        <h4>func EncodeFillRoundRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EncodeFillRoundRect adds a rounded rectangle fill command using SDF rendering.</p>
+          
+        <p>This bypasses path encoding entirely, storing the rectangle geometry directly</p>
+          
+        <p>in the data streams for dedicated SDF per-pixel rendering in the tile renderer.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) EncodeFillRoundRect(brush Brush, style FillStyle, rect Rect, rx, ry float32) {
+	brushIdx := len(e.brushes)
+	e.brushes = append(e.brushes, brush)
+
+	e.tags = append(e.tags, TagFillRoundRect)
+	//nolint:gosec // brush index is bounded by slice length, overflow not possible in practice
+	e.drawData = append(e.drawData, uint32(brushIdx), uint32(style))
+	e.pathData = append(e.pathData, rect.MinX, rect.MinY, rect.MaxX, rect.MaxY, rx, ry)
+
+	e.bounds = e.bounds.Union(rect)
+	e.shapeCount++
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-EncodeImage">
     <div class="item-header">
         <h4>func EncodeImage</h4>
@@ -1177,8 +1604,7 @@
 		return
 	}
 
-	elements := p.Elements()
-	if len(elements) == 0 {
+	if p.NumVerbs() == 0 {
 		return
 	}
 
@@ -1186,27 +1612,27 @@
 	e.pathBounds = EmptyRect()
 	e.pathCount++
 
-	for _, elem := range elements {
-		switch el := elem.(type) {
+	p.Iterate(func(verb gg.PathVerb, coords []float64) {
+		switch verb {
 		case gg.MoveTo:
-			e.encodeMoveTo(float32(el.Point.X), float32(el.Point.Y))
+			e.encodeMoveTo(float32(coords[0]), float32(coords[1]))
 		case gg.LineTo:
-			e.encodeLineTo(float32(el.Point.X), float32(el.Point.Y))
+			e.encodeLineTo(float32(coords[0]), float32(coords[1]))
 		case gg.QuadTo:
 			e.encodeQuadTo(
-				float32(el.Control.X), float32(el.Control.Y),
-				float32(el.Point.X), float32(el.Point.Y),
+				float32(coords[0]), float32(coords[1]),
+				float32(coords[2]), float32(coords[3]),
 			)
 		case gg.CubicTo:
 			e.encodeCubicTo(
-				float32(el.Control1.X), float32(el.Control1.Y),
-				float32(el.Control2.X), float32(el.Control2.Y),
-				float32(el.Point.X), float32(el.Point.Y),
+				float32(coords[0]), float32(coords[1]),
+				float32(coords[2]), float32(coords[3]),
+				float32(coords[4]), float32(coords[5]),
 			)
 		case gg.Close:
 			e.tags = append(e.tags, TagClosePath)
 		}
-	}
+	})
 
 	e.tags = append(e.tags, TagEndPath)
 	e.bounds = e.bounds.Union(e.pathBounds)
@@ -1284,6 +1710,68 @@
 		uint32(style.Cap),
 		uint32(style.Join),
 	)
+	e.shapeCount++
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EncodeText">
+    <div class="item-header">
+        <h4>func EncodeText</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EncodeText encodes a pre-shaped text run as a TagText command.</p>
+          
+        <p>The glyph run header, glyph entries, and original text are serialized into the textData stream.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) EncodeText(run GlyphRunData, glyphs []GlyphEntry, str string) {
+	e.tags = append(e.tags, TagText)
+
+	totalSize := glyphRunDataSize + len(glyphs)*glyphEntrySize + len(str)
+
+	// Grow textData in one allocation, then write directly into the tail.
+	base := len(e.textData)
+	e.textData = append(e.textData, make([]byte, totalSize)...)
+	buf := e.textData[base:]
+	off := 0
+
+	// Header
+	binary.LittleEndian.PutUint64(buf[off:], run.FontSourceID)
+	off += 8
+	binary.LittleEndian.PutUint32(buf[off:], math.Float32bits(run.FontSize))
+	off += 4
+	binary.LittleEndian.PutUint16(buf[off:], run.GlyphCount)
+	off += 2
+	binary.LittleEndian.PutUint16(buf[off:], uint16(run.Flags))
+	off += 2
+	binary.LittleEndian.PutUint32(buf[off:], math.Float32bits(run.OriginX))
+	off += 4
+	binary.LittleEndian.PutUint32(buf[off:], math.Float32bits(run.OriginY))
+	off += 4
+	binary.LittleEndian.PutUint32(buf[off:], run.BrushIndex)
+	off += 4
+	binary.LittleEndian.PutUint16(buf[off:], run.TextLen)
+	off += 2
+
+	// Glyph entries
+	for _, g := range glyphs {
+		binary.LittleEndian.PutUint16(buf[off:], uint16(g.GlyphID))
+		off += 2
+		binary.LittleEndian.PutUint32(buf[off:], math.Float32bits(g.X))
+		off += 4
+		binary.LittleEndian.PutUint32(buf[off:], math.Float32bits(g.Y))
+		off += 4
+	}
+
+	// Text bytes
+	copy(buf[off:], str)
+
 	e.shapeCount++
 }
 </code></pre>
@@ -1392,6 +1880,12 @@
 		hash *= fnvPrime
 	}
 
+	// Hash text data
+	for _, b := range e.textData {
+		hash ^= uint64(b)
+		hash *= fnvPrime
+	}
+
 	// Hash transforms
 	for _, t := range e.transforms {
 		hash ^= uint64(math.Float32bits(t.A))
@@ -1450,6 +1944,33 @@
 
     <pre><code class="language-go">func IdentityAffine() Affine {
 	return Affine{A: 1, B: 0, C: 0, D: 0, E: 1, F: 0}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ImageRect">
+    <div class="item-header">
+        <h4>func ImageRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ImageRect converts to image.Rectangle (floor min, ceil max for pixel coverage).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r Rect) ImageRect() image.Rectangle {
+	if r.IsEmpty() {
+		return image.Rectangle{}
+	}
+	return image.Rect(
+		int(math.Floor(float64(r.MinX))),
+		int(math.Floor(float64(r.MinY))),
+		int(math.Ceil(float64(r.MaxX))),
+		int(math.Ceil(float64(r.MaxY))),
+	)
 }
 </code></pre>
 </div>
@@ -1596,6 +2117,31 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-NewAffine">
+    <div class="item-header">
+        <h4>func NewAffine</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewAffine creates an affine transformation from individual matrix components.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>| a  b  c |</p>
+          
+        <p>| d  e  f |</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewAffine(a, b, c, d, e, f float32) Affine {
+	return Affine{A: a, B: b, C: c, D: d, E: e, F: f}
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-NewEncoding">
     <div class="item-header">
         <h4>func NewEncoding</h4>
@@ -1615,7 +2161,9 @@
 		pathData:	make([]float32, 0, 256),
 		drawData:	make([]uint32, 0, 32),
 		transforms:	make([]Affine, 0, 8),
+		textData:	make([]byte, 0, 256),
 		brushes:	make([]Brush, 0, 16),
+		commandBounds:	make([]Rect, 0, 32),
 		bounds:		EmptyRect(),
 		pathBounds:	EmptyRect(),
 	}
@@ -1779,31 +2327,25 @@
 </code></pre>
 </div>
 
-<div class="item" id="func-Reset">
+<div class="item" id="func-RecordCommandBounds">
     <div class="item-header">
-        <h4>func Reset</h4>
+        <h4>func RecordCommandBounds</h4>
     </div>
 
     
     <div class="comments">
          
-        <p>Reset clears the encoding for reuse without deallocating memory.</p>
+        <p>RecordCommandBounds stores the bounding box for the current draw command.</p>
           
-        <p>This is the key method for zero-allocation pooling.</p>
+        <p>Called by Scene after each Fill/Stroke/DrawImage with the transformed shape bounds.</p>
+          
+        <p>Used by DamageTracker (ADR-021) for frame-to-frame object diff.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (e *Encoding) Reset() {
-	e.tags = e.tags[:0]
-	e.pathData = e.pathData[:0]
-	e.drawData = e.drawData[:0]
-	e.transforms = e.transforms[:0]
-	e.brushes = e.brushes[:0]
-	e.bounds = EmptyRect()
-	e.pathBounds = EmptyRect()
-	e.pathCount = 0
-	e.shapeCount = 0
+    <pre><code class="language-go">func (e *Encoding) RecordCommandBounds(bounds Rect) {
+	e.commandBounds = append(e.commandBounds, bounds)
 }
 </code></pre>
 </div>
@@ -1827,6 +2369,37 @@
 	it.drawIdx = 0
 	it.transIdx = 0
 	it.brushIdx = 0
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears the encoding for reuse without deallocating memory.</p>
+          
+        <p>This is the key method for zero-allocation pooling.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) Reset() {
+	e.tags = e.tags[:0]
+	e.pathData = e.pathData[:0]
+	e.drawData = e.drawData[:0]
+	e.transforms = e.transforms[:0]
+	e.textData = e.textData[:0]
+	e.brushes = e.brushes[:0]
+	e.commandBounds = e.commandBounds[:0]
+	e.bounds = EmptyRect()
+	e.pathBounds = EmptyRect()
+	e.pathCount = 0
+	e.shapeCount = 0
 }
 </code></pre>
 </div>
@@ -1907,6 +2480,7 @@
 	return len(e.tags) +
 		len(e.pathData)*4 +
 		len(e.drawData)*4 +
+		len(e.textData) +
 		len(e.transforms)*24 +	// 6 float32 per Affine
 		len(e.brushes)*20	// approximate brush size
 }
@@ -2033,6 +2607,25 @@
 
     <pre><code class="language-go">func (e *Encoding) Tags() []Tag {
 	return e.tags
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TextData">
+    <div class="item-header">
+        <h4>func TextData</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TextData returns the text data stream.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *Encoding) TextData() []byte {
+	return e.textData
 }
 </code></pre>
 </div>
@@ -2292,6 +2885,55 @@
 </code></pre>
 </div>
 
+<div class="item" id="struct-GlyphRunData">
+    <div class="item-header">
+        <h4>type GlyphRunData struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphRunData is the header for a TagText scene encoding element.</p>
+        
+        <p>Followed by GlyphCount × GlyphEntry, then TextLen bytes of UTF-8 text.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphRunData struct {
+	FontSourceID	uint64
+	FontSize	float32
+	GlyphCount	uint16
+	Flags		TextFlags
+	OriginX		float32
+	OriginY		float32
+	BrushIndex	uint32
+	TextLen		uint16
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-GlyphEntry">
+    <div class="item-header">
+        <h4>type GlyphEntry struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphEntry is a single positioned glyph in a text run (10 bytes).</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphEntry struct {
+	GlyphID	text.GlyphID	// uint16
+	X	float32
+	Y	float32
+}
+</code></pre>
+</div>
+
 <div class="item" id="struct-Encoding">
     <div class="item-header">
         <h4>type Encoding struct</h4>
@@ -2325,8 +2967,17 @@
 	// transforms holds affine transformation matrices
 	transforms	[]Affine
 
+	// textData holds serialized GlyphRunData + GlyphEntry arrays for TagText commands.
+	// Separate stream from pathData — text data has different layout and lifetime.
+	textData	[]byte
+
 	// brushes holds brush definitions referenced by draw commands
 	brushes	[]Brush
+
+	// commandBounds tracks per-draw-command bounding boxes (ADR-021).
+	// Parallel to shapeCount: commandBounds[i] = bounds of i-th shape command.
+	// Used by DamageTracker for frame-to-frame object diff.
+	commandBounds	[]Rect
 
 	// bounds tracks cumulative bounding box
 	bounds	Rect

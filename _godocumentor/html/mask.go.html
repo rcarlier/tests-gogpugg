@@ -138,9 +138,13 @@
                     
                     <li><a href="#func-Invert">Invert</a></li>
                     
+                    <li><a href="#func-NewLuminanceMask">NewLuminanceMask</a></li>
+                    
                     <li><a href="#func-NewMask">NewMask</a></li>
                     
                     <li><a href="#func-NewMaskFromAlpha">NewMaskFromAlpha</a></li>
+                    
+                    <li><a href="#func-NewMaskFromData">NewMaskFromData</a></li>
                     
                     <li><a href="#func-Set">Set</a></li>
                     
@@ -182,6 +186,11 @@
             
             <li>
                 <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
                 
             </li>
             
@@ -306,6 +315,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -317,6 +331,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -426,6 +445,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -511,6 +545,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -532,6 +576,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -657,6 +706,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -853,6 +907,49 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-NewLuminanceMask">
+    <div class="item-header">
+        <h4>func NewLuminanceMask</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewLuminanceMask creates a mask from an image using the CSS Masking Level 1</p>
+          
+        <p>luminance formula: Y = 0.2126*R + 0.7152*G + 0.0722*B. The luminance</p>
+          
+        <p>value is used directly as the mask alpha (brighter = more visible).</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This matches tiny-skia MaskType::Luminance and Vello Mask::new_luminance().</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewLuminanceMask(img image.Image) *Mask {
+	bounds := img.Bounds()
+	w, h := bounds.Dx(), bounds.Dy()
+	mask := NewMask(w, h)
+
+	for y := 0; y < h; y++ {
+		for x := 0; x < w; x++ {
+			r, g, b, _ := img.At(x+bounds.Min.X, y+bounds.Min.Y).RGBA()
+			// r, g, b are 0-65535. Compute luminance using CSS formula.
+			// Y = 0.2126*R + 0.7152*G + 0.0722*B
+			lum := 0.2126*float64(r) + 0.7152*float64(g) + 0.0722*float64(b)
+			// Scale from 0-65535 to 0-255.
+			// #nosec G115 -- safe: lum/257 is always in range [0, 255]
+			mask.data[y*w+x] = uint8(lum/257.0 + 0.5)
+		}
+	}
+
+	return mask
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-NewMask">
     <div class="item-header">
         <h4>func NewMask</h4>
@@ -906,6 +1003,40 @@
 	}
 
 	return mask
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewMaskFromData">
+    <div class="item-header">
+        <h4>func NewMaskFromData</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewMaskFromData creates a mask from a raw byte slice.</p>
+          
+        <p>The data must contain exactly width*height bytes, where each byte</p>
+          
+        <p>represents the mask alpha at that pixel (row-major order).</p>
+          
+        <p>Returns nil if the data length does not match width*height.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewMaskFromData(data []byte, width, height int) *Mask {
+	if len(data) != width*height {
+		return nil
+	}
+	m := &Mask{
+		width:	width,
+		height:	height,
+		data:	make([]uint8, width*height),
+	}
+	copy(m.data, data)
+	return m
 }
 </code></pre>
 </div>

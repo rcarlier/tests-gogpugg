@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -414,6 +429,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -499,6 +529,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -520,6 +560,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -649,6 +694,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -697,6 +747,8 @@
 		return 4
 	case TagCubicTo:
 		return 6
+	case TagFillRoundRect:
+		return 6	// minX, minY, maxX, maxY, radiusX, radiusY
 	case TagBrush:
 		return 4	// RGBA
 	default:
@@ -733,13 +785,13 @@
     
     <div class="comments">
          
-        <p>IsDrawCommand returns true if the tag is a draw command (fill/stroke).</p>
+        <p>IsDrawCommand returns true if the tag is a draw command (fill/stroke/text).</p>
          
     </div>
     
 
     <pre><code class="language-go">func (t Tag) IsDrawCommand() bool {
-	return t == TagFill || t == TagStroke
+	return t == TagFill || t == TagFillRoundRect || t == TagStroke || t == TagText
 }
 </code></pre>
 </div>
@@ -791,6 +843,10 @@
     <div class="comments">
          
         <p>String returns a human-readable name for the tag.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>nolint:cyclop // simple switch dispatch over all tag values</p>
          
     </div>
     
@@ -799,6 +855,8 @@
 	switch t {
 	case TagTransform:
 		return "Transform"
+	case TagSetAntiAlias:
+		return "SetAntiAlias"
 	case TagBeginPath:
 		return "BeginPath"
 	case TagMoveTo:
@@ -815,6 +873,8 @@
 		return "EndPath"
 	case TagFill:
 		return "Fill"
+	case TagFillRoundRect:
+		return "FillRoundRect"
 	case TagStroke:
 		return "Stroke"
 	case TagPushLayer:
@@ -829,6 +889,8 @@
 		return "Brush"
 	case TagImage:
 		return "Image"
+	case TagText:
+		return "Text"
 	default:
 		return unknownStr
 	}

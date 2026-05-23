@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - scene/gpu_renderer.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="active">scene/gpu_renderer.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-CanUseGPU">CanUseGPU</a></li>
+                    
+                    <li><a href="#func-NewGPUSceneRenderer">NewGPUSceneRenderer</a></li>
+                    
+                    <li><a href="#func-RenderScene">RenderScene</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>scene/gpu_renderer.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-CanUseGPU">
+    <div class="item-header">
+        <h4>func CanUseGPU</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CanUseGPU returns true if a GPU accelerator is registered and can</p>
+          
+        <p>render directly. This is used by scene.Renderer to auto-select</p>
+          
+        <p>the GPU path when available.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func CanUseGPU() bool {
+	return gg.AcceleratorCanRenderDirect()
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewGPUSceneRenderer">
+    <div class="item-header">
+        <h4>func NewGPUSceneRenderer</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewGPUSceneRenderer creates a GPU scene renderer that renders through</p>
+          
+        <p>the given gg.Context. The context's GPU accelerator (if registered)</p>
+          
+        <p>will handle shape rendering; CPU fallback is automatic.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewGPUSceneRenderer(dc *gg.Context) *GPUSceneRenderer {
+	return &GPUSceneRenderer{dc: dc}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-RenderScene">
+    <div class="item-header">
+        <h4>func RenderScene</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RenderScene decodes scene commands and renders them through the gg.Context.</p>
+          
+        <p>The decoder walks the binary encoding tag-by-tag, building paths and</p>
+          
+        <p>dispatching fill/stroke calls that route through the GPU accelerator.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Transform handling: scene transforms are applied via dc.SetTransform()</p>
+          
+        <p>(direct matrix replacement) instead of dc.Push()/Pop(). This avoids</p>
+          
+        <p>corrupting the clip stack. Push/Pop is reserved for clip and layer</p>
+          
+        <p>boundaries only, ensuring that TagTransform inside a clip region does</p>
+          
+        <p>not accidentally pop the clip's saved state.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns nil if the scene is empty.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *GPUSceneRenderer) RenderScene(scene *Scene) error {	//nolint:gocyclo,cyclop,funlen,gocognit // tag dispatch across all scene command types
+	if scene == nil {
+		return nil
+	}
+
+	enc := scene.Encoding()
+	if enc == nil || len(enc.Tags()) == 0 {
+		return nil
+	}
+
+	dec := NewDecoder(enc)
+	if dec == nil {
+		return nil
+	}
+
+	dc := r.dc
+	path := gg.NewPath()
+
+	// Save the initial matrix so we can compose scene transforms correctly
+	// and restore the original state after rendering.
+	// Scene transforms use dc.SetTransform() (direct replacement) instead of
+	// dc.Push()/Pop() to avoid interfering with clip Push/Pop nesting.
+	baseMatrix := dc.GetTransform()
+
+	for dec.Next() {
+		switch dec.Tag() {
+		case TagTransform:
+			a := dec.Transform()
+			// Apply scene transform composed with the context's base matrix.
+			// Scene transforms are absolute (full accumulated affine from the
+			// encoder, e.g. currentTransform.Multiply(perDrawTransform)), so we
+			// compose with baseMatrix to preserve any parent context transform
+			// (e.g. dc.Translate() called before RenderScene).
+			//
+			// Using Push/Pop here would corrupt clip state when TagTransform
+			// appears inside a BeginClip/EndClip region: the transform's Pop
+			// would undo the clip's Push, removing the clip before content is
+			// drawn. SetTransform avoids this by not touching the state stack.
+			sceneMatrix := gg.Matrix{
+				A:	float64(a.A), B: float64(a.B), C: float64(a.C),
+				D:	float64(a.D), E: float64(a.E), F: float64(a.F),
+			}
+			dc.SetTransform(baseMatrix.Multiply(sceneMatrix))
+
+		case TagBeginPath:
+			path.Clear()
+
+		case TagMoveTo:
+			x, y := dec.MoveTo()
+			path.MoveTo(float64(x), float64(y))
+
+		case TagLineTo:
+			x, y := dec.LineTo()
+			path.LineTo(float64(x), float64(y))
+
+		case TagQuadTo:
+			cx, cy, x, y := dec.QuadTo()
+			path.QuadraticTo(float64(cx), float64(cy), float64(x), float64(y))
+
+		case TagCubicTo:
+			c1x, c1y, c2x, c2y, x, y := dec.CubicTo()
+			path.CubicTo(float64(c1x), float64(c1y), float64(c2x), float64(c2y), float64(x), float64(y))
+
+		case TagClosePath:
+			path.Close()
+
+		case TagEndPath:
+			// Path building complete; fill/stroke tag follows.
+
+		case TagFill:
+			brush, style := dec.Fill()
+			applySceneBrush(dc, brush)
+			if style == FillEvenOdd {
+				dc.SetFillRule(gg.FillRuleEvenOdd)
+			} else {
+				dc.SetFillRule(gg.FillRuleNonZero)
+			}
+			_ = dc.FillPath(path)
+			path.Clear()
+
+		case TagFillRoundRect:
+			brush, style, rect, rx, ry := dec.FillRoundRect()
+			applySceneBrush(dc, brush)
+			if style == FillEvenOdd {
+				dc.SetFillRule(gg.FillRuleEvenOdd)
+			} else {
+				dc.SetFillRule(gg.FillRuleNonZero)
+			}
+			radius := float64(rx)
+			if ry > rx {
+				radius = float64(ry)
+			}
+			dc.DrawRoundedRectangle(
+				float64(rect.MinX), float64(rect.MinY),
+				float64(rect.MaxX-rect.MinX), float64(rect.MaxY-rect.MinY),
+				radius,
+			)
+			_ = dc.Fill()
+
+		case TagStroke:
+			brush, style := dec.Stroke()
+			applySceneBrush(dc, brush)
+			if style != nil {
+				if style.Width > 0 {
+					dc.SetLineWidth(float64(style.Width))
+				}
+				dc.SetLineCap(gg.LineCap(style.Cap))
+				dc.SetLineJoin(gg.LineJoin(style.Join))
+				if style.MiterLimit > 0 {
+					dc.SetMiterLimit(float64(style.MiterLimit))
+				}
+			}
+			_ = dc.StrokePath(path)
+			path.Clear()
+
+		case TagPushLayer:
+			blend, alpha := dec.PushLayer()
+			dc.PushLayer(gg.BlendMode(blend), float64(alpha))
+
+		case TagPopLayer:
+			dc.PopLayer()
+
+		case TagBeginClip:
+			// Push state before clip so EndClip can restore the previous clip
+			// level AND the transform that was active at clip time. Push/Pop
+			// here is correct: clips are strictly nested and each BeginClip
+			// has exactly one EndClip. No intermediate Pop can occur because
+			// TagTransform uses SetTransform (not Push/Pop).
+			dc.Push()
+			// Detect rectangular clips → hardware scissor (ClipRect).
+			// Non-rect clips → general path clip (depth buffer on GPU).
+			// ClipRect uses PushRect → IsRectOnly()=true → hardware scissor.
+			// Clip() uses PushPath → IsRectOnly()=false → depth clip path
+			// which may not be available in all rendering contexts.
+			shape := gg.DetectShape(path)
+			if shape.Kind == gg.ShapeRect {
+				x := shape.CenterX - shape.Width/2
+				y := shape.CenterY - shape.Height/2
+				dc.ClipRect(x, y, shape.Width, shape.Height)
+			} else {
+				dc.DrawPath(path)
+				dc.Clip()
+				dc.ClearPath()
+			}
+			path.Clear()
+
+		case TagEndClip:
+			dc.Pop()
+
+		case TagSetAntiAlias:
+			aa := dec.AntiAlias()
+			dc.SetAntiAlias(aa)
+
+		case TagText:
+			run, glyphs, str, brush := dec.Text()
+			r.resolveText(scene, run, glyphs, str, brush)
+
+		case TagImage:
+			imageIndex, imgTransform := dec.Image()
+			r.resolveImage(scene, imageIndex, imgTransform)
+
+		default:
+			// Unknown tags are skipped by the decoder advancing tagIdx.
+		}
+	}
+
+	// Restore the original matrix. Unlike the previous Push/Pop approach,
+	// SetTransform is a direct replacement so we restore explicitly.
+	dc.SetTransform(baseMatrix)
+
+	return nil
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-GPUSceneRenderer">
+    <div class="item-header">
+        <h4>type GPUSceneRenderer struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GPUSceneRenderer provides GPU-accelerated scene rendering by decoding</p>
+        
+        <p>scene commands into gg.Context draw calls. The gg.Context handles</p>
+        
+        <p>GPU/CPU dispatch automatically via its accelerator system.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This follows the Vello pattern: scene encoding is stateless, and</p>
+        
+        <p>rendering decodes the encoding atomically into draw calls. The GPU</p>
+        
+        <p>accelerator receives shapes via FillShape/FillPath and flushes them</p>
+        
+        <p>in a single render pass.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>For scenes with simple fill/stroke operations (the common case in UI</p>
+        
+        <p>rendering), this provides a direct GPU path that avoids the tile-based</p>
+        
+        <p>CPU decomposition in scene.Renderer.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Usage:</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>gpuR := scene.NewGPUSceneRenderer(dc)</p>
+        
+        <p>err := gpuR.RenderScene(myScene)</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GPUSceneRenderer struct {
+	dc *gg.Context
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

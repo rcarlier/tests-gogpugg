@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>github.com/gogpu/gg - text/glyph_mask_atlas.go</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
+        </div>
+        <ul class="sidebar-menu">
+            
+            <li>
+                <a href="accelerator.go.html" class="">accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush.go.html" class="">brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="brush_custom.go.html" class="">brush_custom.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="color.go.html" class="">color.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context.go.html" class="">context.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_clip.go.html" class="">context_clip.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_image.go.html" class="">context_image.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_layer.go.html" class="">context_layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="context_mask.go.html" class="">context_mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="curve.go.html" class="">curve.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="dash.go.html" class="">dash.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient.go.html" class="">gradient.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="logger.go.html" class="">logger.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="mask.go.html" class="">mask.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="matrix.go.html" class="">matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="options.go.html" class="">options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="paint.go.html" class="">paint.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="painter.go.html" class="">painter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path.go.html" class="">path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_builder.go.html" class="">path_builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_ops.go.html" class="">path_ops.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pattern.go.html" class="">pattern.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="pixmap.go.html" class="">pixmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="point.go.html" class="">point.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backend.go.html" class="">recording/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_brush.go.html" class="">recording/brush.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_command.go.html" class="">recording/command.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_pool.go.html" class="">recording/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="recording_registry.go.html" class="">recording/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_device.go.html" class="">render/device.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_layers.go.html" class="">render/layers.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_renderer.go.html" class="">render/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_scene.go.html" class="">render/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_software.go.html" class="">render/software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="render_target.go.html" class="">render/target.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="renderer.go.html" class="">renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_builder.go.html" class="">scene/builder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_cache.go.html" class="">scene/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_layer.go.html" class="">scene/layer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_path.go.html" class="">scene/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_pool.go.html" class="">scene/pool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_scene.go.html" class="">scene/scene.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_shape.go.html" class="">scene/shape.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_tag.go.html" class="">scene/tag.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_text.go.html" class="">scene/text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf.go.html" class="">sdf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shape_detect.go.html" class="">shape_detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="shapes.go.html" class="">shapes.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="software.go.html" class="">software.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="solver.go.html" class="">solver.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="stroke.go.html" class="">stroke.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_path.go.html" class="">surface/path.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_registry.go.html" class="">surface/registry.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_surface.go.html" class="">surface/surface.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text.go.html" class="">text.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache.go.html" class="">text/cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_color_font.go.html" class="">text/color_font.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw.go.html" class="">text/draw.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_errors.go.html" class="">text/errors.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_face.go.html" class="">text/face.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_filtered.go.html" class="">text/filtered.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph.go.html" class="">text/glyph.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_atlas.go.html" class="active">text/glyph_mask_atlas.go</a>
+                
+                <ul>
+                    
+                    <li><a href="#func-AdvanceFrame">AdvanceFrame</a></li>
+                    
+                    <li><a href="#func-Allocate">Allocate</a></li>
+                    
+                    <li><a href="#func-CanFit">CanFit</a></li>
+                    
+                    <li><a href="#func-Clear">Clear</a></li>
+                    
+                    <li><a href="#func-Config">Config</a></li>
+                    
+                    <li><a href="#func-DefaultGlyphMaskAtlasConfig">DefaultGlyphMaskAtlasConfig</a></li>
+                    
+                    <li><a href="#func-DirtyPages">DirtyPages</a></li>
+                    
+                    <li><a href="#func-EntryCount">EntryCount</a></li>
+                    
+                    <li><a href="#func-Get">Get</a></li>
+                    
+                    <li><a href="#func-GetOrRasterize">GetOrRasterize</a></li>
+                    
+                    <li><a href="#func-MakeGlyphMaskKey">MakeGlyphMaskKey</a></li>
+                    
+                    <li><a href="#func-MakeGlyphMaskKeyAliased">MakeGlyphMaskKeyAliased</a></li>
+                    
+                    <li><a href="#func-MakeGlyphMaskKeyBucketed">MakeGlyphMaskKeyBucketed</a></li>
+                    
+                    <li><a href="#func-MarkClean">MarkClean</a></li>
+                    
+                    <li><a href="#func-MemoryUsage">MemoryUsage</a></li>
+                    
+                    <li><a href="#func-NewGlyphMaskAtlas">NewGlyphMaskAtlas</a></li>
+                    
+                    <li><a href="#func-NewGlyphMaskAtlasDefault">NewGlyphMaskAtlasDefault</a></li>
+                    
+                    <li><a href="#func-PageCount">PageCount</a></li>
+                    
+                    <li><a href="#func-PageR8Data">PageR8Data</a></li>
+                    
+                    <li><a href="#func-Put">Put</a></li>
+                    
+                    <li><a href="#func-PutLCD">PutLCD</a></li>
+                    
+                    <li><a href="#func-Reset">Reset</a></li>
+                    
+                    <li><a href="#func-Stats">Stats</a></li>
+                    
+                    <li><a href="#func-UnderPressure">UnderPressure</a></li>
+                    
+                    <li><a href="#func-Validate">Validate</a></li>
+                    
+                </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_metrics.go.html" class="">text/metrics.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_multi.go.html" class="">text/multi.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_options.go.html" class="">text/options.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser.go.html" class="">text/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_script.go.html" class="">text/script.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_segment.go.html" class="">text/segment.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped.go.html" class="">text/shaped.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper.go.html" class="">text/shaper.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_source.go.html" class="">text/source.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_tab.go.html" class="">text/tab.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_types.go.html" class="">text/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="vec.go.html" class="">vec.go</a>
+                
+            </li>
+            
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="container">
+            
+<h2>text/glyph_mask_atlas.go</h2>
+
+<div style="margin-bottom: 20px">
+    <a
+        href="#functions"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Functions</a
+    > <a
+        href="#structs"
+        style="margin-right: 15px; color: var(--accent-color); text-decoration: none"
+        >Structs</a
+    > 
+</div>
+
+
+<h3 id="functions">Functions</h3>
+
+<div class="item" id="func-AdvanceFrame">
+    <div class="item-header">
+        <h4>func AdvanceFrame</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AdvanceFrame increments the frame counter and runs compaction.</p>
+          
+        <p>Call once per frame (e.g., from GPU flush). This is the primary</p>
+          
+        <p>self-healing mechanism: pages unused for 32+ frames are reset,</p>
+          
+        <p>reclaiming atlas space after zoom or font size changes.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Reference: Skia GrAtlasManager::postFlush() calls compact() every flush.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) AdvanceFrame() {
+	frame := a.currentFrame.Add(1)
+	a.compact(frame)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Allocate">
+    <div class="item-header">
+        <h4>func Allocate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Allocate finds space for a rectangle of size (w, h).</p>
+          
+        <p>Returns (x, y, true) on success, or (-1, -1, false) if the page is full.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *glyphMaskShelfAllocator) Allocate(w, h int) (x, y int, ok bool) {
+	paddedW := w + a.padding
+	paddedH := h + a.padding
+
+	// Try existing shelves
+	for i := range a.shelves {
+		s := &a.shelves[i]
+
+		// Must fit horizontally
+		if s.x+paddedW > a.width {
+			continue
+		}
+
+		// Must fit in shelf height (or be extendable if last shelf)
+		if h > s.height {
+			if i == len(a.shelves)-1 {
+				newBottom := s.y + paddedH
+				if newBottom <= a.height {
+					s.height = h
+					x, y = s.x, s.y
+					s.x += paddedW
+					return x, y, true
+				}
+			}
+			continue
+		}
+
+		x, y = s.x, s.y
+		s.x += paddedW
+		return x, y, true
+	}
+
+	// Create new shelf
+	newY := 0
+	if len(a.shelves) > 0 {
+		last := a.shelves[len(a.shelves)-1]
+		newY = last.y + last.height + a.padding
+	}
+
+	if newY+paddedH > a.height {
+		return -1, -1, false
+	}
+
+	newShelf := glyphMaskShelf{
+		y:	newY,
+		height:	h,
+		x:	paddedW,
+	}
+	a.shelves = append(a.shelves, newShelf)
+	return 0, newY, true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-CanFit">
+    <div class="item-header">
+        <h4>func CanFit</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>CanFit returns true if a rectangle of the given size could fit.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *glyphMaskShelfAllocator) CanFit(w, h int) bool {
+	paddedW := w + a.padding
+	paddedH := h + a.padding
+
+	if paddedW > a.width || paddedH > a.height {
+		return false
+	}
+
+	for i := range a.shelves {
+		s := &a.shelves[i]
+		if s.x+paddedW <= a.width && h <= s.height {
+			return true
+		}
+		if i == len(a.shelves)-1 && s.x+paddedW <= a.width && s.y+paddedH <= a.height {
+			return true
+		}
+	}
+
+	newY := 0
+	if len(a.shelves) > 0 {
+		last := a.shelves[len(a.shelves)-1]
+		newY = last.y + last.height + a.padding
+	}
+	return newY+paddedH <= a.height
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Clear">
+    <div class="item-header">
+        <h4>func Clear</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Clear removes all cached glyphs and resets all pages.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) Clear() {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	a.pages = a.pages[:0]
+	a.lookup = make(map[GlyphMaskKey]*glyphMaskEntry, 256)
+	a.head = nil
+	a.tail = nil
+	a.hits.Store(0)
+	a.misses.Store(0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Config">
+    <div class="item-header">
+        <h4>func Config</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Config returns the atlas configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) Config() GlyphMaskAtlasConfig {
+	return a.config
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DefaultGlyphMaskAtlasConfig">
+    <div class="item-header">
+        <h4>func DefaultGlyphMaskAtlasConfig</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DefaultGlyphMaskAtlasConfig returns the default configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func DefaultGlyphMaskAtlasConfig() GlyphMaskAtlasConfig {
+	return GlyphMaskAtlasConfig{
+		Size:		1024,
+		Padding:	1,
+		MaxAtlases:	4,
+		MaxEntries:	16384,	// ADR-027: increased for CJK (20K+ glyphs × subpixel variants)
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-DirtyPages">
+    <div class="item-header">
+        <h4>func DirtyPages</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DirtyPages returns indices of pages that have been modified since</p>
+          
+        <p>the last MarkClean call and need GPU upload.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) DirtyPages() []int {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	var dirty []int
+	for i, page := range a.pages {
+		if page.dirty {
+			dirty = append(dirty, i)
+		}
+	}
+	return dirty
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-EntryCount">
+    <div class="item-header">
+        <h4>func EntryCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>EntryCount returns the number of cached glyph masks.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) EntryCount() int {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	return len(a.lookup)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Get">
+    <div class="item-header">
+        <h4>func Get</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Get retrieves a cached glyph mask region.</p>
+          
+        <p>Returns the region and true if found, or zero region and false if not cached.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) Get(key GlyphMaskKey) (GlyphMaskRegion, bool) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	entry, ok := a.lookup[key]
+	if !ok {
+		a.misses.Add(1)
+		return GlyphMaskRegion{}, false
+	}
+
+	// Update LRU position
+	entry.lastAccessFrame = a.currentFrame.Load()
+	a.moveToFront(entry)
+
+	a.hits.Add(1)
+	return entry.region, true
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-GetOrRasterize">
+    <div class="item-header">
+        <h4>func GetOrRasterize</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>GetOrRasterize retrieves a cached glyph mask or rasterizes it using the</p>
+          
+        <p>provided function. This is the primary API for the glyph mask pipeline.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The rasterize function is called on cache miss and should return:</p>
+          
+        <p>- mask: R8 alpha buffer</p>
+          
+        <p>- maskW, maskH: mask dimensions</p>
+          
+        <p>- bearingX, bearingY: glyph positioning offsets</p>
+          
+        <p>- err: any error during rasterization</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) GetOrRasterize(
+	key GlyphMaskKey,
+	rasterize func() (mask []byte, maskW, maskH int, bearingX, bearingY float32, err error),
+) (GlyphMaskRegion, error) {
+	// Fast path: check cache
+	if region, ok := a.Get(key); ok {
+		return region, nil
+	}
+
+	// Slow path: rasterize and store
+	mask, maskW, maskH, bearingX, bearingY, err := rasterize()
+	if err != nil {
+		return GlyphMaskRegion{}, fmt.Errorf("text: glyph mask rasterization failed: %w", err)
+	}
+
+	// Empty glyph (e.g., space) — return zero region without storing
+	if maskW <= 0 || maskH <= 0 {
+		return GlyphMaskRegion{}, nil
+	}
+
+	return a.Put(key, mask, maskW, maskH, bearingX, bearingY)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MakeGlyphMaskKey">
+    <div class="item-header">
+        <h4>func MakeGlyphMaskKey</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MakeGlyphMaskKey creates a GlyphMaskKey from rendering parameters.</p>
+          
+        <p>The size is in pixels (ppem). The subpixelX/Y are fractional pixel offsets [0, 1).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func MakeGlyphMaskKey(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey {
+	// Quantize size to 1/16 pixel (Q4 fixed-point).
+	sizeQ4 := int16(size * 16)	//nolint:gosec // intentional truncation for quantization
+	sizeQ4 = max(sizeQ4, 1)
+
+	// Quantize subpixel position to 1/4 pixel (Q2 fixed-point).
+	// Clamp to [0, 0.75] range (4 variants: 0, 0.25, 0.5, 0.75).
+	spxQ2 := uint8(subpixelX * 4)	//nolint:gosec // fractional [0,1) * 4 fits uint8
+	spyQ2 := uint8(subpixelY * 4)	//nolint:gosec // fractional [0,1) * 4 fits uint8
+	if spxQ2 > 3 {
+		spxQ2 = 3
+	}
+	if spyQ2 > 3 {
+		spyQ2 = 3
+	}
+
+	return GlyphMaskKey{
+		FontID:		fontID,
+		GlyphID:	uint16(glyphID),	//nolint:gosec // GlyphID is uint16
+		SizeQ4:		sizeQ4,
+		SubpixelXQ2:	spxQ2,
+		SubpixelYQ2:	spyQ2,
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MakeGlyphMaskKeyAliased">
+    <div class="item-header">
+        <h4>func MakeGlyphMaskKeyAliased</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MakeGlyphMaskKeyAliased creates a GlyphMaskKey with the aliased flag set.</p>
+          
+        <p>The resulting cache entry is distinct from the anti-aliased version of the</p>
+          
+        <p>same glyph — different rasterization modes produce different coverage data.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func MakeGlyphMaskKeyAliased(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey {
+	key := MakeGlyphMaskKey(fontID, glyphID, size, subpixelX, subpixelY)
+	key.Flags = GlyphMaskFlagAliased
+	return key
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MakeGlyphMaskKeyBucketed">
+    <div class="item-header">
+        <h4>func MakeGlyphMaskKeyBucketed</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MakeGlyphMaskKeyBucketed creates a GlyphMaskKey with size snapped to discrete</p>
+          
+        <p>buckets. Use this when atlas pressure is detected (zoom scenarios with many</p>
+          
+        <p>unique sizes). The GPU scales the rasterized glyph from bucket size to actual</p>
+          
+        <p>size — quality loss is negligible (Skia uses this for all SDF text in Chrome).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func MakeGlyphMaskKeyBucketed(fontID uint64, glyphID GlyphID, size float64, subpixelX, subpixelY float64) GlyphMaskKey {
+	bucketSize := sizeBuckets[len(sizeBuckets)-1]
+	for _, b := range sizeBuckets {
+		if size <= b {
+			bucketSize = b
+			break
+		}
+	}
+	return MakeGlyphMaskKey(fontID, glyphID, bucketSize, subpixelX, subpixelY)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MarkClean">
+    <div class="item-header">
+        <h4>func MarkClean</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MarkClean marks a page as uploaded to GPU.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) MarkClean(index int) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	if index >= 0 && index < len(a.pages) {
+		a.pages[index].dirty = false
+	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-MemoryUsage">
+    <div class="item-header">
+        <h4>func MemoryUsage</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>MemoryUsage returns the total memory used by all atlas pages in bytes.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) MemoryUsage() int64 {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	var total int64
+	for _, page := range a.pages {
+		total += int64(len(page.Data))
+	}
+	return total
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewGlyphMaskAtlas">
+    <div class="item-header">
+        <h4>func NewGlyphMaskAtlas</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewGlyphMaskAtlas creates a new glyph mask atlas with the given configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewGlyphMaskAtlas(config GlyphMaskAtlasConfig) (*GlyphMaskAtlas, error) {
+	if err := config.Validate(); err != nil {
+		return nil, err
+	}
+
+	return &GlyphMaskAtlas{
+		config:	config,
+		pages:	make([]*glyphMaskPage, 0, config.MaxAtlases),
+		lookup:	make(map[GlyphMaskKey]*glyphMaskEntry, 256),
+	}, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-NewGlyphMaskAtlasDefault">
+    <div class="item-header">
+        <h4>func NewGlyphMaskAtlasDefault</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>NewGlyphMaskAtlasDefault creates a new glyph mask atlas with default configuration.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func NewGlyphMaskAtlasDefault() *GlyphMaskAtlas {
+	atlas, _ := NewGlyphMaskAtlas(DefaultGlyphMaskAtlasConfig())
+	return atlas
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PageCount">
+    <div class="item-header">
+        <h4>func PageCount</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PageCount returns the number of atlas pages currently in use.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) PageCount() int {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	return len(a.pages)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PageR8Data">
+    <div class="item-header">
+        <h4>func PageR8Data</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PageR8Data returns the R8 pixel data for a page.</p>
+          
+        <p>Returns nil if the index is out of range.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) PageR8Data(index int) (data []byte, width, height int) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	if index < 0 || index >= len(a.pages) {
+		return nil, 0, 0
+	}
+	page := a.pages[index]
+	return page.Data, page.Size, page.Size
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Put">
+    <div class="item-header">
+        <h4>func Put</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Put stores a rasterized glyph mask in the atlas.</p>
+          
+        <p>The mask is an R8 alpha buffer of dimensions (maskW x maskH).</p>
+          
+        <p>BearingX/BearingY are the glyph positioning offsets from the origin.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns the region where the mask was stored, or an error if the atlas is full.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) Put(key GlyphMaskKey, mask []byte, maskW, maskH int, bearingX, bearingY float32) (GlyphMaskRegion, error) {
+	if maskW <= 0 || maskH <= 0 || len(mask) < maskW*maskH {
+		return GlyphMaskRegion{}, errors.New("text: invalid glyph mask dimensions")
+	}
+
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	// Check if already cached (race with concurrent Put)
+	if entry, ok := a.lookup[key]; ok {
+		entry.lastAccessFrame = a.currentFrame.Load()
+		a.moveToFront(entry)
+		return entry.region, nil
+	}
+
+	// Evict LRU entries if at capacity
+	for len(a.lookup) >= a.config.MaxEntries {
+		a.evictTail()
+	}
+
+	// Find or create a page with space
+	page, err := a.findOrCreatePage(maskW, maskH)
+	if err != nil {
+		return GlyphMaskRegion{}, err
+	}
+
+	// Allocate space in the page
+	x, y, ok := page.allocator.Allocate(maskW, maskH)
+	if !ok {
+		return GlyphMaskRegion{}, fmt.Errorf("text: failed to allocate %dx%d glyph mask in atlas page %d", maskW, maskH, page.index)
+	}
+
+	// Copy mask data into the page
+	page.copyMask(mask, maskW, maskH, x, y)
+
+	frame := a.currentFrame.Load()
+	page.lastUsedFrame = frame
+	page.entryCount++
+
+	// Compute UV coordinates with half-texel inset
+	atlasSize := float32(a.config.Size)
+	halfTexel := float32(0.5) / atlasSize
+
+	region := GlyphMaskRegion{
+		AtlasIndex:	page.index,
+		X:		x,
+		Y:		y,
+		Width:		maskW,
+		Height:		maskH,
+		BearingX:	bearingX,
+		BearingY:	bearingY,
+		U0:		float32(x)/atlasSize + halfTexel,
+		V0:		float32(y)/atlasSize + halfTexel,
+		U1:		float32(x+maskW)/atlasSize - halfTexel,
+		V1:		float32(y+maskH)/atlasSize - halfTexel,
+	}
+
+	// Create cache entry and add to LRU
+	entry := &glyphMaskEntry{
+		key:			key,
+		region:			region,
+		lastAccessFrame:	frame,
+	}
+	a.lookup[key] = entry
+	a.addToFront(entry)
+
+	return region, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-PutLCD">
+    <div class="item-header">
+        <h4>func PutLCD</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>PutLCD stores an LCD (ClearType) glyph mask in the atlas. The mask contains</p>
+          
+        <p>RGB coverage data (3 bytes per pixel, logicalW pixels wide), which is packed</p>
+          
+        <p>into the R8 atlas at 3x width (3 * logicalW R8 texels per row). The region's</p>
+          
+        <p>Width is set to 3 * logicalW (atlas texels), and IsLCD is set to true.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The caller must convert the RGB triplets to row-major R8 data before calling:</p>
+          
+        <p>for each row, the 3*logicalW bytes are stored sequentially in the atlas.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) PutLCD(key GlyphMaskKey, rgbMask []byte, logicalW, maskH int, bearingX, bearingY float32) (GlyphMaskRegion, error) {
+	atlasW := logicalW * 3	// width in R8 texels
+	if logicalW <= 0 || maskH <= 0 || len(rgbMask) < atlasW*maskH {
+		return GlyphMaskRegion{}, errors.New("text: invalid LCD glyph mask dimensions")
+	}
+
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	// Check if already cached.
+	if entry, ok := a.lookup[key]; ok {
+		entry.lastAccessFrame = a.currentFrame.Load()
+		a.moveToFront(entry)
+		return entry.region, nil
+	}
+
+	// Evict LRU entries if at capacity.
+	for len(a.lookup) >= a.config.MaxEntries {
+		a.evictTail()
+	}
+
+	// Find or create a page with space for the 3x-wide data.
+	page, err := a.findOrCreatePage(atlasW, maskH)
+	if err != nil {
+		return GlyphMaskRegion{}, err
+	}
+
+	x, y, ok := page.allocator.Allocate(atlasW, maskH)
+	if !ok {
+		return GlyphMaskRegion{}, fmt.Errorf("text: failed to allocate %dx%d LCD glyph mask in atlas page %d", atlasW, maskH, page.index)
+	}
+
+	// Copy the RGB data row by row into the R8 atlas at 3x width.
+	page.copyMask(rgbMask, atlasW, maskH, x, y)
+
+	frame := a.currentFrame.Load()
+	page.lastUsedFrame = frame
+	page.entryCount++
+
+	atlasSize := float32(a.config.Size)
+	halfTexel := float32(0.5) / atlasSize
+
+	region := GlyphMaskRegion{
+		AtlasIndex:	page.index,
+		X:		x,
+		Y:		y,
+		Width:		atlasW,	// 3x logical width in R8 texels
+		Height:		maskH,
+		BearingX:	bearingX,
+		BearingY:	bearingY,
+		U0:		float32(x)/atlasSize + halfTexel,
+		V0:		float32(y)/atlasSize + halfTexel,
+		U1:		float32(x+atlasW)/atlasSize - halfTexel,
+		V1:		float32(y+maskH)/atlasSize - halfTexel,
+		IsLCD:		true,
+	}
+
+	entry := &glyphMaskEntry{
+		key:			key,
+		region:			region,
+		lastAccessFrame:	frame,
+	}
+	a.lookup[key] = entry
+	a.addToFront(entry)
+
+	return region, nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Reset">
+    <div class="item-header">
+        <h4>func Reset</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Reset clears all allocations.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *glyphMaskShelfAllocator) Reset() {
+	a.shelves = a.shelves[:0]
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Stats">
+    <div class="item-header">
+        <h4>func Stats</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Stats returns cache statistics.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) Stats() (hits, misses uint64, entryCount, pageCount int) {
+	a.mu.Lock()
+	entryCount = len(a.lookup)
+	pageCount = len(a.pages)
+	a.mu.Unlock()
+
+	hits = a.hits.Load()
+	misses = a.misses.Load()
+	return
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-UnderPressure">
+    <div class="item-header">
+        <h4>func UnderPressure</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>UnderPressure returns true when callers should use MakeGlyphMaskKeyBucketed</p>
+          
+        <p>to reduce unique entries. Uses hysteresis to prevent oscillation:</p>
+          
+        <p>enters bucketed mode at 50% capacity, exits at 25%.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (a *GlyphMaskAtlas) UnderPressure() bool {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	entries := len(a.lookup)
+	if a.bucketedMode {
+		if entries < a.config.MaxEntries/4 {
+			a.bucketedMode = false
+		}
+	} else {
+		if entries >= a.config.MaxEntries/2 {
+			a.bucketedMode = true
+		}
+	}
+	return a.bucketedMode
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Validate">
+    <div class="item-header">
+        <h4>func Validate</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Validate checks if the configuration is valid.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *GlyphMaskAtlasConfig) Validate() error {
+	if c.Size < 64 {
+		return errors.New("text: glyph mask atlas size must be at least 64")
+	}
+	if c.Size > 8192 {
+		return errors.New("text: glyph mask atlas size must be at most 8192")
+	}
+	if c.Size&(c.Size-1) != 0 {
+		return errors.New("text: glyph mask atlas size must be power of 2")
+	}
+	if c.Padding < 0 {
+		return errors.New("text: glyph mask atlas padding must be non-negative")
+	}
+	if c.MaxAtlases < 1 {
+		return errors.New("text: glyph mask atlas must have at least 1 page")
+	}
+	if c.MaxEntries < 1 {
+		return errors.New("text: glyph mask atlas must allow at least 1 entry")
+	}
+	return nil
+}
+</code></pre>
+</div>
+  
+<h3 id="structs">Structs</h3>
+
+<div class="item" id="struct-GlyphMaskKey">
+    <div class="item-header">
+        <h4>type GlyphMaskKey struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphMaskKey uniquely identifies a rasterized glyph mask in the atlas.</p>
+        
+        <p>The key captures all parameters that affect the rendered appearance:</p>
+        
+        <p>font identity, glyph index, pixel size (quantized to 1/16 px), and</p>
+        
+        <p>subpixel position (quantized to 1/4 px).</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>This follows the Skia/Chrome pattern where each (font, glyph, size, subpixel)</p>
+        
+        <p>combination produces a distinct alpha mask.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphMaskKey struct {
+	// FontID identifies the font (hash of font data or name).
+	FontID	uint64
+
+	// GlyphID is the glyph index within the font.
+	GlyphID	uint16
+
+	// SizeQ4 is the font size multiplied by 16, giving 1/16 pixel precision.
+	// For example, 13px = 208, 14.5px = 232.
+	// Range: 1..32767 covers sizes 0.0625..2048 px.
+	SizeQ4	int16
+
+	// SubpixelXQ2 is the fractional X position multiplied by 4 (0..3).
+	// This gives 4 horizontal subpixel variants per glyph (1/4 pixel positioning).
+	SubpixelXQ2	uint8
+
+	// SubpixelYQ2 is the fractional Y position multiplied by 4 (0..3).
+	// Typically 0 for horizontal text (no vertical subpixel positioning).
+	SubpixelYQ2	uint8
+
+	// Flags encodes rendering mode flags that affect the rasterized output.
+	// Different rasterization modes (AA vs aliased) produce different masks
+	// for the same glyph and must be cached separately.
+	//
+	// Bit 0 (GlyphMaskFlagAliased): binary coverage (0/255 only, NoAAFiller).
+	// Bits 1-7: reserved for future use.
+	Flags	uint8
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-GlyphMaskRegion">
+    <div class="item-header">
+        <h4>type GlyphMaskRegion struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphMaskRegion describes a glyph mask's location and metrics in the atlas.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphMaskRegion struct {
+	// AtlasIndex indicates which atlas page this glyph is in.
+	AtlasIndex	int
+
+	// X, Y are the pixel coordinates of the mask in the atlas.
+	X, Y	int
+
+	// Width, Height are the dimensions of the mask in pixels.
+	Width, Height	int
+
+	// BearingX is the horizontal offset from the glyph origin to the left edge
+	// of the mask, in pixels. Used to position the quad correctly.
+	BearingX	float32
+
+	// BearingY is the vertical offset from the baseline to the top edge of the
+	// mask, in pixels. Positive = above baseline (standard glyph rendering).
+	BearingY	float32
+
+	// UV coordinates [0, 1] for texture sampling.
+	// Inset by 0.5 texels to prevent bilinear bleed.
+	U0, V0, U1, V1	float32
+
+	// IsLCD indicates that this region contains LCD subpixel data stored
+	// at 3x horizontal width in the R8 atlas. Each logical pixel occupies
+	// 3 consecutive R8 texels (R, G, B coverage). The Width field stores
+	// the atlas width (3 * logical width), not the logical pixel width.
+	IsLCD	bool
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-GlyphMaskAtlasConfig">
+    <div class="item-header">
+        <h4>type GlyphMaskAtlasConfig struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphMaskAtlasConfig holds configuration for the glyph mask atlas.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphMaskAtlasConfig struct {
+	// Size is the atlas texture size (width = height).
+	// Must be power of 2. Default: 1024.
+	Size	int
+
+	// Padding between glyphs to prevent texture bleeding.
+	// Default: 1.
+	Padding	int
+
+	// MaxAtlases limits the number of atlas pages.
+	// Default: 4.
+	MaxAtlases	int
+
+	// MaxEntries is the maximum number of cached glyph masks.
+	// When exceeded, LRU eviction removes the least recently used entries.
+	// Default: 8192.
+	MaxEntries	int
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-GlyphMaskAtlas">
+    <div class="item-header">
+        <h4>type GlyphMaskAtlas struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>GlyphMaskAtlas manages R8 alpha mask atlases for CPU-rasterized glyphs.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>Architecture (Skia/Chrome pattern):</p>
+        
+        <p>1. CPU rasterizes glyph at exact device pixel size via AnalyticFiller (256-level AA)</p>
+        
+        <p>2. Alpha mask is packed into R8 atlas page using shelf allocator</p>
+        
+        <p>3. GPU composites as textured quad in render pass (Tier 6)</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>The atlas uses LRU eviction: when MaxEntries is reached, the least recently</p>
+        
+        <p>used glyphs are evicted. Page-level eviction happens when all entries on a</p>
+        
+        <p>page are evicted.</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>GlyphMaskAtlas is safe for concurrent use.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type GlyphMaskAtlas struct {
+	mu	sync.Mutex
+	config	GlyphMaskAtlasConfig
+
+	// Atlas pages (R8 textures)
+	pages	[]*glyphMaskPage
+
+	// Cache: key -> entry
+	lookup	map[GlyphMaskKey]*glyphMaskEntry
+
+	// LRU list: head = most recently used, tail = least recently used
+	head	*glyphMaskEntry
+	tail	*glyphMaskEntry
+
+	// Current frame counter for frame-based access tracking
+	currentFrame	atomic.Uint64
+
+	// bucketedMode is a sticky flag for size bucket quantization.
+	// Enter at 50% capacity, exit at 25% — hysteresis prevents oscillation
+	// between bucketed and fine-grained modes during smooth zoom.
+	bucketedMode	bool
+
+	// Statistics
+	hits	atomic.Uint64
+	misses	atomic.Uint64
+}
+</code></pre>
+</div>
+   
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

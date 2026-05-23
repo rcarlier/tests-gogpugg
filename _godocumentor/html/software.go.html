@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -363,6 +378,10 @@
                     
                     <li><a href="#func-Resize">Resize</a></li>
                     
+                    <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
+                    
+                    <li><a href="#func-SetDeviceScale">SetDeviceScale</a></li>
+                    
                     <li><a href="#func-Stroke">Stroke</a></li>
                     
                 </ul>
@@ -406,6 +425,21 @@
             
             <li>
                 <a href="surface_types.go.html" class="">surface/types.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
                 
             </li>
             
@@ -495,6 +529,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -516,6 +560,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -645,6 +694,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -698,6 +752,12 @@
     
 
     <pre><code class="language-go">func (r *SoftwareRenderer) Fill(pixmap *Pixmap, p *Path, paint *Paint) error {
+	// Non-AA path: completely separate code path (Skia/tiny-skia pattern).
+	// Integer scanline, binary coverage, no CoverageFiller/AnalyticFiller.
+	if !r.antiAlias {
+		return r.fillNoAA(pixmap, p, paint)
+	}
+
 	// Force mode: specific algorithm without auto-selection.
 	switch r.rasterizerMode {
 	case RasterizerAnalytic:
@@ -750,9 +810,14 @@
 	r.edgeBuilder.SetFlattenCurves(true)
 	defer r.edgeBuilder.SetFlattenCurves(false)
 
-	// Build edges from the path
-	pathAdapter := convertGGPathToCorePath(p)
-	r.edgeBuilder.BuildFromPath(pathAdapter, raster.IdentityTransform{})
+	// Build edges from the path directly from float64 coords (zero-alloc).
+	// PathVerb values match between gg and raster packages (both 0-4 iota).
+	// gg.PathVerb is byte, so []PathVerb has identical memory layout to []byte.
+	verbs := p.Verbs()
+	if len(verbs) > 0 {
+		verbBytes := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(verbs))), len(verbs))
+		r.edgeBuilder.BuildFromPathF64(verbBytes, p.Coords())
+	}
 
 	// If no edges, nothing to fill
 	if r.edgeBuilder.IsEmpty() {
@@ -768,14 +833,16 @@
 	if color, ok := solidColorFromPaint(paint); ok {
 		// Fast path: solid color
 		clipFn := paint.ClipCoverage
+		maskFn := paint.MaskCoverage
 		r.analyticFiller.Fill(r.edgeBuilder, coreFillRule, func(y int, runs *raster.AlphaRuns) {
-			r.blendAlphaRunsFromCoreRuns(pixmap, y, runs, color, clipFn)
+			r.blendAlphaRunsFromCoreRuns(pixmap, y, runs, color, clipFn, maskFn)
 		})
 	} else {
 		// Pattern/gradient path: per-pixel color sampling
 		clipFn := paint.ClipCoverage
+		maskFn := paint.MaskCoverage
 		r.analyticFiller.Fill(r.edgeBuilder, coreFillRule, func(y int, runs *raster.AlphaRuns) {
-			r.blendAlphaRunsFromCoreRunsPaint(pixmap, y, runs, paint, clipFn)
+			r.blendAlphaRunsFromCoreRunsPaint(pixmap, y, runs, paint, clipFn, maskFn)
 		})
 	}
 
@@ -804,6 +871,8 @@
 		analyticFiller:	raster.NewAnalyticFiller(width, height),
 		width:		width,
 		height:		height,
+		deviceScale:	1.0,
+		antiAlias:	true,
 	}
 }
 </code></pre>
@@ -817,7 +886,7 @@
     
     <div class="comments">
          
-        <p>Resize updates the renderer dimensions.</p>
+        <p>Resize updates the renderer dimensions (physical pixels).</p>
           
         <p>This should be called when the context is resized.</p>
          
@@ -828,8 +897,74 @@
 	r.width = width
 	r.height = height
 	eb := raster.NewEdgeBuilder(2)	// 4x AA (Skia default), max coord 8191px
+	if r.deviceScale > 1.0 {
+		eb.SetFlattenTolerance(0.1 / r.deviceScale)
+	}
 	r.edgeBuilder = eb
 	r.analyticFiller = raster.NewAnalyticFiller(width, height)
+	// Reset lazy no-AA resources so they pick up new dimensions.
+	r.noAAFiller = nil
+	r.noAAEdgeBuilder = nil
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAntiAlias">
+    <div class="item-header">
+        <h4>func SetAntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAntiAlias enables or disables anti-aliasing for subsequent Fill/Stroke calls.</p>
+          
+        <p>When disabled, the NoAAFiller (integer scanline, binary coverage) is used</p>
+          
+        <p>instead of the AnalyticFiller or CoverageFiller.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This method is intended for use by the scene renderer which needs to</p>
+          
+        <p>propagate per-draw AA state decoded from TagSetAntiAlias commands.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *SoftwareRenderer) SetAntiAlias(enabled bool) {
+	r.antiAlias = enabled
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetDeviceScale">
+    <div class="item-header">
+        <h4>func SetDeviceScale</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetDeviceScale sets the HiDPI device scale factor for the renderer.</p>
+          
+        <p>When scale > 1.0, curve flattening tolerance is reduced for finer</p>
+          
+        <p>subdivision on HiDPI displays (femtovg pattern: tol = baseTol / scale).</p>
+          
+        <p>This produces smoother curves at physical pixel resolution.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (r *SoftwareRenderer) SetDeviceScale(scale float32) {
+	if scale <= 0 {
+		scale = 1.0
+	}
+	r.deviceScale = scale
+	if scale > 1.0 {
+		r.edgeBuilder.SetFlattenTolerance(0.1 / scale)
+	}
 }
 </code></pre>
 </div>
@@ -872,8 +1007,8 @@
 		pathToDraw = dashPath(p, dash)
 	}
 
-	// Convert gg.Path to stroke.PathElement
-	strokeElements := convertPathToStrokeElements(pathToDraw)
+	// Convert gg.PathVerb to stroke.PathVerb (same layout, just cast)
+	strokeVerbs := convertVerbsToStroke(pathToDraw.Verbs())
 
 	// Create stroke style from paint
 	// Scale line width by transform scale (path coordinates are already transformed)
@@ -892,19 +1027,35 @@
 	}
 
 	// Create stroke expander with tight tolerance for smooth curves.
-	// 0.025 px produces ~128 segments per circle — eliminates visible
-	// polygon faceting on small UI circles (radio buttons, checkboxes).
+	// 0.1 px base tolerance; on HiDPI, divide by deviceScale for finer curves.
 	expander := stroke.NewStrokeExpander(strokeStyle)
-	expander.SetTolerance(0.1)
+	strokeTol := float64(0.1)
+	if r.deviceScale > 1.0 {
+		strokeTol = 0.1 / float64(r.deviceScale)
+	}
+	expander.SetTolerance(strokeTol)
 
-	// Expand stroke to fill path
-	expandedElements := expander.Expand(strokeElements)
+	// Expand stroke to fill path (SOA: verb+coords in, verb+coords out)
+	outVerbs, outCoords := expander.Expand(strokeVerbs, pathToDraw.Coords())
 
-	// Convert back to gg.Path
-	strokePath := convertStrokeElementsToPath(expandedElements)
+	// Convert back to gg.Path (reuse scratch to avoid per-stroke allocation).
+	if r.scratchStrokePath == nil {
+		r.scratchStrokePath = NewPath()
+	}
+	strokeResultToPath(r.scratchStrokePath, outVerbs, outCoords)
 
-	// Fill the stroke path - this gives us anti-aliased strokes
-	return r.Fill(pixmap, strokePath, paint)
+	// Route stroke fills through AnalyticFiller (Skia AAA scanline).
+	// Stroke-expanded multi-contour outlines (e.g., closed path → 4 contours)
+	// require per-scanline winding tracking that the tile-based SparseStripsFiller
+	// does not support (Vello's strip pipeline uses per-strip fill_gap flags).
+	// This matches Skia Ganesh which routes strokes through scanline renderers,
+	// not tile rasterizers. Single-contour strokes work with either filler after
+	// the expander.go fix (#347), but multi-contour needs scanline.
+	prevMode := r.rasterizerMode
+	r.rasterizerMode = RasterizerAnalytic
+	err := r.Fill(pixmap, r.scratchStrokePath, paint)
+	r.rasterizerMode = prevMode
+	return err
 }
 </code></pre>
 </div>
@@ -937,13 +1088,33 @@
 	edgeBuilder	*raster.EdgeBuilder
 	analyticFiller	*raster.AnalyticFiller
 
-	// Dimensions
+	// Dimensions (physical pixels)
 	width, height	int
+
+	// HiDPI device scale factor (1.0 = no scaling).
+	// Used to adjust curve flattening tolerance for sharper rendering on Retina.
+	deviceScale	float32
 
 	// rasterizerMode is set by Context before calling Fill/Stroke
 	// to support forced algorithm selection (RasterizerSparseStrips, etc.).
 	// Reset to RasterizerAuto after each call.
 	rasterizerMode	RasterizerMode
+
+	// antiAlias is set by Context before calling Fill/Stroke.
+	// When false, the NoAAFiller (integer scanline, binary coverage) is used
+	// instead of AnalyticFiller/CoverageFiller. Reset to true after each call.
+	antiAlias	bool
+
+	// noAAFiller is the non-anti-aliased filler (lazy-initialized).
+	noAAFiller	*raster.NoAAFiller
+
+	// noAAEdgeBuilder is a separate EdgeBuilder with aaShift=0 for non-AA.
+	// Non-AA does not need sub-pixel edge coordinate shifting.
+	noAAEdgeBuilder	*raster.EdgeBuilder
+
+	// scratchStrokePath reuses path allocation across Stroke calls.
+	// Matches Skia fOuter.reset() pattern — zero per-stroke allocation.
+	scratchStrokePath	*Path
 }
 </code></pre>
 </div>

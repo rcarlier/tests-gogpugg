@@ -33,20 +33,20 @@ func main() {
 	dc.SetFont(source.Face(85))
 	dc.SetLineWidth(2.0)
 	dc.SetHexColor("#FF8F00")
-	dc.StrokeString("R", x, y) // STROKE
+	dc.StrokeString("R", x, y)
 	dc.SetHexColor("#90CAF9")
-	dc.DrawString("R", x, y) // FILL
+	dc.DrawString("R", x, y)
 	dc.SetFont(source.Face(17))
 	dc.SetHexColor("#607D8B")
-	dc.DrawString("StrokeString > DrawString", x+60, y) // STROKE
+	dc.DrawString("StrokeString > DrawString", x+60, y)
 
 	y = 200.
 	dc.SetFont(source.Face(85))
 	dc.SetLineWidth(2.0)
 	dc.SetHexColor("#FF8F00")
-	dc.DrawString("R", x, y) // STROKE
+	dc.DrawString("R", x, y)
 	dc.SetHexColor("#90CAF9")
-	dc.StrokeString("R", x, y) // FILL
+	dc.StrokeString("R", x, y)
 	dc.SetFont(source.Face(17))
 	dc.SetHexColor("#607D8B")
 	dc.DrawString("DrawString > StrokeString", x+60, y) // STROKE
@@ -72,7 +72,7 @@ func main() {
 	dc.SetFont(source.Face(17))
 	dc.SetHexColor("#607D8B")
 	dc.DrawString("SetLineWidth(15.0)", x, y)
-	dc.DrawString("gg.TextModeAliased (soon)", x+200, y)
+	dc.DrawString("gg.TextModeAliased (soon ?)", x+200, y)
 
 	tools.Save(dc, "font", "font")
 }

@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -398,9 +413,26 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="active">text.go</a>
                 
                 <ul>
+                    
+                    <li><a href="#func-DrawShapedGlyphs">DrawShapedGlyphs</a></li>
                     
                     <li><a href="#func-DrawString">DrawString</a></li>
                     
@@ -417,6 +449,12 @@
                     <li><a href="#func-MeasureString">MeasureString</a></li>
                     
                     <li><a href="#func-SetFont">SetFont</a></li>
+                    
+                    <li><a href="#func-StrokeString">StrokeString</a></li>
+                    
+                    <li><a href="#func-StrokeStringAnchored">StrokeStringAnchored</a></li>
+                    
+                    <li><a href="#func-TextPath">TextPath</a></li>
                     
                     <li><a href="#func-WordWrap">WordWrap</a></li>
                     
@@ -505,6 +543,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -526,6 +574,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -655,6 +708,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -677,6 +735,65 @@
 
 
 <h3 id="functions">Functions</h3>
+
+<div class="item" id="func-DrawShapedGlyphs">
+    <div class="item-header">
+        <h4>func DrawShapedGlyphs</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>DrawShapedGlyphs renders pre-shaped glyphs through the GPU text pipeline</p>
+          
+        <p>without re-shaping. This implements the ADR-022 "shape once" guarantee:</p>
+          
+        <p>glyphs are shaped at scene recording time, then rendered here with stored</p>
+          
+        <p>positions. Falls back to DrawString (re-shaping) if the GPU accelerator</p>
+          
+        <p>doesn't implement GPUShapedTextAccelerator.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Enterprise pattern: matches Skia drawTextBlob, Vello draw_glyphs.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) DrawShapedGlyphs(glyphs []text.ShapedGlyph, face text.Face, x, y float64) {
+	if face == nil || len(glyphs) == 0 {
+		return
+	}
+
+	defer c.setGPUClipRect()()
+
+	col := FromColor(c.currentColor())
+	target := c.gpuRenderTarget()
+
+	if rc := c.gpuCtxOps(); rc != nil {
+		if sta, ok := rc.(GPUShapedTextAccelerator); ok {
+			if sta.DrawShapedGlyphMaskText(target, face, glyphs, x, y, col, c.totalMatrix(), c.deviceScale) == nil {
+				return
+			}
+		}
+	}
+
+	a := Accelerator()
+	if a != nil {
+		if sta, ok := a.(GPUShapedTextAccelerator); ok {
+			if sta.DrawShapedGlyphMaskText(target, face, glyphs, x, y, col, c.totalMatrix(), c.deviceScale) == nil {
+				return
+			}
+		}
+	}
+
+	// Fallback: reconstruct string is not possible from glyphs,
+	// so render each glyph outline through the fill pipeline.
+	c.drawShapedGlyphsAsOutlines(glyphs, face, x, y)
+}
+</code></pre>
+</div>
 
 <div class="item" id="func-DrawString">
     <div class="item-header">
@@ -722,14 +839,59 @@
 		return
 	}
 
-	// Try GPU text rendering first with user-space coordinates.
-	// The GPU pipeline receives the CTM and applies it in the vertex shader,
-	// so positions are passed in user space (not pre-transformed).
-	if c.tryGPUText(s, x, y) {
-		return
-	}
+	// Set GPU scissor rect for rectangular clips.
+	defer c.setGPUClipRect()()
 
-	c.drawStringCPU(s, x, y)
+	switch c.selectTextStrategy() {
+	case TextModeGlyphMask:
+		// Try GPU glyph mask (Tier 6) first; fall back to MSDF, then CPU.
+		if c.tryGPUGlyphMaskText(s, x, y) {
+			return
+		}
+		if c.tryGPUText(s, x, y) {
+			return
+		}
+		c.drawStringCPU(s, x, y)
+	case TextModeAliased:
+		// Aliased text through glyph mask pipeline with binary rasterization.
+		// Same Tier 6 atlas + GPU path, but NoAAFiller instead of AnalyticFiller.
+		if c.tryGPUGlyphMaskTextAliased(s, x, y) {
+			return
+		}
+		// CPU fallback: bitmap rasterization (already non-AA at small sizes).
+		c.flushGPUAccelerator()
+		c.drawStringCPU(s, x, y)
+	case TextModeMSDF:
+		// Try GPU MSDF first; fall back to CPU if unavailable.
+		if c.tryGPUText(s, x, y) {
+			return
+		}
+		c.drawStringCPU(s, x, y)
+	case TextModeVector:
+		// Vector text is rendered as glyph outline paths through the normal
+		// fill pipeline (doFill). This routes through GPU stencil+cover when
+		// a SurfaceTarget is active, or CPU when standalone. No explicit
+		// flush here — doFill() manages GPU/CPU routing and any necessary
+		// flush internally. An explicit flush would create a mid-frame
+		// render pass with LoadOpClear, wiping previously drawn content.
+		c.drawStringAsOutlines(s, x, y)
+	case TextModeBitmap:
+		// Skip GPU entirely, use CPU pipeline directly.
+		c.flushGPUAccelerator()
+		c.drawStringCPU(s, x, y)
+	default:	// TextModeAuto — current behavior
+		// ADR-027: CJK ≤64px → prefer Tier 6 (bitmap) over MSDF.
+		// MSDF at 64px reference produces stroke fusion on dense CJK characters.
+		if c.isCJKText(s) && c.glyphMaskDeviceSize() <= glyphMaskMaxSizeCJK {
+			if c.tryGPUGlyphMaskText(s, x, y) {
+				return
+			}
+		}
+		if c.tryGPUText(s, x, y) {
+			return
+		}
+		c.drawStringCPU(s, x, y)
+	}
 }
 </code></pre>
 </div>
@@ -779,13 +941,8 @@
 	x -= w * ax
 	y = y + metrics.Ascent - ay*h
 
-	// Try GPU text rendering first with user-space coordinates.
-	// The CTM is applied in the vertex shader.
-	if c.tryGPUText(s, x, y) {
-		return
-	}
-
-	c.drawStringCPU(s, x, y)
+	// Delegate to DrawString which handles TextMode routing.
+	c.DrawString(s, x, y)
 }
 </code></pre>
 </div>
@@ -1058,6 +1215,142 @@
 
     <pre><code class="language-go">func (c *Context) SetFont(face text.Face) {
 	c.face = face
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeString">
+    <div class="item-header">
+        <h4>func StrokeString</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeString strokes text outlines at position (x, y) where y is the baseline.</p>
+          
+        <p>The stroke width, cap, join, and dash come from the current paint state.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Unlike DrawString, StrokeString always uses vector outlines regardless of the</p>
+          
+        <p>current TextMode — MSDF and glyph mask pipelines cannot produce stroked text.</p>
+          
+        <p>If no font has been set with SetFont, this function does nothing.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Enterprise pattern: matches HTML5 Canvas strokeText(), Cairo show_text() + stroke(),</p>
+          
+        <p>Skia SkPaint::kStroke_Style + drawTextBlob.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) StrokeString(s string, x, y float64) {
+	if c.face == nil {
+		return
+	}
+	path := c.textOutlinePath(s, x, y)
+	if path == nil {
+		return
+	}
+
+	devicePath := path.Transform(c.totalMatrix())
+	c.trackDamage(devicePath.Bounds())
+
+	// Set GPU scissor rect for rectangular clips.
+	defer c.setGPUClipRect()()
+
+	// Save and restore context path — doStroke uses c.path.
+	savedPath := c.path
+	c.path = devicePath
+	_ = c.doStroke()
+	c.path = savedPath
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-StrokeStringAnchored">
+    <div class="item-header">
+        <h4>func StrokeStringAnchored</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>StrokeStringAnchored strokes text outlines with an anchor point.</p>
+          
+        <p>The anchor point is specified by ax and ay, which are in the range [0, 1].</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>(0, 0) = top-left</p>
+          
+        <p>(0.5, 0.5) = center</p>
+          
+        <p>(1, 1) = bottom-right</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The text is positioned so that the anchor point is at (x, y).</p>
+          
+        <p>The stroke width, cap, join, and dash come from the current paint state.</p>
+          
+        <p>Always uses vector outlines regardless of TextMode.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) StrokeStringAnchored(s string, x, y, ax, ay float64) {
+	if c.face == nil {
+		return
+	}
+
+	w, _ := text.Measure(s, c.face)
+	metrics := c.face.Metrics()
+	h := metrics.Ascent + metrics.Descent
+	x -= w * ax
+	y = y + metrics.Ascent - ay*h
+
+	c.StrokeString(s, x, y)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TextPath">
+    <div class="item-header">
+        <h4>func TextPath</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TextPath returns a user-space Path containing the vector outlines of text s</p>
+          
+        <p>positioned at (x, y) where y is the baseline. The returned path can be filled,</p>
+          
+        <p>stroked, or used for hit-testing with the caller's own pipeline.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Returns nil if no font is set or the text produces no outlines.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Enterprise pattern: matches HTML5 Canvas addText() (proposed), Cairo text_path(),</p>
+          
+        <p>Skia SkTextBlob → SkPath (via getPath).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (c *Context) TextPath(s string, x, y float64) *Path {
+	if c.face == nil {
+		return nil
+	}
+	return c.textOutlinePath(s, x, y)
 }
 </code></pre>
 </div>

@@ -172,6 +172,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -292,6 +297,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -303,6 +313,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -412,6 +427,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -497,6 +527,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -518,6 +558,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -647,6 +692,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -693,6 +743,7 @@
 
     <pre><code class="language-go">func (g *RadialGradientBrush) AddColorStop(offset float64, c RGBA) *RadialGradientBrush {
 	g.Stops = append(g.Stops, ColorStop{Offset: offset, Color: c})
+	g.sorted = false	// invalidate cached sort
 	return g
 }
 </code></pre>
@@ -717,11 +768,11 @@
 	// Handle degenerate gradient (zero radius difference)
 	radiusDiff := g.EndRadius - g.StartRadius
 	if radiusDiff == 0 {
-		return firstStopColor(g.Stops)
+		return firstStopColor(g.ensureSorted())
 	}
 
 	t := g.computeT(x, y)
-	return colorAtOffset(g.Stops, t, g.Extend)
+	return colorAtOffset(g.ensureSorted(), t, g.Extend)
 }
 </code></pre>
 </div>
@@ -865,6 +916,11 @@
 	EndRadius	float64		// Outer radius where gradient ends (t=1)
 	Stops		[]ColorStop	// Color stops defining the gradient
 	Extend		ExtendMode	// How gradient extends beyond bounds
+
+	// sortedStops caches stops sorted by offset. Populated lazily on first
+	// ColorAt call. Invalidated by AddColorStop (sorted set to false).
+	sortedStops	[]ColorStop
+	sorted		bool
 }
 </code></pre>
 </div>

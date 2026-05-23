@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -272,6 +277,8 @@
                 
                 <ul>
                     
+                    <li><a href="#func-AntiAlias">AntiAlias</a></li>
+                    
                     <li><a href="#func-Build">Build</a></li>
                     
                     <li><a href="#func-Clip">Clip</a></li>
@@ -287,6 +294,8 @@
                     <li><a href="#func-FillPath">FillPath</a></li>
                     
                     <li><a href="#func-FillRect">FillRect</a></li>
+                    
+                    <li><a href="#func-FillRoundRect">FillRoundRect</a></li>
                     
                     <li><a href="#func-FillWith">FillWith</a></li>
                     
@@ -309,6 +318,8 @@
                     <li><a href="#func-Scale">Scale</a></li>
                     
                     <li><a href="#func-Scene">Scene</a></li>
+                    
+                    <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
                     
                     <li><a href="#func-Stroke">Stroke</a></li>
                     
@@ -336,6 +347,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -347,6 +363,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -456,6 +477,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -541,6 +577,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -562,6 +608,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -691,6 +742,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -717,6 +773,25 @@
 
 
 <h3 id="functions">Functions</h3>
+
+<div class="item" id="func-AntiAlias">
+    <div class="item-header">
+        <h4>func AntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AntiAlias returns whether anti-aliasing is enabled for subsequent draws.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) AntiAlias() bool {
+	return b.scene.AntiAlias()
+}
+</code></pre>
+</div>
 
 <div class="item" id="func-Build">
     <div class="item-header">
@@ -905,6 +980,28 @@
 
     <pre><code class="language-go">func (b *SceneBuilder) FillRect(x, y, width, height float32, brush Brush) *SceneBuilder {
 	return b.Fill(NewRectShape(x, y, width, height), brush)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-FillRoundRect">
+    <div class="item-header">
+        <h4>func FillRoundRect</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FillRoundRect is a convenience method to fill a rounded rectangle with independent corner radii.</p>
+          
+        <p>Uses SDF-based rendering for high-quality anti-aliased output.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) FillRoundRect(x, y, w, h, rx, ry float32, brush Brush) *SceneBuilder {
+	rect := Rect{MinX: x, MinY: y, MaxX: x + w, MaxY: y + h}
+	return b.Fill(NewRoundRectShape(rect, rx, ry), brush)
 }
 </code></pre>
 </div>
@@ -1221,6 +1318,28 @@
 
     <pre><code class="language-go">func (b *SceneBuilder) Scene() *Scene {
 	return b.scene
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAntiAlias">
+    <div class="item-header">
+        <h4>func SetAntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAntiAlias enables or disables anti-aliasing for subsequent draw operations.</p>
+          
+        <p>When disabled, shapes use binary coverage for pixel-perfect rendering.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (b *SceneBuilder) SetAntiAlias(enabled bool) *SceneBuilder {
+	b.scene.SetAntiAlias(enabled)
+	return b
 }
 </code></pre>
 </div>

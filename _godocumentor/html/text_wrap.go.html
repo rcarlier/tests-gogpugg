@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -398,6 +413,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -483,6 +513,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -504,6 +544,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -632,6 +677,8 @@
                 
                 <ul>
                     
+                    <li><a href="#func-IsCJKRune">IsCJKRune</a></li>
+                    
                     <li><a href="#func-MeasureText">MeasureText</a></li>
                     
                     <li><a href="#func-String">String</a></li>
@@ -639,6 +686,11 @@
                     <li><a href="#func-WrapText">WrapText</a></li>
                     
                 </ul>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -669,6 +721,35 @@
 
 
 <h3 id="functions">Functions</h3>
+
+<div class="item" id="func-IsCJKRune">
+    <div class="item-header">
+        <h4>func IsCJKRune</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>IsCJKRune returns true if the rune is a CJK character.</p>
+          
+        <p>Used for script-aware text rendering (ADR-027: CJK hinting, bucket bypass)</p>
+          
+        <p>and line break opportunities.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func IsCJKRune(r rune) bool {
+	return (r >= 0x4E00 && r <= 0x9FFF) ||	// CJK Unified Ideographs
+		(r >= 0x3400 && r <= 0x4DBF) ||	// CJK Extension A
+		(r >= 0x20000 && r <= 0x2A6DF) ||	// CJK Extension B
+		(r >= 0x3040 && r <= 0x309F) ||	// Hiragana
+		(r >= 0x30A0 && r <= 0x30FF) ||	// Katakana
+		(r >= 0xAC00 && r <= 0xD7AF) ||	// Hangul Syllables
+		(r >= 0xFF00 && r <= 0xFFEF)	// Fullwidth forms
+}
+</code></pre>
+</div>
 
 <div class="item" id="func-MeasureText">
     <div class="item-header">

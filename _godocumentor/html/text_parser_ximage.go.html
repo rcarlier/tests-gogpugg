@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -398,6 +413,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -483,6 +513,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -504,6 +544,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -578,6 +623,8 @@
                     
                     <li><a href="#func-Parse">Parse</a></li>
                     
+                    <li><a href="#func-ParseIndex">ParseIndex</a></li>
+                    
                     <li><a href="#func-UnitsPerEm">UnitsPerEm</a></li>
                     
                 </ul>
@@ -651,6 +698,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -869,11 +921,50 @@
     
 
     <pre><code class="language-go">func (p *ximageParser) Parse(data []byte) (ParsedFont, error) {
+	return p.ParseIndex(data, 0)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ParseIndex">
+    <div class="item-header">
+        <h4>func ParseIndex</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ParseIndex parses a font at the given index within a collection.</p>
+          
+        <p>For single fonts (.ttf/.otf), index is ignored. For collections</p>
+          
+        <p>(.ttc/.otc), index selects which font to use (0 = first).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (p *ximageParser) ParseIndex(data []byte, index int) (ParsedFont, error) {
+	// Try single font first (most common case).
 	f, err := opentype.Parse(data)
-	if err != nil {
+	if err == nil {
+		return &ximageParsedFont{font: f}, nil
+	}
+
+	// Single parse failed — try as collection (.ttc/.otc).
+	coll, collErr := opentype.ParseCollection(data)
+	if collErr != nil {
 		return nil, fmt.Errorf("text: failed to parse font: %w", err)
 	}
-	return &ximageParsedFont{font: f}, nil
+
+	if index >= coll.NumFonts() {
+		return nil, fmt.Errorf("text: collection index %d out of range (collection has %d fonts)", index, coll.NumFonts())
+	}
+
+	cf, cfErr := coll.Font(index)
+	if cfErr != nil {
+		return nil, fmt.Errorf("text: failed to get font %d from collection: %w", index, cfErr)
+	}
+	return &ximageParsedFont{font: cf}, nil
 }
 </code></pre>
 </div>

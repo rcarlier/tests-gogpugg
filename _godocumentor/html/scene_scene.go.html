@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -317,6 +332,12 @@
                 
                 <ul>
                     
+                    <li><a href="#func-AntiAlias">AntiAlias</a></li>
+                    
+                    <li><a href="#func-Append">Append</a></li>
+                    
+                    <li><a href="#func-AppendWithTranslation">AppendWithTranslation</a></li>
+                    
                     <li><a href="#func-Bounds">Bounds</a></li>
                     
                     <li><a href="#func-Bounds">Bounds</a></li>
@@ -332,6 +353,8 @@
                     <li><a href="#func-Fill">Fill</a></li>
                     
                     <li><a href="#func-Flatten">Flatten</a></li>
+                    
+                    <li><a href="#func-FontRegistry">FontRegistry</a></li>
                     
                     <li><a href="#func-Get">Get</a></li>
                     
@@ -363,15 +386,21 @@
                     
                     <li><a href="#func-Put">Put</a></li>
                     
+                    <li><a href="#func-RegisterFont">RegisterFont</a></li>
+                    
                     <li><a href="#func-Reset">Reset</a></li>
                     
                     <li><a href="#func-Rotate">Rotate</a></li>
                     
                     <li><a href="#func-Scale">Scale</a></li>
                     
+                    <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
+                    
                     <li><a href="#func-SetTransform">SetTransform</a></li>
                     
                     <li><a href="#func-Stroke">Stroke</a></li>
+                    
+                    <li><a href="#func-TaggedBounds">TaggedBounds</a></li>
                     
                     <li><a href="#func-Transform">Transform</a></li>
                     
@@ -468,6 +497,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -553,6 +597,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -574,6 +628,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -703,6 +762,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -730,21 +794,115 @@
 
 <h3 id="functions">Functions</h3>
 
-<div class="item" id="func-Bounds">
+<div class="item" id="func-AntiAlias">
     <div class="item-header">
-        <h4>func Bounds</h4>
+        <h4>func AntiAlias</h4>
     </div>
 
     
     <div class="comments">
          
-        <p>Bounds returns the cumulative bounding box of all scene content.</p>
+        <p>AntiAlias returns whether anti-aliasing is enabled for subsequent draws.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (s *Scene) Bounds() Rect {
-	return s.bounds
+    <pre><code class="language-go">func (s *Scene) AntiAlias() bool {
+	return s.antiAlias
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Append">
+    <div class="item-header">
+        <h4>func Append</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Append merges another Scene into this one, combining encodings, image</p>
+          
+        <p>registries, and bounds. Image indices in the appended scene's encoding</p>
+          
+        <p>are adjusted to account for images already registered in this scene.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This is the Scene-level equivalent of Flutter's SceneBuilder.addPicture() —</p>
+          
+        <p>composing cached display lists from multiple RepaintBoundary nodes into a</p>
+          
+        <p>single scene for rendering.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The other scene is flattened (layers collapsed) before appending.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) Append(other *Scene) {
+	if other == nil || other.IsEmpty() {
+		return
+	}
+	otherEnc := other.Encoding()
+	//nolint:gosec // image registry length is bounded
+	imageOffset := uint32(len(s.imageRegistry))
+	s.currentEncoding().AppendWithImages(otherEnc, imageOffset)
+	s.imageRegistry = append(s.imageRegistry, other.imageRegistry...)
+	for id, src := range other.fontRegistry {
+		s.fontRegistry[id] = src
+	}
+	s.bounds = s.bounds.Union(other.Bounds())
+	s.version++
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-AppendWithTranslation">
+    <div class="item-header">
+        <h4>func AppendWithTranslation</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>AppendWithTranslation merges another scene into this one, offsetting all</p>
+          
+        <p>coordinates by (dx, dy). Image indices are adjusted to avoid conflicts.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>This is the Vello-derived pattern for composing child scenes recorded at</p>
+          
+        <p>local (0,0) into a parent at a specific position. Used by RepaintBoundary</p>
+          
+        <p>scene composition (ADR-007 Phase 5).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) AppendWithTranslation(other *Scene, dx, dy float32) {
+	if other == nil || other.IsEmpty() {
+		return
+	}
+	otherEnc := other.Encoding()
+	//nolint:gosec // image registry length is bounded
+	imageOffset := uint32(len(s.imageRegistry))
+	s.currentEncoding().AppendWithTranslation(otherEnc, dx, dy, imageOffset)
+	s.imageRegistry = append(s.imageRegistry, other.imageRegistry...)
+	for id, src := range other.fontRegistry {
+		s.fontRegistry[id] = src
+	}
+
+	ob := other.Bounds()
+	ob.MinX += dx
+	ob.MinY += dy
+	ob.MaxX += dx
+	ob.MaxY += dy
+	s.bounds = s.bounds.Union(ob)
+	s.version++
 }
 </code></pre>
 </div>
@@ -769,6 +927,25 @@
 		MaxX:	float32(img.Width),
 		MaxY:	float32(img.Height),
 	}
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-Bounds">
+    <div class="item-header">
+        <h4>func Bounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Bounds returns the cumulative bounding box of all scene content.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) Bounds() Rect {
+	return s.bounds
 }
 </code></pre>
 </div>
@@ -854,6 +1031,7 @@
 	}
 	s.bounds = s.bounds.Union(imgBounds)
 	enc.UpdateBounds(imgBounds)
+	enc.RecordCommandBounds(imgBounds)
 
 	// Update layer bounds
 	s.layerStack.Top().UpdateBounds(imgBounds)
@@ -910,17 +1088,41 @@
 	// Get the current layer's encoding
 	enc := s.currentEncoding()
 
+	// Emit AA state change if needed (delta encoding).
+	s.emitAntiAliasIfNeeded(enc)
+
+	// Optimization: RoundRectShape uses dedicated SDF encoding
+	// which bypasses path construction entirely.
+	if rr, ok := shape.(*RoundRectShape); ok {
+		if !combinedTransform.IsIdentity() {
+			enc.EncodeTransform(combinedTransform)
+		}
+		enc.EncodeFillRoundRect(brush, style, rr.Rect, rr.RadiusX, rr.RadiusY)
+
+		shapeBounds := rr.Rect
+		if !combinedTransform.IsIdentity() {
+			shapeBounds = transformBounds(shapeBounds, combinedTransform)
+		}
+		s.bounds = s.bounds.Union(shapeBounds)
+		enc.UpdateBounds(shapeBounds)
+		enc.RecordCommandBounds(shapeBounds)
+		s.layerStack.Top().UpdateBounds(shapeBounds)
+		s.version++
+		return
+	}
+
 	// Encode transform if not identity
 	if !combinedTransform.IsIdentity() {
 		enc.EncodeTransform(combinedTransform)
 	}
 
-	// Convert shape to path and encode
-	path := shape.ToPath()
+	// Convert shape to path and encode — use pooled path when possible.
+	path := s.shapeToPath(shape)
 	if path == nil || path.IsEmpty() {
 		return
 	}
 	s.encodeScenePath(enc, path)
+	s.pathPool.Put(path)
 
 	// Encode fill command
 	enc.EncodeFill(brush, style)
@@ -932,6 +1134,7 @@
 	}
 	s.bounds = s.bounds.Union(shapeBounds)
 	enc.UpdateBounds(shapeBounds)
+	enc.RecordCommandBounds(shapeBounds)
 
 	// Update layer bounds
 	s.layerStack.Top().UpdateBounds(shapeBounds)
@@ -1006,6 +1209,25 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-FontRegistry">
+    <div class="item-header">
+        <h4>func FontRegistry</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>FontRegistry returns the scene's font registry for render-time font lookup.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) FontRegistry() map[uint64]*text.FontSource {
+	return s.fontRegistry
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Get">
     <div class="item-header">
         <h4>func Get</h4>
@@ -1058,13 +1280,13 @@
     
     <div class="comments">
          
-        <p>IsEmpty returns true if the scene has no content.</p>
+        <p>IsEmpty returns true if the image has no dimensions.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (s *Scene) IsEmpty() bool {
-	return s.encoding.IsEmpty() && s.layerStack.Root().IsEmpty()
+    <pre><code class="language-go">func (img *Image) IsEmpty() bool {
+	return img.Width <= 0 || img.Height <= 0
 }
 </code></pre>
 </div>
@@ -1077,13 +1299,13 @@
     
     <div class="comments">
          
-        <p>IsEmpty returns true if the image has no dimensions.</p>
+        <p>IsEmpty returns true if the scene has no content.</p>
          
     </div>
     
 
-    <pre><code class="language-go">func (img *Image) IsEmpty() bool {
-	return img.Width <= 0 || img.Height <= 0
+    <pre><code class="language-go">func (s *Scene) IsEmpty() bool {
+	return s.encoding.IsEmpty() && s.layerStack.Root().IsEmpty()
 }
 </code></pre>
 </div>
@@ -1151,7 +1373,10 @@
 		version:		0,
 		bounds:			EmptyRect(),
 		currentTransform:	IdentityAffine(),
+		antiAlias:		true,
+		lastEncodedAA:		true,
 		imageRegistry:		make([]*Image, 0, 8),
+		fontRegistry:		make(map[uint64]*text.FontSource, 4),
 	}
 }
 </code></pre>
@@ -1315,13 +1540,14 @@
 
 	// Encode clip in current layer
 	enc := s.currentEncoding()
-	path := shape.ToPath()
+	path := s.shapeToPath(shape)
 	if path != nil && !path.IsEmpty() {
 		// Encode transform if not identity
 		if !s.currentTransform.IsIdentity() {
 			enc.EncodeTransform(s.currentTransform)
 		}
 		s.encodeScenePath(enc, path)
+		s.pathPool.Put(path)
 		enc.EncodeBeginClip()
 	}
 
@@ -1371,9 +1597,10 @@
 
 	// If there's a clip, encode it
 	if clip != nil {
-		path := clip.ToPath()
+		path := s.shapeToPath(clip)
 		if path != nil && !path.IsEmpty() {
 			s.encodeScenePath(parentEnc, path)
+			s.pathPool.Put(path)
 			parentEnc.EncodeBeginClip()
 		}
 	}
@@ -1429,6 +1656,29 @@
 </code></pre>
 </div>
 
+<div class="item" id="func-RegisterFont">
+    <div class="item-header">
+        <h4>func RegisterFont</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>RegisterFont registers a FontSource in the scene's font registry.</p>
+          
+        <p>Returns the FontSourceID used to reference this font in TagText commands.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) RegisterFont(source *text.FontSource) uint64 {
+	id := computeSceneTextFontID(source)
+	s.fontRegistry[id] = source
+	return id
+}
+</code></pre>
+</div>
+
 <div class="item" id="func-Reset">
     <div class="item-header">
         <h4>func Reset</h4>
@@ -1450,7 +1700,10 @@
 	s.version++
 	s.bounds = EmptyRect()
 	s.currentTransform = IdentityAffine()
+	s.antiAlias = true
+	s.lastEncodedAA = true
 	s.imageRegistry = s.imageRegistry[:0]
+	clear(s.fontRegistry)
 }
 </code></pre>
 </div>
@@ -1490,6 +1743,40 @@
 
     <pre><code class="language-go">func (s *Scene) Scale(x, y float32) {
 	s.currentTransform = s.currentTransform.Multiply(ScaleAffine(x, y))
+	s.version++
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-SetAntiAlias">
+    <div class="item-header">
+        <h4>func SetAntiAlias</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>SetAntiAlias enables or disables anti-aliasing for subsequent fill and stroke</p>
+          
+        <p>operations. When disabled, shapes are rendered with binary (pixel-perfect)</p>
+          
+        <p>coverage, producing crisp edges ideal for UI elements at exact pixel boundaries.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>The state change is delta-encoded: TagSetAntiAlias is emitted into the encoding</p>
+          
+        <p>only when the value differs from the previously encoded state. Default is true.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Reference: Skia SkPaint::setAntiAlias, Cairo cairo_set_antialias.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) SetAntiAlias(enabled bool) {
+	s.antiAlias = enabled
 	s.version++
 }
 </code></pre>
@@ -1544,17 +1831,21 @@
 	// Get the current layer's encoding
 	enc := s.currentEncoding()
 
+	// Emit AA state change if needed (delta encoding).
+	s.emitAntiAliasIfNeeded(enc)
+
 	// Encode transform if not identity
 	if !combinedTransform.IsIdentity() {
 		enc.EncodeTransform(combinedTransform)
 	}
 
-	// Convert shape to path and encode
-	path := shape.ToPath()
+	// Convert shape to path and encode — use pooled path when possible.
+	path := s.shapeToPath(shape)
 	if path == nil || path.IsEmpty() {
 		return
 	}
 	s.encodeScenePath(enc, path)
+	s.pathPool.Put(path)
 
 	// Encode stroke command
 	enc.EncodeStroke(brush, style)
@@ -1572,11 +1863,33 @@
 	}
 	s.bounds = s.bounds.Union(shapeBounds)
 	enc.UpdateBounds(shapeBounds)
+	enc.RecordCommandBounds(shapeBounds)
 
 	// Update layer bounds
 	s.layerStack.Top().UpdateBounds(shapeBounds)
 
 	s.version++
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-TaggedBounds">
+    <div class="item-header">
+        <h4>func TaggedBounds</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>TaggedBounds returns per-draw-command bounding boxes with stable IDs.</p>
+          
+        <p>Used by DamageTracker (ADR-021) for frame-to-frame object diff.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (s *Scene) TaggedBounds() []TaggedBounds {
+	return s.encoding.CommandBounds()
 }
 </code></pre>
 </div>
@@ -1750,8 +2063,25 @@
 	// currentTransform is the current combined transform
 	currentTransform	Affine
 
+	// antiAlias controls whether subsequent draws use anti-aliasing.
+	// Default: true. State changes are delta-encoded (TagSetAntiAlias emitted
+	// only when the value differs from lastEncodedAA).
+	antiAlias	bool
+
+	// lastEncodedAA tracks the last AA state emitted into the encoding.
+	// Used for dirty tracking to avoid redundant TagSetAntiAlias tags.
+	lastEncodedAA	bool
+
 	// imageRegistry maps image handles to indices
 	imageRegistry	[]*Image
+
+	// fontRegistry maps FontSourceID → *text.FontSource for TagText resolution.
+	// Populated at scene recording time, consumed at render/playback time.
+	fontRegistry	map[uint64]*text.FontSource
+
+	// pathPool reuses Path objects to avoid per-shape allocations in Fill/Stroke.
+	// Each shape.ToPath() creates a new Path; pooling eliminates this overhead.
+	pathPool	PathPool
 }
 </code></pre>
 </div>

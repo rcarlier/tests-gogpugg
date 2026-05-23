@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -278,6 +283,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -289,6 +299,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -398,6 +413,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -483,6 +513,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="active">text/glyph_outline.go</a>
                 
                 <ul>
@@ -492,6 +532,8 @@
                     <li><a href="#func-Error">Error</a></li>
                     
                     <li><a href="#func-ExtractOutline">ExtractOutline</a></li>
+                    
+                    <li><a href="#func-ExtractOutlineHinted">ExtractOutlineHinted</a></li>
                     
                     <li><a href="#func-IdentityTransform">IdentityTransform</a></li>
                     
@@ -538,6 +580,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -667,6 +714,11 @@
             </li>
             
             <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="vec.go.html" class="">vec.go</a>
                 
             </li>
@@ -756,14 +808,64 @@
     </div>
     
 
-    <pre><code class="language-go">func (e *OutlineExtractor) ExtractOutline(font ParsedFont, gid GlyphID, size float64) (*GlyphOutline, error) {
-	// Type assert to get the underlying sfnt.Font
-	xiFont, ok := font.(*ximageParsedFont)
+    <pre><code class="language-go">func (e *OutlineExtractor) ExtractOutline(parsedFont ParsedFont, gid GlyphID, size float64) (*GlyphOutline, error) {
+	return e.ExtractOutlineHinted(parsedFont, gid, size, HintingNone)
+}
+</code></pre>
+</div>
+
+<div class="item" id="func-ExtractOutlineHinted">
+    <div class="item-header">
+        <h4>func ExtractOutlineHinted</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>ExtractOutlineHinted extracts the outline for a glyph at the given size</p>
+          
+        <p>with the specified hinting mode.</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>When hinting is enabled:</p>
+          
+        <p>- Advance widths are grid-fitted to integer pixel boundaries (via sfnt)</p>
+          
+        <p>- Y-coordinates of horizontal segments are snapped to pixel grid</p>
+          
+        <p>(crisp baselines, x-heights, cap-heights)</p>
+          
+        <p>- HintingVertical snaps only Y-coordinates (horizontal stems)</p>
+          
+        <p>- HintingFull snaps both X and Y coordinates</p>
+          
+        <p class="empty">&nbsp;</p>
+          
+        <p>Hinting should be disabled for rotated/scaled text where grid-fitting</p>
+          
+        <p>doesn't apply (the pixel grid is no longer axis-aligned).</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (e *OutlineExtractor) ExtractOutlineHinted(parsedFont ParsedFont, gid GlyphID, size float64, hinting Hinting) (*GlyphOutline, error) {
+	xiFont, ok := parsedFont.(*ximageParsedFont)
 	if !ok {
 		return nil, ErrUnsupportedFontType
 	}
 
-	return e.extractFromSFNT(xiFont.font, gid, size)
+	outline, err := e.extractFromSFNT(xiFont.font, gid, size, hinting)
+	if err != nil {
+		return nil, err
+	}
+
+	if outline == nil || hinting == HintingNone {
+		return outline, nil
+	}
+
+	gridFitOutline(outline, hinting)
+	return outline, nil
 }
 </code></pre>
 </div>

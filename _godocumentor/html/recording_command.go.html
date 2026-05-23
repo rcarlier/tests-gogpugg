@@ -158,6 +158,11 @@
             </li>
             
             <li>
+                <a href="path_svg.go.html" class="">path_svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="pattern.go.html" class="">pattern.go</a>
                 
             </li>
@@ -215,6 +220,12 @@
                     <li><a href="#func-IsValid">IsValid</a></li>
                     
                     <li><a href="#func-String">String</a></li>
+                    
+                    <li><a href="#func-Type">Type</a></li>
+                    
+                    <li><a href="#func-Type">Type</a></li>
+                    
+                    <li><a href="#func-Type">Type</a></li>
                     
                     <li><a href="#func-Type">Type</a></li>
                     
@@ -334,6 +345,11 @@
             </li>
             
             <li>
+                <a href="scene_damage.go.html" class="">scene/damage.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
                 
             </li>
@@ -345,6 +361,11 @@
             
             <li>
                 <a href="scene_filter.go.html" class="">scene/filter.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
                 
             </li>
             
@@ -454,6 +475,21 @@
             </li>
             
             <li>
+                <a href="svg_document.go.html" class="">svg/document.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_parser.go.html" class="">svg/parser.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="svg_svg.go.html" class="">svg/svg.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text.go.html" class="">text.go</a>
                 
             </li>
@@ -539,6 +575,16 @@
             </li>
             
             <li>
+                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
+                
+            </li>
+            
+            <li>
                 <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
                 
             </li>
@@ -560,6 +606,11 @@
             
             <li>
                 <a href="text_layout.go.html" class="">text/layout.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
                 
             </li>
             
@@ -685,6 +736,11 @@
             
             <li>
                 <a href="text_wrap.go.html" class="">text/wrap.go</a>
+                
+            </li>
+            
+            <li>
+                <a href="text_mode.go.html" class="">text_mode.go</a>
                 
             </li>
             
@@ -882,7 +938,7 @@
     </div>
     
 
-    <pre><code class="language-go">func (StrokeRectCommand) Type() CommandType	{ return CmdStrokeRect }
+    <pre><code class="language-go">func (DrawImageCommand) Type() CommandType	{ return CmdDrawImage }
 </code></pre>
 </div>
 
@@ -900,6 +956,23 @@
     
 
     <pre><code class="language-go">func (SetStrokeStyleCommand) Type() CommandType	{ return CmdSetStrokeStyle }
+</code></pre>
+</div>
+
+<div class="item" id="func-Type">
+    <div class="item-header">
+        <h4>func Type</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Type implements Command.</p>
+         
+    </div>
+    
+
+    <pre><code class="language-go">func (ClipRoundRectCommand) Type() CommandType	{ return CmdClipRoundRect }
 </code></pre>
 </div>
 
@@ -967,6 +1040,23 @@
     </div>
     
 
+    <pre><code class="language-go">func (StrokeRectCommand) Type() CommandType	{ return CmdStrokeRect }
+</code></pre>
+</div>
+
+<div class="item" id="func-Type">
+    <div class="item-header">
+        <h4>func Type</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Type implements Command.</p>
+         
+    </div>
+    
+
     <pre><code class="language-go">func (SetClipCommand) Type() CommandType	{ return CmdSetClip }
 </code></pre>
 </div>
@@ -984,7 +1074,7 @@
     </div>
     
 
-    <pre><code class="language-go">func (DrawImageCommand) Type() CommandType	{ return CmdDrawImage }
+    <pre><code class="language-go">func (DrawTextCommand) Type() CommandType	{ return CmdDrawText }
 </code></pre>
 </div>
 
@@ -1001,7 +1091,7 @@
     </div>
     
 
-    <pre><code class="language-go">func (DrawTextCommand) Type() CommandType	{ return CmdDrawText }
+    <pre><code class="language-go">func (StrokeTextCommand) Type() CommandType	{ return CmdStrokeText }
 </code></pre>
 </div>
 
@@ -1154,6 +1244,23 @@
     </div>
     
 
+    <pre><code class="language-go">func (SetAntiAliasCommand) Type() CommandType	{ return CmdSetAntiAlias }
+</code></pre>
+</div>
+
+<div class="item" id="func-Type">
+    <div class="item-header">
+        <h4>func Type</h4>
+    </div>
+
+    
+    <div class="comments">
+         
+        <p>Type implements Command.</p>
+         
+    </div>
+    
+
     <pre><code class="language-go">func (SetTransformCommand) Type() CommandType	{ return CmdSetTransform }
 </code></pre>
 </div>
@@ -1286,6 +1393,32 @@
     
 
     <pre><code class="language-go">type ClearClipCommand struct{}
+</code></pre>
+</div>
+
+<div class="item" id="struct-ClipRoundRectCommand">
+    <div class="item-header">
+        <h4>type ClipRoundRectCommand struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>ClipRoundRectCommand sets a rounded rectangle as the clipping region.</p>
+        
+        <p>The rectangle is defined in user-space coordinates with a uniform corner radius.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type ClipRoundRectCommand struct {
+	// X, Y is the top-left corner of the rectangle.
+	X, Y	float64
+	// W, H is the width and height of the rectangle.
+	W, H	float64
+	// Radius is the corner radius.
+	Radius	float64
+}
 </code></pre>
 </div>
 
@@ -1438,6 +1571,40 @@
 	FontFamily	string
 	// Brush references the text color/brush in the resource pool.
 	Brush	BrushRef
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-StrokeTextCommand">
+    <div class="item-header">
+        <h4>type StrokeTextCommand struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>StrokeTextCommand strokes text outlines at a specified position.</p>
+        
+        <p>The stroke style (width, cap, join, dash) is captured at recording time.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type StrokeTextCommand struct {
+	// Text is the string to render.
+	Text	string
+	// X is the horizontal position.
+	X	float64
+	// Y is the vertical position (baseline).
+	Y	float64
+	// FontSize is the size of the font in points.
+	FontSize	float64
+	// FontFamily is the name of the font family.
+	FontFamily	string
+	// Brush references the stroke color/brush in the resource pool.
+	Brush	BrushRef
+	// Stroke contains the stroke style (width, cap, join, dash).
+	Stroke	Stroke
 }
 </code></pre>
 </div>
@@ -1601,6 +1768,26 @@
     <pre><code class="language-go">type SetFillRuleCommand struct {
 	// Rule is the fill rule (non-zero or even-odd).
 	Rule FillRule
+}
+</code></pre>
+</div>
+
+<div class="item" id="struct-SetAntiAliasCommand">
+    <div class="item-header">
+        <h4>type SetAntiAliasCommand struct</h4>
+    </div>
+
+    
+    <div class="comments">
+        
+        <p>SetAntiAliasCommand enables or disables anti-aliasing for geometry rendering.</p>
+        
+    </div>
+    
+
+    <pre><code class="language-go">type SetAntiAliasCommand struct {
+	// Enabled is true for anti-aliased rendering, false for aliased.
+	Enabled bool
 }
 </code></pre>
 </div>
