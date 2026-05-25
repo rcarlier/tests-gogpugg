@@ -1,12 +1,16 @@
 :root {
     --sidebar-width: 300px;
     --bg-color: #ffffff;
-    --text-color: #24292f;
+    --text-color: #263238;
+    --text-color-off: #b0bec5;
     --sidebar-bg: #f6f8fa;
     --border-color: #d0d7de;
     --accent-color: #0969da;
     --code-bg: #f6f8fa;
     --active-bg: #e8eaed;
+
+    --search-border-color: #24292f;
+    --search-bg: #fff;
 }
 
 body {
@@ -16,7 +20,14 @@ body {
     color: var(--text-color);
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+}
+footer {
+    width: 100%;
+    background-color: var(--sidebar-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 0.5em 1em 0.5em var(--sidebar-width);
 }
 
 /* Sidebar */
@@ -165,4 +176,86 @@ code {
 pre code.hljs {
     padding: 0.25em !important;
     font-size: 0.75rem;
+}
+
+/*
+
+
+
+
+
+*/
+.search-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.search-wrapper input {
+    width: 100%;
+    margin: 15px 0 0 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--search-border-color);
+    background-color: var(--search-bg);
+}
+
+#search-panel {
+    position: fixed;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 50vw;
+    height: 70vh;
+    border: 1px solid var(--search-border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+#search-panel[hidden] {
+    display: none;
+}
+
+.search-options {
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+}
+
+#search-results {
+    list-style: disc;
+    padding-left: 1.2rem;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+#search-results li {
+    padding: 0.5em 0 0 0;
+}
+
+#search-results li code {
+    display: block;
+    font-size: 0.7em;
+    margin-top: 5px;
+}
+
+#search-results li a {
+    color: var(--text-color);
+}
+
+#fn-search:disabled {
+    background: var(--sidebar-bg);
+    cursor: wait;
+}
+
+#fn-search::placeholder {
+    color: var(--text-color);
+}
+
+#fn-search:disabled::placeholder {
+    color: var(--text-color-off);
+}
+
+.godocumentorCredits {
+    font-size: small;
 }

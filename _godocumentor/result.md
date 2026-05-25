@@ -1509,6 +1509,10 @@
 -   `func Draw(dst draw.Image, text string, face Face, x, y float64, col color.Color)`
 -   `func Measure(text string, face Face) (width, height float64)`
 
+## text/draw_aliased.go
+
+-   `func DrawAliased(dst draw.Image, text string, face Face, x, y float64, col color.Color)`
+
 ## text/draw_emoji.go
 
 -   `func (*BitmapGlyphCache) (c *BitmapGlyphCache) Clear()`

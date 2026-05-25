@@ -1,5 +1,9 @@
 {
-    "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.48.3/",
+    "IMPORTANT": "CHANGE VERSION NUMBER FOR PATH AND CREDITS",
+
+    "path": "/Users/richnou/go/pkg/mod/github.com/gogpu/gg@v0.48.5/",
+    "credits": "<p>Unofficial documentation of <a target='_blank' href='https://github.com/gogpu/gg/'>GoGPU/GG</a> <strong>v0.48.5</strong></p>",
+
     "godocumentorFolder": "_godocumentor",
     "out": "result.json",
     "whitelist": null,

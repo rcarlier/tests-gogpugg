@@ -30,7 +30,8 @@ func main() {
 	defer dc.Close()
 	dc.ClearWithColor(gg.White)
 	dc.SetHexColor("#000")
-	grid.DrawGrid(dc, 0, w, 0, h, 10, "#FFE0B2", 100, "#FFB74D")
+
+	grid.DrawQuickGrid(dc, w, h)
 
 	dc.DrawRegularPolygon(6, 100, 100, 75, 0)
 	closeShape(dc, 20)

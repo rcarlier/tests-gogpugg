@@ -1,904 +1,1217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>github.com/gogpu/gg - context.go</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h1><a href="index.html" style="color: inherit; text-decoration: none;">github.com/gogpu/gg</a></h1>
-        </div>
-        <ul class="sidebar-menu">
-            
-            <li>
-                <a href="accelerator.go.html" class="">accelerator.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="brush.go.html" class="">brush.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="brush_custom.go.html" class="">brush_custom.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="color.go.html" class="">color.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="context.go.html" class="active">context.go</a>
-                
-                <ul>
-                    
-                    <li><a href="#func-AntiAlias">AntiAlias</a></li>
-                    
-                    <li><a href="#func-AppendPath">AppendPath</a></li>
-                    
-                    <li><a href="#func-BeginGPUFrame">BeginGPUFrame</a></li>
-                    
-                    <li><a href="#func-Clear">Clear</a></li>
-                    
-                    <li><a href="#func-ClearDash">ClearDash</a></li>
-                    
-                    <li><a href="#func-ClearPath">ClearPath</a></li>
-                    
-                    <li><a href="#func-ClearWithColor">ClearWithColor</a></li>
-                    
-                    <li><a href="#func-Close">Close</a></li>
-                    
-                    <li><a href="#func-ClosePath">ClosePath</a></li>
-                    
-                    <li><a href="#func-CreateSharedEncoder">CreateSharedEncoder</a></li>
-                    
-                    <li><a href="#func-CubicTo">CubicTo</a></li>
-                    
-                    <li><a href="#func-DeviceScale">DeviceScale</a></li>
-                    
-                    <li><a href="#func-DrawArc">DrawArc</a></li>
-                    
-                    <li><a href="#func-DrawCircle">DrawCircle</a></li>
-                    
-                    <li><a href="#func-DrawEllipse">DrawEllipse</a></li>
-                    
-                    <li><a href="#func-DrawEllipticalArc">DrawEllipticalArc</a></li>
-                    
-                    <li><a href="#func-DrawLine">DrawLine</a></li>
-                    
-                    <li><a href="#func-DrawPath">DrawPath</a></li>
-                    
-                    <li><a href="#func-DrawPoint">DrawPoint</a></li>
-                    
-                    <li><a href="#func-DrawRectangle">DrawRectangle</a></li>
-                    
-                    <li><a href="#func-DrawRoundedRectangle">DrawRoundedRectangle</a></li>
-                    
-                    <li><a href="#func-EncodeJPEG">EncodeJPEG</a></li>
-                    
-                    <li><a href="#func-EncodePNG">EncodePNG</a></li>
-                    
-                    <li><a href="#func-Fill">Fill</a></li>
-                    
-                    <li><a href="#func-FillBrush">FillBrush</a></li>
-                    
-                    <li><a href="#func-FillPath">FillPath</a></li>
-                    
-                    <li><a href="#func-FillPreserve">FillPreserve</a></li>
-                    
-                    <li><a href="#func-FillRectCPU">FillRectCPU</a></li>
-                    
-                    <li><a href="#func-FlushGPU">FlushGPU</a></li>
-                    
-                    <li><a href="#func-FlushGPUWithView">FlushGPUWithView</a></li>
-                    
-                    <li><a href="#func-FlushGPUWithViewDamage">FlushGPUWithViewDamage</a></li>
-                    
-                    <li><a href="#func-FlushGPUWithViewDamageRects">FlushGPUWithViewDamageRects</a></li>
-                    
-                    <li><a href="#func-FrameDamage">FrameDamage</a></li>
-                    
-                    <li><a href="#func-FrameDamageUnion">FrameDamageUnion</a></li>
-                    
-                    <li><a href="#func-GPURenderContext">GPURenderContext</a></li>
-                    
-                    <li><a href="#func-GetCurrentPoint">GetCurrentPoint</a></li>
-                    
-                    <li><a href="#func-GetStroke">GetStroke</a></li>
-                    
-                    <li><a href="#func-GetTransform">GetTransform</a></li>
-                    
-                    <li><a href="#func-Height">Height</a></li>
-                    
-                    <li><a href="#func-Identity">Identity</a></li>
-                    
-                    <li><a href="#func-Image">Image</a></li>
-                    
-                    <li><a href="#func-InvertY">InvertY</a></li>
-                    
-                    <li><a href="#func-IsDashed">IsDashed</a></li>
-                    
-                    <li><a href="#func-LineTo">LineTo</a></li>
-                    
-                    <li><a href="#func-MoveTo">MoveTo</a></li>
-                    
-                    <li><a href="#func-NewContext">NewContext</a></li>
-                    
-                    <li><a href="#func-NewContextForImage">NewContextForImage</a></li>
-                    
-                    <li><a href="#func-NewContextForPixmap">NewContextForPixmap</a></li>
-                    
-                    <li><a href="#func-NewContextWithScale">NewContextWithScale</a></li>
-                    
-                    <li><a href="#func-NewSubPath">NewSubPath</a></li>
-                    
-                    <li><a href="#func-PipelineMode">PipelineMode</a></li>
-                    
-                    <li><a href="#func-PixelHeight">PixelHeight</a></li>
-                    
-                    <li><a href="#func-PixelWidth">PixelWidth</a></li>
-                    
-                    <li><a href="#func-Pop">Pop</a></li>
-                    
-                    <li><a href="#func-Push">Push</a></li>
-                    
-                    <li><a href="#func-QuadraticTo">QuadraticTo</a></li>
-                    
-                    <li><a href="#func-RasterizerMode">RasterizerMode</a></li>
-                    
-                    <li><a href="#func-ResetFrameDamage">ResetFrameDamage</a></li>
-                    
-                    <li><a href="#func-Resize">Resize</a></li>
-                    
-                    <li><a href="#func-ResizeTarget">ResizeTarget</a></li>
-                    
-                    <li><a href="#func-Rotate">Rotate</a></li>
-                    
-                    <li><a href="#func-RotateAbout">RotateAbout</a></li>
-                    
-                    <li><a href="#func-SavePNG">SavePNG</a></li>
-                    
-                    <li><a href="#func-Scale">Scale</a></li>
-                    
-                    <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
-                    
-                    <li><a href="#func-SetColor">SetColor</a></li>
-                    
-                    <li><a href="#func-SetDamageTracking">SetDamageTracking</a></li>
-                    
-                    <li><a href="#func-SetDash">SetDash</a></li>
-                    
-                    <li><a href="#func-SetDashOffset">SetDashOffset</a></li>
-                    
-                    <li><a href="#func-SetDeviceScale">SetDeviceScale</a></li>
-                    
-                    <li><a href="#func-SetFillBrush">SetFillBrush</a></li>
-                    
-                    <li><a href="#func-SetFillRule">SetFillRule</a></li>
-                    
-                    <li><a href="#func-SetHexColor">SetHexColor</a></li>
-                    
-                    <li><a href="#func-SetLCDLayout">SetLCDLayout</a></li>
-                    
-                    <li><a href="#func-SetLineCap">SetLineCap</a></li>
-                    
-                    <li><a href="#func-SetLineJoin">SetLineJoin</a></li>
-                    
-                    <li><a href="#func-SetLineWidth">SetLineWidth</a></li>
-                    
-                    <li><a href="#func-SetMiterLimit">SetMiterLimit</a></li>
-                    
-                    <li><a href="#func-SetPath">SetPath</a></li>
-                    
-                    <li><a href="#func-SetPipelineMode">SetPipelineMode</a></li>
-                    
-                    <li><a href="#func-SetPixel">SetPixel</a></li>
-                    
-                    <li><a href="#func-SetRGB">SetRGB</a></li>
-                    
-                    <li><a href="#func-SetRGBA">SetRGBA</a></li>
-                    
-                    <li><a href="#func-SetRasterizerMode">SetRasterizerMode</a></li>
-                    
-                    <li><a href="#func-SetSharedEncoder">SetSharedEncoder</a></li>
-                    
-                    <li><a href="#func-SetStroke">SetStroke</a></li>
-                    
-                    <li><a href="#func-SetStrokeBrush">SetStrokeBrush</a></li>
-                    
-                    <li><a href="#func-SetTextMode">SetTextMode</a></li>
-                    
-                    <li><a href="#func-SetTransform">SetTransform</a></li>
-                    
-                    <li><a href="#func-Shear">Shear</a></li>
-                    
-                    <li><a href="#func-Stroke">Stroke</a></li>
-                    
-                    <li><a href="#func-StrokeBrush">StrokeBrush</a></li>
-                    
-                    <li><a href="#func-StrokePath">StrokePath</a></li>
-                    
-                    <li><a href="#func-StrokePreserve">StrokePreserve</a></li>
-                    
-                    <li><a href="#func-SubmitSharedEncoder">SubmitSharedEncoder</a></li>
-                    
-                    <li><a href="#func-TextMode">TextMode</a></li>
-                    
-                    <li><a href="#func-TrackDamageRect">TrackDamageRect</a></li>
-                    
-                    <li><a href="#func-Transform">Transform</a></li>
-                    
-                    <li><a href="#func-TransformPoint">TransformPoint</a></li>
-                    
-                    <li><a href="#func-Translate">Translate</a></li>
-                    
-                    <li><a href="#func-Width">Width</a></li>
-                    
-                </ul>
-                
-            </li>
-            
-            <li>
-                <a href="context_clip.go.html" class="">context_clip.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="context_image.go.html" class="">context_image.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="context_layer.go.html" class="">context_layer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="context_mask.go.html" class="">context_mask.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="coverage_filler.go.html" class="">coverage_filler.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="curve.go.html" class="">curve.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="dash.go.html" class="">dash.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="gpu_gpu.go.html" class="">gpu/gpu.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="gradient.go.html" class="">gradient.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="gradient_linear.go.html" class="">gradient_linear.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="gradient_radial.go.html" class="">gradient_radial.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="gradient_sweep.go.html" class="">gradient_sweep.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="integration_ggcanvas_canvas.go.html" class="">integration/ggcanvas/canvas.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="integration_ggcanvas_render.go.html" class="">integration/ggcanvas/render.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="logger.go.html" class="">logger.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="mask.go.html" class="">mask.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="matrix.go.html" class="">matrix.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="options.go.html" class="">options.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="paint.go.html" class="">paint.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="painter.go.html" class="">painter.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="path.go.html" class="">path.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="path_builder.go.html" class="">path_builder.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="path_ops.go.html" class="">path_ops.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="path_svg.go.html" class="">path_svg.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="pattern.go.html" class="">pattern.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="pipeline_mode.go.html" class="">pipeline_mode.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="pixmap.go.html" class="">pixmap.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="point.go.html" class="">point.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="rasterizer_mode.go.html" class="">rasterizer_mode.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_backend.go.html" class="">recording/backend.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_backends_raster_backend.go.html" class="">recording/backends/raster/backend.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_brush.go.html" class="">recording/brush.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_command.go.html" class="">recording/command.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_matrix.go.html" class="">recording/matrix.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_pool.go.html" class="">recording/pool.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_recorder.go.html" class="">recording/recorder.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="recording_registry.go.html" class="">recording/registry.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_device.go.html" class="">render/device.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_gpu_renderer.go.html" class="">render/gpu_renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_layers.go.html" class="">render/layers.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_renderer.go.html" class="">render/renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_scene.go.html" class="">render/scene.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_software.go.html" class="">render/software.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="render_target.go.html" class="">render/target.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="renderer.go.html" class="">renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_blend_integration.go.html" class="">scene/blend_integration.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_builder.go.html" class="">scene/builder.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_cache.go.html" class="">scene/cache.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_damage.go.html" class="">scene/damage.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_decoder.go.html" class="">scene/decoder.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_encoding.go.html" class="">scene/encoding.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_filter.go.html" class="">scene/filter.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_gpu_renderer.go.html" class="">scene/gpu_renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_layer.go.html" class="">scene/layer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_path.go.html" class="">scene/path.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_pool.go.html" class="">scene/pool.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_renderer.go.html" class="">scene/renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_scene.go.html" class="">scene/scene.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_shape.go.html" class="">scene/shape.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_tag.go.html" class="">scene/tag.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="scene_text.go.html" class="">scene/text.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="sdf.go.html" class="">sdf.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="sdf_accelerator.go.html" class="">sdf_accelerator.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="shape_detect.go.html" class="">shape_detect.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="shapes.go.html" class="">shapes.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="software.go.html" class="">software.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="solver.go.html" class="">solver.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="stroke.go.html" class="">stroke.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_gpu_surface.go.html" class="">surface/gpu_surface.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_image_surface.go.html" class="">surface/image_surface.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_path.go.html" class="">surface/path.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_registry.go.html" class="">surface/registry.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_surface.go.html" class="">surface/surface.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="surface_types.go.html" class="">surface/types.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="svg_document.go.html" class="">svg/document.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="svg_parser.go.html" class="">svg/parser.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="svg_svg.go.html" class="">svg/svg.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text.go.html" class="">text.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_cache.go.html" class="">text/cache.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_cache_lru.go.html" class="">text/cache/lru.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_cache_shaping.go.html" class="">text/cache/shaping.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_color_font.go.html" class="">text/color_font.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_draw.go.html" class="">text/draw.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_draw_emoji.go.html" class="">text/draw_emoji.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_emoji_bitmap.go.html" class="">text/emoji/bitmap.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_emoji_cbdt_extractor.go.html" class="">text/emoji/cbdt_extractor.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_emoji_colr.go.html" class="">text/emoji/colr.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_emoji_detect.go.html" class="">text/emoji/detect.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_emoji_sequence.go.html" class="">text/emoji/sequence.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_errors.go.html" class="">text/errors.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_face.go.html" class="">text/face.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_filtered.go.html" class="">text/filtered.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph.go.html" class="">text/glyph.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_cache.go.html" class="">text/glyph_cache.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_mask_atlas.go.html" class="">text/glyph_mask_atlas.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_mask_rasterizer.go.html" class="">text/glyph_mask_rasterizer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_outline.go.html" class="">text/glyph_outline.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_renderer.go.html" class="">text/glyph_renderer.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_run.go.html" class="">text/glyph_run.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_glyph_type.go.html" class="">text/glyph_type.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_layout.go.html" class="">text/layout.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_lcd_filter.go.html" class="">text/lcd_filter.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_metrics.go.html" class="">text/metrics.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_atlas.go.html" class="">text/msdf/atlas.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_contour.go.html" class="">text/msdf/contour.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_edge.go.html" class="">text/msdf/edge.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_generator.go.html" class="">text/msdf/generator.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_shelf.go.html" class="">text/msdf/shelf.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_msdf_types.go.html" class="">text/msdf/types.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_multi.go.html" class="">text/multi.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_options.go.html" class="">text/options.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_parser.go.html" class="">text/parser.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_parser_ximage.go.html" class="">text/parser_ximage.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_rasterize.go.html" class="">text/rasterize.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_runetobool.go.html" class="">text/runetobool.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_script.go.html" class="">text/script.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_segment.go.html" class="">text/segment.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_shaped.go.html" class="">text/shaped.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_shaped_run.go.html" class="">text/shaped_run.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_shaper.go.html" class="">text/shaper.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_shaper_builtin.go.html" class="">text/shaper_builtin.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_shaper_gotext.go.html" class="">text/shaper_gotext.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_source.go.html" class="">text/source.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_subpixel.go.html" class="">text/subpixel.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_tab.go.html" class="">text/tab.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_types.go.html" class="">text/types.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_wrap.go.html" class="">text/wrap.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="text_mode.go.html" class="">text_mode.go</a>
-                
-            </li>
-            
-            <li>
-                <a href="vec.go.html" class="">vec.go</a>
-                
-            </li>
-            
-        </ul>
-    </aside>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>github.com/gogpu/gg - context.go</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+        />
+        <link rel="stylesheet" href="index.css" />
+    </head>
+    <body>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>
+                    <a href="index.html" style="color: inherit; text-decoration: none"
+                        >github.com/gogpu/gg</a
+                    >
+                </h1>
 
-    <main class="main-content">
-        <div class="container">
-            
+                <section>
+                    <div class="search-wrapper">
+                        <input
+                            type="search"
+                            id="fn-search"
+                            placeholder="Search"
+                            autocomplete="off"
+                        />
+                        <div id="search-panel" hidden>
+                            <div class="search-options">
+                                <label>
+                                    <input type="checkbox" name="fields" value="signature" />
+                                    signature
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="fields" value="comments" />
+                                    comments
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="fields" value="code" />
+                                    code
+                                </label>
+                            </div>
+                            <ul id="search-results"></ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <ul class="sidebar-menu">
+                
+                <li>
+                    <a href="accelerator.go.html" class=""
+                        >accelerator.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="brush.go.html" class=""
+                        >brush.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="brush_custom.go.html" class=""
+                        >brush_custom.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="color.go.html" class=""
+                        >color.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="context.go.html" class="active"
+                        >context.go</a
+                    >
+                    
+                    <ul>
+                        
+                        <li><a href="#func-AntiAlias">AntiAlias</a></li>
+                        
+                        <li><a href="#func-AppendPath">AppendPath</a></li>
+                        
+                        <li><a href="#func-BeginGPUFrame">BeginGPUFrame</a></li>
+                        
+                        <li><a href="#func-Clear">Clear</a></li>
+                        
+                        <li><a href="#func-ClearDash">ClearDash</a></li>
+                        
+                        <li><a href="#func-ClearPath">ClearPath</a></li>
+                        
+                        <li><a href="#func-ClearWithColor">ClearWithColor</a></li>
+                        
+                        <li><a href="#func-Close">Close</a></li>
+                        
+                        <li><a href="#func-ClosePath">ClosePath</a></li>
+                        
+                        <li><a href="#func-CreateSharedEncoder">CreateSharedEncoder</a></li>
+                        
+                        <li><a href="#func-CubicTo">CubicTo</a></li>
+                        
+                        <li><a href="#func-DeviceScale">DeviceScale</a></li>
+                        
+                        <li><a href="#func-DrawArc">DrawArc</a></li>
+                        
+                        <li><a href="#func-DrawCircle">DrawCircle</a></li>
+                        
+                        <li><a href="#func-DrawEllipse">DrawEllipse</a></li>
+                        
+                        <li><a href="#func-DrawEllipticalArc">DrawEllipticalArc</a></li>
+                        
+                        <li><a href="#func-DrawLine">DrawLine</a></li>
+                        
+                        <li><a href="#func-DrawPath">DrawPath</a></li>
+                        
+                        <li><a href="#func-DrawPoint">DrawPoint</a></li>
+                        
+                        <li><a href="#func-DrawRectangle">DrawRectangle</a></li>
+                        
+                        <li><a href="#func-DrawRoundedRectangle">DrawRoundedRectangle</a></li>
+                        
+                        <li><a href="#func-EncodeJPEG">EncodeJPEG</a></li>
+                        
+                        <li><a href="#func-EncodePNG">EncodePNG</a></li>
+                        
+                        <li><a href="#func-Fill">Fill</a></li>
+                        
+                        <li><a href="#func-FillBrush">FillBrush</a></li>
+                        
+                        <li><a href="#func-FillPath">FillPath</a></li>
+                        
+                        <li><a href="#func-FillPreserve">FillPreserve</a></li>
+                        
+                        <li><a href="#func-FillRectCPU">FillRectCPU</a></li>
+                        
+                        <li><a href="#func-FlushGPU">FlushGPU</a></li>
+                        
+                        <li><a href="#func-FlushGPUWithView">FlushGPUWithView</a></li>
+                        
+                        <li><a href="#func-FlushGPUWithViewDamage">FlushGPUWithViewDamage</a></li>
+                        
+                        <li><a href="#func-FlushGPUWithViewDamageRects">FlushGPUWithViewDamageRects</a></li>
+                        
+                        <li><a href="#func-FrameDamage">FrameDamage</a></li>
+                        
+                        <li><a href="#func-FrameDamageUnion">FrameDamageUnion</a></li>
+                        
+                        <li><a href="#func-GPURenderContext">GPURenderContext</a></li>
+                        
+                        <li><a href="#func-GetCurrentPoint">GetCurrentPoint</a></li>
+                        
+                        <li><a href="#func-GetStroke">GetStroke</a></li>
+                        
+                        <li><a href="#func-GetTransform">GetTransform</a></li>
+                        
+                        <li><a href="#func-Height">Height</a></li>
+                        
+                        <li><a href="#func-Identity">Identity</a></li>
+                        
+                        <li><a href="#func-Image">Image</a></li>
+                        
+                        <li><a href="#func-InvertY">InvertY</a></li>
+                        
+                        <li><a href="#func-IsDashed">IsDashed</a></li>
+                        
+                        <li><a href="#func-LineTo">LineTo</a></li>
+                        
+                        <li><a href="#func-MoveTo">MoveTo</a></li>
+                        
+                        <li><a href="#func-NewContext">NewContext</a></li>
+                        
+                        <li><a href="#func-NewContextForImage">NewContextForImage</a></li>
+                        
+                        <li><a href="#func-NewContextForPixmap">NewContextForPixmap</a></li>
+                        
+                        <li><a href="#func-NewContextWithScale">NewContextWithScale</a></li>
+                        
+                        <li><a href="#func-NewSubPath">NewSubPath</a></li>
+                        
+                        <li><a href="#func-PipelineMode">PipelineMode</a></li>
+                        
+                        <li><a href="#func-PixelHeight">PixelHeight</a></li>
+                        
+                        <li><a href="#func-PixelWidth">PixelWidth</a></li>
+                        
+                        <li><a href="#func-Pop">Pop</a></li>
+                        
+                        <li><a href="#func-Push">Push</a></li>
+                        
+                        <li><a href="#func-QuadraticTo">QuadraticTo</a></li>
+                        
+                        <li><a href="#func-RasterizerMode">RasterizerMode</a></li>
+                        
+                        <li><a href="#func-ResetFrameDamage">ResetFrameDamage</a></li>
+                        
+                        <li><a href="#func-Resize">Resize</a></li>
+                        
+                        <li><a href="#func-ResizeTarget">ResizeTarget</a></li>
+                        
+                        <li><a href="#func-Rotate">Rotate</a></li>
+                        
+                        <li><a href="#func-RotateAbout">RotateAbout</a></li>
+                        
+                        <li><a href="#func-SavePNG">SavePNG</a></li>
+                        
+                        <li><a href="#func-Scale">Scale</a></li>
+                        
+                        <li><a href="#func-SetAntiAlias">SetAntiAlias</a></li>
+                        
+                        <li><a href="#func-SetColor">SetColor</a></li>
+                        
+                        <li><a href="#func-SetDamageTracking">SetDamageTracking</a></li>
+                        
+                        <li><a href="#func-SetDash">SetDash</a></li>
+                        
+                        <li><a href="#func-SetDashOffset">SetDashOffset</a></li>
+                        
+                        <li><a href="#func-SetDeviceScale">SetDeviceScale</a></li>
+                        
+                        <li><a href="#func-SetFillBrush">SetFillBrush</a></li>
+                        
+                        <li><a href="#func-SetFillRule">SetFillRule</a></li>
+                        
+                        <li><a href="#func-SetHexColor">SetHexColor</a></li>
+                        
+                        <li><a href="#func-SetLCDLayout">SetLCDLayout</a></li>
+                        
+                        <li><a href="#func-SetLineCap">SetLineCap</a></li>
+                        
+                        <li><a href="#func-SetLineJoin">SetLineJoin</a></li>
+                        
+                        <li><a href="#func-SetLineWidth">SetLineWidth</a></li>
+                        
+                        <li><a href="#func-SetMiterLimit">SetMiterLimit</a></li>
+                        
+                        <li><a href="#func-SetPath">SetPath</a></li>
+                        
+                        <li><a href="#func-SetPipelineMode">SetPipelineMode</a></li>
+                        
+                        <li><a href="#func-SetPixel">SetPixel</a></li>
+                        
+                        <li><a href="#func-SetRGB">SetRGB</a></li>
+                        
+                        <li><a href="#func-SetRGBA">SetRGBA</a></li>
+                        
+                        <li><a href="#func-SetRasterizerMode">SetRasterizerMode</a></li>
+                        
+                        <li><a href="#func-SetSharedEncoder">SetSharedEncoder</a></li>
+                        
+                        <li><a href="#func-SetStroke">SetStroke</a></li>
+                        
+                        <li><a href="#func-SetStrokeBrush">SetStrokeBrush</a></li>
+                        
+                        <li><a href="#func-SetTextMode">SetTextMode</a></li>
+                        
+                        <li><a href="#func-SetTransform">SetTransform</a></li>
+                        
+                        <li><a href="#func-Shear">Shear</a></li>
+                        
+                        <li><a href="#func-Stroke">Stroke</a></li>
+                        
+                        <li><a href="#func-StrokeBrush">StrokeBrush</a></li>
+                        
+                        <li><a href="#func-StrokePath">StrokePath</a></li>
+                        
+                        <li><a href="#func-StrokePreserve">StrokePreserve</a></li>
+                        
+                        <li><a href="#func-SubmitSharedEncoder">SubmitSharedEncoder</a></li>
+                        
+                        <li><a href="#func-TextMode">TextMode</a></li>
+                        
+                        <li><a href="#func-TrackDamageRect">TrackDamageRect</a></li>
+                        
+                        <li><a href="#func-Transform">Transform</a></li>
+                        
+                        <li><a href="#func-TransformPoint">TransformPoint</a></li>
+                        
+                        <li><a href="#func-Translate">Translate</a></li>
+                        
+                        <li><a href="#func-Width">Width</a></li>
+                        
+                    </ul>
+                    
+                </li>
+                
+                <li>
+                    <a href="context_clip.go.html" class=""
+                        >context_clip.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="context_image.go.html" class=""
+                        >context_image.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="context_layer.go.html" class=""
+                        >context_layer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="context_mask.go.html" class=""
+                        >context_mask.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="coverage_filler.go.html" class=""
+                        >coverage_filler.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="curve.go.html" class=""
+                        >curve.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="dash.go.html" class=""
+                        >dash.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="gpu_gpu.go.html" class=""
+                        >gpu/gpu.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="gradient.go.html" class=""
+                        >gradient.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="gradient_linear.go.html" class=""
+                        >gradient_linear.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="gradient_radial.go.html" class=""
+                        >gradient_radial.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="gradient_sweep.go.html" class=""
+                        >gradient_sweep.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="integration_ggcanvas_canvas.go.html" class=""
+                        >integration/ggcanvas/canvas.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="integration_ggcanvas_render.go.html" class=""
+                        >integration/ggcanvas/render.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="logger.go.html" class=""
+                        >logger.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="mask.go.html" class=""
+                        >mask.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="matrix.go.html" class=""
+                        >matrix.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="options.go.html" class=""
+                        >options.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="paint.go.html" class=""
+                        >paint.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="painter.go.html" class=""
+                        >painter.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="path.go.html" class=""
+                        >path.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="path_builder.go.html" class=""
+                        >path_builder.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="path_ops.go.html" class=""
+                        >path_ops.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="path_svg.go.html" class=""
+                        >path_svg.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="pattern.go.html" class=""
+                        >pattern.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="pipeline_mode.go.html" class=""
+                        >pipeline_mode.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="pixmap.go.html" class=""
+                        >pixmap.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="point.go.html" class=""
+                        >point.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="rasterizer_mode.go.html" class=""
+                        >rasterizer_mode.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_backend.go.html" class=""
+                        >recording/backend.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_backends_raster_backend.go.html" class=""
+                        >recording/backends/raster/backend.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_brush.go.html" class=""
+                        >recording/brush.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_command.go.html" class=""
+                        >recording/command.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_matrix.go.html" class=""
+                        >recording/matrix.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_pool.go.html" class=""
+                        >recording/pool.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_recorder.go.html" class=""
+                        >recording/recorder.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="recording_registry.go.html" class=""
+                        >recording/registry.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_device.go.html" class=""
+                        >render/device.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_gpu_renderer.go.html" class=""
+                        >render/gpu_renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_layers.go.html" class=""
+                        >render/layers.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_renderer.go.html" class=""
+                        >render/renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_scene.go.html" class=""
+                        >render/scene.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_software.go.html" class=""
+                        >render/software.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="render_target.go.html" class=""
+                        >render/target.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="renderer.go.html" class=""
+                        >renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_blend_integration.go.html" class=""
+                        >scene/blend_integration.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_builder.go.html" class=""
+                        >scene/builder.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_cache.go.html" class=""
+                        >scene/cache.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_damage.go.html" class=""
+                        >scene/damage.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_decoder.go.html" class=""
+                        >scene/decoder.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_encoding.go.html" class=""
+                        >scene/encoding.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_filter.go.html" class=""
+                        >scene/filter.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_gpu_renderer.go.html" class=""
+                        >scene/gpu_renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_layer.go.html" class=""
+                        >scene/layer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_path.go.html" class=""
+                        >scene/path.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_pool.go.html" class=""
+                        >scene/pool.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_renderer.go.html" class=""
+                        >scene/renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_scene.go.html" class=""
+                        >scene/scene.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_shape.go.html" class=""
+                        >scene/shape.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_tag.go.html" class=""
+                        >scene/tag.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="scene_text.go.html" class=""
+                        >scene/text.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="sdf.go.html" class=""
+                        >sdf.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="sdf_accelerator.go.html" class=""
+                        >sdf_accelerator.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="shape_detect.go.html" class=""
+                        >shape_detect.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="shapes.go.html" class=""
+                        >shapes.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="software.go.html" class=""
+                        >software.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="solver.go.html" class=""
+                        >solver.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="stroke.go.html" class=""
+                        >stroke.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_gpu_surface.go.html" class=""
+                        >surface/gpu_surface.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_image_surface.go.html" class=""
+                        >surface/image_surface.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_path.go.html" class=""
+                        >surface/path.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_registry.go.html" class=""
+                        >surface/registry.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_surface.go.html" class=""
+                        >surface/surface.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="surface_types.go.html" class=""
+                        >surface/types.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="svg_document.go.html" class=""
+                        >svg/document.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="svg_parser.go.html" class=""
+                        >svg/parser.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="svg_svg.go.html" class=""
+                        >svg/svg.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text.go.html" class=""
+                        >text.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_cache.go.html" class=""
+                        >text/cache.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_cache_lru.go.html" class=""
+                        >text/cache/lru.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_cache_shaping.go.html" class=""
+                        >text/cache/shaping.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_color_font.go.html" class=""
+                        >text/color_font.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_draw.go.html" class=""
+                        >text/draw.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_draw_aliased.go.html" class=""
+                        >text/draw_aliased.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_draw_emoji.go.html" class=""
+                        >text/draw_emoji.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_emoji_bitmap.go.html" class=""
+                        >text/emoji/bitmap.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_emoji_cbdt_extractor.go.html" class=""
+                        >text/emoji/cbdt_extractor.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_emoji_colr.go.html" class=""
+                        >text/emoji/colr.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_emoji_detect.go.html" class=""
+                        >text/emoji/detect.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_emoji_sequence.go.html" class=""
+                        >text/emoji/sequence.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_errors.go.html" class=""
+                        >text/errors.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_face.go.html" class=""
+                        >text/face.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_filtered.go.html" class=""
+                        >text/filtered.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph.go.html" class=""
+                        >text/glyph.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_cache.go.html" class=""
+                        >text/glyph_cache.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_mask_atlas.go.html" class=""
+                        >text/glyph_mask_atlas.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_mask_rasterizer.go.html" class=""
+                        >text/glyph_mask_rasterizer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_outline.go.html" class=""
+                        >text/glyph_outline.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_renderer.go.html" class=""
+                        >text/glyph_renderer.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_run.go.html" class=""
+                        >text/glyph_run.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_glyph_type.go.html" class=""
+                        >text/glyph_type.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_layout.go.html" class=""
+                        >text/layout.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_lcd_filter.go.html" class=""
+                        >text/lcd_filter.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_metrics.go.html" class=""
+                        >text/metrics.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_atlas.go.html" class=""
+                        >text/msdf/atlas.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_contour.go.html" class=""
+                        >text/msdf/contour.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_edge.go.html" class=""
+                        >text/msdf/edge.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_generator.go.html" class=""
+                        >text/msdf/generator.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_shelf.go.html" class=""
+                        >text/msdf/shelf.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_msdf_types.go.html" class=""
+                        >text/msdf/types.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_multi.go.html" class=""
+                        >text/multi.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_options.go.html" class=""
+                        >text/options.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_parser.go.html" class=""
+                        >text/parser.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_parser_ximage.go.html" class=""
+                        >text/parser_ximage.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_rasterize.go.html" class=""
+                        >text/rasterize.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_runetobool.go.html" class=""
+                        >text/runetobool.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_script.go.html" class=""
+                        >text/script.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_segment.go.html" class=""
+                        >text/segment.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_shaped.go.html" class=""
+                        >text/shaped.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_shaped_run.go.html" class=""
+                        >text/shaped_run.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_shaper.go.html" class=""
+                        >text/shaper.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_shaper_builtin.go.html" class=""
+                        >text/shaper_builtin.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_shaper_gotext.go.html" class=""
+                        >text/shaper_gotext.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_source.go.html" class=""
+                        >text/source.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_subpixel.go.html" class=""
+                        >text/subpixel.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_tab.go.html" class=""
+                        >text/tab.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_types.go.html" class=""
+                        >text/types.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_wrap.go.html" class=""
+                        >text/wrap.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="text_mode.go.html" class=""
+                        >text_mode.go</a
+                    >
+                    
+                </li>
+                
+                <li>
+                    <a href="vec.go.html" class=""
+                        >vec.go</a
+                    >
+                    
+                </li>
+                
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="container">
 <h2>context.go</h2>
 
 <div style="margin-bottom: 20px">
@@ -917,6 +1230,7 @@
 <h3 id="functions">Functions</h3>
 
 <div class="item" id="func-AntiAlias">
+    <div id="49b9a3ba"></div>
     <div class="item-header">
         <h4>func AntiAlias</h4>
     </div>
@@ -936,6 +1250,7 @@
 </div>
 
 <div class="item" id="func-AppendPath">
+    <div id="2d500dc6"></div>
     <div class="item-header">
         <h4>func AppendPath</h4>
     </div>
@@ -963,6 +1278,7 @@
 </div>
 
 <div class="item" id="func-BeginGPUFrame">
+    <div id="017f4a2c"></div>
     <div class="item-header">
         <h4>func BeginGPUFrame</h4>
     </div>
@@ -996,6 +1312,7 @@
 </div>
 
 <div class="item" id="func-Clear">
+    <div id="a817fee7"></div>
     <div class="item-header">
         <h4>func Clear</h4>
     </div>
@@ -1017,6 +1334,7 @@
 </div>
 
 <div class="item" id="func-ClearDash">
+    <div id="2e4ff1a7"></div>
     <div class="item-header">
         <h4>func ClearDash</h4>
     </div>
@@ -1038,6 +1356,7 @@
 </div>
 
 <div class="item" id="func-ClearPath">
+    <div id="4a512667"></div>
     <div class="item-header">
         <h4>func ClearPath</h4>
     </div>
@@ -1057,6 +1376,7 @@
 </div>
 
 <div class="item" id="func-ClearWithColor">
+    <div id="1a2af452"></div>
     <div class="item-header">
         <h4>func ClearWithColor</h4>
     </div>
@@ -1078,6 +1398,7 @@
 </div>
 
 <div class="item" id="func-Close">
+    <div id="675229d8"></div>
     <div class="item-header">
         <h4>func Close</h4>
     </div>
@@ -1144,6 +1465,7 @@
 </div>
 
 <div class="item" id="func-ClosePath">
+    <div id="45bf595d"></div>
     <div class="item-header">
         <h4>func ClosePath</h4>
     </div>
@@ -1163,6 +1485,7 @@
 </div>
 
 <div class="item" id="func-CreateSharedEncoder">
+    <div id="2a3f6a0b"></div>
     <div class="item-header">
         <h4>func CreateSharedEncoder</h4>
     </div>
@@ -1200,6 +1523,7 @@
 </div>
 
 <div class="item" id="func-CubicTo">
+    <div id="40bb4b26"></div>
     <div class="item-header">
         <h4>func CubicTo</h4>
     </div>
@@ -1222,6 +1546,7 @@
 </div>
 
 <div class="item" id="func-DeviceScale">
+    <div id="a5d4ce6b"></div>
     <div class="item-header">
         <h4>func DeviceScale</h4>
     </div>
@@ -1243,6 +1568,7 @@
 </div>
 
 <div class="item" id="func-DrawArc">
+    <div id="c728f2ed"></div>
     <div class="item-header">
         <h4>func DrawArc</h4>
     </div>
@@ -1279,6 +1605,7 @@
 </div>
 
 <div class="item" id="func-DrawCircle">
+    <div id="8b85ff82"></div>
     <div class="item-header">
         <h4>func DrawCircle</h4>
     </div>
@@ -1306,6 +1633,7 @@
 </div>
 
 <div class="item" id="func-DrawEllipse">
+    <div id="81e0e7ab"></div>
     <div class="item-header">
         <h4>func DrawEllipse</h4>
     </div>
@@ -1334,6 +1662,7 @@
 </div>
 
 <div class="item" id="func-DrawEllipticalArc">
+    <div id="11dac14b"></div>
     <div class="item-header">
         <h4>func DrawEllipticalArc</h4>
     </div>
@@ -1358,6 +1687,7 @@
 </div>
 
 <div class="item" id="func-DrawLine">
+    <div id="91b0f7ac"></div>
     <div class="item-header">
         <h4>func DrawLine</h4>
     </div>
@@ -1378,6 +1708,7 @@
 </div>
 
 <div class="item" id="func-DrawPath">
+    <div id="f051418e"></div>
     <div class="item-header">
         <h4>func DrawPath</h4>
     </div>
@@ -1442,6 +1773,7 @@
 </div>
 
 <div class="item" id="func-DrawPoint">
+    <div id="be308f36"></div>
     <div class="item-header">
         <h4>func DrawPoint</h4>
     </div>
@@ -1461,6 +1793,7 @@
 </div>
 
 <div class="item" id="func-DrawRectangle">
+    <div id="6707254d"></div>
     <div class="item-header">
         <h4>func DrawRectangle</h4>
     </div>
@@ -1484,6 +1817,7 @@
 </div>
 
 <div class="item" id="func-DrawRoundedRectangle">
+    <div id="cc624a00"></div>
     <div class="item-header">
         <h4>func DrawRoundedRectangle</h4>
     </div>
@@ -1535,6 +1869,7 @@
 </div>
 
 <div class="item" id="func-EncodeJPEG">
+    <div id="33950db7"></div>
     <div class="item-header">
         <h4>func EncodeJPEG</h4>
     </div>
@@ -1554,6 +1889,7 @@
 </div>
 
 <div class="item" id="func-EncodePNG">
+    <div id="74957c16"></div>
     <div class="item-header">
         <h4>func EncodePNG</h4>
     </div>
@@ -1575,6 +1911,7 @@
 </div>
 
 <div class="item" id="func-Fill">
+    <div id="a08c818b"></div>
     <div class="item-header">
         <h4>func Fill</h4>
     </div>
@@ -1605,6 +1942,7 @@
 </div>
 
 <div class="item" id="func-FillBrush">
+    <div id="e1ae554d"></div>
     <div class="item-header">
         <h4>func FillBrush</h4>
     </div>
@@ -1624,6 +1962,7 @@
 </div>
 
 <div class="item" id="func-FillPath">
+    <div id="b55f28b9"></div>
     <div class="item-header">
         <h4>func FillPath</h4>
     </div>
@@ -1646,6 +1985,7 @@
 </div>
 
 <div class="item" id="func-FillPreserve">
+    <div id="bc9e7435"></div>
     <div class="item-header">
         <h4>func FillPreserve</h4>
     </div>
@@ -1671,6 +2011,7 @@
 </div>
 
 <div class="item" id="func-FillRectCPU">
+    <div id="239dfe30"></div>
     <div class="item-header">
         <h4>func FillRectCPU</h4>
     </div>
@@ -1722,6 +2063,7 @@
 </div>
 
 <div class="item" id="func-FlushGPU">
+    <div id="9d85f305"></div>
     <div class="item-header">
         <h4>func FlushGPU</h4>
     </div>
@@ -1743,6 +2085,7 @@
 </div>
 
 <div class="item" id="func-FlushGPUWithView">
+    <div id="d3c1d838"></div>
     <div class="item-header">
         <h4>func FlushGPUWithView</h4>
     </div>
@@ -1790,6 +2133,7 @@
 </div>
 
 <div class="item" id="func-FlushGPUWithViewDamage">
+    <div id="a97cdea4"></div>
     <div class="item-header">
         <h4>func FlushGPUWithViewDamage</h4>
     </div>
@@ -1855,6 +2199,7 @@
 </div>
 
 <div class="item" id="func-FlushGPUWithViewDamageRects">
+    <div id="cd1f0126"></div>
     <div class="item-header">
         <h4>func FlushGPUWithViewDamageRects</h4>
     </div>
@@ -1894,6 +2239,7 @@
 </div>
 
 <div class="item" id="func-FrameDamage">
+    <div id="537d8103"></div>
     <div class="item-header">
         <h4>func FrameDamage</h4>
     </div>
@@ -1922,6 +2268,7 @@
 </div>
 
 <div class="item" id="func-FrameDamageUnion">
+    <div id="3f0a058c"></div>
     <div class="item-header">
         <h4>func FrameDamageUnion</h4>
     </div>
@@ -1947,6 +2294,7 @@
 </div>
 
 <div class="item" id="func-GPURenderContext">
+    <div id="cc6a8728"></div>
     <div class="item-header">
         <h4>func GPURenderContext</h4>
     </div>
@@ -1973,6 +2321,7 @@
 </div>
 
 <div class="item" id="func-GetCurrentPoint">
+    <div id="11de162c"></div>
     <div class="item-header">
         <h4>func GetCurrentPoint</h4>
     </div>
@@ -1998,6 +2347,7 @@
 </div>
 
 <div class="item" id="func-GetStroke">
+    <div id="db17ea8b"></div>
     <div class="item-header">
         <h4>func GetStroke</h4>
     </div>
@@ -2017,6 +2367,7 @@
 </div>
 
 <div class="item" id="func-GetTransform">
+    <div id="84f9ea24"></div>
     <div class="item-header">
         <h4>func GetTransform</h4>
     </div>
@@ -2040,6 +2391,7 @@
 </div>
 
 <div class="item" id="func-Height">
+    <div id="948d58a3"></div>
     <div class="item-header">
         <h4>func Height</h4>
     </div>
@@ -2063,6 +2415,7 @@
 </div>
 
 <div class="item" id="func-Identity">
+    <div id="623b81ec"></div>
     <div class="item-header">
         <h4>func Identity</h4>
     </div>
@@ -2086,6 +2439,7 @@
 </div>
 
 <div class="item" id="func-Image">
+    <div id="3d38fec6"></div>
     <div class="item-header">
         <h4>func Image</h4>
     </div>
@@ -2105,6 +2459,7 @@
 </div>
 
 <div class="item" id="func-InvertY">
+    <div id="ac86a39e"></div>
     <div class="item-header">
         <h4>func InvertY</h4>
     </div>
@@ -2127,6 +2482,7 @@
 </div>
 
 <div class="item" id="func-IsDashed">
+    <div id="df54825f"></div>
     <div class="item-header">
         <h4>func IsDashed</h4>
     </div>
@@ -2146,6 +2502,7 @@
 </div>
 
 <div class="item" id="func-LineTo">
+    <div id="100a7b4b"></div>
     <div class="item-header">
         <h4>func LineTo</h4>
     </div>
@@ -2166,6 +2523,7 @@
 </div>
 
 <div class="item" id="func-MoveTo">
+    <div id="7a7db1dc"></div>
     <div class="item-header">
         <h4>func MoveTo</h4>
     </div>
@@ -2186,6 +2544,7 @@
 </div>
 
 <div class="item" id="func-NewContext">
+    <div id="c013547e"></div>
     <div class="item-header">
         <h4>func NewContext</h4>
     </div>
@@ -2260,6 +2619,7 @@
 </div>
 
 <div class="item" id="func-NewContextForImage">
+    <div id="8131e2da"></div>
     <div class="item-header">
         <h4>func NewContextForImage</h4>
     </div>
@@ -2313,6 +2673,7 @@
 </div>
 
 <div class="item" id="func-NewContextForPixmap">
+    <div id="e96e0074"></div>
     <div class="item-header">
         <h4>func NewContextForPixmap</h4>
     </div>
@@ -2371,6 +2732,7 @@
 </div>
 
 <div class="item" id="func-NewContextWithScale">
+    <div id="22b759aa"></div>
     <div class="item-header">
         <h4>func NewContextWithScale</h4>
     </div>
@@ -2416,6 +2778,7 @@
 </div>
 
 <div class="item" id="func-NewSubPath">
+    <div id="d75ce729"></div>
     <div class="item-header">
         <h4>func NewSubPath</h4>
     </div>
@@ -2436,6 +2799,7 @@
 </div>
 
 <div class="item" id="func-PipelineMode">
+    <div id="4185850a"></div>
     <div class="item-header">
         <h4>func PipelineMode</h4>
     </div>
@@ -2455,6 +2819,7 @@
 </div>
 
 <div class="item" id="func-PixelHeight">
+    <div id="f708c322"></div>
     <div class="item-header">
         <h4>func PixelHeight</h4>
     </div>
@@ -2478,6 +2843,7 @@
 </div>
 
 <div class="item" id="func-PixelWidth">
+    <div id="0e850118"></div>
     <div class="item-header">
         <h4>func PixelWidth</h4>
     </div>
@@ -2501,6 +2867,7 @@
 </div>
 
 <div class="item" id="func-Pop">
+    <div id="fb5a0e60"></div>
     <div class="item-header">
         <h4>func Pop</h4>
     </div>
@@ -2555,6 +2922,7 @@
 </div>
 
 <div class="item" id="func-Push">
+    <div id="99eebce3"></div>
     <div class="item-header">
         <h4>func Push</h4>
     </div>
@@ -2591,6 +2959,7 @@
 </div>
 
 <div class="item" id="func-QuadraticTo">
+    <div id="5b5911d3"></div>
     <div class="item-header">
         <h4>func QuadraticTo</h4>
     </div>
@@ -2612,6 +2981,7 @@
 </div>
 
 <div class="item" id="func-RasterizerMode">
+    <div id="5642f4e5"></div>
     <div class="item-header">
         <h4>func RasterizerMode</h4>
     </div>
@@ -2631,6 +3001,7 @@
 </div>
 
 <div class="item" id="func-ResetFrameDamage">
+    <div id="ac124110"></div>
     <div class="item-header">
         <h4>func ResetFrameDamage</h4>
     </div>
@@ -2652,6 +3023,7 @@
 </div>
 
 <div class="item" id="func-Resize">
+    <div id="eb6023a7"></div>
     <div class="item-header">
         <h4>func Resize</h4>
     </div>
@@ -2731,6 +3103,7 @@
 </div>
 
 <div class="item" id="func-ResizeTarget">
+    <div id="3b3a3b73"></div>
     <div class="item-header">
         <h4>func ResizeTarget</h4>
     </div>
@@ -2754,6 +3127,7 @@
 </div>
 
 <div class="item" id="func-Rotate">
+    <div id="9828ab47"></div>
     <div class="item-header">
         <h4>func Rotate</h4>
     </div>
@@ -2773,6 +3147,7 @@
 </div>
 
 <div class="item" id="func-RotateAbout">
+    <div id="c5da452d"></div>
     <div class="item-header">
         <h4>func RotateAbout</h4>
     </div>
@@ -2794,6 +3169,7 @@
 </div>
 
 <div class="item" id="func-SavePNG">
+    <div id="e2534540"></div>
     <div class="item-header">
         <h4>func SavePNG</h4>
     </div>
@@ -2814,6 +3190,7 @@
 </div>
 
 <div class="item" id="func-Scale">
+    <div id="98ca7467"></div>
     <div class="item-header">
         <h4>func Scale</h4>
     </div>
@@ -2833,6 +3210,7 @@
 </div>
 
 <div class="item" id="func-SetAntiAlias">
+    <div id="b7f2dfed"></div>
     <div class="item-header">
         <h4>func SetAntiAlias</h4>
     </div>
@@ -2878,6 +3256,7 @@
 </div>
 
 <div class="item" id="func-SetColor">
+    <div id="5fb703fb"></div>
     <div class="item-header">
         <h4>func SetColor</h4>
     </div>
@@ -2900,6 +3279,7 @@
 </div>
 
 <div class="item" id="func-SetDamageTracking">
+    <div id="319625d2"></div>
     <div class="item-header">
         <h4>func SetDamageTracking</h4>
     </div>
@@ -2925,6 +3305,7 @@
 </div>
 
 <div class="item" id="func-SetDash">
+    <div id="15e268d2"></div>
     <div class="item-header">
         <h4>func SetDash</h4>
     </div>
@@ -2976,6 +3357,7 @@
 </div>
 
 <div class="item" id="func-SetDashOffset">
+    <div id="7ee1ef96"></div>
     <div class="item-header">
         <h4>func SetDashOffset</h4>
     </div>
@@ -3004,6 +3386,7 @@
 </div>
 
 <div class="item" id="func-SetDeviceScale">
+    <div id="8e5ff9c4"></div>
     <div class="item-header">
         <h4>func SetDeviceScale</h4>
     </div>
@@ -3071,6 +3454,7 @@
 </div>
 
 <div class="item" id="func-SetFillBrush">
+    <div id="1bba7dac"></div>
     <div class="item-header">
         <h4>func SetFillBrush</h4>
     </div>
@@ -3104,6 +3488,7 @@
 </div>
 
 <div class="item" id="func-SetFillRule">
+    <div id="690f35a6"></div>
     <div class="item-header">
         <h4>func SetFillRule</h4>
     </div>
@@ -3123,6 +3508,7 @@
 </div>
 
 <div class="item" id="func-SetHexColor">
+    <div id="f4f569bd"></div>
     <div class="item-header">
         <h4>func SetHexColor</h4>
     </div>
@@ -3145,6 +3531,7 @@
 </div>
 
 <div class="item" id="func-SetLCDLayout">
+    <div id="7cef5c56"></div>
     <div class="item-header">
         <h4>func SetLCDLayout</h4>
     </div>
@@ -3186,6 +3573,7 @@
 </div>
 
 <div class="item" id="func-SetLineCap">
+    <div id="543081b9"></div>
     <div class="item-header">
         <h4>func SetLineCap</h4>
     </div>
@@ -3205,6 +3593,7 @@
 </div>
 
 <div class="item" id="func-SetLineJoin">
+    <div id="08e53557"></div>
     <div class="item-header">
         <h4>func SetLineJoin</h4>
     </div>
@@ -3224,6 +3613,7 @@
 </div>
 
 <div class="item" id="func-SetLineWidth">
+    <div id="773bf6ef"></div>
     <div class="item-header">
         <h4>func SetLineWidth</h4>
     </div>
@@ -3243,6 +3633,7 @@
 </div>
 
 <div class="item" id="func-SetMiterLimit">
+    <div id="a2099d6c"></div>
     <div class="item-header">
         <h4>func SetMiterLimit</h4>
     </div>
@@ -3262,6 +3653,7 @@
 </div>
 
 <div class="item" id="func-SetPath">
+    <div id="b393500c"></div>
     <div class="item-header">
         <h4>func SetPath</h4>
     </div>
@@ -3296,6 +3688,7 @@
 </div>
 
 <div class="item" id="func-SetPipelineMode">
+    <div id="026c7eba"></div>
     <div class="item-header">
         <h4>func SetPipelineMode</h4>
     </div>
@@ -3332,6 +3725,7 @@
 </div>
 
 <div class="item" id="func-SetPixel">
+    <div id="a83059be"></div>
     <div class="item-header">
         <h4>func SetPixel</h4>
     </div>
@@ -3351,6 +3745,7 @@
 </div>
 
 <div class="item" id="func-SetRGB">
+    <div id="7c33c6aa"></div>
     <div class="item-header">
         <h4>func SetRGB</h4>
     </div>
@@ -3373,6 +3768,7 @@
 </div>
 
 <div class="item" id="func-SetRGBA">
+    <div id="2ba11091"></div>
     <div class="item-header">
         <h4>func SetRGBA</h4>
     </div>
@@ -3395,6 +3791,7 @@
 </div>
 
 <div class="item" id="func-SetRasterizerMode">
+    <div id="d9ea89f3"></div>
     <div class="item-header">
         <h4>func SetRasterizerMode</h4>
     </div>
@@ -3424,6 +3821,7 @@
 </div>
 
 <div class="item" id="func-SetSharedEncoder">
+    <div id="c4b0f0f4"></div>
     <div class="item-header">
         <h4>func SetSharedEncoder</h4>
     </div>
@@ -3468,6 +3866,7 @@
 </div>
 
 <div class="item" id="func-SetStroke">
+    <div id="4524ad11"></div>
     <div class="item-header">
         <h4>func SetStroke</h4>
     </div>
@@ -3499,6 +3898,7 @@
 </div>
 
 <div class="item" id="func-SetStrokeBrush">
+    <div id="bc401c09"></div>
     <div class="item-header">
         <h4>func SetStrokeBrush</h4>
     </div>
@@ -3532,6 +3932,7 @@
 </div>
 
 <div class="item" id="func-SetTextMode">
+    <div id="5ab6b0e7"></div>
     <div class="item-header">
         <h4>func SetTextMode</h4>
     </div>
@@ -3557,6 +3958,7 @@
 </div>
 
 <div class="item" id="func-SetTransform">
+    <div id="5e35976a"></div>
     <div class="item-header">
         <h4>func SetTransform</h4>
     </div>
@@ -3580,6 +3982,7 @@
 </div>
 
 <div class="item" id="func-Shear">
+    <div id="fd920318"></div>
     <div class="item-header">
         <h4>func Shear</h4>
     </div>
@@ -3599,6 +4002,7 @@
 </div>
 
 <div class="item" id="func-Stroke">
+    <div id="6cbe8b23"></div>
     <div class="item-header">
         <h4>func Stroke</h4>
     </div>
@@ -3629,6 +4033,7 @@
 </div>
 
 <div class="item" id="func-StrokeBrush">
+    <div id="5fc73360"></div>
     <div class="item-header">
         <h4>func StrokeBrush</h4>
     </div>
@@ -3650,6 +4055,7 @@
 </div>
 
 <div class="item" id="func-StrokePath">
+    <div id="3f8a7500"></div>
     <div class="item-header">
         <h4>func StrokePath</h4>
     </div>
@@ -3672,6 +4078,7 @@
 </div>
 
 <div class="item" id="func-StrokePreserve">
+    <div id="72367ad3"></div>
     <div class="item-header">
         <h4>func StrokePreserve</h4>
     </div>
@@ -3697,6 +4104,7 @@
 </div>
 
 <div class="item" id="func-SubmitSharedEncoder">
+    <div id="ce98ddc8"></div>
     <div class="item-header">
         <h4>func SubmitSharedEncoder</h4>
     </div>
@@ -3732,6 +4140,7 @@
 </div>
 
 <div class="item" id="func-TextMode">
+    <div id="555e8090"></div>
     <div class="item-header">
         <h4>func TextMode</h4>
     </div>
@@ -3751,6 +4160,7 @@
 </div>
 
 <div class="item" id="func-TrackDamageRect">
+    <div id="ed8a0358"></div>
     <div class="item-header">
         <h4>func TrackDamageRect</h4>
     </div>
@@ -3790,6 +4200,7 @@
 </div>
 
 <div class="item" id="func-Transform">
+    <div id="693a22b7"></div>
     <div class="item-header">
         <h4>func Transform</h4>
     </div>
@@ -3813,6 +4224,7 @@
 </div>
 
 <div class="item" id="func-TransformPoint">
+    <div id="e590c9be"></div>
     <div class="item-header">
         <h4>func TransformPoint</h4>
     </div>
@@ -3833,6 +4245,7 @@
 </div>
 
 <div class="item" id="func-Translate">
+    <div id="64acedbc"></div>
     <div class="item-header">
         <h4>func Translate</h4>
     </div>
@@ -3852,6 +4265,7 @@
 </div>
 
 <div class="item" id="func-Width">
+    <div id="ce46becc"></div>
     <div class="item-header">
         <h4>func Width</h4>
     </div>
@@ -3877,6 +4291,7 @@
 <h3 id="structs">Structs</h3>
 
 <div class="item" id="struct-Context">
+    <div id="b861ff50"></div>
     <div class="item-header">
         <h4>type Context struct</h4>
     </div>
@@ -3965,12 +4380,139 @@
 }
 </code></pre>
 </div>
-   
-        </div>
-    </main>
+   </div>
+        </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
-    <script>hljs.highlightAll();</script>
-</body>
+        <footer>
+            <div class="credits"><p>Unofficial documentation of <a target='_blank' href='https://github.com/gogpu/gg/'>GoGPU/GG</a> <strong>v0.48.5</strong></p><p class="godocumentorCredits">Generated with GoDocumentor - by <a href="https://www.linkedin.com/in/rcarlier/" target="_blank">Richard Carlier</a></p></div>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+        <script>
+            hljs.highlightAll();
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/minisearch@7.2.0/dist/umd/index.min.js"></script>
+        <script>
+            // search.js
+            const INDEX_URL = "index.json";
+            const BASE_FIELDS = ["name"];
+            const EXTRA_FIELDS = ["signature", "comments", "code"];
+
+            let ms = null;
+            let data = [];
+
+            function buildIndex(fields) {
+                ms = new MiniSearch({
+                    fields,
+                    storeFields: ["name", "signature", "path"],
+                    searchOptions: {
+                        boost: { name: 3, signature: 2, comments: 1, code: 1 },
+                        prefix: true,
+                        fuzzy: 0.2,
+                    },
+                });
+                ms.addAll(data);
+            }
+
+            function getFields() {
+                const checked = [...document.querySelectorAll('[name="fields"]:checked')].map(
+                    (el) => el.value,
+                );
+                return [...BASE_FIELDS, ...checked.filter((f) => EXTRA_FIELDS.includes(f))];
+            }
+
+            function positionPanel() {
+                const input = document.getElementById("fn-search");
+                const panel = document.getElementById("search-panel");
+                const rect = input.getBoundingClientRect();
+                panel.style.top = rect.bottom + 4 + "px";
+                panel.style.left = rect.left + "px";
+            }
+
+            function render(query) {
+                const ul = document.getElementById("search-results");
+                ul.innerHTML = "";
+
+                if (!query.trim()) return;
+
+                const results = ms.search(query);
+
+                if (!results.length) {
+                    ul.innerHTML = `<li>No results.</li>`;
+                    return;
+                }
+
+                ul.innerHTML = results
+                    .map(
+                        (r) => `
+    <li>
+      <a href="${r.path}">${r.name}</a>
+      ${r.signature ? `<code>${r.signature}</code>` : ""}
+    </li>
+  `,
+                    )
+                    .join("");
+            }
+
+            window.onload = (event) => {
+                const input = document.getElementById("fn-search");
+                input.disabled = true;
+                input.placeholder = "Loading…";
+
+                fetch(INDEX_URL)
+                    .then((res) => res.json())
+                    .then((json) => {
+                        data = json;
+                        buildIndex(BASE_FIELDS);
+
+                        input.disabled = false;
+                        input.placeholder = "Search…";
+
+                        const panel = document.getElementById("search-panel");
+                        const checks = document.querySelectorAll('[name="fields"]');
+                        const ul = document.getElementById("search-results");
+
+                        document.body.appendChild(panel);
+
+                        input.addEventListener("focus", () => {
+                            positionPanel();
+                            panel.hidden = false;
+                            render(input.value);
+                        });
+
+                        window.addEventListener(
+                            "scroll",
+                            () => {
+                                if (!panel.hidden) positionPanel();
+                            },
+                            true,
+                        );
+                        window.addEventListener("resize", () => {
+                            if (!panel.hidden) positionPanel();
+                        });
+
+                        document.addEventListener("click", (e) => {
+                            if (!e.target.closest(".search-wrapper") && !panel.contains(e.target))
+                                panel.hidden = true;
+                        });
+
+                        input.addEventListener("input", () => render(input.value));
+
+                        // Failed to load index.json: ReferenceError: ul is not defined
+                        ul.addEventListener("click", (e) => {
+                            if (e.target.closest("a")) panel.hidden = true;
+                        });
+
+                        checks.forEach((cb) => {
+                            cb.addEventListener("change", () => {
+                                buildIndex(getFields());
+                                render(input.value);
+                            });
+                        });
+                    })
+                    .catch((err) => console.error("Failed to load index.json:", err));
+            };
+        </script>
+    </body>
 </html>
